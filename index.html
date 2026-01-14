@@ -1970,6 +1970,135 @@ do shell script "python3 converter_core.py " & quoted form of filePath</pre>
             observer.observe(section);
         });
 
+        // Track external link clicks (LinkedIn, GitHub, fundops, mailswitch)
+        document.querySelectorAll('a[href*="linkedin.com"], a[href*="github.com"], a[href*="fundops.io"], a[href*="mailswitch.io"]').forEach(link => {
+            link.addEventListener('click', () => {
+                const url = new URL(link.href);
+                tcAnalytics.track('external_link_click', {
+                    category: 'outbound',
+                    destination: url.hostname,
+                    url: link.href,
+                    text: link.textContent.trim()
+                });
+            });
+        });
+
+        // Track contact intent (email/phone hover and click)
+        document.querySelectorAll('a[href^="mailto:"], a[href^="tel:"]').forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                tcAnalytics.track('contact_intent', {
+                    category: 'engagement',
+                    type: link.href.startsWith('mailto:') ? 'email' : 'phone',
+                    action: 'hover'
+                });
+            });
+            link.addEventListener('click', () => {
+                tcAnalytics.track('contact_intent', {
+                    category: 'conversion',
+                    type: link.href.startsWith('mailto:') ? 'email' : 'phone',
+                    action: 'click'
+                });
+            });
+        });
+
+        // Track time milestones (engaged visitors)
+        (function() {
+            let seconds = 0;
+            const milestones = [30, 60, 120, 300]; // 30s, 1min, 2min, 5min
+            const tracked = new Set();
+            setInterval(() => {
+                seconds++;
+                milestones.forEach(m => {
+                    if (seconds >= m && !tracked.has(m)) {
+                        tracked.add(m);
+                        tcAnalytics.track('time_milestone', {
+                            category: 'engagement',
+                            seconds: m,
+                            label: m < 60 ? m + 's' : Math.floor(m/60) + 'min'
+                        });
+                    }
+                });
+            }, 1000);
+        })();
+
+        // Track exit intent (mouse leaves viewport)
+        let exitIntentFired = false;
+        document.addEventListener('mouseout', (e) => {
+            if (!exitIntentFired && e.clientY < 10 && e.relatedTarget === null) {
+                exitIntentFired = true;
+                tcAnalytics.track('exit_intent', {
+                    category: 'engagement',
+                    time_on_page: Math.round(performance.now() / 1000),
+                    scroll_position: Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100)
+                });
+            }
+        });
+
+        // Track return visitors
+        (function() {
+            const visitCount = parseInt(localStorage.getItem('tc_visit_count') || '0') + 1;
+            localStorage.setItem('tc_visit_count', visitCount);
+            const lastVisit = localStorage.getItem('tc_last_visit');
+            const now = new Date().toISOString();
+
+            if (visitCount > 1) {
+                tcAnalytics.track('return_visitor', {
+                    category: 'audience',
+                    visit_number: visitCount,
+                    days_since_last: lastVisit ? Math.floor((new Date(now) - new Date(lastVisit)) / (1000*60*60*24)) : 0
+                });
+            }
+            localStorage.setItem('tc_last_visit', now);
+        })();
+
+        // Track copy to clipboard (email)
+        document.addEventListener('copy', () => {
+            const selection = window.getSelection().toString();
+            if (selection.includes('@') && selection.includes('.')) {
+                tcAnalytics.track('copy_email', {
+                    category: 'conversion',
+                    copied_text: selection.substring(0, 50)
+                });
+            }
+        });
+
+        // Track pricing section engagement (time spent viewing)
+        const pricingSection = document.querySelector('.pricing, #pricing, section:has(.pricing-card)');
+        if (pricingSection) {
+            let pricingViewStart = null;
+            const pricingObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        pricingViewStart = Date.now();
+                        tcAnalytics.track('pricing_view', {
+                            category: 'engagement',
+                            action: 'enter'
+                        });
+                    } else if (pricingViewStart) {
+                        const duration = Math.round((Date.now() - pricingViewStart) / 1000);
+                        tcAnalytics.track('pricing_view', {
+                            category: 'engagement',
+                            action: 'exit',
+                            duration_seconds: duration
+                        });
+                        pricingViewStart = null;
+                    }
+                });
+            }, { threshold: 0.3 });
+            pricingObserver.observe(pricingSection);
+        }
+
+        // Track FAQ accordion expands
+        document.querySelectorAll('.faq-item, details, .accordion-item').forEach(faq => {
+            faq.addEventListener('click', (e) => {
+                const question = faq.querySelector('summary, .faq-question, h3, h4')?.textContent?.trim() || 'unknown';
+                tcAnalytics.track('faq_expand', {
+                    category: 'engagement',
+                    question: question.substring(0, 100)
+                });
+            });
+        });
+
         // ===========================================
         // INITIALIZE
         // ===========================================
