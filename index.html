@@ -1894,8 +1894,17 @@ do shell script "python3 converter_core.py " & quoted form of filePath</pre>
                 if (events.length > 100) events.shift();
                 localStorage.setItem('tc_events', JSON.stringify(events));
 
-                // Send to analytics endpoint (if configured)
-                // this.sendToEndpoint(payload);
+                // Send to GA4
+                if (typeof gtag === 'function') {
+                    gtag('event', event, {
+                        event_category: data.category || 'engagement',
+                        event_label: data.label || data.section || data.text || '',
+                        traffic_source: this.source,
+                        traffic_medium: this.medium,
+                        traffic_channel: this.getChannel(),
+                        ...data
+                    });
+                }
 
                 console.log('TC Event:', payload);
             },
