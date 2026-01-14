@@ -6,7 +6,7 @@
 
     <!-- SEO Meta Tags -->
     <title>TechConcepts | I Build Products. You Pay Once. | Fixed-Price MVP Development</title>
-    <meta name="description" content="CTO at a VC fund builds products for founders who can't code. Fixed pricing: €999-€9,999. From idea to working product in 1-8 weeks. Full code ownership.">
+    <meta name="description" content="I build products for founders. Fixed pricing: €999-€9,999. From idea to working product in 1-8 weeks. Full code ownership.">
     <meta name="keywords" content="MVP development, fixed price development, product builder, startup MVP, build my app, hire developer fixed price, idea to product, non-technical founder">
     <meta name="author" content="Evgeny Goncharov">
     <meta name="robots" content="index, follow">
@@ -16,7 +16,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://techconcepts.org/">
     <meta property="og:title" content="I Build Products. You Pay Once. | TechConcepts">
-    <meta property="og:description" content="CTO at €800M VC fund builds products for founders. Fixed pricing €999-€9,999. Full code ownership.">
+    <meta property="og:description" content="I build products for founders. Fixed pricing €999-€9,999. Full code ownership.">
     <meta property="og:image" content="https://techconcepts.org/techconcepts-og.png">
     <meta property="og:site_name" content="TechConcepts">
 
@@ -32,6 +32,15 @@
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💡</text></svg>">
+
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
 
     <!-- Schema.org - LocalBusiness (KEPT from original) -->
     <script type="application/ld+json">
@@ -62,28 +71,20 @@
     }
     </script>
 
-    <!-- Schema.org - Person (KEPT from original) -->
+    <!-- Schema.org - Person -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "Person",
         "name": "Evgeny Goncharov",
-        "jobTitle": "CTO & Product Builder",
-        "worksFor": {
-            "@type": "Organization",
-            "name": "Target Global"
-        },
+        "jobTitle": "Product Builder",
         "alumniOf": [
             {
                 "@type": "EducationalOrganization",
                 "name": "Darden School of Business, University of Virginia"
             }
         ],
-        "knowsAbout": ["Product Development", "MVP", "Automation", "AI", "SaaS"],
-        "sameAs": [
-            "https://linkedin.com/in/evgoncharov",
-            "https://github.com/Strategyherogo"
-        ]
+        "knowsAbout": ["Product Development", "MVP", "Automation", "AI", "SaaS"]
     }
     </script>
 
@@ -599,15 +600,11 @@
             align-items: center;
         }
 
-        .about-photo {
+        .about-photo-img {
             width: 300px;
             height: 300px;
-            background: var(--border);
             border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 80px;
+            object-fit: cover;
         }
 
         .about-text h2 {
@@ -639,6 +636,306 @@
             border-radius: 8px;
             font-size: 14px;
             border: 1px solid var(--border);
+        }
+
+        /* LinkedIn Posts Section */
+        .linkedin-posts {
+            padding: 80px 0;
+            background: var(--light-gray);
+        }
+
+        .linkedin-posts h2 {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--gray);
+            margin-bottom: 50px;
+            font-size: 18px;
+        }
+
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .post-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 28px;
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .post-content p {
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--primary);
+            font-style: italic;
+        }
+
+        .post-meta {
+            margin-top: 20px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+        }
+
+        .post-reactions {
+            font-size: 14px;
+            color: var(--gray);
+        }
+
+        /* Resources Section */
+        .resources {
+            padding: 80px 0;
+        }
+
+        .resources h2 {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .resource-card {
+            background: var(--light-gray);
+            border-radius: 12px;
+            padding: 28px;
+            border: 1px solid var(--border);
+        }
+
+        .resource-card h3 {
+            font-size: 18px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .resource-card ul {
+            list-style: none;
+            margin-bottom: 16px;
+        }
+
+        .resource-card li {
+            padding: 8px 0;
+            font-size: 14px;
+            color: var(--gray);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .resource-card li code {
+            background: #fff;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 13px;
+            color: var(--primary);
+        }
+
+        .github-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .github-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            background: var(--primary);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        .github-link:hover {
+            background: #333;
+        }
+
+        .github-link svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Language Switcher */
+        .lang-switcher {
+            position: relative;
+            margin-right: 16px;
+        }
+
+        .lang-btn {
+            background: var(--light-gray);
+            border: 1px solid var(--border);
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .lang-btn:hover {
+            background: var(--border);
+        }
+
+        .lang-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            min-width: 140px;
+            z-index: 200;
+            margin-top: 4px;
+        }
+
+        .lang-dropdown.active {
+            display: block;
+        }
+
+        .lang-option {
+            display: block;
+            width: 100%;
+            padding: 10px 16px;
+            text-align: left;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .lang-option:hover {
+            background: var(--light-gray);
+        }
+
+        .lang-option:first-child {
+            border-radius: 8px 8px 0 0;
+        }
+
+        .lang-option:last-child {
+            border-radius: 0 0 8px 8px;
+        }
+
+        /* Blog Section */
+        .blog {
+            padding: 80px 0;
+            background: #fff;
+        }
+
+        .blog h2 {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .blog-article {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--light-gray);
+            border-radius: 16px;
+            padding: 40px;
+            border: 1px solid var(--border);
+        }
+
+        .blog-article h3 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .blog-meta {
+            color: var(--gray);
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+
+        .blog-article h4 {
+            font-size: 20px;
+            margin: 32px 0 16px;
+            color: var(--primary);
+        }
+
+        .blog-article p {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 16px;
+            color: #333;
+        }
+
+        .blog-article code {
+            background: #fff;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 14px;
+        }
+
+        .blog-article pre {
+            background: var(--primary);
+            color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 16px 0;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .blog-article ul {
+            margin: 16px 0;
+            padding-left: 24px;
+        }
+
+        .blog-article li {
+            margin-bottom: 8px;
+            line-height: 1.7;
+        }
+
+        .blog-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .blog-stat {
+            background: #fff;
+            padding: 16px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .blog-stat .number {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--success);
+        }
+
+        .blog-stat .label {
+            font-size: 12px;
+            color: var(--gray);
+            text-transform: uppercase;
         }
 
         /* FAQ Section */
@@ -789,8 +1086,15 @@
 
             .problem-grid,
             .pricing-grid,
-            .proof-grid {
+            .proof-grid,
+            .posts-grid,
+            .resources-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .github-links {
+                flex-direction: column;
+                align-items: center;
             }
 
             .process-steps {
@@ -807,7 +1111,7 @@
                 text-align: center;
             }
 
-            .about-photo {
+            .about-photo-img {
                 margin: 0 auto;
             }
 
@@ -861,11 +1165,25 @@
             <a href="/" class="logo">TechConcepts</a>
             <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Toggle menu">☰</button>
             <div class="nav-links" id="navLinks">
-                <a href="#pricing">Pricing</a>
-                <a href="#process">How it works</a>
-                <a href="#about">About</a>
-                <a href="#faq">FAQ</a>
-                <a href="https://calendar.app.google/md6WqwnhfireNTqx5" class="btn btn-primary">Get Started</a>
+                <a href="#pricing" data-i18n="nav.pricing">Pricing</a>
+                <a href="#process" data-i18n="nav.process">How it works</a>
+                <a href="#about" data-i18n="nav.about">About</a>
+                <a href="#resources" data-i18n="nav.resources">Resources</a>
+                <a href="#blog" data-i18n="nav.blog">Blog</a>
+                <a href="#faq" data-i18n="nav.faq">FAQ</a>
+                <div class="lang-switcher">
+                    <button class="lang-btn" onclick="toggleLangMenu()">
+                        <span id="currentLang">EN</span> ▾
+                    </button>
+                    <div class="lang-dropdown" id="langDropdown">
+                        <button class="lang-option" onclick="setLanguage('en')">🇬🇧 English</button>
+                        <button class="lang-option" onclick="setLanguage('es')">🇪🇸 Español</button>
+                        <button class="lang-option" onclick="setLanguage('fr')">🇫🇷 Français</button>
+                        <button class="lang-option" onclick="setLanguage('de')">🇩🇪 Deutsch</button>
+                        <button class="lang-option" onclick="setLanguage('it')">🇮🇹 Italiano</button>
+                    </div>
+                </div>
+                <a href="https://calendar.app.google/md6WqwnhfireNTqx5" class="btn btn-primary" data-i18n="nav.cta">Get Started</a>
             </div>
         </div>
     </nav>
@@ -873,11 +1191,11 @@
     <!-- Hero -->
     <section class="hero">
         <div class="container">
-            <h1>I Build Products.<br>You Pay Once.</h1>
-            <p>CTO at a VC fund. I build products for non-technical founders. Fixed pricing, full ownership, delivered in 1-8 weeks.</p>
+            <h1 data-i18n="hero.title">I Build Products.<br>You Pay Once.</h1>
+            <p data-i18n="hero.subtitle">I build products for non-technical founders. Fixed pricing, full ownership, delivered in 1-8 weeks.</p>
             <div class="hero-buttons">
-                <a href="#pricing" class="btn btn-primary">See Pricing</a>
-                <a href="https://calendar.app.google/md6WqwnhfireNTqx5" class="btn btn-secondary">Book a Call</a>
+                <a href="#pricing" class="btn btn-primary" data-i18n="hero.cta1">See Pricing</a>
+                <a href="https://calendar.app.google/md6WqwnhfireNTqx5" class="btn btn-secondary" data-i18n="hero.cta2">Book a Call</a>
             </div>
             <div class="trust-badges">
                 <span>Ex-Yandex</span>
@@ -1023,19 +1341,183 @@
     <section class="about" id="about">
         <div class="container">
             <div class="about-content">
-                <div class="about-photo">👨‍💻</div>
+                <img src="https://techconcepts.org/evgeny.jpg" alt="Evgeny Goncharov" class="about-photo-img">
                 <div class="about-text">
-                    <h2>Evgeny Goncharov</h2>
-                    <div class="title">CTO at Target Global (€800M AUM)</div>
-                    <p>I've built products at Yandex, scaled operations at EY, and now run technology for a VC fund. I know what makes products work because I've seen hundreds of them - as an investor and as a builder.</p>
+                    <h2>Hi, I'm Evgeny</h2>
+                    <div class="title">Product Builder</div>
+                    <p>I've built products at Yandex, scaled operations at EY, and helped dozens of founders turn their ideas into working software. I know what makes products work because I've built them myself.</p>
                     <p>I started TechConcepts because too many good ideas die waiting for the "right developer." Fixed pricing means you know exactly what you're getting. No surprises.</p>
                     <div class="credentials">
                         <div class="credential">🎙️ Host: Innovate Spain Podcast</div>
-                        <div class="credential">🎓 Darden MBA (Pricing)</div>
+                        <div class="credential">🎓 Darden MBA</div>
                         <div class="credential">🌐 Madrid, Spain</div>
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- LinkedIn Posts -->
+    <section class="linkedin-posts" id="posts">
+        <div class="container">
+            <h2>What I share on LinkedIn</h2>
+            <p class="section-subtitle">Real results from building products and systems. <a href="https://linkedin.com/in/evgoncharov" target="_blank" style="color: var(--accent);">Follow me →</a></p>
+            <div class="posts-grid">
+                <div class="post-card">
+                    <div class="post-content">
+                        <p>"We were drowning in documents. Every week, someone spent 8+ hours just organizing PDFs. So we built an AI system. Results: <strong>€33K annual savings</strong>, 8 hours → 45 minutes, 92% accuracy. The AI handles 90% of it now."</p>
+                    </div>
+                    <div class="post-meta">
+                        <span class="post-reactions">🤖 AI Automation</span>
+                    </div>
+                </div>
+                <div class="post-card">
+                    <div class="post-content">
+                        <p>"'We need another ops person.' Instead of hiring, we automated. Built a Jira workflow that auto-routes, assigns by workload, and escalates before SLA breach. Annual impact: <strong>€100K+ saved</strong>. Not from firing—from removing tasks humans hate."</p>
+                    </div>
+                    <div class="post-meta">
+                        <span class="post-reactions">⚡ Workflow Automation</span>
+                    </div>
+                </div>
+                <div class="post-card">
+                    <div class="post-content">
+                        <p>"70% of our IT spend was on things nobody used. We killed 23 unused SaaS subscriptions, consolidated 4 tools into 1, automated manual reporting. Result: <strong>72% IT cost reduction</strong>. No layoffs. Just stopped paying for waste."</p>
+                    </div>
+                    <div class="post-meta">
+                        <span class="post-reactions">💰 Cost Optimization</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources -->
+    <section class="resources" id="resources">
+        <div class="container">
+            <h2>Development Resources</h2>
+            <p class="section-subtitle">I use Claude Code skills to build 3x faster. These are slash commands that automate repetitive workflows.</p>
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <h3>🔧 Development & Debugging</h3>
+                    <ul>
+                        <li><code>/systematic-debug</code> 4-phase bug fixing methodology</li>
+                        <li><code>/tdd</code> Test-Driven Development workflow</li>
+                        <li><code>/verify</code> Evidence before claiming done</li>
+                        <li><code>/parallel-agents</code> Multi-agent task handling</li>
+                    </ul>
+                </div>
+                <div class="resource-card">
+                    <h3>🚀 Deployment & Ops</h3>
+                    <ul>
+                        <li><code>/quick-deploy</code> Git push + deploy + health check</li>
+                        <li><code>/deploy-verify</code> Post-deploy smoke tests</li>
+                        <li><code>/do-health</code> DigitalOcean apps monitoring</li>
+                        <li><code>/env-sync</code> Environment variable comparison</li>
+                    </ul>
+                </div>
+                <div class="resource-card">
+                    <h3>📝 Content & Marketing</h3>
+                    <ul>
+                        <li><code>/design-website</code> SEO-optimized landing pages</li>
+                        <li><code>/c2c:blog</code> Blog posts from codebase</li>
+                        <li><code>/linkedin-post</code> Hook-story-CTA format</li>
+                        <li><code>/case-study</code> Project case studies</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="text-align: center; margin: 40px 0 20px; color: var(--gray); font-size: 14px;">
+                <p><strong>How it works:</strong> Type <code style="background: var(--light-gray); padding: 2px 8px; border-radius: 4px;">/skill-name</code> in Claude Code CLI → Skill loads instructions → Task gets done systematically</p>
+                <p style="margin-top: 12px;">38 skills installed • All open source • Install: <code style="background: var(--light-gray); padding: 2px 8px; border-radius: 4px;">cp skill.md ~/.claude/commands/</code></p>
+            </div>
+            <div class="github-links">
+                <a href="https://github.com/Strategyherogo" class="github-link">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    My GitHub
+                </a>
+                <a href="https://github.com/alirezarezvani/claude-code-tresor" class="github-link">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    Claude Code Skills
+                </a>
+                <a href="https://github.com/anthropics/claude-code" class="github-link">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    Claude Code
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog -->
+    <section class="blog" id="blog">
+        <div class="container">
+            <h2>How I Build Things</h2>
+            <article class="blog-article">
+                <h3>I Built an MBOX Converter in 30 Minutes with Claude</h3>
+                <div class="blog-meta">January 2026 • 5 min read • Build Story</div>
+
+                <p>A client needed to migrate Google Vault email exports to Outlook. The problem: Google exports in MBOX format. Outlook needs EML files. There's no native converter.</p>
+
+                <p>Instead of searching for paid tools or complicated scripts, I built one myself. Here's exactly how.</p>
+
+                <h4>The Problem</h4>
+                <p>Google Vault exports emails as <code>.mbox</code> files—a format from the 1970s that bundles thousands of emails into a single file. Outlook can't read it. Neither can most email clients.</p>
+
+                <p>The client had 50,000+ emails to migrate. Manual conversion wasn't an option.</p>
+
+                <h4>The Solution: 82 Lines of Python</h4>
+                <p>The core converter is embarrassingly simple:</p>
+
+                <pre>def convert_mbox(mbox_path, output_dir):
+    mbox = mailbox.mbox(mbox_path)
+    count = 0
+    for msg in mbox:
+        # Create filename from date + sender + subject
+        filename = f"{date}_{sender}_{subject}.eml"
+        with open(output_dir / filename, 'wb') as f:
+            f.write(msg.as_bytes())
+        count += 1
+    return count</pre>
+
+                <p>Python's <code>mailbox</code> module does all the heavy lifting. Each email in the MBOX becomes a separate <code>.eml</code> file that Outlook opens natively.</p>
+
+                <h4>Making it User-Friendly</h4>
+                <p>A command-line script wouldn't work for a non-technical client. I needed a native Mac app with drag-and-drop support.</p>
+
+                <p>Problem: Python's tkinter wasn't available on my system. Solution: AppleScript wrapper calling the Python backend.</p>
+
+                <pre>-- AppleScript handles GUI
+set selectedFiles to choose file
+-- Python does the conversion
+do shell script "python3 converter_core.py " & quoted form of filePath</pre>
+
+                <p>Compiled with <code>osacompile</code>, it becomes a proper <code>.app</code> that lives in the Applications folder.</p>
+
+                <h4>Results</h4>
+                <div class="blog-stats">
+                    <div class="blog-stat">
+                        <div class="number">30</div>
+                        <div class="label">Minutes to build</div>
+                    </div>
+                    <div class="blog-stat">
+                        <div class="number">82</div>
+                        <div class="label">Lines of code</div>
+                    </div>
+                    <div class="blog-stat">
+                        <div class="number">50K+</div>
+                        <div class="label">Emails converted</div>
+                    </div>
+                </div>
+
+                <h4>Key Lessons</h4>
+                <ul>
+                    <li><strong>Standard libraries are powerful.</strong> Python's <code>mailbox</code> module handled all the MBOX parsing—no external dependencies.</li>
+                    <li><strong>AppleScript + Python = native Mac apps.</strong> When GUI frameworks don't cooperate, hybrid approaches work.</li>
+                    <li><strong>Build small, ship fast.</strong> The client didn't need a beautiful app. They needed their emails converted today.</li>
+                </ul>
+
+                <p>The full code is open source. If you're migrating from Google Vault to Outlook, reach out—I'll share the app.</p>
+
+                <p style="margin-top: 32px;"><a href="https://mailswitch.io?utm_source=techconcepts&utm_medium=blog&utm_campaign=mbox_article" style="color: var(--accent); font-weight: 600;">→ Download MailSwitch (the polished version)</a></p>
+            </article>
         </div>
     </section>
 
@@ -1078,8 +1560,10 @@
         <div class="container">
             <h2>Also from TechConcepts</h2>
             <div class="product-links">
-                <a href="https://fundops.io" class="product-link">FundOps → Fund automation platform</a>
-                <a href="https://mailswitch.io" class="product-link">MailSwitch → Email converter for Mac</a>
+                <a href="https://fundops.io?utm_source=techconcepts&utm_medium=website&utm_campaign=cross_link" class="product-link">FundOps → Fund automation platform</a>
+                <a href="https://mailswitch.io?utm_source=techconcepts&utm_medium=website&utm_campaign=cross_link" class="product-link">MailSwitch → Email converter for Mac</a>
+                <a href="https://linkedin.com/in/evgoncharov" class="product-link" target="_blank">LinkedIn → 22K+ network</a>
+                <a href="https://github.com/Strategyherogo" class="product-link" target="_blank">GitHub → Open source projects</a>
             </div>
         </div>
     </section>
@@ -1089,8 +1573,6 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-links">
-                    <a href="https://linkedin.com/in/evgoncharov" target="_blank">LinkedIn</a>
-                    <a href="https://github.com/Strategyherogo" target="_blank">GitHub</a>
                     <a href="mailto:eg@techconcepts.org">eg@techconcepts.org</a>
                     <a href="/privacy">Privacy Policy</a>
                     <a href="/terms">Terms</a>
@@ -1103,15 +1585,392 @@
     </footer>
 
     <script>
+        // ===========================================
+        // MOBILE MENU
+        // ===========================================
         function toggleMenu() {
             document.getElementById('navLinks').classList.toggle('active');
         }
-        // Close menu when clicking a link
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 document.getElementById('navLinks').classList.remove('active');
             });
         });
+
+        // ===========================================
+        // LANGUAGE SWITCHER
+        // ===========================================
+        function toggleLangMenu() {
+            document.getElementById('langDropdown').classList.toggle('active');
+        }
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.lang-switcher')) {
+                document.getElementById('langDropdown').classList.remove('active');
+            }
+        });
+
+        // ===========================================
+        // TRANSLATIONS
+        // ===========================================
+        const translations = {
+            en: {
+                'nav.pricing': 'Pricing',
+                'nav.process': 'How it works',
+                'nav.about': 'About',
+                'nav.resources': 'Resources',
+                'nav.blog': 'Blog',
+                'nav.faq': 'FAQ',
+                'nav.cta': 'Get Started',
+                'hero.title': 'I Build Products.<br>You Pay Once.',
+                'hero.subtitle': 'I build products for non-technical founders. Fixed pricing, full ownership, delivered in 1-8 weeks.',
+                'hero.cta1': 'See Pricing',
+                'hero.cta2': 'Book a Call'
+            },
+            es: {
+                'nav.pricing': 'Precios',
+                'nav.process': 'Cómo funciona',
+                'nav.about': 'Sobre mí',
+                'nav.resources': 'Recursos',
+                'nav.blog': 'Blog',
+                'nav.faq': 'FAQ',
+                'nav.cta': 'Empezar',
+                'hero.title': 'Construyo Productos.<br>Pagas Una Vez.',
+                'hero.subtitle': 'Construyo productos para fundadores no técnicos. Precio fijo, propiedad total, entrega en 1-8 semanas.',
+                'hero.cta1': 'Ver Precios',
+                'hero.cta2': 'Reservar Llamada'
+            },
+            fr: {
+                'nav.pricing': 'Tarifs',
+                'nav.process': 'Comment ça marche',
+                'nav.about': 'À propos',
+                'nav.resources': 'Ressources',
+                'nav.blog': 'Blog',
+                'nav.faq': 'FAQ',
+                'nav.cta': 'Commencer',
+                'hero.title': 'Je Construis des Produits.<br>Vous Payez Une Fois.',
+                'hero.subtitle': 'Je construis des produits pour les fondateurs non-techniques. Prix fixe, propriété totale, livré en 1-8 semaines.',
+                'hero.cta1': 'Voir les Tarifs',
+                'hero.cta2': 'Réserver un Appel'
+            },
+            de: {
+                'nav.pricing': 'Preise',
+                'nav.process': 'So funktioniert es',
+                'nav.about': 'Über mich',
+                'nav.resources': 'Ressourcen',
+                'nav.blog': 'Blog',
+                'nav.faq': 'FAQ',
+                'nav.cta': 'Loslegen',
+                'hero.title': 'Ich Baue Produkte.<br>Sie Zahlen Einmal.',
+                'hero.subtitle': 'Ich baue Produkte für nicht-technische Gründer. Festpreis, volle Eigentumsrechte, Lieferung in 1-8 Wochen.',
+                'hero.cta1': 'Preise Sehen',
+                'hero.cta2': 'Gespräch Buchen'
+            },
+            it: {
+                'nav.pricing': 'Prezzi',
+                'nav.process': 'Come funziona',
+                'nav.about': 'Chi sono',
+                'nav.resources': 'Risorse',
+                'nav.blog': 'Blog',
+                'nav.faq': 'FAQ',
+                'nav.cta': 'Inizia',
+                'hero.title': 'Costruisco Prodotti.<br>Paghi Una Volta.',
+                'hero.subtitle': 'Costruisco prodotti per fondatori non tecnici. Prezzo fisso, proprietà totale, consegnato in 1-8 settimane.',
+                'hero.cta1': 'Vedi Prezzi',
+                'hero.cta2': 'Prenota una Chiamata'
+            }
+        };
+
+        const langNames = { en: 'EN', es: 'ES', fr: 'FR', de: 'DE', it: 'IT' };
+
+        function setLanguage(lang) {
+            if (!translations[lang]) return;
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    el.innerHTML = translations[lang][key];
+                }
+            });
+
+            document.getElementById('currentLang').textContent = langNames[lang];
+            document.getElementById('langDropdown').classList.remove('active');
+            localStorage.setItem('tc_lang', lang);
+
+            // Track language change
+            tcAnalytics.track('language_change', { language: lang });
+        }
+
+        // Country to language mapping
+        const countryToLang = {
+            ES: 'es', MX: 'es', AR: 'es', CO: 'es', CL: 'es', PE: 'es',
+            FR: 'fr', BE: 'fr', CH: 'fr', CA: 'fr',
+            DE: 'de', AT: 'de',
+            IT: 'it',
+            GB: 'en', US: 'en', AU: 'en', NZ: 'en', IE: 'en'
+        };
+
+        async function detectLanguage() {
+            // Check saved preference
+            const saved = localStorage.getItem('tc_lang');
+            if (saved && translations[saved]) {
+                setLanguage(saved);
+                return;
+            }
+
+            // Try Cloudflare country header (via fetch to self)
+            try {
+                const resp = await fetch(window.location.href, { method: 'HEAD' });
+                const country = resp.headers.get('cf-ipcountry');
+                if (country && countryToLang[country]) {
+                    setLanguage(countryToLang[country]);
+                    return;
+                }
+            } catch (e) {}
+
+            // Fallback to browser language
+            const browserLang = navigator.language?.split('-')[0];
+            if (translations[browserLang]) {
+                setLanguage(browserLang);
+            }
+        }
+
+        // ===========================================
+        // ANALYTICS & TRAFFIC SEGMENTATION
+        // ===========================================
+        const tcAnalytics = {
+            sessionId: null,
+            visitorId: null,
+            source: null,
+            medium: null,
+            campaign: null,
+
+            init() {
+                // Generate or retrieve visitor ID
+                this.visitorId = localStorage.getItem('tc_vid') || this.generateId();
+                localStorage.setItem('tc_vid', this.visitorId);
+
+                // Generate session ID
+                this.sessionId = sessionStorage.getItem('tc_sid') || this.generateId();
+                sessionStorage.setItem('tc_sid', this.sessionId);
+
+                // Parse traffic source
+                this.parseTrafficSource();
+
+                // Track page view
+                this.track('page_view', {
+                    page: window.location.pathname,
+                    referrer: document.referrer
+                });
+
+                // Track scroll depth
+                this.trackScrollDepth();
+
+                // Track time on page
+                this.trackTimeOnPage();
+
+                // Log traffic source for debugging
+                console.log('TC Analytics:', {
+                    source: this.source,
+                    medium: this.medium,
+                    campaign: this.campaign,
+                    channel: this.getChannel()
+                });
+            },
+
+            generateId() {
+                return 'tc_' + Math.random().toString(36).substr(2, 9) + Date.now().toString(36);
+            },
+
+            parseTrafficSource() {
+                const params = new URLSearchParams(window.location.search);
+                const referrer = document.referrer;
+
+                // UTM parameters (highest priority)
+                if (params.get('utm_source')) {
+                    this.source = params.get('utm_source');
+                    this.medium = params.get('utm_medium') || 'unknown';
+                    this.campaign = params.get('utm_campaign') || '';
+
+                    // Save first touch attribution
+                    if (!localStorage.getItem('tc_first_source')) {
+                        localStorage.setItem('tc_first_source', this.source);
+                        localStorage.setItem('tc_first_medium', this.medium);
+                        localStorage.setItem('tc_first_campaign', this.campaign);
+                    }
+                    return;
+                }
+
+                // Referrer-based detection
+                if (referrer) {
+                    const ref = new URL(referrer);
+                    const host = ref.hostname.toLowerCase();
+
+                    // LinkedIn
+                    if (host.includes('linkedin.com') || host.includes('lnkd.in')) {
+                        this.source = 'linkedin';
+                        this.medium = 'social';
+                        return;
+                    }
+
+                    // Twitter/X
+                    if (host.includes('twitter.com') || host.includes('t.co') || host.includes('x.com')) {
+                        this.source = 'twitter';
+                        this.medium = 'social';
+                        return;
+                    }
+
+                    // Facebook
+                    if (host.includes('facebook.com') || host.includes('fb.com') || host.includes('fb.me')) {
+                        this.source = 'facebook';
+                        this.medium = 'social';
+                        return;
+                    }
+
+                    // Search engines (SEO)
+                    if (host.includes('google.') || host.includes('bing.com') || host.includes('duckduckgo.com') ||
+                        host.includes('yahoo.com') || host.includes('baidu.com') || host.includes('yandex.')) {
+                        this.source = host.split('.')[0].replace('www', 'google');
+                        this.medium = 'organic';
+                        return;
+                    }
+
+                    // AI assistants (AI discovery)
+                    if (host.includes('chat.openai.com') || host.includes('chatgpt.com') ||
+                        host.includes('claude.ai') || host.includes('perplexity.ai') ||
+                        host.includes('bard.google.com') || host.includes('copilot.microsoft.com')) {
+                        this.source = host.split('.')[0];
+                        this.medium = 'ai';
+                        return;
+                    }
+
+                    // Other referral
+                    this.source = host;
+                    this.medium = 'referral';
+                    return;
+                }
+
+                // Direct traffic
+                this.source = 'direct';
+                this.medium = 'none';
+            },
+
+            getChannel() {
+                // Channel grouping for reporting
+                const medium = this.medium?.toLowerCase();
+                const source = this.source?.toLowerCase();
+
+                if (medium === 'ai') return 'AI Discovery';
+                if (medium === 'organic') return 'SEO / Organic Search';
+                if (medium === 'social') {
+                    if (source === 'linkedin') return 'LinkedIn';
+                    if (source === 'twitter') return 'Twitter/X';
+                    return 'Social';
+                }
+                if (medium === 'paid' || medium === 'cpc' || medium === 'ppc') return 'Paid Ads';
+                if (medium === 'email') return 'Email';
+                if (medium === 'referral') return 'Referral';
+                if (source === 'direct') return 'Direct';
+                return 'Other';
+            },
+
+            track(event, data = {}) {
+                const payload = {
+                    event,
+                    timestamp: new Date().toISOString(),
+                    visitor_id: this.visitorId,
+                    session_id: this.sessionId,
+                    source: this.source,
+                    medium: this.medium,
+                    campaign: this.campaign,
+                    channel: this.getChannel(),
+                    url: window.location.href,
+                    ...data
+                };
+
+                // Store events locally
+                const events = JSON.parse(localStorage.getItem('tc_events') || '[]');
+                events.push(payload);
+                // Keep last 100 events
+                if (events.length > 100) events.shift();
+                localStorage.setItem('tc_events', JSON.stringify(events));
+
+                // Send to analytics endpoint (if configured)
+                // this.sendToEndpoint(payload);
+
+                console.log('TC Event:', payload);
+            },
+
+            trackScrollDepth() {
+                let maxScroll = 0;
+                const depths = [25, 50, 75, 100];
+                const tracked = new Set();
+
+                window.addEventListener('scroll', () => {
+                    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+                    const scrollPercent = Math.round((window.scrollY / scrollHeight) * 100);
+
+                    depths.forEach(depth => {
+                        if (scrollPercent >= depth && !tracked.has(depth)) {
+                            tracked.add(depth);
+                            this.track('scroll_depth', { depth: depth + '%' });
+                        }
+                    });
+                });
+            },
+
+            trackTimeOnPage() {
+                let seconds = 0;
+                const milestones = [30, 60, 120, 300];
+                const tracked = new Set();
+
+                setInterval(() => {
+                    seconds++;
+                    milestones.forEach(milestone => {
+                        if (seconds >= milestone && !tracked.has(milestone)) {
+                            tracked.add(milestone);
+                            this.track('time_on_page', { seconds: milestone });
+                        }
+                    });
+                }, 1000);
+            }
+        };
+
+        // Track CTA clicks
+        document.querySelectorAll('a.btn, a[href*="calendar.app.google"]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                tcAnalytics.track('cta_click', {
+                    text: btn.textContent.trim(),
+                    href: btn.href,
+                    section: btn.closest('section')?.className || 'unknown'
+                });
+            });
+        });
+
+        // Track section views
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    tcAnalytics.track('section_view', {
+                        section: entry.target.className || entry.target.id
+                    });
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // ===========================================
+        // INITIALIZE
+        // ===========================================
+        document.addEventListener('DOMContentLoaded', () => {
+            detectLanguage();
+            tcAnalytics.init();
+        });
     </script>
+
+    <!-- Cloudflare Web Analytics (optional - uncomment to enable) -->
+    <!-- <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "YOUR_TOKEN"}'></script> -->
 </body>
 </html>
