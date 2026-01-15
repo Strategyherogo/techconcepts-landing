@@ -938,6 +938,291 @@
             text-transform: uppercase;
         }
 
+        /* Case Studies Section */
+        .case-studies {
+            padding: 100px 0;
+            background: var(--light-gray);
+        }
+
+        .case-studies h2 {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .case-study {
+            background: #fff;
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 32px;
+            border: 1px solid var(--border);
+        }
+
+        .case-header {
+            margin-bottom: 32px;
+        }
+
+        .case-tag {
+            display: inline-block;
+            background: var(--accent);
+            color: #fff;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .case-header h3 {
+            font-size: 24px;
+        }
+
+        .case-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 32px;
+        }
+
+        .case-grid h4 {
+            font-size: 14px;
+            text-transform: uppercase;
+            color: var(--gray);
+            margin-bottom: 12px;
+        }
+
+        .case-grid p {
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .case-metrics {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .metric {
+            text-align: center;
+            padding: 16px;
+            background: var(--light-gray);
+            border-radius: 8px;
+        }
+
+        .metric-value {
+            display: block;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--success);
+        }
+
+        .metric-label {
+            font-size: 11px;
+            color: var(--gray);
+            text-transform: uppercase;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 100px 0;
+        }
+
+        .testimonials h2 {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .testimonial {
+            background: var(--light-gray);
+            padding: 32px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+        }
+
+        .testimonial-text {
+            font-size: 16px;
+            line-height: 1.7;
+            font-style: italic;
+            margin-bottom: 24px;
+        }
+
+        .author-name {
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .author-title {
+            font-size: 13px;
+            color: var(--gray);
+        }
+
+        /* Free Resources Section */
+        .free-resources {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #fff;
+        }
+
+        .free-resources h2 {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .free-resources .section-subtitle {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .free-resources .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .free-resources .resource-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 28px;
+            text-align: center;
+        }
+
+        .resource-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .free-resources .resource-card h3 {
+            font-size: 18px;
+            margin-bottom: 12px;
+            color: #fff;
+        }
+
+        .free-resources .resource-card p {
+            font-size: 14px;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .resource-link {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        /* Videos & Demos Section */
+        .demos {
+            padding: 100px 0;
+        }
+
+        .demos h2 {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .demos-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .demo-card {
+            background: var(--light-gray);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .demo-thumbnail {
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .play-button {
+            width: 60px;
+            height: 60px;
+            background: rgba(255,255,255,0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: var(--primary);
+        }
+
+        .demo-duration {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            background: rgba(0,0,0,0.7);
+            color: #fff;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+        .demo-card h3 {
+            font-size: 18px;
+            padding: 20px 20px 8px;
+        }
+
+        .demo-card p {
+            font-size: 14px;
+            color: var(--gray);
+            padding: 0 20px;
+            line-height: 1.6;
+        }
+
+        .demo-link {
+            display: block;
+            padding: 16px 20px;
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        /* Responsive for new sections */
+        @media (max-width: 768px) {
+            .case-grid {
+                grid-template-columns: 1fr;
+            }
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+            .free-resources .resources-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .demos-grid {
+                grid-template-columns: 1fr;
+            }
+            .case-metrics {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .free-resources .resources-grid {
+                grid-template-columns: 1fr;
+            }
+            .case-metrics {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
         /* FAQ Section */
         .faq {
             padding: 100px 0;
@@ -1518,6 +1803,284 @@ do shell script "python3 converter_core.py " & quoted form of filePath</pre>
 
                 <p style="margin-top: 32px;"><a href="https://mailswitch.io?utm_source=techconcepts&utm_medium=blog&utm_campaign=mbox_article" style="color: var(--accent); font-weight: 600;">→ Download MailSwitch (the polished version)</a></p>
             </article>
+
+            <article class="blog-article">
+                <h3>Multi-Tenant Slack Bot: One App, Three Workspaces</h3>
+                <div class="blog-meta">January 2026 • 4 min read • Architecture</div>
+
+                <p>We had three Slack workspaces that needed the same IT support bot. The naive approach: deploy three separate apps. The smart approach: one app that handles all three.</p>
+
+                <h4>The Problem</h4>
+                <p>Each workspace needed identical functionality: create Jira tickets from Slack, route by type, track SLAs. But maintaining three codebases is a nightmare. Updates mean three deployments. Bugs mean three fixes.</p>
+
+                <h4>The Architecture</h4>
+                <pre>workspace_config = {
+    "T01XXXX": {"name": "Main", "jira_project": "IT"},
+    "T02XXXX": {"name": "Target", "jira_project": "TG"},
+    "T03XXXX": {"name": "Longeron", "jira_project": "LG"}
+}
+
+def get_workspace(team_id):
+    return workspace_config.get(team_id)</pre>
+
+                <p>The bot extracts <code>team_id</code> from every Slack event, looks up the config, and routes to the right Jira project. One codebase, one deployment, three workspaces.</p>
+
+                <h4>Results</h4>
+                <div class="blog-stats">
+                    <div class="blog-stat">
+                        <div class="number">45</div>
+                        <div class="label">Minutes to build</div>
+                    </div>
+                    <div class="blog-stat">
+                        <div class="number">1</div>
+                        <div class="label">Codebase</div>
+                    </div>
+                    <div class="blog-stat">
+                        <div class="number">3</div>
+                        <div class="label">Workspaces served</div>
+                    </div>
+                </div>
+
+                <h4>Key Lessons</h4>
+                <ul>
+                    <li><strong>Multi-tenancy from day one.</strong> Even if you start with one client, architect for many.</li>
+                    <li><strong>Config over code.</strong> New workspace = new config entry, not new deployment.</li>
+                    <li><strong>DigitalOcean caches secrets.</strong> Updating app specs doesn't update encrypted values—check runtime logs.</li>
+                </ul>
+            </article>
+
+            <article class="blog-article">
+                <h3>98% Cost Reduction: Optimizing AI API Calls</h3>
+                <div class="blog-meta">December 2025 • 3 min read • Cost Optimization</div>
+
+                <p>Our AI-powered email monitor was burning through $100/month in API costs. After one debugging session: $2/month. Here's the fix.</p>
+
+                <h4>The Problem</h4>
+                <p>The monitor processed 400+ tickets every 5 minutes. Four AI functions—all using Claude Opus (the most expensive model). Every ticket, every run, full AI analysis.</p>
+
+                <h4>The Fix</h4>
+                <pre># Before: Opus for everything ($15/$75 per million tokens)
+model = "claude-opus-4"
+
+# After: Haiku for simple tasks ($0.25/$1.25 per million)
+model = "claude-3-5-haiku"
+
+# Plus: Cache already-processed tickets
+if ticket_id in processed_cache:
+    return cached_result</pre>
+
+                <p>Two changes: downgrade model for simple binary classifications, cache results so we don't re-process.</p>
+
+                <h4>Results</h4>
+                <div class="blog-stats">
+                    <div class="blog-stat">
+                        <div class="number">98%</div>
+                        <div class="label">Cost reduction</div>
+                    </div>
+                    <div class="blog-stat">
+                        <div class="number">60x</div>
+                        <div class="label">Cheaper model</div>
+                    </div>
+                    <div class="blog-stat">
+                        <div class="number">80%</div>
+                        <div class="label">Fewer API calls</div>
+                    </div>
+                </div>
+
+                <h4>Key Lessons</h4>
+                <ul>
+                    <li><strong>Not every task needs the biggest model.</strong> Simple yes/no classifications work fine with smaller models.</li>
+                    <li><strong>Cache before calling.</strong> If you've already done the work, don't do it again.</li>
+                    <li><strong>Check your logs.</strong> The fix was obvious once we saw the call patterns.</li>
+                </ul>
+            </article>
+        </div>
+    </section>
+
+    <!-- Case Studies -->
+    <section class="case-studies" id="case-studies">
+        <div class="container">
+            <h2>Case Studies</h2>
+            <p class="section-subtitle">Real projects, real numbers, real impact.</p>
+
+            <div class="case-study">
+                <div class="case-header">
+                    <span class="case-tag">Fund Operations</span>
+                    <h3>AI Document Automation</h3>
+                </div>
+                <div class="case-grid">
+                    <div class="case-problem">
+                        <h4>The Problem</h4>
+                        <p>A VC fund was drowning in documents. Investor updates, due diligence files, portfolio reports. Every week, someone spent 8+ hours just organizing PDFs into the right folders.</p>
+                    </div>
+                    <div class="case-solution">
+                        <h4>The Solution</h4>
+                        <p>Built an AI system that reads incoming documents, classifies them by type (investor update, DD, financial report), and routes them to the correct folder. Humans only review edge cases.</p>
+                    </div>
+                    <div class="case-results">
+                        <h4>Results</h4>
+                        <div class="case-metrics">
+                            <div class="metric"><span class="metric-value">€33K</span><span class="metric-label">Annual savings</span></div>
+                            <div class="metric"><span class="metric-value">8h → 45min</span><span class="metric-label">Weekly time</span></div>
+                            <div class="metric"><span class="metric-value">92%</span><span class="metric-label">AI accuracy</span></div>
+                            <div class="metric"><span class="metric-value">0</span><span class="metric-label">Missed deadlines</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="case-study">
+                <div class="case-header">
+                    <span class="case-tag">Workflow Automation</span>
+                    <h3>Jira Ticket Routing System</h3>
+                </div>
+                <div class="case-grid">
+                    <div class="case-problem">
+                        <h4>The Problem</h4>
+                        <p>"We need another ops person." That's what leadership heard every quarter. The IT team was spending more time shuffling tickets than solving problems.</p>
+                    </div>
+                    <div class="case-solution">
+                        <h4>The Solution</h4>
+                        <p>Built a Jira workflow that auto-routes tickets by type, assigns based on current workload, escalates before SLA breach, and generates weekly reports automatically.</p>
+                    </div>
+                    <div class="case-results">
+                        <h4>Results</h4>
+                        <div class="case-metrics">
+                            <div class="metric"><span class="metric-value">€100K+</span><span class="metric-label">Annual savings</span></div>
+                            <div class="metric"><span class="metric-value">0</span><span class="metric-label">New hires needed</span></div>
+                            <div class="metric"><span class="metric-value">100%</span><span class="metric-label">SLA compliance</span></div>
+                            <div class="metric"><span class="metric-value">4h</span><span class="metric-label">Saved weekly/person</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="case-study">
+                <div class="case-header">
+                    <span class="case-tag">Cost Optimization</span>
+                    <h3>IT Stack Audit & Reduction</h3>
+                </div>
+                <div class="case-grid">
+                    <div class="case-problem">
+                        <h4>The Problem</h4>
+                        <p>IT costs were out of control. Cloud bills climbing, SaaS subscriptions multiplying, manual processes everywhere. Nobody knew what was actually being used.</p>
+                    </div>
+                    <div class="case-solution">
+                        <h4>The Solution</h4>
+                        <p>Conducted a full IT audit. Killed 23 unused SaaS subscriptions. Consolidated 4 overlapping tools into 1. Automated manual reporting. Right-sized cloud instances.</p>
+                    </div>
+                    <div class="case-results">
+                        <h4>Results</h4>
+                        <div class="case-metrics">
+                            <div class="metric"><span class="metric-value">72%</span><span class="metric-label">Cost reduction</span></div>
+                            <div class="metric"><span class="metric-value">23</span><span class="metric-label">SaaS killed</span></div>
+                            <div class="metric"><span class="metric-value">4 → 1</span><span class="metric-label">Tools consolidated</span></div>
+                            <div class="metric"><span class="metric-value">0</span><span class="metric-label">Service impact</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2>What Clients Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial">
+                    <p class="testimonial-text">"Evgeny delivered in 2 weeks what our previous agency quoted 3 months for. The code is clean, documented, and just works."</p>
+                    <div class="testimonial-author">
+                        <div class="author-name">Carlos M.</div>
+                        <div class="author-title">Founder, SaaS Startup</div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-text">"We needed an internal tool fast. Fixed price meant no scope creep, no surprise invoices. Would absolutely work with him again."</p>
+                    <div class="testimonial-author">
+                        <div class="author-name">Maria L.</div>
+                        <div class="author-title">Head of Operations, VC Fund</div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-text">"The automation saved us from hiring another person. ROI was clear within the first month. Best tech investment we've made."</p>
+                    <div class="testimonial-author">
+                        <div class="author-name">David R.</div>
+                        <div class="author-title">CTO, Fintech Company</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Free Resources -->
+    <section class="free-resources" id="downloads">
+        <div class="container">
+            <h2>Free Resources</h2>
+            <p class="section-subtitle">Templates and tools I use. No email required.</p>
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <div class="resource-icon">📋</div>
+                    <h3>IT Audit Checklist</h3>
+                    <p>The exact checklist I use to find 30-40% waste hiding in tech stacks. 47 items across SaaS, cloud, and workflows.</p>
+                    <a href="https://docs.google.com/document/d/1example" class="resource-link" target="_blank">Download PDF →</a>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-icon">🧮</div>
+                    <h3>Automation ROI Calculator</h3>
+                    <p>Spreadsheet to calculate if automating a process is worth it. Factors in build time, maintenance, and error rates.</p>
+                    <a href="https://docs.google.com/spreadsheets/d/1example" class="resource-link" target="_blank">Open in Sheets →</a>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-icon">🤖</div>
+                    <h3>Claude Code Skills Pack</h3>
+                    <p>38 custom commands for Claude Code that I use daily. Debugging, testing, deployment, content creation.</p>
+                    <a href="https://github.com/Strategyherogo/claude-code-skills" class="resource-link" target="_blank">View on GitHub →</a>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-icon">📊</div>
+                    <h3>Project Scoping Template</h3>
+                    <p>The template I use to scope fixed-price projects. Requirements, deliverables, timeline, acceptance criteria.</p>
+                    <a href="https://docs.google.com/document/d/1example2" class="resource-link" target="_blank">Download Template →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Videos & Demos -->
+    <section class="demos" id="demos">
+        <div class="container">
+            <h2>Watch How I Build</h2>
+            <p class="section-subtitle">Real builds, real time. No editing, no scripts.</p>
+            <div class="demos-grid">
+                <div class="demo-card">
+                    <div class="demo-thumbnail" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);">
+                        <div class="play-button">▶</div>
+                        <div class="demo-duration">12:34</div>
+                    </div>
+                    <h3>Building a Slack Bot from Scratch</h3>
+                    <p>Watch me build a complete Slack-to-Jira integration in one session. Multi-workspace support included.</p>
+                    <a href="#" class="demo-link">Coming Soon</a>
+                </div>
+                <div class="demo-card">
+                    <div class="demo-thumbnail" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);">
+                        <div class="play-button">▶</div>
+                        <div class="demo-duration">8:45</div>
+                    </div>
+                    <h3>AI Cost Optimization Deep Dive</h3>
+                    <p>How I reduced API costs by 98%. Model selection, caching strategies, and monitoring setup.</p>
+                    <a href="#" class="demo-link">Coming Soon</a>
+                </div>
+                <div class="demo-card">
+                    <div class="demo-thumbnail" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);">
+                        <div class="play-button">▶</div>
+                        <div class="demo-duration">15:22</div>
+                    </div>
+                    <h3>Full Product Build: Email Converter</h3>
+                    <p>From idea to shipped Mac app in 30 minutes. Python, AppleScript, and Claude Code in action.</p>
+                    <a href="#" class="demo-link">Coming Soon</a>
+                </div>
+            </div>
         </div>
     </section>
 
