@@ -1286,7 +1286,72 @@
             background: var(--light-gray);
         }
 
+        /* Newsletter Section */
+        .newsletter {
+            padding: 80px 0;
+            background: var(--light-gray);
+        }
+
+        .newsletter-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 800px;
+            margin: 0 auto;
+            gap: 40px;
+        }
+
+        .newsletter-text h2 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .newsletter-text p {
+            font-size: 15px;
+            color: var(--gray);
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 12px;
+        }
+
+        .newsletter-form input[type="email"] {
+            padding: 14px 20px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 15px;
+            width: 260px;
+        }
+
+        .newsletter-form input[type="email"]:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .newsletter-form button {
+            white-space: nowrap;
+        }
+
+        @media (max-width: 768px) {
+            .newsletter-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .newsletter-form {
+                flex-direction: column;
+                width: 100%;
+            }
+            .newsletter-form input[type="email"] {
+                width: 100%;
+            }
+        }
+
         /* Products Section */
+        .coming-soon {
+            opacity: 0.5;
+            cursor: default;
+        }
         .products {
             padding: 80px 0;
             border-top: 1px solid var(--border);
@@ -1801,7 +1866,7 @@ do shell script "python3 converter_core.py " & quoted form of filePath</pre>
 
                 <p>The full code is open source. If you're migrating from Google Vault to Outlook, reach out—I'll share the app.</p>
 
-                <p style="margin-top: 32px;"><a href="https://mailswitch.io?utm_source=techconcepts&utm_medium=blog&utm_campaign=mbox_article" style="color: var(--accent); font-weight: 600;">→ Download MailSwitch (the polished version)</a></p>
+                <p style="margin-top: 32px;"><a href="mailto:eg@techconcepts.org?subject=MBOX%20Converter%20Request" style="color: var(--accent); font-weight: 600;">→ Request the MBOX Converter App (free)</a></p>
             </article>
 
             <article class="blog-article">
@@ -2017,31 +2082,31 @@ if ticket_id in processed_cache:
     <section class="free-resources" id="downloads">
         <div class="container">
             <h2>Free Resources</h2>
-            <p class="section-subtitle">Templates and tools I use. No email required.</p>
+            <p class="section-subtitle">Templates and tools I use. Just ask and I'll send them over.</p>
             <div class="resources-grid">
                 <div class="resource-card">
                     <div class="resource-icon">📋</div>
                     <h3>IT Audit Checklist</h3>
                     <p>The exact checklist I use to find 30-40% waste hiding in tech stacks. 47 items across SaaS, cloud, and workflows.</p>
-                    <a href="https://docs.google.com/document/d/1example" class="resource-link" target="_blank">Download PDF →</a>
+                    <a href="mailto:eg@techconcepts.org?subject=IT%20Audit%20Checklist%20Request" class="resource-link">Get Checklist →</a>
                 </div>
                 <div class="resource-card">
                     <div class="resource-icon">🧮</div>
                     <h3>Automation ROI Calculator</h3>
                     <p>Spreadsheet to calculate if automating a process is worth it. Factors in build time, maintenance, and error rates.</p>
-                    <a href="https://docs.google.com/spreadsheets/d/1example" class="resource-link" target="_blank">Open in Sheets →</a>
+                    <a href="mailto:eg@techconcepts.org?subject=ROI%20Calculator%20Request" class="resource-link">Get Calculator →</a>
                 </div>
                 <div class="resource-card">
                     <div class="resource-icon">🤖</div>
                     <h3>Claude Code Skills Pack</h3>
                     <p>38 custom commands for Claude Code that I use daily. Debugging, testing, deployment, content creation.</p>
-                    <a href="https://github.com/Strategyherogo/claude-code-skills" class="resource-link" target="_blank">View on GitHub →</a>
+                    <a href="mailto:eg@techconcepts.org?subject=Claude%20Code%20Skills%20Request" class="resource-link">Request Access →</a>
                 </div>
                 <div class="resource-card">
                     <div class="resource-icon">📊</div>
                     <h3>Project Scoping Template</h3>
                     <p>The template I use to scope fixed-price projects. Requirements, deliverables, timeline, acceptance criteria.</p>
-                    <a href="https://docs.google.com/document/d/1example2" class="resource-link" target="_blank">Download Template →</a>
+                    <a href="mailto:eg@techconcepts.org?subject=Project%20Scoping%20Template%20Request" class="resource-link">Get Template →</a>
                 </div>
             </div>
         </div>
@@ -2118,13 +2183,30 @@ if ticket_id in processed_cache:
         </div>
     </section>
 
+    <!-- Newsletter -->
+    <section class="newsletter" id="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <div class="newsletter-text">
+                    <h2>Get Building Tips</h2>
+                    <p>Weekly insights on automation, AI, and shipping products fast. No spam, unsubscribe anytime.</p>
+                </div>
+                <form class="newsletter-form" action="https://formspree.io/f/xpwzgvqr" method="POST">
+                    <input type="email" name="email" placeholder="your@email.com" required>
+                    <input type="hidden" name="_subject" value="New TechConcepts Newsletter Signup">
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
     <!-- Products -->
     <section class="products">
         <div class="container">
             <h2>Also from TechConcepts</h2>
             <div class="product-links">
-                <a href="https://fundops.io?utm_source=techconcepts&utm_medium=website&utm_campaign=cross_link" class="product-link">FundOps → Fund automation platform</a>
-                <a href="https://mailswitch.io?utm_source=techconcepts&utm_medium=website&utm_campaign=cross_link" class="product-link">MailSwitch → Email converter for Mac</a>
+                <span class="product-link coming-soon">FundOps → Fund automation platform (Coming Soon)</span>
+                <span class="product-link coming-soon">MailSwitch → Email converter for Mac (Coming Soon)</span>
                 <a href="https://linkedin.com/in/evgoncharov" class="product-link" target="_blank">LinkedIn → 22K+ network</a>
                 <a href="https://github.com/Strategyherogo" class="product-link" target="_blank">GitHub → Open source projects</a>
             </div>
