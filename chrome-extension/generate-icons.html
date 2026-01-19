@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Generate VPN Extension Icons</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    .icons { display: flex; gap: 20px; flex-wrap: wrap; }
+    .icon-group { text-align: center; }
+    canvas { border: 1px solid #ccc; margin: 5px; }
+    button { margin: 20px 0; padding: 10px 20px; font-size: 16px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h1>VPN Extension Icons</h1>
+  <p>Right-click each icon and "Save image as..." to download.</p>
+
+  <h2>Disconnected (Off) Icons</h2>
+  <div class="icons" id="offIcons"></div>
+
+  <h2>Connected (On) Icons</h2>
+  <div class="icons" id="onIcons"></div>
+
+  <script>
+    const sizes = [16, 32, 48, 128];
+
+    function createIcon(size, connected) {
+      const canvas = document.createElement('canvas');
+      canvas.width = size;
+      canvas.height = size;
+      const ctx = canvas.getContext('2d');
+
+      // Background circle
+      const centerX = size / 2;
+      const centerY = size / 2;
+      const radius = size / 2 - 1;
+
+      // Outer circle
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+      ctx.fillStyle = connected ? '#4ade80' : '#64748b';
+      ctx.fill();
+
+      // Inner shield icon
+      const shieldSize = size * 0.5;
+      const shieldX = centerX - shieldSize / 2;
+      const shieldY = centerY - shieldSize / 2;
+
+      ctx.fillStyle = connected ? '#166534' : '#334155';
+
+      // Simple shield shape
+      ctx.beginPath();
+      ctx.moveTo(centerX, shieldY);
+      ctx.lineTo(centerX + shieldSize / 2, shieldY + shieldSize * 0.3);
+      ctx.lineTo(centerX + shieldSize / 2, shieldY + shieldSize * 0.6);
+      ctx.quadraticCurveTo(centerX, shieldY + shieldSize, centerX, shieldY + shieldSize);
+      ctx.quadraticCurveTo(centerX, shieldY + shieldSize, centerX - shieldSize / 2, shieldY + shieldSize * 0.6);
+      ctx.lineTo(centerX - shieldSize / 2, shieldY + shieldSize * 0.3);
+      ctx.closePath();
+      ctx.fill();
+
+      // Checkmark or X
+      ctx.strokeStyle = connected ? '#4ade80' : '#94a3b8';
+      ctx.lineWidth = Math.max(1, size / 16);
+      ctx.lineCap = 'round';
+
+      if (connected) {
+        // Checkmark
+        ctx.beginPath();
+        ctx.moveTo(centerX - shieldSize * 0.2, centerY);
+        ctx.lineTo(centerX - shieldSize * 0.05, centerY + shieldSize * 0.15);
+        ctx.lineTo(centerX + shieldSize * 0.2, centerY - shieldSize * 0.15);
+        ctx.stroke();
+      }
+
+      return canvas;
+    }
+
+    // Generate icons
+    sizes.forEach(size => {
+      // Off icons
+      const offDiv = document.createElement('div');
+      offDiv.className = 'icon-group';
+      const offCanvas = createIcon(size, false);
+      offDiv.appendChild(offCanvas);
+      offDiv.innerHTML += `<br><small>icon-off-${size}.png</small>`;
+      document.getElementById('offIcons').appendChild(offDiv);
+
+      // On icons
+      const onDiv = document.createElement('div');
+      onDiv.className = 'icon-group';
+      const onCanvas = createIcon(size, true);
+      onDiv.appendChild(onCanvas);
+      onDiv.innerHTML += `<br><small>icon-on-${size}.png</small>`;
+      document.getElementById('onIcons').appendChild(onDiv);
+    });
+  </script>
+</body>
+</html>
