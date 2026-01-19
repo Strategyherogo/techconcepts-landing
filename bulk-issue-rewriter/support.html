@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support & Documentation - Bulk Issue Rewriter</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            color: #172B4D;
+            background: #fff;
+        }
+        .container { max-width: 800px; margin: 0 auto; padding: 0 20px; }
+        header { padding: 16px 0; border-bottom: 1px solid #DFE1E6; }
+        nav { display: flex; justify-content: space-between; align-items: center; max-width: 800px; margin: 0 auto; padding: 0 20px; }
+        .logo { font-weight: 700; font-size: 20px; color: #0052CC; text-decoration: none; }
+        .nav-links { display: flex; gap: 32px; list-style: none; }
+        .nav-links a { color: #42526E; text-decoration: none; font-size: 14px; font-weight: 500; }
+        main { padding: 48px 0 80px; }
+        h1 { font-size: 36px; margin-bottom: 8px; }
+        .subtitle { color: #6B778C; margin-bottom: 32px; font-size: 18px; }
+        h2 { font-size: 24px; margin: 40px 0 16px; color: #172B4D; }
+        h3 { font-size: 18px; margin: 24px 0 12px; color: #172B4D; }
+        p { margin-bottom: 16px; color: #42526E; }
+        ul, ol { margin: 16px 0; padding-left: 24px; color: #42526E; }
+        li { margin-bottom: 8px; }
+        a { color: #0052CC; }
+        code {
+            background: #F4F5F7;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 14px;
+        }
+        pre {
+            background: #F4F5F7;
+            padding: 16px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 16px 0;
+        }
+        pre code {
+            padding: 0;
+            background: none;
+        }
+        .card {
+            border: 1px solid #DFE1E6;
+            border-radius: 8px;
+            padding: 24px;
+            margin: 16px 0;
+        }
+        .card h3 { margin-top: 0; }
+        .faq-item {
+            border-bottom: 1px solid #DFE1E6;
+            padding: 20px 0;
+        }
+        .faq-item:last-child { border-bottom: none; }
+        .faq-question {
+            font-weight: 600;
+            color: #172B4D;
+            margin-bottom: 8px;
+        }
+        .contact-box {
+            background: #DEEBFF;
+            border-radius: 8px;
+            padding: 24px;
+            margin: 24px 0;
+        }
+        .step-number {
+            display: inline-block;
+            width: 28px;
+            height: 28px;
+            background: #0052CC;
+            color: #fff;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 28px;
+            font-weight: 600;
+            font-size: 14px;
+            margin-right: 12px;
+        }
+        footer {
+            background: #172B4D;
+            color: #fff;
+            padding: 32px 0;
+            text-align: center;
+        }
+        footer a { color: #B3BAC5; }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">Bulk Issue Rewriter</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="privacy.html">Privacy</a></li>
+                <li><a href="terms.html">Terms</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1>Support & Documentation</h1>
+            <p class="subtitle">Everything you need to get started with Bulk Issue Rewriter</p>
+
+            <h2>Getting Started</h2>
+
+            <div class="card">
+                <h3><span class="step-number">1</span>Install the App</h3>
+                <p>Install Bulk Issue Rewriter from the <a href="https://marketplace.atlassian.com/apps/bulk-issue-rewriter" target="_blank">Atlassian Marketplace</a>. You'll need Jira administrator permissions to install apps.</p>
+            </div>
+
+            <div class="card">
+                <h3><span class="step-number">2</span>Get an AI API Key</h3>
+                <p>The App requires your own AI provider API key. Choose one:</p>
+                <ul>
+                    <li><strong>OpenAI:</strong> Get a key at <a href="https://platform.openai.com/api-keys" target="_blank">platform.openai.com/api-keys</a></li>
+                    <li><strong>Anthropic:</strong> Get a key at <a href="https://console.anthropic.com/settings/keys" target="_blank">console.anthropic.com/settings/keys</a></li>
+                </ul>
+                <p><em>Note: API usage costs are charged by your AI provider based on your usage.</em></p>
+            </div>
+
+            <div class="card">
+                <h3><span class="step-number">3</span>Configure Settings</h3>
+                <p>Open the App in Jira, go to the <strong>Settings</strong> tab, and:</p>
+                <ol>
+                    <li>Select your AI provider (OpenAI or Anthropic)</li>
+                    <li>Paste your API key</li>
+                    <li>Click <strong>Test</strong> to verify the connection</li>
+                </ol>
+                <p>Your API key is stored securely in your browser and never sent to our servers.</p>
+            </div>
+
+            <div class="card">
+                <h3><span class="step-number">4</span>Start Editing</h3>
+                <ol>
+                    <li>Enter a JQL query to find issues (e.g., <code>project = MYPROJ AND status = Open</code>)</li>
+                    <li>Click <strong>Search</strong> to load matching issues</li>
+                    <li>Select the issues you want to edit</li>
+                    <li>Choose an operation (Rewrite, Translate, Summarize, etc.)</li>
+                    <li>Add optional instructions</li>
+                    <li>Click <strong>Generate AI Suggestions</strong></li>
+                    <li>Review the preview and apply changes</li>
+                </ol>
+            </div>
+
+            <h2>AI Operations</h2>
+
+            <h3>Rewrite/Rephrase</h3>
+            <p>Improves clarity, tone, and readability while maintaining the original meaning. Great for:</p>
+            <ul>
+                <li>Making technical content more accessible</li>
+                <li>Improving professional tone</li>
+                <li>Fixing grammar and style issues</li>
+            </ul>
+
+            <h3>Translate</h3>
+            <p>Translates issue content to another language. Add instructions like "Translate to Spanish" or "Translate to Japanese".</p>
+
+            <h3>Standardize</h3>
+            <p>Applies consistent naming conventions and formatting. Useful instructions:</p>
+            <ul>
+                <li>"Use sentence case for summaries"</li>
+                <li>"Start descriptions with a user story format"</li>
+                <li>"Add [CATEGORY] prefix to summaries"</li>
+            </ul>
+
+            <h3>Summarize</h3>
+            <p>Condenses long descriptions into shorter, clearer versions while keeping essential information.</p>
+
+            <h3>Expand</h3>
+            <p>Adds more detail and context to brief issues. Useful for fleshing out minimal issue descriptions.</p>
+
+            <h3>Find & Replace</h3>
+            <p>AI-enhanced pattern matching. Examples:</p>
+            <ul>
+                <li>"Replace 'client' with 'customer' throughout"</li>
+                <li>"Update all references to v1 to v2"</li>
+                <li>"Replace company name 'OldCo' with 'NewCo'"</li>
+            </ul>
+
+            <h2 id="faq">Frequently Asked Questions</h2>
+
+            <div class="faq-item">
+                <p class="faq-question">Is my data safe?</p>
+                <p>Yes. The App runs on Atlassian's secure Forge platform. Your Jira data stays within Atlassian. Your API key is stored only in your browser. Issue text is sent to your AI provider only when you generate suggestions.</p>
+            </div>
+
+            <div class="faq-item">
+                <p class="faq-question">How much does the AI cost?</p>
+                <p>AI costs depend on your provider and usage. OpenAI charges ~$0.01-0.03 per 1K tokens (roughly 750 words). A typical issue edit uses 500-2000 tokens. Check your AI provider's pricing page for current rates.</p>
+            </div>
+
+            <div class="faq-item">
+                <p class="faq-question">Can I undo changes?</p>
+                <p>The App doesn't have a built-in undo feature, but Jira maintains issue history. You can view and restore previous versions through each issue's History tab.</p>
+            </div>
+
+            <div class="faq-item">
+                <p class="faq-question">Why isn't my API key working?</p>
+                <p>Check that:</p>
+                <ul>
+                    <li>You selected the correct provider (OpenAI vs Anthropic)</li>
+                    <li>The key is copied correctly with no extra spaces</li>
+                    <li>Your API account has available credits/quota</li>
+                    <li>The key hasn't been revoked or expired</li>
+                </ul>
+                <p>Use the <strong>Test</strong> button in Settings to verify your connection.</p>
+            </div>
+
+            <div class="faq-item">
+                <p class="faq-question">What JQL queries can I use?</p>
+                <p>Any valid JQL works. Common examples:</p>
+                <pre><code>project = MYPROJ
+project = MYPROJ AND status = "To Do"
+assignee = currentUser()
+created >= -7d
+labels = needs-review</code></pre>
+            </div>
+
+            <div class="faq-item">
+                <p class="faq-question">Is there a limit on how many issues I can edit?</p>
+                <p>The App loads up to 50 issues per search. You can edit all selected issues in a single operation. Plan tiers have monthly edit limits.</p>
+            </div>
+
+            <div class="faq-item">
+                <p class="faq-question">Can I use this with Jira Data Center?</p>
+                <p>No, Bulk Issue Rewriter is only available for Jira Cloud. It's built on Atlassian Forge, which is a cloud-only platform.</p>
+            </div>
+
+            <h2>Troubleshooting</h2>
+
+            <h3>Changes not appearing in Jira</h3>
+            <ul>
+                <li>Refresh the Jira issue page</li>
+                <li>Check that the operation completed successfully (green confirmation)</li>
+                <li>Verify you have edit permissions on the issues</li>
+            </ul>
+
+            <h3>AI suggestions are poor quality</h3>
+            <ul>
+                <li>Be more specific in your instructions</li>
+                <li>Try a different operation type</li>
+                <li>Process fewer issues at once for better results</li>
+            </ul>
+
+            <h3>App is slow</h3>
+            <ul>
+                <li>AI generation takes 5-15 seconds depending on the number of issues</li>
+                <li>Large batches take longer to apply</li>
+                <li>Check your internet connection</li>
+            </ul>
+
+            <h2>Contact Support</h2>
+
+            <div class="contact-box">
+                <h3>Need help?</h3>
+                <p>We're here to help! Contact us through:</p>
+                <ul>
+                    <li><strong>Email:</strong> <a href="mailto:support@techconcepts.org">support@techconcepts.org</a></li>
+                    <li><strong>Marketplace:</strong> Use the "Get Support" link on our <a href="https://marketplace.atlassian.com/apps/bulk-issue-rewriter" target="_blank">Marketplace listing</a></li>
+                </ul>
+                <p>Please include:</p>
+                <ul>
+                    <li>Your Jira Cloud URL</li>
+                    <li>Steps to reproduce the issue</li>
+                    <li>Any error messages you see</li>
+                    <li>Screenshots if helpful</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 TechConcepts. <a href="terms.html">Terms</a> | <a href="privacy.html">Privacy</a></p>
+    </footer>
+</body>
+</html>
