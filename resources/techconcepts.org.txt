@@ -1,0 +1,50 @@
+;;
+;; Domain:     techconcepts.org.
+;; Exported:   2026-01-14 14:07:04
+;;
+;; This file is intended for use for informational and archival
+;; purposes ONLY and MUST be edited before use on a production
+;; DNS server.  In particular, you must:
+;;   -- update the SOA record with the correct authoritative name server
+;;   -- update the SOA record with the contact e-mail address information
+;;   -- update the NS record(s) with the authoritative name servers for this domain.
+;;
+;; For further information, please consult the BIND documentation
+;; located on the following website:
+;;
+;; http://www.isc.org/
+;;
+;; And RFC 1035:
+;;
+;; http://www.ietf.org/rfc/rfc1035.txt
+;;
+;; Please note that we do NOT offer technical support for any use
+;; of this zone data, the BIND name server, or any other third-party
+;; DNS software.
+;;
+;; Use at your own risk.
+;; SOA Record
+techconcepts.org	3600	IN	SOA	leland.ns.cloudflare.com. dns.cloudflare.com. 2052006622 10000 2400 604800 3600
+
+;; NS Records
+techconcepts.org.	86400	IN	NS	leland.ns.cloudflare.com.
+techconcepts.org.	86400	IN	NS	zainab.ns.cloudflare.com.
+
+;; CNAME Records
+sig1._domainkey.techconcepts.org.	1	IN	CNAME	sig1.dkim.techconcepts.org.at.icloudmailadmin.com. ; cf_tags=cf-proxied:false
+techconcepts.org.	1	IN	CNAME	techconcepts-org.pages.dev. ; cf_tags=cf-proxied:true
+www.techconcepts.org.	1	IN	CNAME	techconcepts.org. ; cf_tags=cf-proxied:false
+zb19738943.techconcepts.org.	600	IN	CNAME	zmverify.zoho.eu. ; cf_tags=cf-proxied:false
+
+;; MX Records
+techconcepts.org.	3600	IN	MX	5 alt2.aspmx.l.google.com.
+techconcepts.org.	3600	IN	MX	10 alt3.aspmx.l.google.com.
+techconcepts.org.	3600	IN	MX	1 aspmx.l.google.com.
+techconcepts.org.	3600	IN	MX	10 alt4.aspmx.l.google.com.
+techconcepts.org.	3600	IN	MX	5 alt1.aspmx.l.google.com.
+
+;; TXT Records
+_dmarc.techconcepts.org.	1	IN	TXT	"v=DMARC1; p=none; rua=mailto:a773ef451baa47fba1b58d7990704e6d@dmarc-reports.cloudflare.net"
+techconcepts.org.	3600	IN	TXT	"v=spf1 include:icloud.com include:_spf.google.com ~all"
+techconcepts.org.	3600	IN	TXT	"google-site-verification=saxG3qk9KJvR54RcCIo8unSMUJX_LNXX8C3nLc0riz0"
+techconcepts.org.	1	IN	TXT	"apple-domain=7BgTnMqR3t7fbWgZ"

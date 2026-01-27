@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Email Exporter - Export Emails to PDF from Gmail, Outlook & Yahoo</title>
+  <meta name="description" content="Free Chrome extension to export emails to PDF. Works with Gmail, Outlook, Yahoo Mail. Smart keyword filtering. Privacy-first, no data leaves your browser.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Email Exporter - Export Emails to PDF Instantly">
+  <meta property="og:description" content="Free Chrome extension for Gmail, Outlook, Yahoo. One-click PDF export with smart keyword filtering.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://techconcepts.org/email-exporter/">
+  <meta property="og:image" content="https://techconcepts.org/email-exporter/og-image.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Email Exporter - Export Emails to PDF">
+  <meta name="twitter:description" content="Free Chrome extension. One-click export from Gmail, Outlook, Yahoo.">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://techconcepts.org/email-exporter/">
+
+  <!-- Security -->
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --primary: #000;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --secondary: #10b981;
+      --dark: #1a1a1a;
+      --gray: #6b7280;
+      --light-gray: #f3f4f6;
+      --border: #e5e7eb;
+      --white: #fff;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      color: var(--dark);
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Navigation */
+    nav {
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: white;
+      z-index: 100;
+    }
+
+    nav .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav-links a {
+      color: var(--gray);
+      text-decoration: none;
+      font-size: 15px;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 15px 30px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--white);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: var(--white);
+      color: var(--dark);
+      border: 2px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent);
+    }
+
+    .btn-nav {
+      padding: 10px 20px;
+      font-size: 14px;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 80px 0;
+      text-align: center;
+      background: linear-gradient(180deg, var(--light-gray) 0%, var(--white) 100%);
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    .hero h1 span {
+      color: var(--accent);
+    }
+
+    .hero p {
+      font-size: 20px;
+      color: var(--gray);
+      max-width: 600px;
+      margin: 0 auto 30px;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .hero-image {
+      margin-top: 50px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-image img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    }
+
+    .mockup-container {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 16px;
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mockup-browser {
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+
+    .browser-bar {
+      background: #f1f3f4;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .browser-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .browser-dots span {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .browser-dots span:nth-child(1) { background: #ff5f56; }
+    .browser-dots span:nth-child(2) { background: #ffbd2e; }
+    .browser-dots span:nth-child(3) { background: #27ca3f; }
+
+    .browser-url {
+      flex: 1;
+      background: white;
+      border-radius: 4px;
+      padding: 6px 12px;
+      font-size: 13px;
+      color: #666;
+      margin-left: 12px;
+    }
+
+    .browser-content {
+      display: flex;
+      min-height: 350px;
+    }
+
+    .gmail-sidebar {
+      width: 200px;
+      background: #f6f8fc;
+      padding: 16px;
+      border-right: 1px solid #e0e0e0;
+    }
+
+    .compose-btn {
+      background: #c2e7ff;
+      border-radius: 16px;
+      padding: 12px 20px;
+      font-size: 14px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-item {
+      padding: 8px 12px;
+      border-radius: 0 16px 16px 0;
+      margin-bottom: 4px;
+      font-size: 13px;
+      color: #5f6368;
+    }
+
+    .nav-item.active {
+      background: #d3e3fd;
+      font-weight: 600;
+    }
+
+    .email-list {
+      flex: 1;
+      padding: 8px;
+    }
+
+    .email-row {
+      display: flex;
+      align-items: center;
+      padding: 12px;
+      border-bottom: 1px solid #f1f1f1;
+      gap: 12px;
+      font-size: 13px;
+    }
+
+    .email-checkbox {
+      width: 18px;
+      height: 18px;
+      border: 2px solid #ccc;
+      border-radius: 2px;
+    }
+
+    .email-sender {
+      width: 180px;
+      font-weight: 500;
+      color: #202124;
+    }
+
+    .email-subject {
+      flex: 1;
+      color: #5f6368;
+    }
+
+    .email-date {
+      color: #5f6368;
+      font-size: 12px;
+    }
+
+    /* Popup overlay */
+    .popup-overlay {
+      position: absolute;
+      top: 80px;
+      right: 60px;
+      width: 320px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+      overflow: hidden;
+    }
+
+    .popup-header {
+      background: linear-gradient(135deg, #0066CC, #004499);
+      color: white;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .popup-icon {
+      width: 32px;
+      height: 32px;
+      background: white;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    .popup-title {
+      font-weight: 600;
+    }
+
+    .popup-subtitle {
+      font-size: 12px;
+      opacity: 0.9;
+    }
+
+    .popup-body {
+      padding: 20px;
+    }
+
+    .provider-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #e8f5e9;
+      color: #2e7d32;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    .filter-section {
+      margin-bottom: 16px;
+    }
+
+    .filter-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .filter-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .filter-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      background: #f8f9fa;
+      border-radius: 6px;
+      font-size: 12px;
+    }
+
+    .filter-item.selected {
+      background: #e3f2fd;
+      border: 1px solid #0066CC;
+    }
+
+    .filter-checkbox {
+      width: 16px;
+      height: 16px;
+      border: 2px solid #ccc;
+      border-radius: 3px;
+    }
+
+    .filter-item.selected .filter-checkbox {
+      background: #0066CC;
+      border-color: #0066CC;
+    }
+
+    .export-btn {
+      width: 100%;
+      background: linear-gradient(135deg, #0066CC, #004499);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    /* Providers */
+    .providers {
+      padding: 30px 0;
+      text-align: center;
+      border-bottom: 1px solid #eee;
+    }
+
+    .providers p {
+      color: var(--gray);
+      margin-bottom: 15px;
+    }
+
+    .provider-logos {
+      display: flex;
+      gap: 40px;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .provider-logos span {
+      font-size: 24px;
+      color: var(--gray);
+    }
+
+    /* Features */
+    .features {
+      padding: 80px 0;
+    }
+
+    .features h2 {
+      text-align: center;
+      font-size: 36px;
+      margin-bottom: 50px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+    }
+
+    .feature {
+      text-align: center;
+      padding: 30px;
+    }
+
+    .feature-icon {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
+    .feature h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .feature p {
+      color: var(--gray);
+    }
+
+    /* Use Cases */
+    .use-cases {
+      padding: 80px 0;
+      background: var(--light-gray);
+    }
+
+    .use-cases h2 {
+      text-align: center;
+      font-size: 36px;
+      margin-bottom: 50px;
+    }
+
+    .use-cases-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .use-case {
+      background: var(--white);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    }
+
+    .use-case h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: var(--accent);
+    }
+
+    .use-case p {
+      color: var(--gray);
+      font-size: 14px;
+    }
+
+    /* Privacy */
+    .privacy {
+      padding: 80px 0;
+      text-align: center;
+    }
+
+    .privacy h2 {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    .privacy p {
+      color: var(--gray);
+      max-width: 600px;
+      margin: 0 auto 40px;
+    }
+
+    .privacy-features {
+      display: flex;
+      justify-content: center;
+      gap: 50px;
+      flex-wrap: wrap;
+    }
+
+    .privacy-feature {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .privacy-feature span {
+      color: var(--secondary);
+      font-size: 24px;
+    }
+
+    /* FAQ */
+    .faq {
+      padding: 80px 0;
+      background: var(--light-gray);
+    }
+
+    .faq h2 {
+      text-align: center;
+      font-size: 36px;
+      margin-bottom: 50px;
+    }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+      gap: 30px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .faq-item h3 {
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    .faq-item p {
+      color: var(--gray);
+      font-size: 14px;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      padding: 80px 0;
+      text-align: center;
+      background: var(--accent);
+      color: var(--white);
+    }
+
+    .cta-section h2 {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    .cta-section p {
+      opacity: 0.9;
+      margin-bottom: 30px;
+    }
+
+    .cta-section .btn-primary {
+      background: var(--white);
+      color: var(--accent);
+    }
+
+    .cta-section .btn-primary:hover {
+      background: #f0f0f0;
+    }
+
+    /* Footer */
+    footer {
+      padding: 40px 0;
+      text-align: center;
+      color: var(--gray);
+      font-size: 14px;
+    }
+
+    footer a {
+      color: var(--gray);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: var(--accent);
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 16px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: white;
+        flex-direction: column;
+        padding: 20px;
+        border-bottom: 1px solid var(--border);
+        gap: 16px;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 8px 0;
+      }
+
+      .nav-links .btn-nav {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .hero h1 {
+        font-size: 32px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .faq-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .mockup-container {
+        padding: 20px;
+      }
+
+      .popup-overlay {
+        display: none;
+      }
+
+      .gmail-sidebar {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="container">
+      <a href="https://techconcepts.org" class="logo">TechConcepts</a>
+      <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Toggle menu">☰</button>
+      <div class="nav-links" id="navLinks">
+        <a href="https://techconcepts.org#pricing">Pricing</a>
+        <a href="https://techconcepts.org#process">How it works</a>
+        <a href="https://techconcepts.org#about">About</a>
+        <a href="https://techconcepts.org#resources">Resources</a>
+        <a href="https://techconcepts.org#faq">FAQ</a>
+        <a href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0j6woKU4DPJJM-xEHMvG2ZOv2QMLJ-3JcX36gRPQd7NDJ1fgibRFANL-xwJBCibcPm7t5B6Dek" class="btn btn-primary btn-nav" target="_blank" rel="noopener noreferrer">Get Started</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <h1>Export Emails to PDF.<br><span>Instantly.</span></h1>
+      <p>The privacy-first Chrome extension for Gmail, Outlook, and Yahoo Mail. One click. Clean PDFs. Smart keyword filtering.</p>
+      <div class="cta-buttons">
+        <a href="#install" class="btn btn-primary">
+          <span>🚀</span> Add to Chrome - It's Free
+        </a>
+      </div>
+
+      <div class="hero-image">
+        <div class="mockup-container">
+          <div class="mockup-browser">
+            <div class="browser-bar">
+              <div class="browser-dots">
+                <span></span><span></span><span></span>
+              </div>
+              <div class="browser-url">mail.google.com</div>
+            </div>
+            <div class="browser-content">
+              <div class="gmail-sidebar">
+                <div class="compose-btn">✏️ Compose</div>
+                <div class="nav-item active">📥 Inbox</div>
+                <div class="nav-item">⭐ Starred</div>
+                <div class="nav-item">📤 Sent</div>
+                <div class="nav-item">📝 Drafts</div>
+              </div>
+              <div class="email-list">
+                <div class="email-row">
+                  <div class="email-checkbox"></div>
+                  <div class="email-sender">John Davidson</div>
+                  <div class="email-subject">Q4 Financial Report - <strong>Action Required</strong></div>
+                  <div class="email-date">10:30 AM</div>
+                </div>
+                <div class="email-row">
+                  <div class="email-checkbox"></div>
+                  <div class="email-sender">Legal Team</div>
+                  <div class="email-subject">Contract Review - NDA Agreement</div>
+                  <div class="email-date">9:15 AM</div>
+                </div>
+                <div class="email-row">
+                  <div class="email-checkbox"></div>
+                  <div class="email-sender">HR Department</div>
+                  <div class="email-subject">Benefits Enrollment Reminder</div>
+                  <div class="email-date">Yesterday</div>
+                </div>
+                <div class="email-row">
+                  <div class="email-checkbox"></div>
+                  <div class="email-sender">Project Updates</div>
+                  <div class="email-subject">Sprint Review Meeting Notes</div>
+                  <div class="email-date">Yesterday</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Popup overlay -->
+          <div class="popup-overlay">
+            <div class="popup-header">
+              <div class="popup-icon">📧</div>
+              <div>
+                <div class="popup-title">Email Exporter</div>
+                <div class="popup-subtitle">Export emails to PDF</div>
+              </div>
+            </div>
+            <div class="popup-body">
+              <div class="provider-badge">✓ Gmail Detected</div>
+              <div class="filter-section">
+                <div class="filter-title">Filter by Keywords</div>
+                <div class="filter-grid">
+                  <div class="filter-item selected">
+                    <div class="filter-checkbox"></div>
+                    <span>Urgent</span>
+                  </div>
+                  <div class="filter-item selected">
+                    <div class="filter-checkbox"></div>
+                    <span>Financial</span>
+                  </div>
+                  <div class="filter-item">
+                    <div class="filter-checkbox"></div>
+                    <span>Legal</span>
+                  </div>
+                  <div class="filter-item">
+                    <div class="filter-checkbox"></div>
+                    <span>HR</span>
+                  </div>
+                </div>
+              </div>
+              <button class="export-btn">📄 Export to PDF</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Providers -->
+  <section class="providers">
+    <div class="container">
+      <p>Works with your favorite email providers</p>
+      <div class="provider-logos">
+        <span>📧 Gmail</span>
+        <span>📬 Outlook</span>
+        <span>📨 Yahoo Mail</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features" id="features">
+    <div class="container">
+      <h2>Everything you need to archive emails</h2>
+      <div class="features-grid">
+        <div class="feature">
+          <div class="feature-icon">🚀</div>
+          <h3>One-Click Export</h3>
+          <p>Stop copying and pasting. Open an email, click export, get a perfect PDF document.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🎯</div>
+          <h3>Smart Keyword Filtering</h3>
+          <p>Automatically categorize emails as Urgent, Financial, Legal, HR, or Meetings.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🔒</div>
+          <h3>Privacy First</h3>
+          <p>All processing happens locally. Your emails never leave your browser.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">📎</div>
+          <h3>Attachments Included</h3>
+          <p>Clickable attachment links preserved in your PDF. Never hunt for files again.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">📄</div>
+          <h3>Clean PDF Format</h3>
+          <p>Professional layout with headers, body text, and metadata properly formatted.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">📦</div>
+          <h3>Batch Export</h3>
+          <p>Export entire email threads with an organized summary page.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Use Cases -->
+  <section class="use-cases" id="use-cases">
+    <div class="container">
+      <h2>Built for professionals who need email records</h2>
+      <div class="use-cases-grid">
+        <div class="use-case">
+          <h3>⚖️ Legal & Compliance</h3>
+          <p>Create audit trails and document retention for litigation, compliance reviews, and regulatory requirements.</p>
+        </div>
+        <div class="use-case">
+          <h3>👥 Human Resources</h3>
+          <p>Archive employee communications, policy acknowledgments, and HR correspondence securely.</p>
+        </div>
+        <div class="use-case">
+          <h3>💰 Finance Teams</h3>
+          <p>Export invoices, payment confirmations, and expense approvals for clean financial records.</p>
+        </div>
+        <div class="use-case">
+          <h3>📋 Project Managers</h3>
+          <p>Save project communications, meeting notes, and stakeholder decisions in one place.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Privacy -->
+  <section class="privacy">
+    <div class="container">
+      <h2>🔒 Your data stays with you</h2>
+      <p>Unlike other tools, Email Exporter processes everything locally in your browser. We never see, store, or transmit your emails.</p>
+      <div class="privacy-features">
+        <div class="privacy-feature">
+          <span>✓</span> No cloud processing
+        </div>
+        <div class="privacy-feature">
+          <span>✓</span> No account required
+        </div>
+        <div class="privacy-feature">
+          <span>✓</span> Works offline
+        </div>
+        <div class="privacy-feature">
+          <span>✓</span> No tracking
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" id="faq">
+    <div class="container">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h3>Does this work with my email provider?</h3>
+          <p>Yes! Email Exporter works with Gmail (mail.google.com), Outlook (outlook.live.com, outlook.office.com), and Yahoo Mail (mail.yahoo.com).</p>
+        </div>
+        <div class="faq-item">
+          <h3>Is my data safe?</h3>
+          <p>Absolutely. All processing happens locally in your browser. We never see, store, or have access to your emails.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Is it really free?</h3>
+          <p>Yes, completely free. No premium tier, no subscriptions, no hidden limits. Just install and use.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Can I export multiple emails at once?</h3>
+          <p>Yes! The extension exports all messages in an email thread, with an optional summary page showing categories and stats.</p>
+        </div>
+        <div class="faq-item">
+          <h3>What are keyword filters?</h3>
+          <p>Smart filters that categorize emails by content. Select "Financial" to export only emails mentioning invoices, payments, etc.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Does it download attachments?</h3>
+          <p>The PDF includes clickable links to attachments. Click a link to download directly from your email provider.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section" id="install">
+    <div class="container">
+      <h2>Ready to simplify your email workflow?</h2>
+      <p>Join thousands of professionals who trust Email Exporter for their email archiving needs.</p>
+      <a href="#" class="btn btn-primary">
+        <span>🚀</span> Add to Chrome - Free Forever
+      </a>
+      <p style="margin-top: 16px; font-size: 14px; opacity: 0.8;">
+        Chrome Web Store link will be available after approval
+      </p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="mailto:support@techconcepts.org">Support</a>
+        <a href="https://techconcepts.org">TechConcepts.org</a>
+      </div>
+      <p>Email Exporter &copy; 2026 TechConcepts. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('navLinks').classList.toggle('active');
+    }
+  </script>
+</body>
+</html>
