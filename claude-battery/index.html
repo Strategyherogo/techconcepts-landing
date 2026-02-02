@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Code Battery - Track Your Claude Usage | TechConcepts</title>
+    <meta name="description" content="macOS menu bar app that shows your Claude Code usage limits in real time. Never hit rate limits unexpectedly again.">
+    <meta name="keywords" content="Claude Code, Anthropic, macOS, menu bar, usage tracker, rate limits, developer tools">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Claude Code Battery - See Your Usage at a Glance">
+    <meta property="og:description" content="A macOS menu bar app that tracks your Claude Code token usage in real time.">
+    <meta property="og:image" content="https://techconcepts.org/claude-battery/cover.png">
+    <meta property="og:url" content="https://techconcepts.org/claude-battery/">
+    <meta property="og:type" content="product">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Claude Code Battery">
+    <meta name="twitter:description" content="Track your Claude Code usage limits from the menu bar.">
+    <meta name="twitter:image" content="https://techconcepts.org/claude-battery/cover.png">
+
+    <link rel="canonical" href="https://techconcepts.org/claude-battery/">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔋</text></svg>">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --primary: #000;
+            --accent: #2563eb;
+            --accent-hover: #1d4ed8;
+            --secondary: #10b981;
+            --dark: #1a1a1a;
+            --gray: #6b7280;
+            --light-gray: #f3f4f6;
+            --border: #e5e7eb;
+            --white: #fff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--white);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            background: white;
+            z-index: 100;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .nav-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 15px;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--light-gray);
+            color: var(--gray);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+
+        h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--primary);
+        }
+
+        .tagline {
+            font-size: 20px;
+            color: var(--gray);
+            margin-bottom: 32px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* CTA Button */
+        .cta-button {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .cta-button:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        .cta-sub {
+            margin-top: 12px;
+            font-size: 14px;
+            color: var(--gray);
+        }
+
+        /* Mockup */
+        .mockup-section {
+            padding: 40px 0 80px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .mockup {
+            background: #1a1a2e;
+            border-radius: 16px;
+            padding: 24px;
+            width: 100%;
+            max-width: 380px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            color: white;
+        }
+
+        .mockup-header {
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #333;
+            margin-bottom: 20px;
+        }
+
+        .mockup-title {
+            font-weight: 600;
+        }
+
+        .mockup-refresh {
+            color: #888;
+            font-size: 14px;
+        }
+
+        .usage-row {
+            margin-bottom: 16px;
+        }
+
+        .usage-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+
+        .usage-percent {
+            color: #888;
+        }
+
+        .usage-bar {
+            height: 10px;
+            background: #333;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .usage-fill {
+            height: 100%;
+            border-radius: 5px;
+        }
+
+        .green { background: linear-gradient(90deg, #4CAF50, #8BC34A); width: 35%; }
+        .orange { background: linear-gradient(90deg, #FF9800, #FFC107); width: 68%; }
+        .red { background: linear-gradient(90deg, #f44336, #FF5722); width: 89%; }
+
+        .reset-time {
+            font-size: 12px;
+            color: #666;
+            margin-top: 4px;
+        }
+
+        /* Features */
+        .features-section {
+            padding: 80px 0;
+            background: var(--light-gray);
+        }
+
+        .features-section h2 {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 48px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .feature {
+            background: white;
+            padding: 28px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .feature-icon {
+            font-size: 32px;
+            margin-bottom: 16px;
+        }
+
+        .feature h3 {
+            margin-bottom: 8px;
+            font-size: 18px;
+            color: var(--primary);
+        }
+
+        .feature p {
+            color: var(--gray);
+            font-size: 15px;
+        }
+
+        /* How it Works */
+        .how-section {
+            padding: 80px 0;
+        }
+
+        .how-section h2 {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 48px;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .step {
+            text-align: center;
+        }
+
+        .step-number {
+            width: 48px;
+            height: 48px;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: bold;
+            margin: 0 auto 16px;
+        }
+
+        .step h3 {
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+
+        .step p {
+            color: var(--gray);
+            font-size: 15px;
+        }
+
+        .step code {
+            background: var(--light-gray);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+
+        /* Requirements */
+        .requirements-section {
+            padding: 60px 0;
+            background: var(--light-gray);
+        }
+
+        .requirements-box {
+            background: white;
+            border-radius: 12px;
+            padding: 32px;
+            border: 1px solid var(--border);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .requirements-box h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .requirements-box ul {
+            list-style: none;
+        }
+
+        .requirements-box li {
+            padding: 10px 0;
+            padding-left: 28px;
+            position: relative;
+            color: var(--dark);
+        }
+
+        .requirements-box li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-weight: bold;
+        }
+
+        /* Security */
+        .security-section {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .security-section h2 {
+            margin-bottom: 24px;
+            font-size: 24px;
+        }
+
+        .security-badges {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .security-badge {
+            background: var(--light-gray);
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-size: 14px;
+            color: var(--dark);
+        }
+
+        /* Final CTA */
+        .final-cta {
+            padding: 80px 0;
+            text-align: center;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+        }
+
+        .final-cta h2 {
+            font-size: 36px;
+            margin-bottom: 16px;
+        }
+
+        .final-cta p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 32px;
+            font-size: 18px;
+        }
+
+        .final-cta .cta-button {
+            background: white;
+            color: var(--accent);
+        }
+
+        .final-cta .cta-button:hover {
+            background: var(--light-gray);
+        }
+
+        .final-cta .cta-sub {
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--gray);
+            font-size: 14px;
+        }
+
+        footer a {
+            color: var(--gray);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: var(--primary);
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 32px;
+            }
+            .tagline {
+                font-size: 17px;
+            }
+            .hero {
+                padding: 50px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="https://techconcepts.org" class="logo">💡 TechConcepts</a>
+            <div class="nav-links">
+                <a href="https://techconcepts.org">Home</a>
+                <a href="https://github.com/Strategyherogo/claude-usage-battery">GitHub</a>
+                <a href="https://techconcepts.gumroad.com/l/gdpsg" class="cta-button" style="padding: 8px 16px; font-size: 14px;">Download</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <span class="badge">macOS Menu Bar App</span>
+            <h1>🔋 Claude Code Battery</h1>
+            <p class="tagline">See your Claude usage at a glance. Never hit rate limits unexpectedly again.</p>
+            <a href="https://techconcepts.gumroad.com/l/gdpsg" class="cta-button">Download for macOS</a>
+            <p class="cta-sub">€4.90 · macOS 13+ · Instant download</p>
+        </div>
+    </section>
+
+    <section class="mockup-section">
+        <div class="mockup">
+            <div class="mockup-header">
+                <span class="mockup-title">Usage Limits</span>
+                <span class="mockup-refresh">Updated just now</span>
+            </div>
+            <div class="usage-row">
+                <div class="usage-label">
+                    <span>Session (5hr)</span>
+                    <span class="usage-percent">35%</span>
+                </div>
+                <div class="usage-bar"><div class="usage-fill green"></div></div>
+                <p class="reset-time">Resets in 3h 42m</p>
+            </div>
+            <div class="usage-row">
+                <div class="usage-label">
+                    <span>Weekly</span>
+                    <span class="usage-percent">68%</span>
+                </div>
+                <div class="usage-bar"><div class="usage-fill orange"></div></div>
+                <p class="reset-time">Resets in 2d 14h</p>
+            </div>
+            <div class="usage-row">
+                <div class="usage-label">
+                    <span>Sonnet</span>
+                    <span class="usage-percent">89%</span>
+                </div>
+                <div class="usage-bar"><div class="usage-fill red"></div></div>
+                <p class="reset-time">Resets in 4h 20m</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-section">
+        <div class="container">
+            <h2>Features</h2>
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">📊</div>
+                    <h3>Real-Time Tracking</h3>
+                    <p>See your token usage update every 60 seconds. Always know where you stand.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Color-Coded Alerts</h3>
+                    <p>Green, orange, red — one glance tells you if you need to slow down.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">⏱️</div>
+                    <h3>Reset Timers</h3>
+                    <p>Know exactly when each limit resets. Plan your work sessions accordingly.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Secure & Private</h3>
+                    <p>Read-only Keychain access. No tracking. No analytics. Your data stays yours.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Lightweight</h3>
+                    <p>Tiny footprint. Sits quietly in your menu bar until you need it.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">💻</div>
+                    <h3>Native macOS</h3>
+                    <p>Built with Swift & SwiftUI. Feels right at home on your Mac.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-section">
+        <div class="container">
+            <h2>How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Install Claude Code</h3>
+                    <p>Run <code>npm install -g @anthropic-ai/claude-code</code> and sign in</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Download the App</h3>
+                    <p>Get the DMG from Gumroad, drag to Applications, and launch</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Check Your Menu Bar</h3>
+                    <p>The battery icon shows your usage. Click for details.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="requirements-section">
+        <div class="container">
+            <div class="requirements-box">
+                <h2>Requirements</h2>
+                <ul>
+                    <li>macOS 13.0 (Ventura) or later</li>
+                    <li>Claude Code CLI installed and authenticated</li>
+                    <li>Active Anthropic account</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="security-section">
+        <div class="container">
+            <h2>🔐 Security First</h2>
+            <div class="security-badges">
+                <span class="security-badge">✓ Read-only Keychain</span>
+                <span class="security-badge">✓ No data collection</span>
+                <span class="security-badge">✓ No analytics</span>
+                <span class="security-badge">✓ Open source</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="final-cta">
+        <div class="container">
+            <h2>Stop Guessing Your Limits</h2>
+            <p>Join developers who never get interrupted by surprise rate limits.</p>
+            <a href="https://techconcepts.gumroad.com/l/gdpsg" class="cta-button">Get Claude Code Battery</a>
+            <p class="cta-sub">€4.90 · Instant download · macOS only</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>
+                Made by <a href="https://techconcepts.org">TechConcepts</a> ·
+                <a href="https://github.com/Strategyherogo/claude-usage-battery">GitHub</a> ·
+                <a href="mailto:support@techconcepts.org">Support</a>
+            </p>
+            <p style="margin-top: 12px;">© 2026 TechConcepts. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
