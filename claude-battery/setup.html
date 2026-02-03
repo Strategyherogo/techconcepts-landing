@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setup Guide - Claude Code Battery | TechConcepts</title>
+    <meta name="description" content="How to set up Claude Code Battery and get your OAuth token">
+    <link rel="canonical" href="https://techconcepts.org/claude-battery/setup">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔋</text></svg>">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --primary: #000;
+            --accent: #2563eb;
+            --gray: #6b7280;
+            --light-gray: #f3f4f6;
+            --border: #e5e7eb;
+            --white: #fff;
+            --green: #10b981;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.7;
+            color: #1a1a1a;
+            background: var(--white);
+        }
+        .container { max-width: 700px; margin: 0 auto; padding: 0 20px; }
+        nav {
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            background: white;
+            z-index: 100;
+        }
+        nav .nav-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        .nav-links { display: flex; gap: 24px; }
+        .nav-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 15px;
+        }
+        .nav-links a:hover { color: var(--primary); }
+        main { padding: 60px 0; }
+        h1 {
+            font-size: 36px;
+            margin-bottom: 16px;
+            color: var(--primary);
+        }
+        .intro {
+            font-size: 18px;
+            color: var(--gray);
+            margin-bottom: 40px;
+        }
+        h2 {
+            font-size: 24px;
+            margin-top: 48px;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        p { margin-bottom: 16px; color: #374151; }
+        .step {
+            background: var(--light-gray);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .step-number {
+            width: 32px;
+            height: 32px;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .step h3 {
+            font-size: 18px;
+            color: var(--primary);
+        }
+        .code-block {
+            background: #1a1a2e;
+            color: #e5e7eb;
+            padding: 16px;
+            border-radius: 8px;
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 13px;
+            overflow-x: auto;
+            margin: 16px 0;
+            position: relative;
+        }
+        .code-block code {
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+        .copy-btn {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: #888;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        .copy-btn:hover {
+            background: rgba(255,255,255,0.2);
+            color: white;
+        }
+        .note {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 16px;
+            border-radius: 0 8px 8px 0;
+            margin: 16px 0;
+        }
+        .note p { margin: 0; color: #92400e; }
+        .success {
+            background: #d1fae5;
+            border-left: 4px solid var(--green);
+            padding: 16px;
+            border-radius: 0 8px 8px 0;
+            margin: 16px 0;
+        }
+        .success p { margin: 0; color: #065f46; }
+        ul {
+            margin-bottom: 16px;
+            padding-left: 24px;
+        }
+        li {
+            margin-bottom: 8px;
+            color: #374151;
+        }
+        .faq {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 16px;
+        }
+        .faq-q {
+            padding: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .faq-a {
+            padding: 0 16px 16px;
+            color: var(--gray);
+        }
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--gray);
+            font-size: 14px;
+        }
+        footer a { color: var(--gray); text-decoration: none; }
+        footer a:hover { color: var(--primary); }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="https://techconcepts.org" class="logo">TechConcepts</a>
+            <div class="nav-links">
+                <a href="/claude-battery/">Claude Battery</a>
+                <a href="https://github.com/Strategyherogo/claude-usage-battery">GitHub</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container">
+            <h1>Setup Guide</h1>
+            <p class="intro">Get your Claude OAuth token in under a minute.</p>
+
+            <div class="step">
+                <div class="step-header">
+                    <span class="step-number">1</span>
+                    <h3>Make sure Claude Code is installed</h3>
+                </div>
+                <p>You need to have Claude Code CLI installed and signed in. If you haven't done this yet:</p>
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <code>npm install -g @anthropic-ai/claude-code && claude</code>
+                </div>
+                <p>Follow the prompts to sign in with your Anthropic account.</p>
+            </div>
+
+            <div class="step">
+                <div class="step-header">
+                    <span class="step-number">2</span>
+                    <h3>Copy your token extraction command</h3>
+                </div>
+                <p>Open Terminal and paste this command:</p>
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <code>security find-generic-password -s "Claude Code-credentials" -w 2>/dev/null | python3 -c "import sys,json; d=json.loads(sys.stdin.read()); print(d.get('claudeAiOauth',{}).get('accessToken',''))"</code>
+                </div>
+                <p>This command reads your Claude Code credentials from the macOS Keychain and extracts the OAuth token.</p>
+            </div>
+
+            <div class="step">
+                <div class="step-header">
+                    <span class="step-number">3</span>
+                    <h3>Copy the output</h3>
+                </div>
+                <p>The command will output a long string starting with <code>sk-ant-</code>. This is your OAuth token.</p>
+                <div class="success">
+                    <p><strong>Example output:</strong> sk-ant-oauthXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX...</p>
+                </div>
+                <p>Select and copy the entire token.</p>
+            </div>
+
+            <div class="step">
+                <div class="step-header">
+                    <span class="step-number">4</span>
+                    <h3>Paste into Claude Code Battery</h3>
+                </div>
+                <p>Go back to the Claude Code Battery setup window and paste your token. Click "Connect" to validate and save.</p>
+                <p>That's it! Your usage should appear in the menu bar within seconds.</p>
+            </div>
+
+            <div class="note">
+                <p><strong>Security note:</strong> Your token is stored securely in your Mac's Keychain. It never leaves your device except to fetch your usage from Anthropic's API.</p>
+            </div>
+
+            <h2>Troubleshooting</h2>
+
+            <div class="faq">
+                <div class="faq-q">The command returns nothing or an error</div>
+                <div class="faq-a">
+                    <p>Make sure you've run <code>claude</code> in Terminal and signed in at least once. The credentials are only created after you authenticate.</p>
+                </div>
+            </div>
+
+            <div class="faq">
+                <div class="faq-q">Token validation failed</div>
+                <div class="faq-a">
+                    <p>Your token may have expired. Run <code>claude</code> in Terminal to refresh your authentication, then extract a new token.</p>
+                </div>
+            </div>
+
+            <div class="faq">
+                <div class="faq-q">"Keychain access denied" error</div>
+                <div class="faq-a">
+                    <p>When prompted by macOS, click "Always Allow" to let Terminal access your Claude Code credentials in the Keychain.</p>
+                </div>
+            </div>
+
+            <div class="faq">
+                <div class="faq-q">I don't have python3</div>
+                <div class="faq-a">
+                    <p>Python 3 comes pre-installed on macOS Ventura and later. If you're on an older system, you can install it via Homebrew: <code>brew install python3</code></p>
+                </div>
+            </div>
+
+            <h2>Need More Help?</h2>
+            <p>If you're still having trouble, please:</p>
+            <ul>
+                <li>Check the <a href="https://github.com/Strategyherogo/claude-usage-battery/issues">GitHub Issues</a> for known problems</li>
+                <li>Open a new issue with details about your setup</li>
+                <li>Email us at <a href="mailto:support@techconcepts.org">support@techconcepts.org</a></li>
+            </ul>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="/claude-battery/">Claude Code Battery</a> ·
+                <a href="/claude-battery/privacy">Privacy</a> ·
+                <a href="https://github.com/Strategyherogo/claude-usage-battery">GitHub</a>
+            </p>
+            <p style="margin-top: 12px;">© 2026 TechConcepts. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function copyCode(btn) {
+            const code = btn.parentElement.querySelector('code').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                btn.textContent = 'Copied!';
+                setTimeout(() => btn.textContent = 'Copy', 2000);
+            });
+        }
+    </script>
+</body>
+</html>
