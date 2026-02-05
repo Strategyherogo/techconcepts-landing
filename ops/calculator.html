@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- SEO -->
+<title>Fund Ops ROI Calculator | TechConcepts</title>
+<meta name="description" content="Calculate how much your fund could save with operations automation. Free ROI calculator for VC/PE funds.">
+<meta name="author" content="Evgeny Goncharov">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://techconcepts.org/ops/calculator.html">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://techconcepts.org/ops/calculator.html">
+<meta property="og:title" content="Fund Ops ROI Calculator | TechConcepts">
+<meta property="og:description" content="See how much your fund could save with AI-powered operations automation. Takes 60 seconds.">
+<meta property="og:site_name" content="TechConcepts">
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💡</text></svg>">
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-815E8YDZW8"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-815E8YDZW8');
+</script>
+
+<style>
+  :root {
+    --primary: #1a1a2e;
+    --accent: #e94560;
+    --accent-hover: #d63851;
+    --green: #2ecc71;
+    --bg: #f8f9fa;
+    --card: #ffffff;
+    --text: #333;
+    --muted: #666;
+    --border: #e0e0e0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: var(--text);
+    line-height: 1.6;
+    background: var(--bg);
+  }
+
+  /* Nav */
+  .topnav {
+    background: var(--primary);
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .topnav a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem; }
+  .topnav a:hover { color: white; }
+  .topnav .brand { color: white; font-weight: 700; font-size: 1rem; }
+
+  .header {
+    background: var(--primary);
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+  }
+  .header h1 { font-size: 2.2rem; margin-bottom: 8px; }
+  .header p { opacity: 0.8; font-size: 1.05rem; }
+
+  .calculator {
+    max-width: 640px;
+    margin: -30px auto 40px;
+    background: var(--card);
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+    overflow: hidden;
+  }
+
+  .step { padding: 40px; display: none; }
+  .step.active { display: block; }
+
+  .step-indicator {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding: 20px;
+    background: var(--bg);
+  }
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--border);
+    transition: background 0.3s;
+  }
+  .dot.active { background: var(--accent); }
+  .dot.done { background: var(--green); }
+
+  .question-label {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .question-sub {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-bottom: 24px;
+  }
+
+  .slider-group { margin-bottom: 30px; }
+  .slider-value {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: 12px;
+  }
+  .slider-value span { font-size: 1rem; font-weight: 400; color: var(--muted); }
+  input[type="range"] {
+    width: 100%;
+    height: 8px;
+    -webkit-appearance: none;
+    background: linear-gradient(to right, var(--accent) 0%, var(--border) 0%);
+    border-radius: 4px;
+    outline: none;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(233,69,96,0.3);
+  }
+  .slider-labels {
+    display: flex;
+    justify-content: space-between;
+    color: var(--muted);
+    font-size: 0.8rem;
+    margin-top: 8px;
+  }
+
+  .option-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .option-btn {
+    padding: 16px;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    background: white;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s;
+    font-size: 0.95rem;
+  }
+  .option-btn:hover { border-color: var(--accent); }
+  .option-btn.selected {
+    border-color: var(--accent);
+    background: rgba(233,69,96,0.05);
+  }
+  .option-btn strong { display: block; margin-bottom: 4px; }
+  .option-btn span { font-size: 0.8rem; color: var(--muted); }
+
+  .btn {
+    display: block;
+    width: 100%;
+    padding: 16px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 20px;
+  }
+  .btn:hover { background: var(--accent-hover); }
+  .btn:disabled { background: var(--border); cursor: not-allowed; }
+
+  /* Email gate */
+  .email-gate input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    font-size: 1rem;
+    margin-bottom: 4px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .email-gate input:focus { border-color: var(--accent); }
+  .email-gate .hint {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+
+  /* Results */
+  .results-section { padding: 40px; }
+  .results-header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  .results-header h2 { font-size: 1.8rem; margin-bottom: 8px; }
+  .results-header .big-number {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: var(--green);
+  }
+  .results-header .big-label {
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+
+  .breakdown {
+    background: var(--bg);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 24px;
+  }
+  .breakdown h3 {
+    font-size: 1rem;
+    margin-bottom: 16px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .breakdown-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .breakdown-row:last-child { border-bottom: none; }
+  .breakdown-row .label { color: var(--muted); }
+  .breakdown-row .value { font-weight: 700; }
+  .breakdown-row.total {
+    font-size: 1.2rem;
+    padding-top: 14px;
+    border-top: 2px solid var(--primary);
+    border-bottom: none;
+  }
+  .breakdown-row.total .value { color: var(--green); }
+
+  .roi-bar {
+    height: 12px;
+    background: var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    margin: 8px 0;
+  }
+  .roi-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--green));
+    border-radius: 6px;
+    transition: width 1s ease;
+  }
+
+  .cta-section {
+    text-align: center;
+    padding: 30px;
+    background: linear-gradient(135deg, var(--primary), #16213e);
+    color: white;
+    border-radius: 0 0 16px 16px;
+  }
+  .cta-section h3 { margin-bottom: 8px; }
+  .cta-section p { opacity: 0.8; margin-bottom: 20px; font-size: 0.95rem; }
+  .cta-section .btn { background: var(--accent); max-width: 300px; margin: 0 auto; }
+
+  .back-link {
+    text-align: center;
+    margin-top: 20px;
+    padding-bottom: 40px;
+  }
+  .back-link a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+  .back-link a:hover { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav class="topnav">
+  <a href="/" class="brand">TechConcepts</a>
+  <a href="/ops/">Fund Ops Automation</a>
+</nav>
+
+<div class="header">
+  <h1>Fund Ops ROI Calculator</h1>
+  <p>See how much you could save with automation (takes 60 seconds)</p>
+</div>
+
+<div class="calculator" id="calc">
+  <div class="step-indicator">
+    <div class="dot active" id="d1"></div>
+    <div class="dot" id="d2"></div>
+    <div class="dot" id="d3"></div>
+    <div class="dot" id="d4"></div>
+    <div class="dot" id="d5"></div>
+  </div>
+
+  <!-- Step 1: Team Size -->
+  <div class="step active" id="s1">
+    <div class="question-label">How many people work in operations?</div>
+    <div class="question-sub">Include anyone who handles documents, reporting, ticket routing, or investor requests.</div>
+    <div class="slider-group">
+      <div class="slider-value" id="v1">3 <span>people</span></div>
+      <input type="range" id="r1" min="1" max="30" value="3">
+      <div class="slider-labels"><span>1</span><span>15</span><span>30</span></div>
+    </div>
+    <button class="btn" onclick="next(2)">Next</button>
+  </div>
+
+  <!-- Step 2: Hours wasted -->
+  <div class="step" id="s2">
+    <div class="question-label">Hours per week on manual tasks?</div>
+    <div class="question-sub">Document organization, manual reporting, request routing, copy-paste work, etc.</div>
+    <div class="slider-group">
+      <div class="slider-value" id="v2">20 <span>hrs/week</span></div>
+      <input type="range" id="r2" min="5" max="80" value="20" step="5">
+      <div class="slider-labels"><span>5</span><span>40</span><span>80</span></div>
+    </div>
+    <button class="btn" onclick="next(3)">Next</button>
+  </div>
+
+  <!-- Step 3: Salary -->
+  <div class="step" id="s3">
+    <div class="question-label">Average ops team salary?</div>
+    <div class="question-sub">Approximate annual salary (gross) for your operations team members.</div>
+    <div class="option-grid" id="salary-options">
+      <div class="option-btn" data-val="40000" onclick="selectOpt(this, 'salary')">
+        <strong>&euro;40K</strong><span>Junior / Analyst</span>
+      </div>
+      <div class="option-btn selected" data-val="60000" onclick="selectOpt(this, 'salary')">
+        <strong>&euro;60K</strong><span>Mid-level</span>
+      </div>
+      <div class="option-btn" data-val="85000" onclick="selectOpt(this, 'salary')">
+        <strong>&euro;85K</strong><span>Senior / Manager</span>
+      </div>
+      <div class="option-btn" data-val="120000" onclick="selectOpt(this, 'salary')">
+        <strong>&euro;120K+</strong><span>Director / VP</span>
+      </div>
+    </div>
+    <button class="btn" onclick="next(4)">Next</button>
+  </div>
+
+  <!-- Step 4: Tools -->
+  <div class="step" id="s4">
+    <div class="question-label">How many SaaS tools does ops use?</div>
+    <div class="question-sub">CRM, project management, reporting, document storage, communication, etc.</div>
+    <div class="slider-group">
+      <div class="slider-value" id="v4">10 <span>tools</span></div>
+      <input type="range" id="r4" min="3" max="40" value="10">
+      <div class="slider-labels"><span>3</span><span>20</span><span>40</span></div>
+    </div>
+    <button class="btn" onclick="next(5)">Next</button>
+  </div>
+
+  <!-- Step 5: Email Gate -->
+  <div class="step" id="s5">
+    <div class="question-label">Where should we send your results?</div>
+    <div class="question-sub">We'll email you a detailed breakdown with specific automation recommendations.</div>
+    <div class="email-gate">
+      <input type="text" id="userName" placeholder="Your name">
+      <div class="hint">&nbsp;</div>
+      <input type="email" id="userEmail" placeholder="Work email">
+      <div class="hint">We'll send your personalized report here. No spam, ever.</div>
+      <input type="text" id="userCompany" placeholder="Company name (optional)">
+    </div>
+    <button class="btn" id="showResults" onclick="showResults()">See My Results</button>
+  </div>
+
+  <!-- Results -->
+  <div class="step" id="s6">
+    <div class="results-section">
+      <div class="results-header">
+        <h2>Your Automation Savings</h2>
+        <div class="big-number" id="totalSavings">&euro;0</div>
+        <div class="big-label">estimated annual savings</div>
+      </div>
+
+      <div class="breakdown">
+        <h3>Cost Breakdown</h3>
+        <div class="breakdown-row">
+          <span class="label">Current manual labor cost/year</span>
+          <span class="value" id="laborCost">&euro;0</span>
+        </div>
+        <div class="breakdown-row">
+          <span class="label">Estimated SaaS waste (30% avg)</span>
+          <span class="value" id="saasWaste">&euro;0</span>
+        </div>
+        <div class="breakdown-row">
+          <span class="label">Opportunity cost (missed speed)</span>
+          <span class="value" id="oppCost">&euro;0</span>
+        </div>
+        <div class="breakdown-row total">
+          <span class="label">Total recoverable annually</span>
+          <span class="value" id="totalRecoverable">&euro;0</span>
+        </div>
+      </div>
+
+      <div class="breakdown">
+        <h3>With Automation (70% reduction)</h3>
+        <div class="breakdown-row">
+          <span class="label">Hours saved per week</span>
+          <span class="value" id="hoursSaved">0 hrs</span>
+        </div>
+        <div class="breakdown-row">
+          <span class="label">Labor savings/year</span>
+          <span class="value" id="laborSaved">&euro;0</span>
+        </div>
+        <div class="breakdown-row">
+          <span class="label">Tool consolidation savings</span>
+          <span class="value" id="toolSaved">&euro;0</span>
+        </div>
+        <div class="breakdown-row">
+          <span class="label">Implementation cost (one-time)</span>
+          <span class="value" id="implCost">-&euro;0</span>
+        </div>
+        <div class="breakdown-row total">
+          <span class="label">Net annual savings</span>
+          <span class="value" id="netSavings">&euro;0</span>
+        </div>
+      </div>
+
+      <div style="margin-bottom: 24px;">
+        <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--muted); margin-bottom: 4px;">
+          <span>ROI on implementation</span>
+          <span id="roiPercent">0%</span>
+        </div>
+        <div class="roi-bar">
+          <div class="roi-bar-fill" id="roiBar" style="width: 0%"></div>
+        </div>
+        <div style="font-size: 0.8rem; color: var(--muted);">Payback period: <strong id="payback">0 months</strong></div>
+      </div>
+    </div>
+
+    <div class="cta-section">
+      <h3>Ready to capture these savings?</h3>
+      <p>15-minute call. We'll walk through your specific situation and identify the quickest wins.</p>
+      <a href="https://calendar.app.google/md6WqwnhfireNTqx5" class="btn" style="display:block; text-decoration:none; text-align:center;">Book Free Discovery Call</a>
+    </div>
+  </div>
+</div>
+
+<div class="back-link">
+  <a href="/ops/">&larr; Back to Fund Ops Automation</a>
+</div>
+
+<script>
+let salary = 60000;
+
+// Slider updates
+document.getElementById('r1').addEventListener('input', function() {
+  document.getElementById('v1').innerHTML = this.value + ' <span>people</span>';
+  updateSliderBg(this);
+});
+document.getElementById('r2').addEventListener('input', function() {
+  document.getElementById('v2').innerHTML = this.value + ' <span>hrs/week</span>';
+  updateSliderBg(this);
+});
+document.getElementById('r4').addEventListener('input', function() {
+  document.getElementById('v4').innerHTML = this.value + ' <span>tools</span>';
+  updateSliderBg(this);
+});
+
+function updateSliderBg(el) {
+  const pct = ((el.value - el.min) / (el.max - el.min)) * 100;
+  el.style.background = 'linear-gradient(to right, var(--accent) ' + pct + '%, var(--border) ' + pct + '%)';
+}
+
+// Initialize slider backgrounds
+document.querySelectorAll('input[type="range"]').forEach(updateSliderBg);
+
+function selectOpt(el, type) {
+  el.parentElement.querySelectorAll('.option-btn').forEach(function(b) { b.classList.remove('selected'); });
+  el.classList.add('selected');
+  if (type === 'salary') salary = parseInt(el.dataset.val);
+}
+
+function next(step) {
+  document.querySelectorAll('.step').forEach(function(s) { s.classList.remove('active'); });
+  document.getElementById('s' + step).classList.add('active');
+
+  for (var i = 1; i <= 5; i++) {
+    var dot = document.getElementById('d' + i);
+    dot.classList.remove('active', 'done');
+    if (i < step) dot.classList.add('done');
+    if (i === step) dot.classList.add('active');
+  }
+
+  // GA4 event tracking for funnel steps
+  if (typeof gtag === 'function') {
+    gtag('event', 'calculator_step', { step_number: step });
+  }
+}
+
+function showResults() {
+  var name = document.getElementById('userName').value.trim();
+  var email = document.getElementById('userEmail').value.trim();
+
+  if (!email || email.indexOf('@') === -1) {
+    document.getElementById('userEmail').style.borderColor = 'var(--accent)';
+    return;
+  }
+
+  // Store lead
+  var lead = {
+    name: name,
+    email: email,
+    company: document.getElementById('userCompany').value.trim(),
+    teamSize: document.getElementById('r1').value,
+    hoursWasted: document.getElementById('r2').value,
+    salary: salary,
+    tools: document.getElementById('r4').value,
+    timestamp: new Date().toISOString()
+  };
+
+  // GA4 lead capture event
+  if (typeof gtag === 'function') {
+    gtag('event', 'generate_lead', {
+      currency: 'EUR',
+      value: salary * 0.7 // estimated deal value
+    });
+  }
+
+  console.log('LEAD CAPTURED:', JSON.stringify(lead));
+
+  // Calculate
+  var teamSize = parseInt(document.getElementById('r1').value);
+  var hoursWasted = parseInt(document.getElementById('r2').value);
+  var numTools = parseInt(document.getElementById('r4').value);
+
+  var hourlyRate = salary / (52 * 40);
+  var annualLaborWaste = hoursWasted * 52 * hourlyRate;
+  var avgToolCost = 150; // per month per tool
+  var saasWaste = numTools * avgToolCost * 12 * 0.3; // 30% waste
+  var opportunityCost = annualLaborWaste * 0.15; // 15% of labor
+
+  var totalWaste = annualLaborWaste + saasWaste + opportunityCost;
+
+  var automationRate = 0.70; // 70% reducible
+  var laborSaved = annualLaborWaste * automationRate;
+  var toolSaved = saasWaste;
+  var hoursSaved = Math.round(hoursWasted * automationRate);
+
+  // Implementation cost based on team size
+  var implCost = 5000;
+  if (teamSize > 5) implCost = 25000;
+  if (teamSize > 15) implCost = 50000;
+
+  var netSavings = laborSaved + toolSaved - implCost;
+  var roiPct = Math.round((netSavings / implCost) * 100);
+  var paybackMonths = Math.max(1, Math.round(implCost / ((laborSaved + toolSaved) / 12)));
+
+  // Display
+  document.querySelectorAll('.step').forEach(function(s) { s.classList.remove('active'); });
+  document.getElementById('s6').classList.add('active');
+  document.querySelectorAll('.dot').forEach(function(d) { d.classList.add('done'); });
+
+  var fmt = function(n) { return '\u20AC' + Math.round(n).toLocaleString('de-DE'); };
+
+  document.getElementById('totalSavings').textContent = fmt(netSavings);
+  document.getElementById('laborCost').textContent = fmt(annualLaborWaste);
+  document.getElementById('saasWaste').textContent = fmt(saasWaste);
+  document.getElementById('oppCost').textContent = fmt(opportunityCost);
+  document.getElementById('totalRecoverable').textContent = fmt(totalWaste);
+  document.getElementById('hoursSaved').textContent = hoursSaved + ' hrs/week';
+  document.getElementById('laborSaved').textContent = fmt(laborSaved);
+  document.getElementById('toolSaved').textContent = fmt(toolSaved);
+  document.getElementById('implCost').textContent = '-' + fmt(implCost);
+  document.getElementById('netSavings').textContent = fmt(netSavings);
+  document.getElementById('roiPercent').textContent = roiPct + '%';
+  document.getElementById('payback').textContent = paybackMonths + ' months';
+
+  // Animate ROI bar
+  setTimeout(function() {
+    document.getElementById('roiBar').style.width = Math.min(roiPct, 100) + '%';
+  }, 100);
+}
+</script>
+
+</body>
+</html>

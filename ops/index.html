@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- SEO -->
+<title>Fund Ops Automation | TechConcepts</title>
+<meta name="description" content="Cut your fund operations costs by 72% with AI automation. Document management, workflow orchestration, and IT cost optimization for VC/PE funds.">
+<meta name="author" content="Evgeny Goncharov">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://techconcepts.org/ops/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://techconcepts.org/ops/">
+<meta property="og:title" content="Cut Fund Operations Costs by 72% | TechConcepts">
+<meta property="og:description" content="AI-powered automation for VC/PE funds. Document management, workflow orchestration, IT cost optimization.">
+<meta property="og:site_name" content="TechConcepts">
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💡</text></svg>">
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-815E8YDZW8"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-815E8YDZW8');
+</script>
+
+<style>
+  :root {
+    --primary: #1a1a2e;
+    --accent: #e94560;
+    --accent-hover: #d63851;
+    --bg: #f8f9fa;
+    --card: #ffffff;
+    --text: #333;
+    --muted: #666;
+    --border: #e0e0e0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: var(--text); line-height: 1.6; }
+
+  /* Nav */
+  .topnav {
+    background: var(--primary);
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .topnav a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem; }
+  .topnav a:hover { color: white; }
+  .topnav .brand { color: white; font-weight: 700; font-size: 1rem; }
+
+  /* Hero */
+  .hero {
+    background: linear-gradient(135deg, var(--primary) 0%, #16213e 100%);
+    color: white;
+    padding: 80px 20px 60px;
+    text-align: center;
+  }
+  .hero h1 {
+    font-size: 2.8rem;
+    font-weight: 800;
+    max-width: 700px;
+    margin: 0 auto 20px;
+    line-height: 1.15;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto 30px;
+  }
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+  }
+  .hero-stat { text-align: center; }
+  .hero-stat .number { font-size: 2.5rem; font-weight: 800; color: var(--accent); }
+  .hero-stat .label { font-size: 0.85rem; opacity: 0.7; text-transform: uppercase; letter-spacing: 1px; }
+
+  .btn {
+    display: inline-block;
+    padding: 16px 36px;
+    background: var(--accent);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .btn:hover { background: var(--accent-hover); }
+  .btn-outline {
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+  }
+  .btn-outline:hover { background: rgba(255,255,255,0.1); }
+
+  /* Section */
+  section { padding: 70px 20px; }
+  .container { max-width: 1000px; margin: 0 auto; }
+  .section-title {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: 700;
+  }
+  .section-sub {
+    text-align: center;
+    color: var(--muted);
+    margin-bottom: 50px;
+    font-size: 1.05rem;
+  }
+
+  /* Pain points */
+  .pain-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+  }
+  .pain-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+  }
+  .pain-card h3 { margin-bottom: 8px; font-size: 1.15rem; }
+  .pain-card p { color: var(--muted); font-size: 0.95rem; }
+  .pain-card .icon { font-size: 2rem; margin-bottom: 12px; }
+
+  /* Results */
+  .results { background: var(--primary); color: white; }
+  .results .section-title { color: white; }
+  .results .section-sub { color: rgba(255,255,255,0.7); }
+  .result-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    text-align: center;
+  }
+  .result-item .big { font-size: 3rem; font-weight: 800; color: var(--accent); }
+  .result-item .desc { font-size: 0.9rem; opacity: 0.8; margin-top: 4px; }
+
+  /* Services */
+  .tier-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+  }
+  .tier-card {
+    background: var(--card);
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    padding: 32px;
+    text-align: center;
+    position: relative;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .tier-card:hover { transform: translateY(-4px); }
+  .tier-card.featured {
+    border-color: var(--accent);
+  }
+  .tier-card.featured::before {
+    content: 'MOST POPULAR';
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent);
+    color: white;
+    padding: 4px 16px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  .tier-card h3 { font-size: 1.3rem; margin-bottom: 8px; }
+  .tier-price { font-size: 2.2rem; font-weight: 800; color: var(--primary); margin: 12px 0; }
+  .tier-price span { font-size: 0.9rem; font-weight: 400; color: var(--muted); }
+  .tier-card ul {
+    list-style: none;
+    text-align: left;
+    margin: 20px 0;
+  }
+  .tier-card li {
+    padding: 6px 0;
+    font-size: 0.95rem;
+    color: var(--muted);
+  }
+  .tier-card li::before {
+    content: '\2713  ';
+    color: #2ecc71;
+    font-weight: 700;
+  }
+
+  /* Social proof */
+  .proof { background: var(--bg); }
+  .proof-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+  }
+  .proof-card {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 28px;
+    border: 1px solid var(--border);
+  }
+  .proof-card .role {
+    font-size: 0.85rem;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .proof-card .quote {
+    font-style: italic;
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+
+  /* CTA */
+  .cta {
+    background: linear-gradient(135deg, var(--primary) 0%, #16213e 100%);
+    color: white;
+    text-align: center;
+    padding: 80px 20px;
+  }
+  .cta h2 { font-size: 2.2rem; margin-bottom: 16px; }
+  .cta p { opacity: 0.8; margin-bottom: 30px; max-width: 500px; margin-left: auto; margin-right: auto; }
+  .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+  /* About */
+  .about-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 40px;
+    align-items: start;
+  }
+  .about-photo {
+    width: 100%;
+    aspect-ratio: 1;
+    background: linear-gradient(135deg, var(--primary), #16213e);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 3rem;
+    font-weight: 800;
+  }
+  .about-text h3 { font-size: 1.4rem; margin-bottom: 8px; }
+  .about-text .title-line { color: var(--accent); font-weight: 600; margin-bottom: 16px; }
+  .about-text p { color: var(--muted); margin-bottom: 12px; }
+  .about-logos {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+  .about-logo {
+    background: var(--bg);
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 30px;
+    color: var(--muted);
+    font-size: 0.85rem;
+    border-top: 1px solid var(--border);
+  }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--accent); }
+
+  @media (max-width: 768px) {
+    .hero h1 { font-size: 2rem; }
+    .hero-stats { gap: 24px; }
+    .hero-stat .number { font-size: 1.8rem; }
+    .about-content { grid-template-columns: 1fr; }
+    .tier-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav class="topnav">
+  <a href="/" class="brand">TechConcepts</a>
+  <a href="calculator.html">ROI Calculator</a>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container">
+    <h1>Cut Your Fund Operations Costs by <span>72%</span></h1>
+    <p>AI-powered automation for VC/PE funds. Stop drowning in documents, manual reporting, and workflow chaos.</p>
+    <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+      <a href="#services" class="btn">See How It Works</a>
+      <a href="calculator.html" class="btn btn-outline">Calculate Your ROI</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="number">72%</div>
+        <div class="label">IT Cost Reduction</div>
+      </div>
+      <div class="hero-stat">
+        <div class="number">&euro;133K</div>
+        <div class="label">Annual Savings</div>
+      </div>
+      <div class="hero-stat">
+        <div class="number">92%</div>
+        <div class="label">Automation Accuracy</div>
+      </div>
+      <div class="hero-stat">
+        <div class="number">3 wk</div>
+        <div class="label">Implementation</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pain Points -->
+<section>
+  <div class="container">
+    <h2 class="section-title">Sound Familiar?</h2>
+    <p class="section-sub">Most fund ops teams waste 20-30 hours/week on things that should be automated.</p>
+    <div class="pain-grid">
+      <div class="pain-card">
+        <div class="icon">&#128196;</div>
+        <h3>Document Chaos</h3>
+        <p>Investor updates, due diligence files, and portfolio reports scattered across email, Dropbox, and shared drives. Someone spends 8+ hours/week just organizing PDFs.</p>
+      </div>
+      <div class="pain-card">
+        <div class="icon">&#128260;</div>
+        <h3>Manual Reporting</h3>
+        <p>Weekly reports cobbled together from 5 different sources. Copy-paste from spreadsheets. Formatting nightmares. Every. Single. Week.</p>
+      </div>
+      <div class="pain-card">
+        <div class="icon">&#128184;</div>
+        <h3>Tool Sprawl</h3>
+        <p>Paying for 20+ SaaS tools. Half unused. The other half doing overlapping things. Nobody knows the total spend.</p>
+      </div>
+      <div class="pain-card">
+        <div class="icon">&#127915;</div>
+        <h3>Ticket Shuffling</h3>
+        <p>Ops requests bounce between people. No routing logic. SLAs missed. The team is busy but nothing moves forward.</p>
+      </div>
+      <div class="pain-card">
+        <div class="icon">&#128101;</div>
+        <h3>"We Need Another Hire"</h3>
+        <p>The answer to every ops bottleneck is another headcount. But the real problem isn't people &mdash; it's process.</p>
+      </div>
+      <div class="pain-card">
+        <div class="icon">&#9200;</div>
+        <h3>LP Requests Take Days</h3>
+        <p>An investor asks for a document. It takes 4 hours to find it, format it, and send it. That's a trust problem.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Results -->
+<section class="results">
+  <div class="container">
+    <h2 class="section-title">What We Delivered</h2>
+    <p class="section-sub">Real results from real fund operations automation.</p>
+    <div class="result-grid">
+      <div class="result-item">
+        <div class="big">8hr &rarr; 45min</div>
+        <div class="desc">Weekly document processing</div>
+      </div>
+      <div class="result-item">
+        <div class="big">&euro;100K+</div>
+        <div class="desc">Annual Jira automation savings</div>
+      </div>
+      <div class="result-item">
+        <div class="big">&euro;33K</div>
+        <div class="desc">AI document management savings/yr</div>
+      </div>
+      <div class="result-item">
+        <div class="big">23</div>
+        <div class="desc">Unused SaaS subscriptions killed</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services -->
+<section id="services">
+  <div class="container">
+    <h2 class="section-title">How We Work Together</h2>
+    <p class="section-sub">Start small. Prove ROI. Then scale.</p>
+    <div class="tier-grid">
+      <div class="tier-card">
+        <h3>Ops Audit</h3>
+        <div class="tier-price">&euro;5,000 <span>one-time</span></div>
+        <ul>
+          <li>Full operations audit (2 weeks)</li>
+          <li>Tool &amp; spend analysis</li>
+          <li>Automation opportunities mapped</li>
+          <li>ROI projections per workflow</li>
+          <li>Implementation roadmap</li>
+          <li>Executive presentation</li>
+        </ul>
+        <a href="#book" class="btn" style="width:100%">Book Audit</a>
+      </div>
+      <div class="tier-card featured">
+        <h3>Full Automation</h3>
+        <div class="tier-price">&euro;25,000 <span>project</span></div>
+        <ul>
+          <li>Everything in Audit</li>
+          <li>Document automation (AI-powered)</li>
+          <li>Workflow orchestration (Jira/n8n)</li>
+          <li>Reporting automation</li>
+          <li>Tool consolidation</li>
+          <li>Team training &amp; handoff</li>
+          <li>6-8 weeks implementation</li>
+        </ul>
+        <a href="#book" class="btn" style="width:100%">Start Project</a>
+      </div>
+      <div class="tier-card">
+        <h3>Fractional CTO</h3>
+        <div class="tier-price">&euro;5,000 <span>/month</span></div>
+        <ul>
+          <li>Ongoing automation &amp; optimization</li>
+          <li>Quarterly ops reviews</li>
+          <li>New tool evaluation</li>
+          <li>Team coaching</li>
+          <li>Vendor negotiations</li>
+          <li>Strategic tech roadmap</li>
+        </ul>
+        <a href="#book" class="btn" style="width:100%">Discuss</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Social Proof -->
+<section class="proof">
+  <div class="container">
+    <h2 class="section-title">Built From Experience</h2>
+    <p class="section-sub">Not theory. Proven at real funds and companies.</p>
+    <div class="proof-grid">
+      <div class="proof-card">
+        <div class="role">CTO @ Target Global</div>
+        <div class="quote">Building and running AI automation for one of Europe's leading VC funds. Managing fund operations technology across the portfolio.</div>
+      </div>
+      <div class="proof-card">
+        <div class="role">CTO @ The Alternative</div>
+        <div class="quote">Led the digital transformation that delivered 72% IT cost reduction, &euro;100K+ workflow savings, and 92% document classification accuracy.</div>
+      </div>
+      <div class="proof-card">
+        <div class="role">Sr PM Payments @ GoStudent</div>
+        <div class="quote">Managed payment operations at Europe's leading EdTech unicorn. Knows what "scale" really means in ops.</div>
+      </div>
+      <div class="proof-card">
+        <div class="role">EY M&amp;A / AML / Deals (2016-2019)</div>
+        <div class="quote">3 years of Big 4 consulting. Due diligence, compliance, financial modeling. Understands the pain from the inside.</div>
+      </div>
+      <div class="proof-card">
+        <div class="role">CPO @ Punto Pago</div>
+        <div class="quote">187% GMV growth, 211% DAU/MAU increase, 41% AOV improvement. Product-led growth applied to fintech.</div>
+      </div>
+      <div class="proof-card">
+        <div class="role">Yandex.Taxi Pricing</div>
+        <div class="quote">Managed pricing systems with &gt;$10M GMV impact. Data-driven decision making at massive scale.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section>
+  <div class="container">
+    <div class="about-content">
+      <div class="about-photo">EG</div>
+      <div class="about-text">
+        <h3>Evgeny Goncharov</h3>
+        <div class="title-line">CTO | VC | AI, Product &amp; Digital Transformation Leader</div>
+        <p>Based in Madrid, Spain. CTO at Target Global. Former EY consultant, former CTO at The Alternative, former CPO at Punto Pago.</p>
+        <p>I've spent the last 10 years building and optimizing operations at companies from Series A startups to billion-dollar funds. Now I help funds stop wasting money on manual processes.</p>
+        <p>Host of "Innovate Spain: The IT Chronicles" podcast. Nova Talent member. 22,500+ professional connections.</p>
+        <div class="about-logos">
+          <span class="about-logo">Target Global</span>
+          <span class="about-logo">EY</span>
+          <span class="about-logo">GoStudent</span>
+          <span class="about-logo">Yandex</span>
+          <span class="about-logo">Nova Talent</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="book">
+  <div class="container">
+    <h2>Stop Paying for Manual Work</h2>
+    <p>15-minute call. No pitch deck. Just a conversation about what's eating your ops budget.</p>
+    <div class="cta-buttons">
+      <a href="calculator.html" class="btn">Calculate Your ROI First</a>
+      <a href="https://calendar.app.google/md6WqwnhfireNTqx5" class="btn btn-outline">Book Discovery Call</a>
+    </div>
+    <p style="margin-top: 30px; font-size: 0.85rem; opacity: 0.5;">Or email directly: eg@techconcepts.org</p>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2026 <a href="/">TechConcepts</a>. Madrid, Spain.</p>
+</footer>
+
+</body>
+</html>
