@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- SEO Meta Tags -->
-    <title>TechConcepts | I Build Products. You Pay Once. | Fixed-Price MVP Development</title>
-    <meta name="description" content="I build products for founders. Fixed pricing: €999-€9,999. From idea to working product in 1-8 weeks. Full code ownership.">
+    <title>TechConcepts | I Build Products. You Pay Once.</title>
+    <meta name="description" content="I build products for founders. From idea to working product in 1-8 weeks. Full code ownership. Projects typically range €1K-€10K.">
     <meta name="keywords" content="MVP development, fixed price development, product builder, startup MVP, build my app, hire developer fixed price, idea to product, non-technical founder">
     <meta name="author" content="Evgeny Goncharov">
     <meta name="robots" content="index, follow">
@@ -16,7 +16,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://techconcepts.org/">
     <meta property="og:title" content="I Build Products. You Pay Once. | TechConcepts">
-    <meta property="og:description" content="I build products for founders. Fixed pricing €999-€9,999. Full code ownership.">
+    <meta property="og:description" content="I build products for founders. Full code ownership. 1-8 weeks delivery.">
     <meta property="og:image" content="https://techconcepts.org/techconcepts-og.png">
     <meta property="og:site_name" content="TechConcepts">
 
@@ -24,7 +24,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@evaborisov">
     <meta name="twitter:title" content="I Build Products. You Pay Once.">
-    <meta name="twitter:description" content="Fixed-price product development. €999-€9,999. 1-8 weeks. Full ownership.">
+    <meta name="twitter:description" content="Product development for founders. 1-8 weeks. Full code ownership.">
     <meta name="twitter:image" content="https://techconcepts.org/techconcepts-og.png">
 
     <!-- Locale -->
@@ -88,7 +88,7 @@
     }
     </script>
 
-    <!-- Schema.org - Service with Pricing (NEW) -->
+    <!-- Schema.org - Service with Pricing -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -106,22 +106,19 @@
                 {
                     "@type": "Offer",
                     "name": "Starter",
-                    "description": "One automation or tool, delivered in 1-2 weeks",
-                    "price": "999",
+                    "description": "One automation or tool, delivered in 1-2 weeks. Starting around €1K.",
                     "priceCurrency": "EUR"
                 },
                 {
                     "@type": "Offer",
                     "name": "Pro",
-                    "description": "Internal tool or dashboard with integrations, delivered in 3-4 weeks",
-                    "price": "4999",
+                    "description": "Internal tool or dashboard with integrations, delivered in 3-4 weeks. Around €5K.",
                     "priceCurrency": "EUR"
                 },
                 {
                     "@type": "Offer",
                     "name": "Full Build",
-                    "description": "User-facing MVP or SaaS with unlimited revisions, delivered in 4-8 weeks",
-                    "price": "9999",
+                    "description": "User-facing MVP or SaaS with unlimited revisions, delivered in 4-8 weeks. Around €10K.",
                     "priceCurrency": "EUR"
                 }
             ]
@@ -140,7 +137,7 @@
                 "name": "How much does it cost to build an MVP?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "TechConcepts offers fixed pricing: €999 for a single automation, €4,999 for a small product with integrations, or €9,999 for a complete MVP. No hourly rates or surprises."
+                    "text": "TechConcepts offers tiered pricing: Starter projects around €1K for single automations, Pro projects around €5K for small products with integrations, and Full Build MVPs around €10K. No hourly rates or surprises."
                 }
             },
             {
@@ -431,17 +428,17 @@
         }
 
         .pricing-card.featured::before {
-            content: "MOST POPULAR";
+            content: "COMMON STARTING POINT";
             position: absolute;
             top: -12px;
             left: 50%;
             transform: translateX(-50%);
-            background: var(--primary);
+            background: var(--gray);
             color: #fff;
             padding: 4px 16px;
             border-radius: 20px;
             font-size: 11px;
-            font-weight: 600;
+            font-weight: 500;
             letter-spacing: 0.5px;
         }
 
@@ -1515,7 +1512,7 @@
             <a href="/" class="logo">TechConcepts</a>
             <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Toggle menu">☰</button>
             <div class="nav-links" id="navLinks">
-                <a href="#pricing" data-i18n="nav.pricing">Pricing</a>
+                <a href="#pricing" data-i18n="nav.pricing">Investment</a>
                 <a href="#process" data-i18n="nav.process">How it works</a>
                 <a href="#about" data-i18n="nav.about">About</a>
                 <a href="#resources" data-i18n="nav.resources">Resources</a>
@@ -1544,8 +1541,8 @@
             <h1 data-i18n="hero.title">I Build Products.<br>You Pay Once.</h1>
             <p data-i18n="hero.subtitle">I build products for non-technical founders. Fixed pricing, full ownership, delivered in 1-8 weeks.</p>
             <div class="hero-buttons">
-                <a href="#pricing" class="btn btn-primary" data-i18n="hero.cta1">See Pricing</a>
-                <a href="https://calendar.app.google/md6WqwnhfireNTqx5" class="btn btn-secondary" data-i18n="hero.cta2">Book a Call</a>
+                <a href="https://calendar.app.google/md6WqwnhfireNTqx5" class="btn btn-primary" data-i18n="hero.cta1">Book a Call</a>
+                <a href="#process" class="btn btn-secondary" data-i18n="hero.cta2">How It Works</a>
             </div>
             <div class="trust-badges">
                 <span>Ex-Yandex</span>
@@ -1583,25 +1580,25 @@
     <!-- Pricing -->
     <section class="pricing" id="pricing">
         <div class="container">
-            <h2>Simple, fixed pricing</h2>
-            <p class="subtitle">One price. Full ownership. No surprises.</p>
+            <h2>Typical engagement ranges</h2>
+            <p class="subtitle">Projects typically fall into one of these tiers. Final scope confirmed after our call.</p>
             <div class="pricing-grid">
                 <div class="pricing-card">
                     <h3>Starter</h3>
-                    <div class="price">€999 <span>one-time</span></div>
-                    <div class="timeline">1-2 weeks delivery</div>
+                    <div class="price">~€1K <span>range</span></div>
+                    <div class="timeline">1-2 weeks</div>
                     <ul>
                         <li>1 automation or tool</li>
                         <li>2 revision rounds</li>
                         <li>Source code delivered</li>
                         <li>No ongoing fees</li>
                     </ul>
-                    <a href="mailto:eg@techconcepts.org?subject=Starter%20Project" class="btn btn-secondary">Get Started</a>
+                    <a href="mailto:eg@techconcepts.org?subject=Project%20Inquiry" class="btn btn-secondary">Discuss</a>
                 </div>
                 <div class="pricing-card featured">
                     <h3>Pro</h3>
-                    <div class="price">€4,999 <span>one-time</span></div>
-                    <div class="timeline">3-4 weeks delivery</div>
+                    <div class="price">~€5K <span>range</span></div>
+                    <div class="timeline">3-4 weeks</div>
                     <ul>
                         <li>Internal tool or dashboard</li>
                         <li>Up to 3 integrations</li>
@@ -1609,12 +1606,12 @@
                         <li>Full documentation</li>
                         <li>14 days support</li>
                     </ul>
-                    <a href="https://calendar.app.google/md6WqwnhfireNTqx5?tier=pro" class="btn btn-primary">Get Started</a>
+                    <a href="https://calendar.app.google/md6WqwnhfireNTqx5" class="btn btn-primary">Let's Talk</a>
                 </div>
                 <div class="pricing-card">
                     <h3>Full Build</h3>
-                    <div class="price">€9,999 <span>one-time</span></div>
-                    <div class="timeline">4-8 weeks delivery</div>
+                    <div class="price">~€10K <span>range</span></div>
+                    <div class="timeline">4-8 weeks</div>
                     <ul>
                         <li>User-facing MVP or SaaS</li>
                         <li>Unlimited integrations</li>
@@ -1622,7 +1619,7 @@
                         <li>Weekly strategy calls</li>
                         <li>30 days support</li>
                     </ul>
-                    <a href="https://calendar.app.google/md6WqwnhfireNTqx5?tier=full" class="btn btn-secondary">Get Started</a>
+                    <a href="https://calendar.app.google/md6WqwnhfireNTqx5" class="btn btn-secondary">Let's Talk</a>
                 </div>
             </div>
         </div>

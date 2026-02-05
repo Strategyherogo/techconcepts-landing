@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+
+# Sitemap reference
+Sitemap: https://techconcepts.org/sitemap.xml
+
+# Block development/internal directories
+Disallow: /node_modules/
+Disallow: /releases/
+Disallow: /chrome-extension/
+Disallow: /output/
+Disallow: /.wrangler/
+Disallow: /.git/
