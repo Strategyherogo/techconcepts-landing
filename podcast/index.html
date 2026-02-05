@@ -126,44 +126,74 @@
             margin-right: auto;
         }
 
+        /* Listen & Social Buttons */
         .listen-buttons {
             display: flex;
-            gap: 16px;
+            gap: 12px;
             justify-content: center;
             flex-wrap: wrap;
-            margin-bottom: 24px;
+            margin-bottom: 32px;
         }
 
         .listen-btn {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            padding: 14px 24px;
-            border-radius: 12px;
+            gap: 8px;
+            padding: 12px 20px;
+            border-radius: 10px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 15px;
+            font-size: 14px;
             transition: all 0.2s;
-        }
-
-        .listen-btn.spotify {
-            background: #1DB954;
             color: white;
         }
 
-        .listen-btn.apple {
-            background: #000;
-            color: white;
-        }
-
-        .listen-btn.youtube {
-            background: #FF0000;
-            color: white;
-        }
+        .listen-btn.youtube { background: #FF0000; }
+        .listen-btn.spotify { background: #1DB954; }
+        .listen-btn.apple { background: #000; }
 
         .listen-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .listen-btn.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .listen-btn.disabled:hover {
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Social Links */
+        .social-links {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 24px 0;
+            border-top: 1px solid var(--border);
+            margin-top: 24px;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--dark);
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .social-link:hover {
+            border-color: var(--accent);
+            color: var(--accent);
         }
 
         .hero-meta {
@@ -222,6 +252,22 @@
             text-decoration: none;
         }
 
+        .host-socials {
+            display: flex;
+            gap: 12px;
+            margin-top: 8px;
+        }
+
+        .host-socials a {
+            color: var(--gray);
+            font-size: 13px;
+            text-decoration: none;
+        }
+
+        .host-socials a:hover {
+            color: var(--accent);
+        }
+
         /* Episodes */
         .episodes {
             padding: 60px 0;
@@ -235,7 +281,7 @@
         .episode-list {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 24px;
         }
 
         .episode {
@@ -296,6 +342,77 @@
             gap: 16px;
             font-size: 14px;
             color: var(--gray);
+            margin-bottom: 16px;
+        }
+
+        .episode-links {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .episode-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 14px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            text-decoration: none;
+            color: var(--dark);
+            font-size: 13px;
+            transition: all 0.2s;
+        }
+
+        .episode-link:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .episode-link.primary {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+        }
+
+        .episode-link.primary:hover {
+            background: #b91c1c;
+        }
+
+        /* Transcript */
+        .transcript {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        .transcript-toggle {
+            background: none;
+            border: none;
+            color: var(--accent);
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .transcript-content {
+            display: none;
+            margin-top: 16px;
+            padding: 20px;
+            background: var(--light-gray);
+            border-radius: 12px;
+            font-size: 14px;
+            line-height: 1.8;
+            color: var(--dark);
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .transcript-content.show {
+            display: block;
         }
 
         .coming-soon {
@@ -380,6 +497,18 @@
             color: var(--primary);
         }
 
+        .footer-socials {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+
+        .footer-socials a {
+            color: var(--gray);
+            font-size: 20px;
+        }
+
         /* Responsive */
         @media (max-width: 600px) {
             .hero h1 {
@@ -397,9 +526,18 @@
                 justify-content: center;
             }
 
+            .social-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
             .host-card {
                 flex-direction: column;
                 text-align: center;
+            }
+
+            .host-socials {
+                justify-content: center;
             }
 
             .subscribe-form {
@@ -414,7 +552,7 @@
             <a href="https://techconcepts.org" class="logo">TechConcepts</a>
             <div class="nav-links">
                 <a href="https://techconcepts.org">Home</a>
-                <a href="https://linkedin.com/in/evgoncharov" target="_blank">LinkedIn</a>
+                <a href="#episodes">Episodes</a>
             </div>
         </div>
     </nav>
@@ -427,13 +565,31 @@
 
             <div class="listen-buttons">
                 <a href="https://www.youtube.com/@INNOVATESPAINIT" class="listen-btn youtube" target="_blank">
-                    <span>▶️</span> Watch on YouTube
+                    ▶️ Watch on YouTube
                 </a>
-                <a href="#" class="listen-btn spotify">
-                    <span>🎧</span> Spotify (Coming Soon)
+                <a href="#" class="listen-btn spotify disabled" onclick="return false;">
+                    🎧 Spotify (Soon)
                 </a>
-                <a href="#" class="listen-btn apple">
-                    <span>🍎</span> Apple Podcasts (Coming Soon)
+                <a href="#" class="listen-btn apple disabled" onclick="return false;">
+                    🍎 Apple Podcasts (Soon)
+                </a>
+            </div>
+
+            <div class="social-links">
+                <a href="https://www.youtube.com/@INNOVATESPAINIT" class="social-link" target="_blank">
+                    ▶️ YouTube
+                </a>
+                <a href="https://linkedin.com/in/evgoncharov" class="social-link" target="_blank">
+                    💼 LinkedIn
+                </a>
+                <a href="https://twitter.com/evaborisov" class="social-link" target="_blank">
+                    𝕏 Twitter/X
+                </a>
+                <a href="https://instagram.com/innovatespain" class="social-link" target="_blank">
+                    📸 Instagram
+                </a>
+                <a href="https://tiktok.com/@innovatespain" class="social-link" target="_blank">
+                    🎵 TikTok
                 </a>
             </div>
 
@@ -456,33 +612,54 @@
                 <div class="host-info">
                     <h3>Evgeny Goncharov</h3>
                     <p>Host & Product Builder</p>
-                    <p><a href="https://linkedin.com/in/evgoncharov" target="_blank">Connect on LinkedIn</a></p>
+                    <div class="host-socials">
+                        <a href="https://linkedin.com/in/evgoncharov" target="_blank">LinkedIn</a>
+                        <a href="https://twitter.com/evaborisov" target="_blank">Twitter</a>
+                        <a href="https://techconcepts.org" target="_blank">Website</a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="episodes">
+    <section class="episodes" id="episodes">
         <div class="container">
             <h2>Episodes</h2>
 
             <div class="coming-soon">
-                <h3>Coming Soon</h3>
-                <p>First episode drops soon. Subscribe to get notified.</p>
+                <h3>First Episodes Coming Soon</h3>
+                <p>Subscribe to get notified when we launch. Episodes will include full transcripts.</p>
             </div>
 
-            <!-- Future episodes template:
+            <!-- EPISODE TEMPLATE - Uncomment and duplicate for each episode
             <div class="episode-list">
                 <article class="episode">
                     <div class="episode-header">
                         <span class="episode-number">EP 01</span>
                         <span class="episode-date">Feb 10, 2026</span>
                     </div>
-                    <h3><a href="#">Episode Title Here</a></h3>
+                    <h3><a href="https://youtube.com/watch?v=VIDEO_ID">Episode Title Here</a></h3>
                     <p>Episode description goes here. A brief summary of what the episode covers and who the guest is.</p>
                     <div class="episode-meta">
-                        <span>45 min</span>
-                        <span>Guest Name</span>
+                        <span>⏱️ 45 min</span>
+                        <span>👤 Guest Name</span>
+                    </div>
+                    <div class="episode-links">
+                        <a href="https://youtube.com/watch?v=VIDEO_ID" class="episode-link primary" target="_blank">▶️ Watch</a>
+                        <a href="#" class="episode-link">🎧 Spotify</a>
+                        <a href="#" class="episode-link">🍎 Apple</a>
+                    </div>
+                    <div class="transcript">
+                        <button class="transcript-toggle" onclick="this.nextElementSibling.classList.toggle('show')">
+                            📄 Show Transcript
+                        </button>
+                        <div class="transcript-content">
+                            <p><strong>00:00 - Introduction</strong></p>
+                            <p>Host: Welcome to Innovative Spain...</p>
+                            <p><strong>02:30 - Guest Introduction</strong></p>
+                            <p>Guest: Thank you for having me...</p>
+                            <!-- Full transcript content here -->
+                        </div>
                     </div>
                 </article>
             </div>
@@ -493,7 +670,7 @@
     <section class="subscribe">
         <div class="container">
             <h2>Never miss an episode</h2>
-            <p>Get notified when new episodes drop.</p>
+            <p>Get notified when new episodes drop. Plus exclusive content and behind-the-scenes.</p>
             <form class="subscribe-form" action="https://formspree.io/f/xpwzgvqr" method="POST">
                 <input type="hidden" name="_subject" value="Innovative Spain Podcast Subscriber">
                 <input type="email" name="email" placeholder="your@email.com" required>
@@ -504,12 +681,19 @@
 
     <footer>
         <div class="container">
+            <div class="footer-socials">
+                <a href="https://www.youtube.com/@INNOVATESPAINIT" target="_blank" title="YouTube">▶️</a>
+                <a href="https://linkedin.com/in/evgoncharov" target="_blank" title="LinkedIn">💼</a>
+                <a href="https://twitter.com/evaborisov" target="_blank" title="Twitter">𝕏</a>
+                <a href="https://instagram.com/innovatespain" target="_blank" title="Instagram">📸</a>
+                <a href="https://tiktok.com/@innovatespain" target="_blank" title="TikTok">🎵</a>
+            </div>
             <p>
                 Innovative Spain is a <a href="https://techconcepts.org">TechConcepts</a> production
             </p>
             <p style="margin-top: 12px;">
                 <a href="mailto:eg@techconcepts.org">Contact</a> ·
-                <a href="https://linkedin.com/in/evgoncharov">LinkedIn</a>
+                <a href="https://techconcepts.org">TechConcepts.org</a>
             </p>
         </div>
     </footer>
