@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - AI Ticket Classifier</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            color: #172B4D;
+            background: #fff;
+        }
+        .container { max-width: 800px; margin: 0 auto; padding: 0 20px; }
+        header {
+            padding: 16px 0;
+            border-bottom: 1px solid #DFE1E6;
+        }
+        nav { display: flex; justify-content: space-between; align-items: center; max-width: 800px; margin: 0 auto; padding: 0 20px; }
+        .logo { font-weight: 700; font-size: 20px; color: #0052CC; text-decoration: none; }
+        .nav-links { display: flex; gap: 32px; list-style: none; }
+        .nav-links a { color: #42526E; text-decoration: none; font-size: 14px; font-weight: 500; }
+        main { padding: 48px 0 80px; }
+        h1 { font-size: 36px; margin-bottom: 8px; }
+        .last-updated { color: #6B778C; margin-bottom: 32px; }
+        h2 { font-size: 24px; margin: 32px 0 16px; color: #172B4D; }
+        h3 { font-size: 18px; margin: 24px 0 12px; color: #172B4D; }
+        p { margin-bottom: 16px; color: #42526E; }
+        ul, ol { margin: 16px 0; padding-left: 24px; color: #42526E; }
+        li { margin-bottom: 8px; }
+        a { color: #0052CC; }
+        .highlight-box {
+            background: #F4F5F7;
+            border-left: 4px solid #0052CC;
+            padding: 16px 20px;
+            margin: 24px 0;
+        }
+        footer {
+            background: #172B4D;
+            color: #fff;
+            padding: 32px 0;
+            text-align: center;
+        }
+        footer a { color: #B3BAC5; }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">AI Ticket Classifier</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="support.html">Support</a></li>
+                <li><a href="terms.html">Terms</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1>Privacy Policy</h1>
+            <p class="last-updated">Last updated: January 19, 2025</p>
+
+            <div class="highlight-box">
+                <strong>Summary:</strong> We collect minimal data necessary to provide the service. Ticket content is sent to Claude API for classification. Classification patterns and feedback are stored in Forge Storage within Atlassian's infrastructure. No data leaves Atlassian except to the AI provider. We don't sell your data.
+            </div>
+
+            <h2>1. Introduction</h2>
+            <p>AI Ticket Classifier ("we", "our", or "the App") is a Jira Cloud application that automatically classifies new tickets using AI. This Privacy Policy explains how we collect, use, and protect your information.</p>
+
+            <h2>2. Information We Collect</h2>
+
+            <h3>2.1 Information from Atlassian</h3>
+            <p>When you install and use our App, we access the following through Atlassian's Forge platform:</p>
+            <ul>
+                <li><strong>Jira Issue Data:</strong> Summary, description, issue type, priority, assignee, and labels of tickets for classification purposes (read and write access)</li>
+                <li><strong>Historical Issue Data:</strong> Past tickets in your project are analyzed to learn classification patterns</li>
+                <li><strong>User Context:</strong> Basic information about the current user session provided by Atlassian</li>
+                <li><strong>License Information:</strong> Your app license status from Atlassian Marketplace</li>
+            </ul>
+            <p>This data is processed within Atlassian's Forge infrastructure.</p>
+
+            <h3>2.2 Information Stored in Forge Storage</h3>
+            <p>The following information is stored in Atlassian's Forge Storage (server-side, within Atlassian's infrastructure):</p>
+            <ul>
+                <li><strong>Classification Patterns:</strong> Learned patterns from your historical tickets used for future classifications</li>
+                <li><strong>Feedback Data:</strong> Your team's corrections and confirmations of AI classifications</li>
+                <li><strong>Configuration Settings:</strong> Classification rules, thresholds, and project preferences</li>
+                <li><strong>Analytics Data:</strong> Aggregated classification accuracy metrics and usage statistics</li>
+                <li><strong>API Key:</strong> Your Claude API key (encrypted in Forge Storage)</li>
+            </ul>
+            <p>This data is stored within Atlassian's secure infrastructure and is not transmitted to our servers.</p>
+
+            <h3>2.3 Information Sent to AI Providers</h3>
+            <p>When the App classifies a ticket:</p>
+            <ul>
+                <li>The text content (summary and description) of the Jira ticket is sent to Anthropic's Claude API for classification</li>
+                <li>Your API key is used to authenticate these requests</li>
+                <li>Classification patterns may be included in the prompt context to improve accuracy</li>
+                <li>This data is processed according to Anthropic's privacy policy</li>
+            </ul>
+
+            <h2>3. How We Use Information</h2>
+            <p>We use the information collected to:</p>
+            <ul>
+                <li>Classify new tickets by issue type, priority, and assignee</li>
+                <li>Learn classification patterns from historical tickets</li>
+                <li>Improve classification accuracy through feedback</li>
+                <li>Provide analytics and accuracy metrics on the Admin Dashboard</li>
+                <li>Verify your license status</li>
+            </ul>
+
+            <h2>4. Data Storage and Security</h2>
+
+            <h3>4.1 Forge Platform</h3>
+            <p>Our App runs entirely on Atlassian's Forge platform. All data processing and storage occurs within Atlassian's secure infrastructure. We do not operate our own servers for data storage.</p>
+
+            <h3>4.2 Forge Storage</h3>
+            <p>Classification patterns, feedback data, and configuration are stored in Forge Storage:</p>
+            <ul>
+                <li>Stored within Atlassian's secure infrastructure</li>
+                <li>Isolated per Jira instance (your data is not shared with other customers)</li>
+                <li>Subject to Atlassian's security and compliance standards</li>
+                <li>Deleted when the App is uninstalled</li>
+            </ul>
+
+            <h3>4.3 Your API Keys</h3>
+            <p>Your AI provider API keys are:</p>
+            <ul>
+                <li>Stored encrypted in Forge Storage</li>
+                <li>Never transmitted to our servers</li>
+                <li>Only sent directly to the AI provider for classification requests</li>
+            </ul>
+
+            <h3>4.4 Jira Data</h3>
+            <p>Your Jira issue data:</p>
+            <ul>
+                <li>Is accessed when a new ticket is created or when training the classifier</li>
+                <li>Ticket content is sent to the AI provider only for classification purposes</li>
+                <li>Learned patterns (not raw ticket content) are stored in Forge Storage</li>
+                <li>Raw ticket content is not persisted by our App beyond the immediate classification</li>
+            </ul>
+
+            <h2>5. Third-Party Services</h2>
+            <p>Our App integrates with the following third-party services:</p>
+
+            <h3>5.1 Atlassian</h3>
+            <p>The App is built on Atlassian Forge and accesses Jira Cloud. See <a href="https://www.atlassian.com/legal/privacy-policy" target="_blank">Atlassian's Privacy Policy</a>.</p>
+
+            <h3>5.2 Anthropic (Claude)</h3>
+            <p>Ticket content is sent to Anthropic's Claude API for classification. See <a href="https://www.anthropic.com/privacy" target="_blank">Anthropic's Privacy Policy</a>.</p>
+
+            <h2>6. Data Retention</h2>
+            <p>Data stored in Forge Storage (classification patterns, feedback, configuration) persists until you:</p>
+            <ul>
+                <li>Uninstall the App (all Forge Storage data is deleted)</li>
+                <li>Manually reset training data through the Admin Dashboard</li>
+                <li>Request data deletion by contacting us</li>
+            </ul>
+            <p>Raw ticket content is not retained by the App after classification is complete.</p>
+
+            <h2>7. Your Rights</h2>
+            <p>You have the right to:</p>
+            <ul>
+                <li><strong>Access:</strong> View what data the App stores via the Admin Dashboard</li>
+                <li><strong>Deletion:</strong> Reset training data or uninstall the App to delete all stored data</li>
+                <li><strong>Portability:</strong> Your Jira data remains in Jira and is not separately stored by us</li>
+                <li><strong>Uninstall:</strong> Remove the App at any time through Jira's app management</li>
+            </ul>
+
+            <h2>8. Children's Privacy</h2>
+            <p>Our App is not intended for use by children under 16. We do not knowingly collect information from children.</p>
+
+            <h2>9. Changes to This Policy</h2>
+            <p>We may update this Privacy Policy from time to time. We will notify users of significant changes through the App or via Atlassian Marketplace.</p>
+
+            <h2>10. Contact Us</h2>
+            <p>If you have questions about this Privacy Policy, please contact us at:</p>
+            <ul>
+                <li>Email: <a href="mailto:privacy@techconcepts.org">privacy@techconcepts.org</a></li>
+                <li>Support: <a href="support.html">Support Page</a></li>
+            </ul>
+
+            <h2>11. Compliance</h2>
+            <p>This App complies with:</p>
+            <ul>
+                <li>Atlassian Marketplace Developer Agreement</li>
+                <li>Atlassian's Security Requirements for Cloud Apps</li>
+                <li>GDPR (for users in the European Economic Area)</li>
+                <li>CCPA (for users in California)</li>
+            </ul>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 TechConcepts. <a href="terms.html">Terms</a> | <a href="privacy.html">Privacy</a></p>
+    </footer>
+</body>
+</html>

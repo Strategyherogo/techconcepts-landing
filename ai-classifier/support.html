@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support & Documentation - AI Ticket Classifier</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            color: #172B4D;
+            background: #fff;
+        }
+        .container { max-width: 800px; margin: 0 auto; padding: 0 20px; }
+        header { padding: 16px 0; border-bottom: 1px solid #DFE1E6; }
+        nav { display: flex; justify-content: space-between; align-items: center; max-width: 800px; margin: 0 auto; padding: 0 20px; }
+        .logo { font-weight: 700; font-size: 20px; color: #0052CC; text-decoration: none; }
+        .nav-links { display: flex; gap: 32px; list-style: none; }
+        .nav-links a { color: #42526E; text-decoration: none; font-size: 14px; font-weight: 500; }
+        main { padding: 48px 0 80px; }
+        h1 { font-size: 36px; margin-bottom: 8px; }
+        .subtitle { color: #6B778C; margin-bottom: 32px; font-size: 18px; }
+        h2 { font-size: 24px; margin: 40px 0 16px; color: #172B4D; }
+        h3 { font-size: 18px; margin: 24px 0 12px; color: #172B4D; }
+        p { margin-bottom: 16px; color: #42526E; }
+        ul, ol { margin: 16px 0; padding-left: 24px; color: #42526E; }
+        li { margin-bottom: 8px; }
+        a { color: #0052CC; }
+        code {
+            background: #F4F5F7;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 14px;
+        }
+        pre {
+            background: #F4F5F7;
+            padding: 16px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 16px 0;
+        }
+        pre code {
+            padding: 0;
+            background: none;
+        }
+        .card {
+            border: 1px solid #DFE1E6;
+            border-radius: 8px;
+            padding: 24px;
+            margin: 16px 0;
+        }
+        .card h3 { margin-top: 0; }
+        .faq-item {
+            border-bottom: 1px solid #DFE1E6;
+            padding: 20px 0;
+        }
+        .faq-item:last-child { border-bottom: none; }
+        .faq-question {
+            font-weight: 600;
+            color: #172B4D;
+            margin-bottom: 8px;
+        }
+        .contact-box {
+            background: #DEEBFF;
+            border-radius: 8px;
+            padding: 24px;
+            margin: 24px 0;
+        }
+        .step-number {
+            display: inline-block;
+            width: 28px;
+            height: 28px;
+            background: #0052CC;
+            color: #fff;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 28px;
+            font-weight: 600;
+            font-size: 14px;
+            margin-right: 12px;
+        }
+        footer {
+            background: #172B4D;
+            color: #fff;
+            padding: 32px 0;
+            text-align: center;
+        }
+        footer a { color: #B3BAC5; }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">AI Ticket Classifier</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="privacy.html">Privacy</a></li>
+                <li><a href="terms.html">Terms</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1>Support & Documentation</h1>
+            <p class="subtitle">Everything you need to get started with AI Ticket Classifier</p>
+
+            <h2>Getting Started</h2>
+
+            <div class="card">
+                <h3><span class="step-number">1</span>Install the App</h3>
+                <p>Install AI Ticket Classifier from the <a href="https://marketplace.atlassian.com/apps/ai-ticket-classifier" target="_blank">Atlassian Marketplace</a>. You'll need Jira administrator permissions to install apps.</p>
+            </div>
+
+            <div class="card">
+                <h3><span class="step-number">2</span>Get a Claude API Key</h3>
+                <p>The App requires your own Anthropic (Claude) API key:</p>
+                <ul>
+                    <li><strong>Anthropic:</strong> Get a key at <a href="https://console.anthropic.com/settings/keys" target="_blank">console.anthropic.com/settings/keys</a></li>
+                </ul>
+                <p><em>Note: API usage costs are charged by Anthropic based on your usage. Classification typically uses 500-1500 tokens per ticket.</em></p>
+            </div>
+
+            <div class="card">
+                <h3><span class="step-number">3</span>Configure Settings</h3>
+                <p>Open the App in Jira, go to the <strong>Settings</strong> tab, and:</p>
+                <ol>
+                    <li>Paste your Claude API key</li>
+                    <li>Click <strong>Test</strong> to verify the connection</li>
+                    <li>Select which projects to enable classification for</li>
+                    <li>Configure classification fields (issue type, priority, assignee)</li>
+                </ol>
+                <p>Your API key is stored encrypted in Forge Storage and never sent to our servers.</p>
+            </div>
+
+            <div class="card">
+                <h3><span class="step-number">4</span>Train the Classifier</h3>
+                <p>Before the classifier can work, it needs to learn from your existing tickets:</p>
+                <ol>
+                    <li>Go to the <strong>Training</strong> tab in the Admin Dashboard</li>
+                    <li>Select a project to train on</li>
+                    <li>Choose how many historical tickets to analyze (recommended: 100-500)</li>
+                    <li>Click <strong>Start Training</strong></li>
+                    <li>Wait for the AI to learn your team's classification patterns</li>
+                </ol>
+                <p>Training typically takes 2-5 minutes depending on the number of tickets.</p>
+            </div>
+
+            <h2>Configuration</h2>
+
+            <h3>Classification Fields</h3>
+            <p>You can configure which fields the classifier suggests values for:</p>
+            <ul>
+                <li><strong>Issue Type:</strong> Bug, Story, Task, Epic, etc.</li>
+                <li><strong>Priority:</strong> Highest, High, Medium, Low, Lowest</li>
+                <li><strong>Assignee:</strong> Team member best suited based on expertise</li>
+                <li><strong>Labels:</strong> Custom labels based on ticket content</li>
+            </ul>
+
+            <h3>Confidence Thresholds</h3>
+            <p>Set minimum confidence levels for auto-applying classifications:</p>
+            <ul>
+                <li><strong>Auto-apply:</strong> Classifications above this threshold are applied automatically (default: 85%)</li>
+                <li><strong>Suggest:</strong> Classifications between suggest and auto-apply thresholds are shown as suggestions (default: 50%)</li>
+                <li><strong>Skip:</strong> Classifications below the suggest threshold are not shown</li>
+            </ul>
+
+            <h3>Project Settings</h3>
+            <p>Each project can have its own configuration:</p>
+            <ul>
+                <li>Enable or disable classification per project</li>
+                <li>Choose which fields to classify</li>
+                <li>Set project-specific confidence thresholds</li>
+                <li>Configure auto-apply behavior</li>
+            </ul>
+
+            <h2>How Classification Works</h2>
+
+            <h3>The Classification Process</h3>
+            <ol>
+                <li>A new ticket is created in a configured project</li>
+                <li>The App reads the ticket's summary and description</li>
+                <li>Ticket content is sent to Claude API along with learned classification patterns</li>
+                <li>Claude returns suggested issue type, priority, and assignee with confidence scores</li>
+                <li>Based on your threshold settings, suggestions are either auto-applied or shown for review</li>
+            </ol>
+
+            <h3>Training</h3>
+            <p>The classifier learns from two sources:</p>
+            <ul>
+                <li><strong>Historical tickets:</strong> Initial training uses your existing tickets to learn patterns</li>
+                <li><strong>Feedback:</strong> When team members accept or correct classifications, the model improves</li>
+            </ul>
+            <p>You can retrain the classifier at any time from the Admin Dashboard (Premium tier).</p>
+
+            <h3>Feedback Loop</h3>
+            <p>After a ticket is classified, team members can:</p>
+            <ul>
+                <li><strong>Accept:</strong> Confirm the classification is correct (reinforces the pattern)</li>
+                <li><strong>Correct:</strong> Change the classification to the right value (teaches the model)</li>
+                <li><strong>Dismiss:</strong> Remove the suggestion without feedback</li>
+            </ul>
+
+            <h2>Admin Dashboard</h2>
+
+            <h3>Analytics Overview</h3>
+            <p>The Admin Dashboard shows:</p>
+            <ul>
+                <li><strong>Classification accuracy:</strong> Percentage of correct classifications over time</li>
+                <li><strong>Volume metrics:</strong> Number of tickets classified per day/week/month</li>
+                <li><strong>Category breakdown:</strong> Distribution of issue types, priorities, and assignees</li>
+                <li><strong>Confidence distribution:</strong> How confident the classifier is on average</li>
+                <li><strong>Feedback stats:</strong> Acceptance rate and correction patterns</li>
+            </ul>
+
+            <h3>Managing Training Data</h3>
+            <p>From the Admin Dashboard you can:</p>
+            <ul>
+                <li>View current training status and pattern count</li>
+                <li>Retrain the classifier with new historical data (Premium)</li>
+                <li>Reset training data to start fresh</li>
+                <li>Export analytics data</li>
+            </ul>
+
+            <h2 id="faq">Frequently Asked Questions</h2>
+
+            <div class="faq-item">
+                <p class="faq-question">Is my data safe?</p>
+                <p>Yes. The App runs on Atlassian's secure Forge platform. Classification patterns are stored in Forge Storage within Atlassian's infrastructure. Ticket content is sent to the Claude API only for classification. No data is stored on our servers.</p>
+            </div>
+
+            <div class="faq-item">
+                <p class="faq-question">How much does the AI cost?</p>
+                <p>AI costs depend on your Anthropic usage. Claude typically processes a ticket classification for $0.001-0.005 per ticket. For a team classifying 1,000 tickets per month, expect roughly $1-5/month in API costs. Check <a href="https://www.anthropic.com/pricing" target="_blank">Anthropic's pricing page</a> for current rates.</p>
+            </div>
+
+            <div class="faq-item">
+                <p class="faq-question">How accurate is the classification?</p>
+                <p>Accuracy depends on the quality and quantity of your training data. With 200+ well-categorized historical tickets, most teams see 75-90% accuracy within the first week. Accuracy improves over time as the feedback loop refines the model.</p>
+            </div>
+
+            <div class="faq-item">
+                <p class="faq-question">Can I undo a classification?</p>
+                <p>Yes. Classifications applied by the App can be changed just like any other field edit in Jira. The original values are preserved in Jira's issue history. You can also correct classifications through the feedback interface, which also helps improve future accuracy.</p>
+            </div>
+
+            <div class="faq-item">
+                <p class="faq-question">Why isn't my API key working?</p>
+                <p>Check that:</p>
+                <ul>
+                    <li>The key is copied correctly with no extra spaces</li>
+                    <li>Your Anthropic account has available credits/quota</li>
+                    <li>The key hasn't been revoked or expired</li>
+                    <li>You have the correct API key format (starts with <code>sk-ant-</code>)</li>
+                </ul>
+                <p>Use the <strong>Test</strong> button in Settings to verify your connection.</p>
+            </div>
+
+            <div class="faq-item">
+                <p class="faq-question">Does it work with all Jira project types?</p>
+                <p>AI Ticket Classifier works with all standard Jira Cloud project types including Scrum, Kanban, and company-managed projects. It classifies any issue type available in your project's configuration.</p>
+            </div>
+
+            <div class="faq-item">
+                <p class="faq-question">Can I use this with Jira Data Center?</p>
+                <p>No, AI Ticket Classifier is only available for Jira Cloud. It's built on Atlassian Forge, which is a cloud-only platform.</p>
+            </div>
+
+            <div class="faq-item">
+                <p class="faq-question">What happens when I uninstall the app?</p>
+                <p>All data stored in Forge Storage (classification patterns, feedback, configuration) is automatically deleted when you uninstall the App. Your Jira tickets and any classifications already applied to them remain unchanged.</p>
+            </div>
+
+            <h2>Troubleshooting</h2>
+
+            <h3>Classifications are not appearing</h3>
+            <ul>
+                <li>Verify the project has classification enabled in Settings</li>
+                <li>Check that your API key is valid (use the Test button)</li>
+                <li>Ensure the classifier has been trained for the project</li>
+                <li>Check that you haven't exceeded your monthly classification limit (Free tier)</li>
+            </ul>
+
+            <h3>Classification accuracy is low</h3>
+            <ul>
+                <li>Train with more historical tickets (recommend 200+)</li>
+                <li>Provide feedback on classifications to improve the model</li>
+                <li>Ensure your historical tickets are well-categorized</li>
+                <li>Consider retraining after major changes to your workflow (Premium)</li>
+            </ul>
+
+            <h3>App is slow</h3>
+            <ul>
+                <li>Classification typically takes 2-5 seconds per ticket</li>
+                <li>Training on large datasets (500+ tickets) may take several minutes</li>
+                <li>Check your internet connection</li>
+                <li>Anthropic API response times may vary during peak usage</li>
+            </ul>
+
+            <h2>Contact Support</h2>
+
+            <div class="contact-box">
+                <h3>Need help?</h3>
+                <p>We're here to help! Contact us through:</p>
+                <ul>
+                    <li><strong>Email:</strong> <a href="mailto:support@techconcepts.org">support@techconcepts.org</a></li>
+                    <li><strong>Marketplace:</strong> Use the "Get Support" link on our <a href="https://marketplace.atlassian.com/apps/ai-ticket-classifier" target="_blank">Marketplace listing</a></li>
+                </ul>
+                <p>Please include:</p>
+                <ul>
+                    <li>Your Jira Cloud URL</li>
+                    <li>Steps to reproduce the issue</li>
+                    <li>Any error messages you see</li>
+                    <li>Screenshots if helpful</li>
+                    <li>Your subscription tier (Free, Standard, or Premium)</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 TechConcepts. <a href="terms.html">Terms</a> | <a href="privacy.html">Privacy</a></p>
+    </footer>
+</body>
+</html>
