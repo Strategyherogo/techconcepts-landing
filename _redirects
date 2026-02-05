@@ -1,0 +1,3 @@
+# Cloudflare Pages redirects
+# Ensure /ops/ routes correctly (disable SPA fallback for /ops/)
+/ops/* /ops/:splat 200
