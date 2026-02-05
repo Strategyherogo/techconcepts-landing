@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Innovative Spain Podcast | Tech, Startups & Building in Spain</title>
+    <meta name="description" content="Stories from founders, builders, and innovators making things happen in Spain. Hosted by Evgeny Goncharov.">
+    <meta name="keywords" content="Spain podcast, startup podcast, tech podcast Spain, innovation Spain, entrepreneurs Spain">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Innovative Spain Podcast">
+    <meta property="og:description" content="Stories from founders, builders, and innovators making things happen in Spain.">
+    <meta property="og:image" content="https://techconcepts.org/podcast/cover.png">
+    <meta property="og:url" content="https://techconcepts.org/podcast/">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Innovative Spain Podcast">
+    <meta name="twitter:description" content="Stories from founders, builders, and innovators making things happen in Spain.">
+    <meta name="twitter:image" content="https://techconcepts.org/podcast/cover.png">
+
+    <link rel="canonical" href="https://techconcepts.org/podcast/">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎙️</text></svg>">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --primary: #000;
+            --accent: #dc2626;
+            --accent-light: #fef2f2;
+            --secondary: #f59e0b;
+            --dark: #1a1a1a;
+            --gray: #6b7280;
+            --light-gray: #f3f4f6;
+            --border: #e5e7eb;
+            --white: #fff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--white);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navigation */
+        nav {
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 15px;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero */
+        .hero {
+            padding: 80px 0 60px;
+            text-align: center;
+            background: linear-gradient(180deg, var(--accent-light) 0%, var(--white) 100%);
+        }
+
+        .podcast-cover {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, var(--accent) 0%, #991b1b 100%);
+            border-radius: 24px;
+            margin: 0 auto 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            box-shadow: 0 20px 60px rgba(220, 38, 38, 0.3);
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--primary);
+        }
+
+        .hero .tagline {
+            font-size: 20px;
+            color: var(--gray);
+            margin-bottom: 32px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .listen-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+
+        .listen-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 24px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.2s;
+        }
+
+        .listen-btn.spotify {
+            background: #1DB954;
+            color: white;
+        }
+
+        .listen-btn.apple {
+            background: #000;
+            color: white;
+        }
+
+        .listen-btn.youtube {
+            background: #FF0000;
+            color: white;
+        }
+
+        .listen-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .hero-meta {
+            color: var(--gray);
+            font-size: 14px;
+        }
+
+        /* About Section */
+        .about {
+            padding: 60px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .about h2 {
+            font-size: 28px;
+            margin-bottom: 16px;
+        }
+
+        .about p {
+            color: var(--gray);
+            font-size: 17px;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .host-card {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            background: var(--light-gray);
+            padding: 24px;
+            border-radius: 16px;
+            margin-top: 32px;
+        }
+
+        .host-photo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .host-info h3 {
+            font-size: 18px;
+            margin-bottom: 4px;
+        }
+
+        .host-info p {
+            color: var(--gray);
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .host-info a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* Episodes */
+        .episodes {
+            padding: 60px 0;
+        }
+
+        .episodes h2 {
+            font-size: 28px;
+            margin-bottom: 32px;
+        }
+
+        .episode-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .episode {
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.2s;
+        }
+
+        .episode:hover {
+            border-color: var(--accent);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+
+        .episode-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .episode-number {
+            background: var(--accent-light);
+            color: var(--accent);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .episode-date {
+            color: var(--gray);
+            font-size: 14px;
+        }
+
+        .episode h3 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .episode h3 a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .episode h3 a:hover {
+            color: var(--accent);
+        }
+
+        .episode p {
+            color: var(--gray);
+            font-size: 15px;
+            margin-bottom: 16px;
+        }
+
+        .episode-meta {
+            display: flex;
+            gap: 16px;
+            font-size: 14px;
+            color: var(--gray);
+        }
+
+        .coming-soon {
+            text-align: center;
+            padding: 40px;
+            background: var(--light-gray);
+            border-radius: 16px;
+        }
+
+        .coming-soon h3 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .coming-soon p {
+            color: var(--gray);
+        }
+
+        /* Subscribe */
+        .subscribe {
+            padding: 60px 0;
+            background: var(--primary);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .subscribe h2 {
+            font-size: 32px;
+            margin-bottom: 16px;
+        }
+
+        .subscribe p {
+            opacity: 0.8;
+            margin-bottom: 32px;
+        }
+
+        .subscribe-form {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            max-width: 450px;
+            margin: 0 auto;
+        }
+
+        .subscribe-form input {
+            flex: 1;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        .subscribe-form button {
+            padding: 14px 28px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .subscribe-form button:hover {
+            background: #b91c1c;
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            color: var(--gray);
+            font-size: 14px;
+        }
+
+        footer a {
+            color: var(--gray);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: var(--primary);
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .listen-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .listen-btn {
+                width: 100%;
+                max-width: 280px;
+                justify-content: center;
+            }
+
+            .host-card {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .subscribe-form {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="https://techconcepts.org" class="logo">TechConcepts</a>
+            <div class="nav-links">
+                <a href="https://techconcepts.org">Home</a>
+                <a href="https://linkedin.com/in/evgoncharov" target="_blank">LinkedIn</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <div class="podcast-cover">🎙️</div>
+            <h1>Innovative Spain</h1>
+            <p class="tagline">Stories from founders, builders, and innovators making things happen in Spain.</p>
+
+            <div class="listen-buttons">
+                <a href="https://www.youtube.com/@INNOVATESPAINIT" class="listen-btn youtube" target="_blank">
+                    <span>▶️</span> Watch on YouTube
+                </a>
+                <a href="#" class="listen-btn spotify">
+                    <span>🎧</span> Spotify (Coming Soon)
+                </a>
+                <a href="#" class="listen-btn apple">
+                    <span>🍎</span> Apple Podcasts (Coming Soon)
+                </a>
+            </div>
+
+            <p class="hero-meta">New episodes every week</p>
+        </div>
+    </section>
+
+    <section class="about">
+        <div class="container">
+            <h2>About the Show</h2>
+            <p>
+                Spain is quietly becoming one of Europe's most exciting places to build. From Barcelona's tech scene to Madrid's growing startup ecosystem, something interesting is happening.
+            </p>
+            <p>
+                Innovative Spain brings you conversations with the people making it happen — founders, investors, and builders who chose Spain as their base. No hype, just real stories about building companies, navigating challenges, and creating something from nothing.
+            </p>
+
+            <div class="host-card">
+                <img src="https://techconcepts.org/evgeny.jpg" alt="Evgeny Goncharov" class="host-photo">
+                <div class="host-info">
+                    <h3>Evgeny Goncharov</h3>
+                    <p>Host & Product Builder</p>
+                    <p><a href="https://linkedin.com/in/evgoncharov" target="_blank">Connect on LinkedIn</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="episodes">
+        <div class="container">
+            <h2>Episodes</h2>
+
+            <div class="coming-soon">
+                <h3>Coming Soon</h3>
+                <p>First episode drops soon. Subscribe to get notified.</p>
+            </div>
+
+            <!-- Future episodes template:
+            <div class="episode-list">
+                <article class="episode">
+                    <div class="episode-header">
+                        <span class="episode-number">EP 01</span>
+                        <span class="episode-date">Feb 10, 2026</span>
+                    </div>
+                    <h3><a href="#">Episode Title Here</a></h3>
+                    <p>Episode description goes here. A brief summary of what the episode covers and who the guest is.</p>
+                    <div class="episode-meta">
+                        <span>45 min</span>
+                        <span>Guest Name</span>
+                    </div>
+                </article>
+            </div>
+            -->
+        </div>
+    </section>
+
+    <section class="subscribe">
+        <div class="container">
+            <h2>Never miss an episode</h2>
+            <p>Get notified when new episodes drop.</p>
+            <form class="subscribe-form" action="https://formspree.io/f/xpwzgvqr" method="POST">
+                <input type="hidden" name="_subject" value="Innovative Spain Podcast Subscriber">
+                <input type="email" name="email" placeholder="your@email.com" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>
+                Innovative Spain is a <a href="https://techconcepts.org">TechConcepts</a> production
+            </p>
+            <p style="margin-top: 12px;">
+                <a href="mailto:eg@techconcepts.org">Contact</a> ·
+                <a href="https://linkedin.com/in/evgoncharov">LinkedIn</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
