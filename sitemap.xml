@@ -3,23 +3,41 @@
   <!-- Main site -->
   <url>
     <loc>https://techconcepts.org/</loc>
+    <lastmod>2026-02-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+  </url>
+
+  <!-- Fund Ops Automation -->
+  <url>
+    <loc>https://techconcepts.org/ops/</loc>
+    <lastmod>2026-02-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://techconcepts.org/ops/calculator</loc>
+    <lastmod>2026-02-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 
   <!-- Claude Battery product -->
   <url>
     <loc>https://techconcepts.org/claude-battery/</loc>
+    <lastmod>2026-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techconcepts.org/claude-battery/setup.html</loc>
+    <loc>https://techconcepts.org/claude-battery/setup</loc>
+    <lastmod>2026-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://techconcepts.org/claude-battery/privacy.html</loc>
+    <loc>https://techconcepts.org/claude-battery/privacy</loc>
+    <lastmod>2026-01-15</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
@@ -27,26 +45,31 @@
   <!-- Bulk Issue Rewriter product -->
   <url>
     <loc>https://techconcepts.org/bulk-issue-rewriter/</loc>
+    <lastmod>2025-12-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techconcepts.org/bulk-issue-rewriter/support.html</loc>
+    <loc>https://techconcepts.org/bulk-issue-rewriter/support</loc>
+    <lastmod>2025-12-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://techconcepts.org/bulk-issue-rewriter/privacy.html</loc>
+    <loc>https://techconcepts.org/bulk-issue-rewriter/privacy</loc>
+    <lastmod>2025-12-01</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://techconcepts.org/bulk-issue-rewriter/terms.html</loc>
+    <loc>https://techconcepts.org/bulk-issue-rewriter/terms</loc>
+    <lastmod>2025-12-01</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://techconcepts.org/bulk-issue-rewriter/eula.html</loc>
+    <loc>https://techconcepts.org/bulk-issue-rewriter/eula</loc>
+    <lastmod>2025-12-01</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
@@ -54,18 +77,21 @@
   <!-- Email Exporter product -->
   <url>
     <loc>https://techconcepts.org/email-exporter/</loc>
+    <lastmod>2025-12-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techconcepts.org/email-exporter/privacy-policy.html</loc>
+    <loc>https://techconcepts.org/email-exporter/privacy-policy</loc>
+    <lastmod>2025-12-01</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 
   <!-- UK VPN landing page -->
   <url>
-    <loc>https://techconcepts.org/uk-vpn.html</loc>
+    <loc>https://techconcepts.org/uk-vpn</loc>
+    <lastmod>2025-11-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -73,19 +99,8 @@
   <!-- Podcast -->
   <url>
     <loc>https://techconcepts.org/podcast/</loc>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Fund Ops Automation -->
-  <url>
-    <loc>https://techconcepts.org/ops/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://techconcepts.org/ops/calculator.html</loc>
-    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 </urlset>
