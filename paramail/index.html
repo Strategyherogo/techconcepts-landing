@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PARA Mail Organizer — Organize Email with PARA</title>
+    <meta name="description" content="Organize your email across all accounts using the PARA method. Smart categorization for Apple Mail.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            margin-bottom: 40px;
+        }
+
+        .app-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .tagline {
+            font-size: 1.3em;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .download-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: #007AFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0,122,255,0.3);
+        }
+
+        .download-btn:hover {
+            background: #0051D5;
+            transform: translateY(-2px);
+            box-shadow: 0 7px 20px rgba(0,122,255,0.4);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .feature h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.4em;
+        }
+
+        .feature p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .para-explainer {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-top: 40px;
+        }
+
+        .para-explainer h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+
+        .para-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .para-category {
+            padding: 20px;
+            border-left: 4px solid;
+            background: #f9f9f9;
+            border-radius: 5px;
+        }
+
+        .para-category.projects { border-color: #FF3B30; }
+        .para-category.areas { border-color: #FF9500; }
+        .para-category.resources { border-color: #34C759; }
+        .para-category.archive { border-color: #8E8E93; }
+
+        .para-category h4 {
+            margin-bottom: 8px;
+            font-size: 1.2em;
+        }
+
+        .para-category p {
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 40px 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            color: white;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 15px;
+            background: #34C759;
+            color: white;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <div class="app-icon">P</div>
+            <span class="badge">100% Privacy-First</span>
+            <h1>PARA Mail Organizer</h1>
+            <p class="tagline">Organize Email with PARA</p>
+            <p style="color: #999; margin-bottom: 30px;">macOS 14 (Sonoma) or later</p>
+            <a href="https://apps.apple.com/app/id[YOUR_APP_ID]" class="download-btn">
+                Download on the Mac App Store
+            </a>
+        </div>
+
+        <div class="features">
+            <div class="feature">
+                <h3>🔍 Smart Scan</h3>
+                <p>Connects to Apple Mail and reads all your accounts and folders across Gmail, iCloud, Exchange, and IMAP.</p>
+            </div>
+            <div class="feature">
+                <h3>🎯 Auto-Categorize</h3>
+                <p>Uses 37 built-in mappings plus keyword analysis to suggest the right PARA category for each folder.</p>
+            </div>
+            <div class="feature">
+                <h3>✅ Review & Override</h3>
+                <p>See confidence scores and manually adjust any category with a single click.</p>
+            </div>
+            <div class="feature">
+                <h3>📦 Batch Migration</h3>
+                <p>Moves messages in groups of 50 with real-time progress tracking. Cancel anytime without losing progress.</p>
+            </div>
+            <div class="feature">
+                <h3>🔒 100% Local</h3>
+                <p>No data leaves your Mac. No analytics. No tracking. No network access required.</p>
+            </div>
+            <div class="feature">
+                <h3>⚡️ Multi-Account</h3>
+                <p>Organize all your email accounts in one view with a unified PARA structure.</p>
+            </div>
+        </div>
+
+        <div class="para-explainer">
+            <h2>What is PARA?</h2>
+            <p>PARA is a productivity system created by Tiago Forte that organizes information into four categories based on actionability:</p>
+
+            <div class="para-categories">
+                <div class="para-category projects">
+                    <h4>📋 Projects</h4>
+                    <p>Active work with deadlines (DevOps, Jira, PMO)</p>
+                </div>
+                <div class="para-category areas">
+                    <h4>🏠 Areas</h4>
+                    <p>Ongoing responsibilities (Finance, Security, Home)</p>
+                </div>
+                <div class="para-category resources">
+                    <h4>📚 Resources</h4>
+                    <p>Reference material (Newsletters, Notifications)</p>
+                </div>
+                <div class="para-category archive">
+                    <h4>📦 Archive</h4>
+                    <p>Completed or inactive items</p>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 TechConcepts. All rights reserved.</p>
+            <div style="margin-top: 20px;">
+                <a href="privacy/">Privacy Policy</a>
+                <a href="mailto:evgeny@targetglobal.vc">Support</a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
