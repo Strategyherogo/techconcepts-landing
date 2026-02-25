@@ -73,7 +73,10 @@
                         <input type="hidden" name="page_type" value="${pageType}">
                         <input type="hidden" name="page_url" value="${window.location.href}">
                         <button type="submit" class="tc-exit-submit">${offer.cta}</button>
-                    </form>
+        <p style="font-size: 11px; margin-top: 8px; color: #666; text-align: center;">
+          We respect your privacy. <a href="/privacy" style="color: var(--accent);">Privacy Policy</a>.
+        </p>
+      </form>
                 </div>
             </div>
         `;
