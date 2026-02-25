@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jira Formula Builder | Free Calculated Field Generator</title>
+
+<!-- SEO -->
+<meta name="description" content="Free Jira formula builder for calculated fields. Generate JQL queries and automation rules for story points, date calculations, status labels. No signup required.">
+<meta name="keywords" content="jira calculated fields, jira formula, jira automation, jql query builder, jira custom fields, jira date calculation">
+<meta name="author" content="Evgeny Goncharov">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://techconcepts.org/tools/jira-formula.html">
+
+<!-- Resource Hints -->
+<link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+<link rel="dns-prefetch" href="https://www.googletagmanager.com">
+<link rel="preconnect" href="https://formspree.io" crossorigin>
+<link rel="dns-prefetch" href="https://formspree.io">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://techconcepts.org/tools/jira-formula.html">
+<meta property="og:title" content="Jira Formula Builder">
+<meta property="og:description" content="Free tool to build calculated field formulas for Jira. Generate JQL and automation rules.">
+<meta property="og:image" content="https://techconcepts.org/techconcepts-og.png">
+<meta property="og:site_name" content="TechConcepts">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Jira Formula Builder">
+<meta name="twitter:description" content="Build calculated field formulas for Jira with ease.">
+<meta name="twitter:image" content="https://techconcepts.org/techconcepts-og.png">
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-815E8YDZW8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-815E8YDZW8', {page_path: '/tools/jira-formula'});
+</script>
+
+<!-- Schema.org WebApplication -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Jira Formula Builder",
+  "description": "Generate calculated field formulas, JQL queries, and automation rules for Jira",
+  "url": "https://techconcepts.org/tools/jira-formula.html",
+  "applicationCategory": "BusinessApplication",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "TechConcepts",
+    "url": "https://techconcepts.org"
+  }
+}
+</script>
+
+<!-- Schema.org Breadcrumb -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "TechConcepts",
+      "item": "https://techconcepts.org/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Tools",
+      "item": "https://techconcepts.org/tools/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Jira Formula Builder",
+      "item": "https://techconcepts.org/tools/jira-formula.html"
+    }
+  ]
+}
+</script>
+
+<link rel="stylesheet" href="/styles/main.css">
+
+<style>
+  :root {
+    --primary: #000;
+    --accent: #2563eb;
+    --border: #e5e7eb;
+    --light-gray: #f3f4f6;
+    --gray: #6b7280;
+    --success: #10b981;
+  }
+
+  body {
+    background: var(--light-gray);
+  }
+
+  .tool-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  .tool-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    margin-bottom: 24px;
+  }
+
+  .tool-card h2 {
+    font-size: 24px;
+    margin-bottom: 24px;
+    color: var(--primary);
+  }
+
+  .form-group {
+    margin-bottom: 24px;
+  }
+
+  .form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: var(--primary);
+  }
+
+  .form-group select,
+  .form-group input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    font-size: 15px;
+    transition: border-color 0.2s;
+  }
+
+  .form-group select:focus,
+  .form-group input:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+
+  .btn-generate {
+    width: 100%;
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    padding: 14px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 12px;
+  }
+
+  .btn-generate:hover {
+    background: #333;
+  }
+
+  .result-container {
+    display: none;
+    background: var(--light-gray);
+    padding: 24px;
+    border-radius: 12px;
+    margin-top: 32px;
+  }
+
+  .result-container.active {
+    display: block;
+  }
+
+  .result-section {
+    margin-bottom: 24px;
+  }
+
+  .result-section:last-child {
+    margin-bottom: 0;
+  }
+
+  .result-section h3 {
+    font-size: 16px;
+    margin-bottom: 12px;
+    color: var(--primary);
+  }
+
+  .code-block {
+    background: #1a1a1a;
+    color: #fff;
+    padding: 16px;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-family: 'SF Mono', Monaco, monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    position: relative;
+  }
+
+  .copy-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .copy-btn:hover {
+    background: rgba(255,255,255,0.2);
+  }
+
+  .copy-btn.copied {
+    background: var(--success);
+    border-color: var(--success);
+  }
+
+  .examples {
+    margin-top: 32px;
+    padding: 24px;
+    background: #fef3c7;
+    border-radius: 12px;
+    border: 1px solid #fbbf24;
+  }
+
+  .examples h3 {
+    font-size: 18px;
+    margin-bottom: 12px;
+    color: var(--primary);
+  }
+
+  .examples ul {
+    margin: 0;
+    padding-left: 20px;
+  }
+
+  .examples li {
+    margin-bottom: 8px;
+    color: var(--gray);
+  }
+
+  .lead-capture {
+    background: #e0f2fe;
+    border: 2px solid var(--accent);
+    border-radius: 12px;
+    padding: 32px;
+    text-align: center;
+    margin-top: 32px;
+  }
+
+  .lead-capture h3 {
+    font-size: 22px;
+    margin-bottom: 12px;
+    color: var(--primary);
+  }
+
+  .lead-capture p {
+    font-size: 16px;
+    color: var(--gray);
+    margin-bottom: 20px;
+  }
+
+  .lead-capture form {
+    display: flex;
+    gap: 12px;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .lead-capture input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 15px;
+  }
+
+  .lead-capture button {
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 600px) {
+    .tool-card {
+      padding: 24px;
+    }
+
+    .lead-capture form {
+      flex-direction: column;
+    }
+
+    .lead-capture input,
+    .lead-capture button {
+      width: 100%;
+    }
+  }
+</style>
+</head>
+<body data-page-type="tool">
+
+<!-- Navigation -->
+<nav>
+  <div class="container">
+    <a href="/" class="logo">TechConcepts</a>
+    <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Menu">&#9776;</button>
+    <div class="nav-links" id="navLinks">
+      <a href="/services/">Services</a>
+      <a href="/case-studies/">Case Studies</a>
+      <a href="/products/">Products</a>
+      <a href="/blog/">Blog</a>
+      <a href="/tools/" class="active">Tools</a>
+      <a href="/about.html">About</a>
+      <div class="lang-switcher">
+        <button class="lang-btn" onclick="toggleLangMenu()"><span id="currentLang">EN</span> &#9662;</button>
+        <div class="lang-dropdown" id="langDropdown"></div>
+      </div>
+      <a href="https://calendar.app.google/md6WqwnhfireNTqx5" class="btn btn-primary">Book a Call</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container">
+    <h1>Jira Formula Builder</h1>
+    <p>Generate calculated field formulas and automation rules for Jira. No coding required.</p>
+  </div>
+</section>
+
+<!-- Tool -->
+<section class="tool-container">
+  <div class="tool-card">
+    <h2>Build Your Formula</h2>
+
+    <div class="form-group">
+      <label for="fieldType">Field Type</label>
+      <select id="fieldType">
+        <option value="number">Number (Story Points, Hours, Count)</option>
+        <option value="date">Date (Created, Updated, Due Date)</option>
+        <option value="text">Text (Status, Priority, Labels)</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="operation">Operation</label>
+      <select id="operation">
+        <option value="sum">Sum</option>
+        <option value="count">Count</option>
+        <option value="days_since">Days Since</option>
+        <option value="concat">Concatenate</option>
+        <option value="if_then">If-Then Logic</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="fieldName">Custom Field Name (optional)</label>
+      <input type="text" id="fieldName" placeholder="e.g., Total Story Points, Days Open">
+    </div>
+
+    <button class="btn-generate" onclick="generateFormula()">Generate Formula</button>
+
+    <div class="result-container" id="resultContainer">
+      <div class="result-section">
+        <h3>JQL Query</h3>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyToClipboard('jqlOutput')">Copy</button>
+          <pre id="jqlOutput"></pre>
+        </div>
+      </div>
+
+      <div class="result-section">
+        <h3>Automation Rule (YAML)</h3>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyToClipboard('yamlOutput')">Copy</button>
+          <pre id="yamlOutput"></pre>
+        </div>
+      </div>
+
+      <div class="result-section">
+        <h3>Usage Notes</h3>
+        <p id="usageNotes" style="color: var(--gray); font-size: 14px; line-height: 1.7;"></p>
+      </div>
+    </div>
+
+    <div class="examples">
+      <h3>Example Use Cases</h3>
+      <ul>
+        <li><strong>Days Since Created:</strong> Track how long tickets have been open</li>
+        <li><strong>Total Story Points:</strong> Sum story points across epics or sprints</li>
+        <li><strong>Status + Priority Label:</strong> Create combined status labels like "Critical - In Progress"</li>
+        <li><strong>Overdue Count:</strong> Count tickets past their due date</li>
+        <li><strong>Time to Resolution:</strong> Calculate days between created and resolved</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Lead Capture -->
+  <div class="lead-capture">
+    <h3>Get 50 Ready-to-Use Jira Formulas</h3>
+    <p>Save hours with pre-built formulas for story points, SLA tracking, sprint metrics, and more.</p>
+    <form action="https://formspree.io/f/xpwzgvqr" method="POST" onsubmit="trackLeadSubmit(event)">
+      <input type="email" name="email" placeholder="your@email.com" required>
+      <input type="hidden" name="_subject" value="Lead: Jira Formula Pack">
+      <input type="hidden" name="tool" value="jira-formula">
+      <input type="hidden" name="page_url" value="https://techconcepts.org/tools/jira-formula.html">
+      <button type="submit">Send Me the Formulas</button>
+    </form>
+  </div>
+
+  <div style="margin-top: 32px; padding: 32px; background: #fff; border-radius: 12px; text-align: center;">
+    <h3 style="margin-bottom: 12px;">Need Custom Jira Automation?</h3>
+    <p style="color: var(--gray); margin-bottom: 20px;">I help teams optimize Jira workspaces with AI classification, SLA design, and custom workflows.</p>
+    <a href="/services/jira-optimization.html" style="color: var(--accent); font-weight: 600;">Learn About Jira Optimization →</a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="/services/">Services</a>
+        <a href="/products/">Products</a>
+        <a href="/blog/">Blog</a>
+        <a href="/tools/">Tools</a>
+        <a href="/about.html">About</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </div>
+      <div class="footer-info">
+        Madrid, Spain &middot; Mo-Fr 09:00-18:00 CET
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/scripts/analytics.js"></script>
+<script src="/scripts/i18n.js"></script>
+<script src="/scripts/nav.js"></script>
+<script src="/scripts/exit-intent.js"></script>
+
+<script>
+function generateFormula() {
+  const fieldType = document.getElementById('fieldType').value;
+  const operation = document.getElementById('operation').value;
+  const fieldName = document.getElementById('fieldName').value || 'CustomField';
+
+  let jql = '';
+  let yaml = '';
+  let notes = '';
+
+  // Generate based on field type and operation
+  if (fieldType === 'number' && operation === 'sum') {
+    jql = `project = YOUR_PROJECT AND "Story Points" is not EMPTY`;
+    yaml = `- name: Calculate Total Story Points
+  trigger:
+    - issue_created
+    - issue_updated
+  conditions:
+    - field: Story Points
+      operator: is not
+      value: EMPTY
+  actions:
+    - type: edit_issue
+      field: ${fieldName}
+      value: "{{issue.aggregateProgress.total}}"`;
+    notes = 'This formula sums story points across linked issues. Use it in epic or parent issue custom fields.';
+  } else if (fieldType === 'date' && operation === 'days_since') {
+    jql = `created < -7d`;
+    yaml = `- name: Calculate Days Since Created
+  trigger:
+    - scheduled
+    - interval: 1h
+  actions:
+    - type: edit_issue
+      field: ${fieldName}
+      value: "{{now.diff(issue.created).days}}"`;
+    notes = 'This calculates days between now and the created date. Useful for age tracking and SLA monitoring.';
+  } else if (fieldType === 'text' && operation === 'concat') {
+    jql = `status = "In Progress" AND priority = High`;
+    yaml = `- name: Create Status Priority Label
+  trigger:
+    - issue_updated
+  conditions:
+    - field: Status
+      operator: changed
+  actions:
+    - type: edit_issue
+      field: ${fieldName}
+      value: "{{issue.priority.name}} - {{issue.status.name}}"`;
+    notes = 'Concatenates priority and status into a single label field for easier filtering and reporting.';
+  } else if (operation === 'count') {
+    jql = `project = YOUR_PROJECT AND assignee = currentUser()`;
+    yaml = `- name: Count Open Issues
+  trigger:
+    - scheduled
+    - interval: 1d
+  actions:
+    - type: send_web_request
+      url: YOUR_WEBHOOK_URL
+      body: '{"count": {{issues.size}}}'`;
+    notes = 'Counts matching issues using JQL. Can be used in dashboards or sent to external systems via webhook.';
+  } else if (operation === 'if_then') {
+    jql = `duedate < now() AND status != Done`;
+    yaml = `- name: Flag Overdue Tickets
+  trigger:
+    - scheduled
+    - interval: 6h
+  conditions:
+    - field: Due Date
+      operator: less than
+      value: now()
+    - field: Status
+      operator: not in
+      values: [Done, Resolved]
+  actions:
+    - type: edit_issue
+      field: ${fieldName}
+      value: "OVERDUE"
+    - type: add_comment
+      body: "This ticket is overdue. Please update."`;
+    notes = 'Conditional logic for flagging issues based on date or status. Great for SLA enforcement.';
+  }
+
+  // Display results
+  document.getElementById('jqlOutput').textContent = jql;
+  document.getElementById('yamlOutput').textContent = yaml;
+  document.getElementById('usageNotes').textContent = notes;
+  document.getElementById('resultContainer').classList.add('active');
+
+  // Track event
+  if (typeof gtag === 'function') {
+    gtag('event', 'formula_generated', {
+      event_category: 'engagement',
+      field_type: fieldType,
+      operation: operation
+    });
+  }
+
+  // Scroll to results
+  document.getElementById('resultContainer').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function copyToClipboard(elementId) {
+  const text = document.getElementById(elementId).textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = event.target;
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+
+    if (typeof gtag === 'function') {
+      gtag('event', 'formula_copied', {
+        event_category: 'engagement',
+        element: elementId
+      });
+    }
+
+    setTimeout(() => {
+      btn.textContent = 'Copy';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+
+function trackLeadSubmit(event) {
+  if (typeof gtag === 'function') {
+    gtag('event', 'lead_submit', {
+      event_category: 'conversion',
+      tool: 'jira-formula'
+    });
+  }
+}
+</script>
+
+</body>
+</html>

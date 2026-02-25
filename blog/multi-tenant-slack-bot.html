@@ -196,6 +196,19 @@ def get_workspace(team_id):
 
             </article>
 
+            <!-- Content Upgrade -->
+            <div class="content-upgrade">
+                <h3>Download: Multi-Tenant Architecture Diagram</h3>
+                <p>Visual guide to config-driven tenant routing. Includes code samples and database schema.</p>
+                <form action="https://formspree.io/f/xpwzgvqr" method="POST">
+                    <input type="email" name="email" placeholder="your@email.com" required>
+                    <input type="hidden" name="_subject" value="Download: Multi-Tenant Architecture Diagram">
+                    <input type="hidden" name="content_upgrade" value="multi-tenant-diagram">
+                    <input type="hidden" name="page_url" value="https://techconcepts.org/blog/multi-tenant-slack-bot.html">
+                    <button type="submit">Get the Diagram</button>
+                </form>
+            </div>
+
             <!-- Related Service -->
             <div style="margin-top: 48px; padding: 32px; background: var(--bg-alt, #f8f9fa); border-radius: 12px; border: 1px solid var(--border);">
                 <h4 style="margin: 0 0 8px; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: var(--gray);">Related Service</h4>
@@ -291,5 +304,6 @@ def get_workspace(team_id):
     <script src="/scripts/nav.js"></script>
     <script src="/scripts/i18n.js"></script>
     <script src="/scripts/analytics.js"></script>
+    <script src="/scripts/exit-intent.js"></script>
 </body>
 </html>

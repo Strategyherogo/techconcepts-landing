@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compliance Readiness Scorecard | GDPR, SOC 2, ISO 27001 Assessment</title>
+
+<!-- SEO -->
+<meta name="description" content="Free compliance readiness assessment. 50-item checklist for GDPR, SOC 2, and ISO 27001. Get your compliance score and remediation roadmap instantly.">
+<meta name="keywords" content="GDPR compliance checklist, SOC 2 readiness assessment, ISO 27001 audit, compliance scorecard, security compliance, data protection assessment">
+<meta name="author" content="Evgeny Goncharov">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://techconcepts.org/tools/compliance-scorecard.html">
+
+<!-- Resource Hints -->
+<link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+<link rel="dns-prefetch" href="https://www.googletagmanager.com">
+<link rel="preconnect" href="https://formspree.io" crossorigin>
+<link rel="dns-prefetch" href="https://formspree.io">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://techconcepts.org/tools/compliance-scorecard.html">
+<meta property="og:title" content="Compliance Readiness Scorecard">
+<meta property="og:description" content="Assess your GDPR, SOC 2, and ISO 27001 readiness with a free 50-item checklist.">
+<meta property="og:image" content="https://techconcepts.org/techconcepts-og.png">
+<meta property="og:site_name" content="TechConcepts">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Compliance Readiness Scorecard">
+<meta name="twitter:description" content="Free compliance assessment tool for GDPR, SOC 2, ISO 27001.">
+<meta name="twitter:image" content="https://techconcepts.org/techconcepts-og.png">
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-815E8YDZW8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-815E8YDZW8', {page_path: '/tools/compliance-scorecard'});
+</script>
+
+<!-- Schema.org WebApplication -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Compliance Readiness Scorecard",
+  "description": "Assess GDPR, SOC 2, and ISO 27001 compliance readiness with a comprehensive checklist and scoring system",
+  "url": "https://techconcepts.org/tools/compliance-scorecard.html",
+  "applicationCategory": "BusinessApplication",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "TechConcepts",
+    "url": "https://techconcepts.org"
+  }
+}
+</script>
+
+<!-- Schema.org Breadcrumb -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "TechConcepts",
+      "item": "https://techconcepts.org/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Tools",
+      "item": "https://techconcepts.org/tools/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Compliance Scorecard",
+      "item": "https://techconcepts.org/tools/compliance-scorecard.html"
+    }
+  ]
+}
+</script>
+
+<link rel="stylesheet" href="/styles/main.css">
+
+<style>
+  :root {
+    --primary: #000;
+    --accent: #2563eb;
+    --border: #e5e7eb;
+    --light-gray: #f3f4f6;
+    --gray: #6b7280;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+  }
+
+  body {
+    background: var(--light-gray);
+  }
+
+  .tool-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  .framework-selector {
+    background: #fff;
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+
+  .framework-selector h2 {
+    font-size: 24px;
+    margin-bottom: 16px;
+    color: var(--primary);
+  }
+
+  .framework-options {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 16px;
+  }
+
+  .framework-option {
+    background: var(--light-gray);
+    border: 3px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+  }
+
+  .framework-option:hover {
+    border-color: var(--accent);
+  }
+
+  .framework-option.selected {
+    background: #dbeafe;
+    border-color: var(--accent);
+  }
+
+  .framework-option input {
+    display: none;
+  }
+
+  .framework-option label {
+    cursor: pointer;
+    display: block;
+  }
+
+  .framework-icon {
+    font-size: 32px;
+    margin-bottom: 8px;
+  }
+
+  .framework-name {
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--primary);
+  }
+
+  .framework-count {
+    font-size: 13px;
+    color: var(--gray);
+    margin-top: 4px;
+  }
+
+  .checklist-container {
+    background: #fff;
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    display: none;
+  }
+
+  .checklist-container.active {
+    display: block;
+  }
+
+  .framework-section {
+    margin-bottom: 32px;
+  }
+
+  .framework-section h3 {
+    font-size: 20px;
+    margin-bottom: 16px;
+    color: var(--primary);
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--border);
+  }
+
+  .checklist-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    transition: background 0.2s;
+  }
+
+  .checklist-item:hover {
+    background: var(--light-gray);
+  }
+
+  .checklist-item input[type="checkbox"] {
+    margin-top: 4px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  .checklist-item label {
+    flex: 1;
+    cursor: pointer;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--primary);
+  }
+
+  .checklist-item.checked label {
+    color: var(--gray);
+    text-decoration: line-through;
+  }
+
+  .priority-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-left: 8px;
+  }
+
+  .priority-high { background: #fee; color: #dc2626; }
+  .priority-medium { background: #fef3c7; color: #d97706; }
+  .priority-low { background: #f0fdf4; color: #16a34a; }
+
+  .btn-calculate {
+    width: 100%;
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    padding: 16px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 24px;
+  }
+
+  .btn-calculate:hover {
+    background: #333;
+  }
+
+  .results-container {
+    display: none;
+    margin-top: 24px;
+  }
+
+  .results-container.active {
+    display: block;
+  }
+
+  .score-card {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: #fff;
+    border-radius: 16px;
+    padding: 40px;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+
+  .score-card h2 {
+    font-size: 24px;
+    margin-bottom: 24px;
+  }
+
+  .score-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+  }
+
+  .score-item {
+    background: rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 20px;
+  }
+
+  .score-value {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .score-value.red { color: #ef4444; }
+  .score-value.yellow { color: #f59e0b; }
+  .score-value.green { color: #10b981; }
+
+  .score-label {
+    font-size: 14px;
+    opacity: 0.8;
+  }
+
+  .remediation-roadmap {
+    background: #fff;
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+
+  .remediation-roadmap h3 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: var(--primary);
+  }
+
+  .remediation-item {
+    padding: 16px;
+    margin-bottom: 12px;
+    border-left: 4px solid;
+    background: var(--light-gray);
+    border-radius: 4px;
+  }
+
+  .remediation-item.high { border-color: #ef4444; }
+  .remediation-item.medium { border-color: #f59e0b; }
+  .remediation-item.low { border-color: #10b981; }
+
+  .remediation-item h4 {
+    font-size: 16px;
+    margin-bottom: 4px;
+    color: var(--primary);
+  }
+
+  .remediation-item p {
+    font-size: 14px;
+    color: var(--gray);
+    margin: 0;
+  }
+
+  .lead-capture {
+    background: #e0f2fe;
+    border: 2px solid var(--accent);
+    border-radius: 12px;
+    padding: 32px;
+    text-align: center;
+    margin-top: 32px;
+  }
+
+  .lead-capture h3 {
+    font-size: 22px;
+    margin-bottom: 12px;
+    color: var(--primary);
+  }
+
+  .lead-capture p {
+    font-size: 16px;
+    color: var(--gray);
+    margin-bottom: 20px;
+  }
+
+  .lead-capture form {
+    display: flex;
+    gap: 12px;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .lead-capture input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 15px;
+  }
+
+  .lead-capture button {
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 768px) {
+    .framework-options {
+      grid-template-columns: 1fr;
+    }
+
+    .score-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .lead-capture form {
+      flex-direction: column;
+    }
+  }
+</style>
+</head>
+<body data-page-type="tool">
+
+<!-- Navigation -->
+<nav>
+  <div class="container">
+    <a href="/" class="logo">TechConcepts</a>
+    <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Menu">&#9776;</button>
+    <div class="nav-links" id="navLinks">
+      <a href="/services/">Services</a>
+      <a href="/case-studies/">Case Studies</a>
+      <a href="/products/">Products</a>
+      <a href="/blog/">Blog</a>
+      <a href="/tools/" class="active">Tools</a>
+      <a href="/about.html">About</a>
+      <div class="lang-switcher">
+        <button class="lang-btn" onclick="toggleLangMenu()"><span id="currentLang">EN</span> &#9662;</button>
+        <div class="lang-dropdown" id="langDropdown"></div>
+      </div>
+      <a href="https://calendar.app.google/md6WqwnhfireNTqx5" class="btn btn-primary">Book a Call</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container">
+    <h1>Compliance Readiness Scorecard</h1>
+    <p>Assess your GDPR, SOC 2, and ISO 27001 compliance. Get your score and remediation roadmap.</p>
+  </div>
+</section>
+
+<!-- Tool -->
+<section class="tool-container">
+  <div class="framework-selector">
+    <h2>Select Compliance Frameworks</h2>
+    <p style="color: var(--gray); margin-bottom: 16px;">Choose the frameworks you need to comply with.</p>
+
+    <div class="framework-options">
+      <div class="framework-option" onclick="toggleFramework('gdpr')">
+        <input type="checkbox" id="framework-gdpr">
+        <label for="framework-gdpr">
+          <div class="framework-icon">🇪🇺</div>
+          <div class="framework-name">GDPR</div>
+          <div class="framework-count">18 items</div>
+        </label>
+      </div>
+
+      <div class="framework-option" onclick="toggleFramework('soc2')">
+        <input type="checkbox" id="framework-soc2">
+        <label for="framework-soc2">
+          <div class="framework-icon">🔒</div>
+          <div class="framework-name">SOC 2</div>
+          <div class="framework-count">22 items</div>
+        </label>
+      </div>
+
+      <div class="framework-option" onclick="toggleFramework('iso27001')">
+        <input type="checkbox" id="framework-iso27001">
+        <label for="framework-iso27001">
+          <div class="framework-icon">📋</div>
+          <div class="framework-name">ISO 27001</div>
+          <div class="framework-count">10 items</div>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="checklist-container" id="checklistContainer">
+    <!-- GDPR Section -->
+    <div class="framework-section" id="section-gdpr" style="display:none;">
+      <h3>GDPR Compliance (18 items)</h3>
+      <div id="gdpr-items"></div>
+    </div>
+
+    <!-- SOC 2 Section -->
+    <div class="framework-section" id="section-soc2" style="display:none;">
+      <h3>SOC 2 Compliance (22 items)</h3>
+      <div id="soc2-items"></div>
+    </div>
+
+    <!-- ISO 27001 Section -->
+    <div class="framework-section" id="section-iso27001" style="display:none;">
+      <h3>ISO 27001 Compliance (10 items)</h3>
+      <div id="iso27001-items"></div>
+    </div>
+
+    <button class="btn-calculate" onclick="calculateScore()">Calculate My Compliance Score</button>
+  </div>
+
+  <!-- Results -->
+  <div class="results-container" id="resultsContainer">
+    <div class="score-card">
+      <h2>Your Compliance Score</h2>
+      <div class="score-grid" id="scoreGrid"></div>
+    </div>
+
+    <div class="remediation-roadmap">
+      <h3>Remediation Roadmap</h3>
+      <p style="color: var(--gray); margin-bottom: 20px;">Prioritized action items to improve your compliance posture.</p>
+      <div id="remediationList"></div>
+    </div>
+  </div>
+
+  <!-- Lead Capture -->
+  <div class="lead-capture">
+    <h3>Get Full Compliance Gap Analysis Report</h3>
+    <p>Detailed assessment with implementation guides, evidence templates, and audit preparation checklists.</p>
+    <form action="https://formspree.io/f/xpwzgvqr" method="POST" onsubmit="trackLeadSubmit(event)">
+      <input type="email" name="email" placeholder="your@email.com" required>
+      <input type="hidden" name="_subject" value="Lead: Compliance Gap Analysis">
+      <input type="hidden" name="tool" value="compliance-scorecard">
+      <input type="hidden" name="page_url" value="https://techconcepts.org/tools/compliance-scorecard.html">
+      <input type="hidden" name="score" id="lead-score">
+      <button type="submit">Send Me the Report</button>
+    </form>
+  </div>
+
+  <div style="margin-top: 32px; padding: 32px; background: #fff; border-radius: 12px; text-align: center;">
+    <h3 style="margin-bottom: 12px;">Need Help Getting Audit-Ready?</h3>
+    <p style="color: var(--gray); margin-bottom: 20px;">I help teams prepare for SOC 2, GDPR, and ISO 27001 audits with templates, implementation guides, and audit preparation.</p>
+    <a href="/services/compliance.html" style="color: var(--accent); font-weight: 600;">Learn About Compliance Services →</a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="/services/">Services</a>
+        <a href="/products/">Products</a>
+        <a href="/blog/">Blog</a>
+        <a href="/tools/">Tools</a>
+        <a href="/about.html">About</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </div>
+      <div class="footer-info">
+        Madrid, Spain &middot; Mo-Fr 09:00-18:00 CET
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/scripts/analytics.js"></script>
+<script src="/scripts/i18n.js"></script>
+<script src="/scripts/nav.js"></script>
+<script src="/scripts/exit-intent.js"></script>
+
+<script>
+const checklistData = {
+  gdpr: [
+    { text: 'Lawful basis for data processing documented', priority: 'high' },
+    { text: 'Privacy policy published and accessible', priority: 'high' },
+    { text: 'Consent mechanism implemented for data collection', priority: 'high' },
+    { text: 'Data processing register (RoPA) maintained', priority: 'high' },
+    { text: 'Data Protection Officer (DPO) appointed if required', priority: 'medium' },
+    { text: 'Data subject rights processes (access, deletion, portability)', priority: 'high' },
+    { text: 'Data breach notification procedure (72h)', priority: 'high' },
+    { text: 'Data processing agreements with vendors', priority: 'high' },
+    { text: 'Data Protection Impact Assessment (DPIA) for high-risk processing', priority: 'medium' },
+    { text: 'Cross-border data transfer safeguards (SCCs, BCRs)', priority: 'high' },
+    { text: 'Data retention and deletion policies', priority: 'medium' },
+    { text: 'Cookie consent management', priority: 'medium' },
+    { text: 'Employee privacy training', priority: 'low' },
+    { text: 'Data minimization practices', priority: 'medium' },
+    { text: 'Technical security measures (encryption, access controls)', priority: 'high' },
+    { text: 'Records of consent management', priority: 'medium' },
+    { text: 'Privacy by design in product development', priority: 'low' },
+    { text: 'Regular GDPR compliance audits', priority: 'low' }
+  ],
+  soc2: [
+    { text: 'Access control policy and implementation', priority: 'high' },
+    { text: 'Multi-factor authentication (MFA) enforced', priority: 'high' },
+    { text: 'Encryption at rest and in transit', priority: 'high' },
+    { text: 'Security monitoring and logging', priority: 'high' },
+    { text: 'Incident response plan documented and tested', priority: 'high' },
+    { text: 'Vendor risk management program', priority: 'high' },
+    { text: 'Change management procedures', priority: 'high' },
+    { text: 'Backup and recovery procedures tested', priority: 'high' },
+    { text: 'Security awareness training for employees', priority: 'medium' },
+    { text: 'Vulnerability management and patching', priority: 'high' },
+    { text: 'Physical security controls', priority: 'medium' },
+    { text: 'Network segmentation', priority: 'medium' },
+    { text: 'User access reviews (quarterly)', priority: 'high' },
+    { text: 'System and data availability monitoring', priority: 'high' },
+    { text: 'Penetration testing (annual)', priority: 'medium' },
+    { text: 'Business continuity and disaster recovery plan', priority: 'high' },
+    { text: 'Secure software development lifecycle', priority: 'medium' },
+    { text: 'Data classification policy', priority: 'medium' },
+    { text: 'Acceptable use policy', priority: 'low' },
+    { text: 'Risk assessment process', priority: 'high' },
+    { text: 'Audit logging and retention', priority: 'high' },
+    { text: 'Configuration management', priority: 'medium' }
+  ],
+  iso27001: [
+    { text: 'Information Security Management System (ISMS) documented', priority: 'high' },
+    { text: 'Information security policy approved by management', priority: 'high' },
+    { text: 'Asset inventory maintained', priority: 'high' },
+    { text: 'Risk assessment methodology defined', priority: 'high' },
+    { text: 'Statement of Applicability (SoA) for controls', priority: 'high' },
+    { text: 'Internal audit program established', priority: 'medium' },
+    { text: 'Management review meetings (quarterly)', priority: 'medium' },
+    { text: 'Corrective action process for non-conformities', priority: 'medium' },
+    { text: 'Information security objectives defined and measured', priority: 'low' },
+    { text: 'Continual improvement process', priority: 'low' }
+  ]
+};
+
+let selectedFrameworks = new Set();
+
+function toggleFramework(framework) {
+  const checkbox = document.getElementById(`framework-${framework}`);
+  const option = checkbox.closest('.framework-option');
+  const section = document.getElementById(`section-${framework}`);
+
+  if (selectedFrameworks.has(framework)) {
+    selectedFrameworks.delete(framework);
+    option.classList.remove('selected');
+    checkbox.checked = false;
+    section.style.display = 'none';
+  } else {
+    selectedFrameworks.add(framework);
+    option.classList.add('selected');
+    checkbox.checked = true;
+    section.style.display = 'block';
+    renderChecklist(framework);
+  }
+
+  // Show/hide checklist container
+  if (selectedFrameworks.size > 0) {
+    document.getElementById('checklistContainer').classList.add('active');
+
+    if (typeof gtag === 'function') {
+      gtag('event', 'framework_selected', {
+        event_category: 'engagement',
+        framework: framework
+      });
+    }
+  } else {
+    document.getElementById('checklistContainer').classList.remove('active');
+  }
+}
+
+function renderChecklist(framework) {
+  const container = document.getElementById(`${framework}-items`);
+  const items = checklistData[framework];
+
+  let html = '';
+  items.forEach((item, index) => {
+    const id = `${framework}-${index}`;
+    html += `
+      <div class="checklist-item" id="item-${id}">
+        <input type="checkbox" id="${id}" onchange="handleCheckboxChange('${id}')">
+        <label for="${id}">
+          ${item.text}
+          <span class="priority-badge priority-${item.priority}">${item.priority}</span>
+        </label>
+      </div>
+    `;
+  });
+
+  container.innerHTML = html;
+}
+
+function handleCheckboxChange(id) {
+  const item = document.getElementById(`item-${id}`);
+  const checkbox = document.getElementById(id);
+
+  if (checkbox.checked) {
+    item.classList.add('checked');
+  } else {
+    item.classList.remove('checked');
+  }
+}
+
+function calculateScore() {
+  let results = {};
+  let totalScore = 0;
+  let totalItems = 0;
+  let uncheckedItems = [];
+
+  selectedFrameworks.forEach(framework => {
+    const items = checklistData[framework];
+    const checked = items.filter((item, index) => {
+      const id = `${framework}-${index}`;
+      const checkbox = document.getElementById(id);
+      const isChecked = checkbox && checkbox.checked;
+
+      if (!isChecked) {
+        uncheckedItems.push({
+          framework: framework.toUpperCase(),
+          text: item.text,
+          priority: item.priority
+        });
+      }
+
+      return isChecked;
+    }).length;
+
+    const score = Math.round((checked / items.length) * 100);
+    results[framework] = { checked, total: items.length, score };
+
+    totalScore += score;
+    totalItems += items.length;
+  });
+
+  const overallScore = Math.round(totalScore / selectedFrameworks.size);
+
+  // Display scores
+  let scoreHTML = `
+    <div class="score-item">
+      <div class="score-value ${getScoreClass(overallScore)}">${overallScore}%</div>
+      <div class="score-label">Overall Compliance</div>
+    </div>
+  `;
+
+  selectedFrameworks.forEach(framework => {
+    const data = results[framework];
+    scoreHTML += `
+      <div class="score-item">
+        <div class="score-value ${getScoreClass(data.score)}">${data.score}%</div>
+        <div class="score-label">${framework.toUpperCase()} (${data.checked}/${data.total})</div>
+      </div>
+    `;
+  });
+
+  document.getElementById('scoreGrid').innerHTML = scoreHTML;
+
+  // Generate remediation roadmap
+  uncheckedItems.sort((a, b) => {
+    const priority = { high: 0, medium: 1, low: 2 };
+    return priority[a.priority] - priority[b.priority];
+  });
+
+  let remediationHTML = '';
+  uncheckedItems.slice(0, 10).forEach(item => {
+    remediationHTML += `
+      <div class="remediation-item ${item.priority}">
+        <h4>${item.text}</h4>
+        <p><strong>${item.framework}</strong> | Priority: ${item.priority.toUpperCase()}</p>
+      </div>
+    `;
+  });
+
+  if (uncheckedItems.length === 0) {
+    remediationHTML = '<p style="text-align:center; color: var(--success); font-weight: 600;">All items completed! You are audit-ready.</p>';
+  }
+
+  document.getElementById('remediationList').innerHTML = remediationHTML;
+
+  // Show results
+  document.getElementById('resultsContainer').classList.add('active');
+  document.getElementById('lead-score').value = overallScore;
+
+  // Track event
+  if (typeof gtag === 'function') {
+    gtag('event', 'scorecard_complete', {
+      event_category: 'engagement',
+      overall_score: overallScore,
+      frameworks: Array.from(selectedFrameworks).join(',')
+    });
+  }
+
+  // Scroll to results
+  document.getElementById('resultsContainer').scrollIntoView({ behavior: 'smooth' });
+}
+
+function getScoreClass(score) {
+  if (score >= 80) return 'green';
+  if (score >= 50) return 'yellow';
+  return 'red';
+}
+
+function trackLeadSubmit(event) {
+  const score = document.getElementById('lead-score').value;
+
+  if (typeof gtag === 'function') {
+    gtag('event', 'lead_submit', {
+      event_category: 'conversion',
+      tool: 'compliance-scorecard',
+      score: score
+    });
+  }
+}
+</script>
+
+</body>
+</html>
