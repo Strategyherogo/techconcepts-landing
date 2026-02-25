@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags -->
+    <title>How to Set Up Google Search Console in 5 Minutes | TechConcepts</title>
+    <meta name="description" content="Complete Google Search Console setup guide. Verification, sitemap submission, and what to monitor. From zero to tracking keyword rankings.">
+    <meta name="keywords" content="Google Search Console, GSC setup, SEO, sitemap submission, keyword tracking, website monitoring, search analytics">
+    <meta name="author" content="Evgeny Goncharov">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://techconcepts.org/blog/google-search-console-guide.html">
+
+    <!-- Resource Hints -->
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <link rel="preconnect" href="https://formspree.io" crossorigin>
+    <link rel="dns-prefetch" href="https://formspree.io">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://techconcepts.org/blog/google-search-console-guide.html">
+    <meta property="og:title" content="How to Set Up Google Search Console in 5 Minutes">
+    <meta property="og:description" content="Complete setup guide. Verification, sitemap submission, and what to monitor. From zero to tracking keyword rankings.">
+    <meta property="og:image" content="https://techconcepts.org/techconcepts-og.png">
+    <meta property="og:site_name" content="TechConcepts">
+    <meta property="article:published_time" content="2026-02-25">
+    <meta property="article:author" content="Evgeny Goncharov">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to Set Up Google Search Console in 5 Minutes">
+    <meta name="twitter:description" content="Complete setup guide. Verification, sitemap submission, and monitoring.">
+    <meta name="twitter:image" content="https://techconcepts.org/techconcepts-og.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💡</text></svg>">
+
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-815E8YDZW8"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-815E8YDZW8');
+    </script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="/styles/main.css">
+
+    <!-- Schema.org - BlogPosting -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "How to Set Up Google Search Console in 5 Minutes",
+        "description": "Complete Google Search Console setup guide. Verification, sitemap submission, and what to monitor.",
+        "url": "https://techconcepts.org/blog/google-search-console-guide.html",
+        "datePublished": "2026-02-25",
+        "dateModified": "2026-02-25",
+        "author": {
+            "@type": "Person",
+            "name": "Evgeny Goncharov",
+            "url": "https://techconcepts.org/about.html"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "TechConcepts",
+            "url": "https://techconcepts.org"
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://techconcepts.org/blog/google-search-console-guide.html"
+        },
+        "keywords": ["Google Search Console", "SEO", "sitemap", "keyword tracking"]
+    }
+    </script>
+
+    <!-- Schema.org - BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+                {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "TechConcepts",
+                        "item": "https://techconcepts.org/"
+                },
+                {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Blog",
+                        "item": "https://techconcepts.org/blog/"
+                },
+                {
+                        "@type": "ListItem",
+                        "position": 3,
+                        "name": "Google Search Console Setup Guide",
+                        "item": "https://techconcepts.org/blog/google-search-console-guide.html"
+                }
+        ]
+}
+    </script>
+</head>
+<body data-page-type="blog-post">
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">TechConcepts</a>
+            <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Menu">&#9776;</button>
+            <div class="nav-links" id="navLinks">
+                <a href="/services/">Services</a>
+                <a href="/case-studies/">Case Studies</a>
+                <a href="/products/">Products</a>
+                <a href="/blog/" class="active">Blog</a>
+                <a href="/tools/">Tools</a>
+                <a href="/about.html">About</a>
+                <div class="lang-switcher">
+                    <button class="lang-btn" onclick="toggleLangMenu()"><span id="currentLang">EN</span> &#9662;</button>
+                    <div class="lang-dropdown" id="langDropdown"></div>
+                </div>
+                <a href="https://calendar.app.google/md6WqwnhfireNTqx5" class="btn btn-primary">Book a Call</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <span class="tag" style="margin-bottom: 16px; display: inline-block;">Tutorial</span>
+            <h1>How to Set Up Google Search Console in 5 Minutes</h1>
+            <p>February 2026 &middot; 4 min read</p>
+        </div>
+    </section>
+
+    <!-- Article Content -->
+    <section style="padding: 0 0 80px;">
+        <div class="container" style="max-width: 740px;">
+            <article class="blog-article">
+
+                <p>Most businesses skip Google Search Console setup. They launch their site, cross their fingers, and hope Google finds them. Here's the 5-minute fix that shows you exactly what Google sees.</p>
+
+                <h4>The Problem</h4>
+                <p>Without GSC, you're flying blind. No keyword data showing which searches bring you traffic. No crawl errors alerting you to broken pages. No indexing status telling you if Google can even find your content. You're publishing into a black hole.</p>
+
+                <h4>The Setup</h4>
+                <p>Three steps to go from zero visibility to full search analytics:</p>
+
+                <ol style="margin: 16px 0; padding-left: 24px; color: var(--text-secondary);">
+                    <li style="margin-bottom: 8px;"><strong>Add property:</strong> Visit <code>search.google.com/search-console</code>, click "Add property", enter your domain (e.g., <code>techconcepts.org</code>)</li>
+                    <li style="margin-bottom: 8px;"><strong>Verify ownership:</strong> Add the DNS TXT record GSC provides to your domain registrar, or upload the HTML file to your site root</li>
+                    <li style="margin-bottom: 8px;"><strong>Submit sitemap:</strong> Navigate to Sitemaps in left menu, enter <code>sitemap.xml</code>, click Submit</li>
+                </ol>
+
+                <p>DNS verification takes 5-10 minutes to propagate. HTML file verification is instant if you can upload to your web server.</p>
+
+                <h4>What to Monitor</h4>
+                <p>Once verified, GSC starts collecting data within 48 hours. Check these three sections weekly:</p>
+
+                <p><strong>Performance tab:</strong> Shows clicks, impressions, CTR, and average position for every keyword. Sort by impressions to find high-visibility terms where you rank poorly (opportunity to optimize). Sort by clicks to see what's working.</p>
+
+                <p><strong>Coverage report:</strong> Lists indexed pages vs. errors. "Discovered but not indexed" means Google saw it but didn't add it (low quality signal). "Crawled but not indexed" means content issues. Fix errors immediately—they hurt rankings.</p>
+
+                <p><strong>Enhancements:</strong> Mobile usability issues, Core Web Vitals scores, structured data errors. Google prioritizes mobile-first indexing—if your site fails mobile checks, you won't rank.</p>
+
+                <h4>Results</h4>
+                <div class="blog-stats">
+                    <div class="blog-stat">
+                        <div class="number">5</div>
+                        <div class="label">Minutes to set up</div>
+                    </div>
+                    <div class="blog-stat">
+                        <div class="number">40</div>
+                        <div class="label">URLs tracked</div>
+                    </div>
+                    <div class="blog-stat">
+                        <div class="number">7</div>
+                        <div class="label">Days to see ranking data</div>
+                    </div>
+                </div>
+
+                <h4>Key Lessons</h4>
+                <ul>
+                    <li><strong>Sitemap submission accelerates indexing.</strong> Google finds pages eventually, but a sitemap cuts discovery time from weeks to days.</li>
+                    <li><strong>GSC catches crawl errors before they hurt rankings.</strong> A broken canonical tag or misconfigured robots.txt can tank your traffic overnight—GSC alerts you.</li>
+                    <li><strong>Weekly monitoring reveals keyword opportunities.</strong> High impressions + low clicks = bad title tag. High position + low clicks = weak meta description. Fix the content, watch clicks rise.</li>
+                </ul>
+
+            </article>
+
+            <!-- Content Upgrade -->
+            <div class="content-upgrade">
+                <h3>Download: GSC Monitoring Checklist</h3>
+                <p>Weekly checklist for Search Console. What to monitor, warning signs, and when to act.</p>
+                <form action="https://formspree.io/f/xpwzgvqr" method="POST">
+                    <input type="email" name="email" placeholder="your@email.com" required>
+                    <input type="hidden" name="_subject" value="Download: GSC Monitoring Checklist">
+                    <input type="hidden" name="content_upgrade" value="gsc-checklist">
+                    <input type="hidden" name="page_url" value="https://techconcepts.org/blog/google-search-console-guide.html">
+                    <button type="submit">Get the Checklist</button>
+                </form>
+            </div>
+
+            <!-- Related Service -->
+            <div style="margin-top: 48px; padding: 32px; background: var(--bg-alt, #f8f9fa); border-radius: 12px; border: 1px solid var(--border);">
+                <h4 style="margin: 0 0 8px; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: var(--gray);">Related Service</h4>
+                <h3 style="margin: 0 0 12px;"><a href="/services/" style="color: var(--text); text-decoration: none;">SEO & Technical Consulting</a></h3>
+                <p style="margin: 0 0 16px; color: var(--text-secondary);">I help businesses get found online. SEO audits, technical optimization, and search strategy that drives qualified traffic. Google Search Console setup is step one—let's optimize the rest.</p>
+                <a href="/services/" style="color: var(--accent); font-weight: 600;">Learn more &rarr;</a>
+            </div>
+
+            <!-- Related Posts -->
+            <div style="margin-top: 32px;">
+                <h4 style="font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: var(--gray); margin-bottom: 16px;">Related Posts</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                    <a href="/blog/multi-tenant-slack-bot.html" style="padding: 16px; border: 1px solid var(--border); border-radius: 8px; text-decoration: none; color: var(--primary);">
+                        <strong style="font-size: 15px;">Multi-Tenant Slack Bot: One App, Three Workspaces</strong>
+                        <p style="font-size: 13px; color: var(--gray); margin-top: 4px;">Config-driven architecture for serving multiple clients with one codebase.</p>
+                    </a>
+                    <a href="/blog/ai-api-cost-optimization.html" style="padding: 16px; border: 1px solid var(--border); border-radius: 8px; text-decoration: none; color: var(--primary);">
+                        <strong style="font-size: 15px;">98% Cost Reduction: Optimizing AI API Calls</strong>
+                        <p style="font-size: 13px; color: var(--gray); margin-top: 4px;">Two changes cut AI API costs from $100/month to $2/month.</p>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Author Bio -->
+            <div style="margin-top: 32px; padding: 32px; display: flex; gap: 24px; align-items: flex-start; border: 1px solid var(--border); border-radius: 12px;">
+                <img src="https://techconcepts.org/evgeny.jpg" alt="Evgeny Goncharov - Founder of TechConcepts, ex-Yandex, ex-EY, Darden MBA" width="80" height="80" loading="lazy" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; flex-shrink: 0;">
+                <div>
+                    <h4 style="margin: 0 0 4px;"><a href="/about.html" style="color: var(--text); text-decoration: none;">Evgeny Goncharov</a></h4>
+                    <p style="margin: 0 0 8px; font-size: 14px; color: var(--gray);">Founder, TechConcepts</p>
+                    <p style="margin: 0 0 12px; color: var(--text-secondary); font-size: 15px;">I build automation tools and custom software for businesses. Previously at Yandex (Search) and EY (Advisory). Darden MBA. Based in Madrid.</p>
+                    <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                        <a href="/about.html" style="color: var(--accent); font-size: 14px; font-weight: 600;">About me</a>
+                        <a href="https://linkedin.com/in/evgoncharov" target="_blank" style="color: var(--accent); font-size: 14px; font-weight: 600;">LinkedIn</a>
+                        <a href="https://github.com/Strategyherogo" target="_blank" style="color: var(--accent); font-size: 14px; font-weight: 600;">GitHub</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Back to Blog -->
+            <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border);">
+                <a href="/blog/" style="color: var(--accent); font-weight: 600;">&larr; All blog posts</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="final-cta">
+        <div class="container">
+            <h2>Need help with SEO and search visibility?</h2>
+            <p>15 minutes. No pitch. Just honest advice on whether I can help.</p>
+            <a href="https://calendar.app.google/md6WqwnhfireNTqx5" class="btn btn-primary">Book a Call</a>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter" id="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <div class="newsletter-text">
+                    <h2>Get Building Tips</h2>
+                    <p>Weekly insights on automation, AI, and shipping products fast. No spam, unsubscribe anytime.</p>
+                </div>
+                <form class="newsletter-form" action="https://formspree.io/f/xpwzgvqr" method="POST">
+                    <input type="email" name="email" placeholder="your@email.com" required>
+                    <input type="hidden" name="_subject" value="New TechConcepts Newsletter Signup">
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="/services/">Services</a>
+                    <a href="/products/">Products</a>
+                    <a href="/blog/">Blog</a>
+                    <a href="/tools/">Tools</a>
+                    <a href="/podcast/">Podcast</a>
+                    <a href="/about.html">About</a>
+                    <a href="/privacy">Privacy</a>
+                    <a href="/terms">Terms</a>
+                </div>
+                <div class="footer-info">
+                    Madrid, Spain &middot; Mo-Fr 09:00-18:00 CET
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/scripts/nav.js"></script>
+    <script src="/scripts/i18n.js"></script>
+    <script src="/scripts/analytics.js"></script>
+    <script src="/scripts/exit-intent.js"></script>
+</body>
+</html>
