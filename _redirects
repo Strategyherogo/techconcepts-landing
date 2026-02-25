@@ -1,3 +1,13 @@
 # Cloudflare Pages redirects
-# Ensure /ops/ routes correctly (disable SPA fallback for /ops/)
+
+# Static subfolders — serve files directly (disable SPA fallback)
 /ops/* /ops/:splat 200
+/services/* /services/:splat 200
+/case-studies/* /case-studies/:splat 200
+/blog/* /blog/:splat 200
+/products/* /products/:splat 200
+/tools/* /tools/:splat 200
+
+# Legacy hash-based routes from the monolith → new pages
+# (These won't actually work as _redirects since # is client-side,
+# but the new homepage index.html handles them via JS redirects)

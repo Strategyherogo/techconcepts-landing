@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags -->
+    <title>Blog | TechConcepts</title>
+    <meta name="description" content="How I build things. Build stories, architecture deep dives, and optimization case studies from TechConcepts.">
+    <meta name="author" content="Evgeny Goncharov">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://techconcepts.org/blog/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://techconcepts.org/blog/">
+    <meta property="og:title" content="Blog | TechConcepts">
+    <meta property="og:description" content="How I build things. Build stories, architecture deep dives, and optimization case studies.">
+    <meta property="og:image" content="https://techconcepts.org/techconcepts-og.png">
+    <meta property="og:site_name" content="TechConcepts">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Blog | TechConcepts">
+    <meta name="twitter:description" content="How I build things. Build stories, architecture, and optimization.">
+    <meta name="twitter:image" content="https://techconcepts.org/techconcepts-og.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💡</text></svg>">
+
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-815E8YDZW8"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-815E8YDZW8');
+    </script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="/styles/main.css">
+
+    <!-- Schema.org - Blog -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "name": "TechConcepts Blog",
+        "description": "How I build things. Build stories, architecture deep dives, and optimization case studies.",
+        "url": "https://techconcepts.org/blog/",
+        "author": {
+            "@type": "Person",
+            "name": "Evgeny Goncharov",
+            "url": "https://techconcepts.org"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "TechConcepts",
+            "url": "https://techconcepts.org"
+        },
+        "blogPost": [
+            {
+                "@type": "BlogPosting",
+                "headline": "I Built an MBOX Converter in 30 Minutes with Claude",
+                "url": "https://techconcepts.org/blog/mbox-converter.html",
+                "datePublished": "2026-01",
+                "author": {
+                    "@type": "Person",
+                    "name": "Evgeny Goncharov"
+                }
+            },
+            {
+                "@type": "BlogPosting",
+                "headline": "How I Built a Multi-Tenant Slack Bot",
+                "url": "https://techconcepts.org/blog/multi-tenant-slack-bot.html",
+                "datePublished": "2026-01",
+                "author": {
+                    "@type": "Person",
+                    "name": "Evgeny Goncharov"
+                }
+            },
+            {
+                "@type": "BlogPosting",
+                "headline": "98% API Cost Reduction: From $0.15 to $0.003 Per Classification",
+                "url": "https://techconcepts.org/blog/ai-api-cost-optimization.html",
+                "datePublished": "2026-01",
+                "author": {
+                    "@type": "Person",
+                    "name": "Evgeny Goncharov"
+                }
+            }
+        ]
+    }
+    </script>
+</head>
+<body data-page-type="blog">
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">TechConcepts</a>
+            <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Menu">&#9776;</button>
+            <div class="nav-links" id="navLinks">
+                <a href="/services/">Services</a>
+                <a href="/case-studies/">Case Studies</a>
+                <a href="/products/">Products</a>
+                <a href="/blog/" class="active">Blog</a>
+                <a href="/tools/">Tools</a>
+                <a href="/about.html">About</a>
+                <div class="lang-switcher">
+                    <button class="lang-btn" onclick="toggleLangMenu()"><span id="currentLang">EN</span> &#9662;</button>
+                    <div class="lang-dropdown" id="langDropdown">
+                        <button class="lang-option" onclick="setLanguage('en')">English</button>
+                        <button class="lang-option" onclick="setLanguage('es')">Espanol</button>
+                        <button class="lang-option" onclick="setLanguage('fr')">Francais</button>
+                        <button class="lang-option" onclick="setLanguage('de')">Deutsch</button>
+                        <button class="lang-option" onclick="setLanguage('it')">Italiano</button>
+                    </div>
+                </div>
+                <a href="https://calendar.app.google/md6WqwnhfireNTqx5" class="btn btn-primary">Book a Call</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <h1>How I Build Things</h1>
+            <p>Build stories, architecture decisions, and lessons from shipping real products.</p>
+        </div>
+    </section>
+
+    <!-- Blog Grid -->
+    <section style="padding: 0 0 100px;">
+        <div class="container">
+            <div class="blog-grid">
+
+                <!-- Blog Post 1: MBOX Converter -->
+                <a href="/blog/mbox-converter.html" class="blog-card">
+                    <div>
+                        <span class="tag">Build Story</span>
+                        <h3>I Built an MBOX Converter in 30 Minutes with Claude</h3>
+                        <p>How I went from "I need to convert these MBOX files" to a working tool in half an hour using Claude Code. The full build story.</p>
+                    </div>
+                    <div style="margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 13px; color: var(--gray);">January 2026 &middot; 5 min</span>
+                        <span class="read-more">Read &rarr;</span>
+                    </div>
+                </a>
+
+                <!-- Blog Post 2: Multi-Tenant Slack Bot -->
+                <a href="/blog/multi-tenant-slack-bot.html" class="blog-card">
+                    <div>
+                        <span class="tag">Architecture</span>
+                        <h3>How I Built a Multi-Tenant Slack Bot</h3>
+                        <p>The architecture behind a Slack bot that serves multiple workspaces. OAuth flow, token management, and the mistakes I made along the way.</p>
+                    </div>
+                    <div style="margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 13px; color: var(--gray);">January 2026 &middot; 8 min</span>
+                        <span class="read-more">Read &rarr;</span>
+                    </div>
+                </a>
+
+                <!-- Blog Post 3: API Cost Optimization -->
+                <a href="/blog/ai-api-cost-optimization.html" class="blog-card">
+                    <div>
+                        <span class="tag">Optimization</span>
+                        <h3>98% API Cost Reduction: From $0.15 to $0.003 Per Classification</h3>
+                        <p>How I cut AI classification API costs by 98% without losing accuracy. Prompt engineering, model selection, and caching strategies.</p>
+                    </div>
+                    <div style="margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 13px; color: var(--gray);">January 2026 &middot; 6 min</span>
+                        <span class="read-more">Read &rarr;</span>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="final-cta">
+        <div class="container">
+            <h2>Want me to build something for you?</h2>
+            <p>15 minutes. No pitch. Just honest advice on whether I can help.</p>
+            <a href="https://calendar.app.google/md6WqwnhfireNTqx5" class="btn btn-primary">Book a Call</a>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter" id="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <div class="newsletter-text">
+                    <h2>Get Building Tips</h2>
+                    <p>Weekly insights on automation, AI, and shipping products fast. No spam, unsubscribe anytime.</p>
+                </div>
+                <form class="newsletter-form" action="https://formspree.io/f/xpwzgvqr" method="POST">
+                    <input type="email" name="email" placeholder="your@email.com" required>
+                    <input type="hidden" name="_subject" value="New TechConcepts Newsletter Signup">
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="/services/">Services</a>
+                    <a href="/products/">Products</a>
+                    <a href="/blog/">Blog</a>
+                    <a href="/tools/">Tools</a>
+                    <a href="/podcast/">Podcast</a>
+                    <a href="/about.html">About</a>
+                    <a href="/privacy">Privacy</a>
+                    <a href="/terms">Terms</a>
+                </div>
+                <div class="footer-info">
+                    Madrid, Spain &middot; Mo-Fr 09:00-18:00 CET
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/scripts/nav.js"></script>
+    <script src="/scripts/i18n.js"></script>
+    <script src="/scripts/analytics.js"></script>
+</body>
+</html>

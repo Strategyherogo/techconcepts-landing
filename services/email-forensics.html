@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags -->
+    <title>Email Forensics & Compliance Investigations | TechConcepts</title>
+    <meta name="description" content="Professional email forensics for Google Workspace and Microsoft 365. Legal holds, deletion pattern analysis, compliance auditing. From &euro;5K.">
+    <meta name="keywords" content="email forensics, compliance investigation, Google Workspace forensics, Microsoft 365 forensics, legal hold, data exfiltration, email audit">
+    <meta name="author" content="Evgeny Goncharov">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://techconcepts.org/services/email-forensics.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://techconcepts.org/services/email-forensics.html">
+    <meta property="og:title" content="Email Forensics & Compliance Investigations | TechConcepts">
+    <meta property="og:description" content="Professional email forensics for Google Workspace and Microsoft 365. Legal holds, deletion pattern analysis, compliance auditing.">
+    <meta property="og:image" content="https://techconcepts.org/techconcepts-og.png">
+    <meta property="og:site_name" content="TechConcepts">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@evaborisov">
+    <meta name="twitter:title" content="Email Forensics & Compliance Investigations | TechConcepts">
+    <meta name="twitter:description" content="Professional email forensics for Google Workspace and Microsoft 365.">
+    <meta name="twitter:image" content="https://techconcepts.org/techconcepts-og.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💡</text></svg>">
+
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-815E8YDZW8"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-815E8YDZW8');
+    </script>
+
+    <!-- Schema.org - Service -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "serviceType": "Email Forensics & Compliance Investigations",
+        "provider": {
+            "@type": "LocalBusiness",
+            "name": "TechConcepts",
+            "url": "https://techconcepts.org"
+        },
+        "areaServed": "Worldwide",
+        "description": "Professional email forensics for Google Workspace and Microsoft 365. Legal holds, deletion pattern analysis, compliance auditing.",
+        "offers": [
+            {
+                "@type": "Offer",
+                "name": "Investigation",
+                "price": "5000",
+                "priceCurrency": "EUR",
+                "description": "5K-10K depending on scope"
+            },
+            {
+                "@type": "Offer",
+                "name": "Ongoing Monitoring",
+                "price": "2000",
+                "priceCurrency": "EUR",
+                "priceSpecification": {
+                    "@type": "UnitPriceSpecification",
+                    "price": "2000",
+                    "priceCurrency": "EUR",
+                    "unitText": "month"
+                }
+            }
+        ]
+    }
+    </script>
+
+    <!-- Schema.org - FAQPage -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "What email providers do you support?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "We support Google Workspace (Gmail, Google Vault) and Microsoft 365 (Exchange Online, Compliance Center). This covers the vast majority of business email systems. For on-premise Exchange servers, we can work with exported PST files or direct server access."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How do you handle legal holds?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "We implement litigation holds through Google Vault or Microsoft Purview to preserve all relevant data from the moment an investigation begins. This prevents auto-deletion policies from destroying evidence. We document the hold process for legal defensibility and can provide chain-of-custody documentation."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Is the investigation defensible in court?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes. We follow forensically sound procedures including proper evidence preservation, chain-of-custody documentation, and detailed audit trails. Our investigation reports are structured for legal review and include methodology documentation. We can also serve as a technical witness if needed."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How long does a typical investigation take?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "A typical email forensics investigation takes 2-4 weeks depending on the volume of data, number of custodians, and complexity of the situation. Urgent matters (suspected active data exfiltration) can be triaged within 48 hours with a preliminary report."
+                }
+            }
+        ]
+    }
+    </script>
+
+    <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body data-page-type="service-detail">
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">TechConcepts</a>
+            <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Menu">&#9776;</button>
+            <div class="nav-links" id="navLinks">
+                <a href="/services/" class="active">Services</a>
+                <a href="/case-studies/">Case Studies</a>
+                <a href="/products/">Products</a>
+                <a href="/blog/">Blog</a>
+                <a href="/tools/">Tools</a>
+                <a href="/about.html">About</a>
+                <div class="lang-switcher">
+                    <button class="lang-btn" onclick="toggleLangMenu()"><span id="currentLang">EN</span> &#9662;</button>
+                    <div class="lang-dropdown" id="langDropdown">
+                        <button class="lang-option" onclick="setLanguage('en')">English</button>
+                        <button class="lang-option" onclick="setLanguage('es')">Espanol</button>
+                        <button class="lang-option" onclick="setLanguage('fr')">Francais</button>
+                        <button class="lang-option" onclick="setLanguage('de')">Deutsch</button>
+                        <button class="lang-option" onclick="setLanguage('it')">Italiano</button>
+                    </div>
+                </div>
+                <a href="https://calendar.app.google/md6WqwnhfireNTqx5" class="btn btn-primary">Book a Call</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <h1>Email Forensics & Compliance</h1>
+            <p>Professional email investigations for Google Workspace and Microsoft 365. When you need answers, not guesses.</p>
+            <div class="hero-buttons">
+                <span class="btn btn-secondary">From &euro;5K</span>
+                <a href="https://calendar.app.google/md6WqwnhfireNTqx5" class="btn btn-primary">Book a Call</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem -->
+    <section class="section-alt" style="padding: 80px 0;">
+        <div class="container">
+            <h2 style="font-size: 36px; text-align: center; margin-bottom: 40px;">The Problem</h2>
+            <div style="max-width: 720px; margin: 0 auto;">
+                <p style="font-size: 16px; color: var(--gray); line-height: 1.8; margin-bottom: 16px;">An employee just left and you suspect they took client data with them. Or your compliance team discovered gaps in email retention that could expose you in litigation. Or a regulator is asking questions about communications you cannot locate.</p>
+                <p style="font-size: 16px; color: var(--gray); line-height: 1.8; margin-bottom: 16px;">The problem is not just finding the emails -- it is proving what happened, when it happened, and who was involved. Standard search tools show you what exists now, but they cannot show you what was deleted, forwarded to personal accounts, or modified before departure.</p>
+                <p style="font-size: 16px; color: var(--gray); line-height: 1.8;">You need a forensic approach: systematic evidence preservation, cross-source correlation, timeline reconstruction, and documentation that holds up under legal scrutiny. Your IT team can search inboxes, but they are not equipped for a defensible investigation.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution -->
+    <section style="padding: 80px 0;">
+        <div class="container">
+            <h2 style="font-size: 36px; text-align: center; margin-bottom: 40px;">What We Do</h2>
+            <div style="max-width: 720px; margin: 0 auto;">
+                <div style="display: grid; gap: 24px;">
+                    <div style="padding: 24px; border: 1px solid var(--border); border-radius: 12px;">
+                        <h3 style="font-size: 18px; margin-bottom: 8px;">Email Forensics</h3>
+                        <p style="font-size: 15px; color: var(--gray);">Deep analysis of email metadata, headers, routing paths, and content. We identify deletion patterns, forwarding rules, unauthorized access, and data exfiltration attempts across Google Workspace and Microsoft 365.</p>
+                    </div>
+                    <div style="padding: 24px; border: 1px solid var(--border); border-radius: 12px;">
+                        <h3 style="font-size: 18px; margin-bottom: 8px;">Cross-Source Correlation</h3>
+                        <p style="font-size: 15px; color: var(--gray);">Email alone does not tell the full story. We correlate email activity with login logs, Drive/SharePoint access, admin audit logs, and third-party app activity to build a complete picture of what happened.</p>
+                    </div>
+                    <div style="padding: 24px; border: 1px solid var(--border); border-radius: 12px;">
+                        <h3 style="font-size: 18px; margin-bottom: 8px;">Legal Holds & Evidence Preservation</h3>
+                        <p style="font-size: 15px; color: var(--gray);">Implement litigation holds to freeze relevant data before retention policies destroy evidence. Full chain-of-custody documentation from the moment we begin, ensuring everything is defensible in court.</p>
+                    </div>
+                    <div style="padding: 24px; border: 1px solid var(--border); border-radius: 12px;">
+                        <h3 style="font-size: 18px; margin-bottom: 8px;">Timeline Reconstruction & Compliance Reporting</h3>
+                        <p style="font-size: 15px; color: var(--gray);">Detailed timeline of events with supporting evidence for each data point. Compliance reports structured for legal review, regulatory submissions, or internal governance requirements.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Deliverables -->
+    <section class="section-alt" style="padding: 80px 0;">
+        <div class="container">
+            <h2 style="font-size: 36px; text-align: center; margin-bottom: 40px;">What You Get</h2>
+            <div style="max-width: 600px; margin: 0 auto;">
+                <ul class="deliverables">
+                    <li>Detailed investigation report with findings and evidence</li>
+                    <li>Full chain-of-custody documentation</li>
+                    <li>Chronological timeline of events with supporting data</li>
+                    <li>Recommendations for preventing future incidents</li>
+                    <li>Legal-ready documentation for counsel or regulators</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing">
+        <div class="container">
+            <h2>Pricing</h2>
+            <p class="subtitle">Fixed pricing. No hourly rates. No surprises.</p>
+            <div class="pricing-grid" style="grid-template-columns: repeat(2, 1fr); max-width: 700px; margin: 0 auto;">
+                <div class="pricing-card featured">
+                    <h3>Investigation</h3>
+                    <div class="price">&euro;5-10K</div>
+                    <p class="timeline">2-4 weeks</p>
+                    <ul>
+                        <li>Evidence preservation & legal holds</li>
+                        <li>Email forensic analysis</li>
+                        <li>Cross-source correlation</li>
+                        <li>Timeline reconstruction</li>
+                        <li>Investigation report</li>
+                        <li>Legal-ready documentation</li>
+                    </ul>
+                    <a href="https://calendar.app.google/md6WqwnhfireNTqx5" class="btn btn-primary">Book a Call</a>
+                </div>
+                <div class="pricing-card">
+                    <h3>Ongoing Monitoring</h3>
+                    <div class="price">&euro;2K <span>/month</span></div>
+                    <p class="timeline">Ongoing</p>
+                    <ul>
+                        <li>Automated compliance monitoring</li>
+                        <li>Anomaly detection alerts</li>
+                        <li>Monthly compliance reports</li>
+                        <li>Retention policy management</li>
+                        <li>Incident response support</li>
+                    </ul>
+                    <a href="https://calendar.app.google/md6WqwnhfireNTqx5" class="btn btn-secondary">Book a Call</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq section-alt">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3>What email providers do you support?</h3>
+                    <p>We support Google Workspace (Gmail, Google Vault) and Microsoft 365 (Exchange Online, Compliance Center). This covers the vast majority of business email systems. For on-premise Exchange servers, we can work with exported PST files or direct server access.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>How do you handle legal holds?</h3>
+                    <p>We implement litigation holds through Google Vault or Microsoft Purview to preserve all relevant data from the moment an investigation begins. This prevents auto-deletion policies from destroying evidence. We document the hold process for legal defensibility and can provide chain-of-custody documentation.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Is the investigation defensible in court?</h3>
+                    <p>Yes. We follow forensically sound procedures including proper evidence preservation, chain-of-custody documentation, and detailed audit trails. Our investigation reports are structured for legal review and include methodology documentation. We can also serve as a technical witness if needed.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>How long does a typical investigation take?</h3>
+                    <p>A typical email forensics investigation takes 2-4 weeks depending on the volume of data, number of custodians, and complexity of the situation. Urgent matters (suspected active data exfiltration) can be triaged within 48 hours with a preliminary report.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="final-cta">
+        <div class="container">
+            <h2>Ready to Start?</h2>
+            <p>Book a 15-minute call to discuss your investigation needs. Confidential.</p>
+            <a href="https://calendar.app.google/md6WqwnhfireNTqx5" class="btn btn-primary">Book a Call</a>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter" id="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <div class="newsletter-text">
+                    <h2>Get Building Tips</h2>
+                    <p>Weekly insights on automation, AI, and shipping products fast. No spam, unsubscribe anytime.</p>
+                </div>
+                <form class="newsletter-form" action="https://formspree.io/f/xpwzgvqr" method="POST">
+                    <input type="email" name="email" placeholder="your@email.com" required>
+                    <input type="hidden" name="_subject" value="New TechConcepts Newsletter Signup">
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="/services/">Services</a>
+                    <a href="/products/">Products</a>
+                    <a href="/blog/">Blog</a>
+                    <a href="/tools/">Tools</a>
+                    <a href="/podcast/">Podcast</a>
+                    <a href="/about.html">About</a>
+                    <a href="/privacy">Privacy</a>
+                    <a href="/terms">Terms</a>
+                </div>
+                <div class="footer-info">
+                    Madrid, Spain &middot; Mo-Fr 09:00-18:00 CET
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/scripts/analytics.js"></script>
+    <script src="/scripts/i18n.js"></script>
+    <script src="/scripts/nav.js"></script>
+</body>
+</html>

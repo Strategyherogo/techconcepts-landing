@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags -->
+    <title>I Built an MBOX Converter in 30 Minutes with Claude | TechConcepts</title>
+    <meta name="description" content="How I built a Google Vault MBOX to EML converter in 30 minutes using Claude Code. 82 lines of Python, 50K+ emails converted. Full build story.">
+    <meta name="keywords" content="MBOX converter, Google Vault, EML, email migration, Python, Claude Code, automation">
+    <meta name="author" content="Evgeny Goncharov">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://techconcepts.org/blog/mbox-converter.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://techconcepts.org/blog/mbox-converter.html">
+    <meta property="og:title" content="I Built an MBOX Converter in 30 Minutes with Claude">
+    <meta property="og:description" content="82 lines of Python. 50K+ emails converted. From Google Vault MBOX to Outlook EML in half an hour.">
+    <meta property="og:image" content="https://techconcepts.org/techconcepts-og.png">
+    <meta property="og:site_name" content="TechConcepts">
+    <meta property="article:published_time" content="2026-01-15">
+    <meta property="article:author" content="Evgeny Goncharov">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="I Built an MBOX Converter in 30 Minutes with Claude">
+    <meta name="twitter:description" content="82 lines of Python. 50K+ emails converted. Full build story.">
+    <meta name="twitter:image" content="https://techconcepts.org/techconcepts-og.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💡</text></svg>">
+
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-815E8YDZW8"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-815E8YDZW8');
+    </script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="/styles/main.css">
+
+    <!-- Schema.org - BlogPosting -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "I Built an MBOX Converter in 30 Minutes with Claude",
+        "description": "How I built a Google Vault MBOX to EML converter in 30 minutes using Claude Code. 82 lines of Python, 50K+ emails converted.",
+        "url": "https://techconcepts.org/blog/mbox-converter.html",
+        "datePublished": "2026-01-15",
+        "dateModified": "2026-01-15",
+        "author": {
+            "@type": "Person",
+            "name": "Evgeny Goncharov",
+            "url": "https://techconcepts.org/about.html"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "TechConcepts",
+            "url": "https://techconcepts.org"
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://techconcepts.org/blog/mbox-converter.html"
+        },
+        "keywords": ["MBOX", "EML", "email migration", "Python", "Claude Code", "Google Vault"]
+    }
+    </script>
+</head>
+<body data-page-type="blog-post">
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">TechConcepts</a>
+            <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Menu">&#9776;</button>
+            <div class="nav-links" id="navLinks">
+                <a href="/services/">Services</a>
+                <a href="/case-studies/">Case Studies</a>
+                <a href="/products/">Products</a>
+                <a href="/blog/" class="active">Blog</a>
+                <a href="/tools/">Tools</a>
+                <a href="/about.html">About</a>
+                <div class="lang-switcher">
+                    <button class="lang-btn" onclick="toggleLangMenu()"><span id="currentLang">EN</span> &#9662;</button>
+                    <div class="lang-dropdown" id="langDropdown">
+                        <button class="lang-option" onclick="setLanguage('en')">English</button>
+                        <button class="lang-option" onclick="setLanguage('es')">Espanol</button>
+                        <button class="lang-option" onclick="setLanguage('fr')">Francais</button>
+                        <button class="lang-option" onclick="setLanguage('de')">Deutsch</button>
+                        <button class="lang-option" onclick="setLanguage('it')">Italiano</button>
+                    </div>
+                </div>
+                <a href="https://calendar.app.google/md6WqwnhfireNTqx5" class="btn btn-primary">Book a Call</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <span class="tag" style="margin-bottom: 16px; display: inline-block;">Build Story</span>
+            <h1>I Built an MBOX Converter in 30 Minutes with Claude</h1>
+            <p>January 2026 &middot; 5 min read</p>
+        </div>
+    </section>
+
+    <!-- Article Content -->
+    <section style="padding: 0 0 80px;">
+        <div class="container" style="max-width: 740px;">
+            <article class="blog-article">
+
+                <p>A client needed to migrate Google Vault email exports to Outlook. The problem: Google exports in MBOX format. Outlook needs EML files. There's no native converter.</p>
+
+                <p>Instead of searching for paid tools or complicated scripts, I built one myself. Here's exactly how.</p>
+
+                <h4>The Problem</h4>
+                <p>Google Vault exports emails as <code>.mbox</code> files—a format from the 1970s that bundles thousands of emails into a single file. Outlook can't read it. Neither can most email clients.</p>
+
+                <p>The client had 50,000+ emails to migrate. Manual conversion wasn't an option.</p>
+
+                <h4>The Solution: 82 Lines of Python</h4>
+                <p>The core converter is embarrassingly simple:</p>
+
+                <pre>def convert_mbox(mbox_path, output_dir):
+    mbox = mailbox.mbox(mbox_path)
+    count = 0
+    for msg in mbox:
+        # Create filename from date + sender + subject
+        filename = f"{date}_{sender}_{subject}.eml"
+        with open(output_dir / filename, 'wb') as f:
+            f.write(msg.as_bytes())
+        count += 1
+    return count</pre>
+
+                <p>Python's <code>mailbox</code> module does all the heavy lifting. Each email in the MBOX becomes a separate <code>.eml</code> file that Outlook opens natively.</p>
+
+                <h4>Making it User-Friendly</h4>
+                <p>A command-line script wouldn't work for a non-technical client. I needed a native Mac app with drag-and-drop support.</p>
+
+                <p>Problem: Python's tkinter wasn't available on my system. Solution: AppleScript wrapper calling the Python backend.</p>
+
+                <pre>-- AppleScript handles GUI
+set selectedFiles to choose file
+-- Python does the conversion
+do shell script "python3 converter_core.py " &amp; quoted form of filePath</pre>
+
+                <p>Compiled with <code>osacompile</code>, it becomes a proper <code>.app</code> that lives in the Applications folder.</p>
+
+                <h4>Results</h4>
+                <div class="blog-stats">
+                    <div class="blog-stat">
+                        <div class="number">30</div>
+                        <div class="label">Minutes to build</div>
+                    </div>
+                    <div class="blog-stat">
+                        <div class="number">82</div>
+                        <div class="label">Lines of code</div>
+                    </div>
+                    <div class="blog-stat">
+                        <div class="number">50K+</div>
+                        <div class="label">Emails converted</div>
+                    </div>
+                </div>
+
+                <h4>Key Lessons</h4>
+                <ul>
+                    <li><strong>Standard libraries are powerful.</strong> Python's <code>mailbox</code> module handled all the MBOX parsing—no external dependencies.</li>
+                    <li><strong>AppleScript + Python = native Mac apps.</strong> When GUI frameworks don't cooperate, hybrid approaches work.</li>
+                    <li><strong>Build small, ship fast.</strong> The client didn't need a beautiful app. They needed their emails converted today.</li>
+                </ul>
+
+                <p>The full code is open source. If you're migrating from Google Vault to Outlook, reach out—I'll share the app.</p>
+
+                <p style="margin-top: 32px;"><a href="mailto:eg@techconcepts.org?subject=MBOX%20Converter%20Request" style="color: var(--accent); font-weight: 600;">→ Request the MBOX Converter App (free)</a></p>
+
+            </article>
+
+            <!-- Back to Blog -->
+            <div style="margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--border);">
+                <a href="/blog/" style="color: var(--accent); font-weight: 600;">&larr; All blog posts</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="final-cta">
+        <div class="container">
+            <h2>Need a custom tool built fast?</h2>
+            <p>15 minutes. No pitch. Just honest advice on whether I can help.</p>
+            <a href="https://calendar.app.google/md6WqwnhfireNTqx5" class="btn btn-primary">Book a Call</a>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter" id="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <div class="newsletter-text">
+                    <h2>Get Building Tips</h2>
+                    <p>Weekly insights on automation, AI, and shipping products fast. No spam, unsubscribe anytime.</p>
+                </div>
+                <form class="newsletter-form" action="https://formspree.io/f/xpwzgvqr" method="POST">
+                    <input type="email" name="email" placeholder="your@email.com" required>
+                    <input type="hidden" name="_subject" value="New TechConcepts Newsletter Signup">
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="/services/">Services</a>
+                    <a href="/products/">Products</a>
+                    <a href="/blog/">Blog</a>
+                    <a href="/tools/">Tools</a>
+                    <a href="/podcast/">Podcast</a>
+                    <a href="/about.html">About</a>
+                    <a href="/privacy">Privacy</a>
+                    <a href="/terms">Terms</a>
+                </div>
+                <div class="footer-info">
+                    Madrid, Spain &middot; Mo-Fr 09:00-18:00 CET
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/scripts/nav.js"></script>
+    <script src="/scripts/i18n.js"></script>
+    <script src="/scripts/analytics.js"></script>
+</body>
+</html>

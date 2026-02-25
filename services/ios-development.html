@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags -->
+    <title>iOS & macOS App Development | TechConcepts</title>
+    <meta name="description" content="Native SwiftUI apps for iOS, iPadOS, and macOS. StoreKit 2 subscriptions, WidgetKit, push notifications, Apple UX patterns. From &euro;3K.">
+    <meta name="keywords" content="iOS development, macOS development, SwiftUI, StoreKit 2, WidgetKit, push notifications, Apple developer, native app development">
+    <meta name="author" content="Evgeny Goncharov">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://techconcepts.org/services/ios-development.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://techconcepts.org/services/ios-development.html">
+    <meta property="og:title" content="iOS & macOS App Development | TechConcepts">
+    <meta property="og:description" content="Native SwiftUI apps for iOS, iPadOS, and macOS. StoreKit 2 subscriptions, WidgetKit, push notifications.">
+    <meta property="og:image" content="https://techconcepts.org/techconcepts-og.png">
+    <meta property="og:site_name" content="TechConcepts">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@evaborisov">
+    <meta name="twitter:title" content="iOS & macOS App Development | TechConcepts">
+    <meta name="twitter:description" content="Native SwiftUI apps. From widget to full App Store product.">
+    <meta name="twitter:image" content="https://techconcepts.org/techconcepts-og.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💡</text></svg>">
+
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-815E8YDZW8"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-815E8YDZW8');
+    </script>
+
+    <!-- Schema.org - Service -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "serviceType": "iOS & macOS App Development",
+        "provider": {
+            "@type": "LocalBusiness",
+            "name": "TechConcepts",
+            "url": "https://techconcepts.org"
+        },
+        "areaServed": "Worldwide",
+        "description": "Native SwiftUI apps for iOS, iPadOS, and macOS with StoreKit 2 subscriptions, WidgetKit, push notifications, and Apple UX patterns.",
+        "offers": [
+            {
+                "@type": "Offer",
+                "name": "Widget / Utility App",
+                "price": "3000",
+                "priceCurrency": "EUR",
+                "description": "3K-5K depending on complexity"
+            },
+            {
+                "@type": "Offer",
+                "name": "Full App",
+                "price": "10000",
+                "priceCurrency": "EUR",
+                "description": "10K-20K depending on complexity"
+            }
+        ]
+    }
+    </script>
+
+    <!-- Schema.org - FAQPage -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Do you build for both iOS and macOS?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes. We build universal SwiftUI apps that run natively on iOS, iPadOS, and macOS from a single codebase. The UI adapts to each platform's conventions -- navigation patterns, menu bars, keyboard shortcuts -- so the app feels native everywhere, not like a phone app stretched to a desktop."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Do I own the source code?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, 100%. You receive the full Xcode project, all source code, and documentation. No licensing fees, no revenue share, no strings attached. You can modify, extend, or hand it off to another developer at any time."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Can you handle App Store submission?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes. We handle the entire App Store submission process: screenshot generation, app description, privacy policy, App Store Connect setup, TestFlight beta testing, and the review submission itself. If Apple rejects anything, we handle the response and resubmission."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What about ongoing maintenance?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Every project includes 30 days of post-launch support. After that, you can hire us for maintenance at a monthly retainer or handle it yourself -- you own the code. We also build apps with clean architecture so any competent Swift developer can maintain them."
+                }
+            }
+        ]
+    }
+    </script>
+
+    <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body data-page-type="service-detail">
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">TechConcepts</a>
+            <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Menu">&#9776;</button>
+            <div class="nav-links" id="navLinks">
+                <a href="/services/" class="active">Services</a>
+                <a href="/case-studies/">Case Studies</a>
+                <a href="/products/">Products</a>
+                <a href="/blog/">Blog</a>
+                <a href="/tools/">Tools</a>
+                <a href="/about.html">About</a>
+                <div class="lang-switcher">
+                    <button class="lang-btn" onclick="toggleLangMenu()"><span id="currentLang">EN</span> &#9662;</button>
+                    <div class="lang-dropdown" id="langDropdown">
+                        <button class="lang-option" onclick="setLanguage('en')">English</button>
+                        <button class="lang-option" onclick="setLanguage('es')">Espanol</button>
+                        <button class="lang-option" onclick="setLanguage('fr')">Francais</button>
+                        <button class="lang-option" onclick="setLanguage('de')">Deutsch</button>
+                        <button class="lang-option" onclick="setLanguage('it')">Italiano</button>
+                    </div>
+                </div>
+                <a href="https://calendar.app.google/md6WqwnhfireNTqx5" class="btn btn-primary">Book a Call</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <h1>iOS & macOS App Development</h1>
+            <p>Native SwiftUI apps for iOS, iPadOS, and macOS. From widget to full App Store product. You own every line of code.</p>
+            <div class="hero-buttons">
+                <span class="btn btn-secondary">From &euro;3K</span>
+                <a href="https://calendar.app.google/md6WqwnhfireNTqx5" class="btn btn-primary">Book a Call</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem -->
+    <section class="section-alt" style="padding: 80px 0;">
+        <div class="container">
+            <h2 style="font-size: 36px; text-align: center; margin-bottom: 40px;">The Problem</h2>
+            <div style="max-width: 720px; margin: 0 auto;">
+                <p style="font-size: 16px; color: var(--gray); line-height: 1.8; margin-bottom: 16px;">You need a native app but agencies charge &euro;50K+ and take 6 months. Freelancers are cheaper but they disappear mid-project. Cross-platform frameworks promise "write once, run everywhere" but deliver apps that feel wrong on every platform.</p>
+                <p style="font-size: 16px; color: var(--gray); line-height: 1.8; margin-bottom: 16px;">Apple users expect a certain level of polish: smooth animations, platform-native navigation, proper dark mode support, widgets that actually update, and subscriptions that just work. A React Native wrapper with a hamburger menu is not going to cut it.</p>
+                <p style="font-size: 16px; color: var(--gray); line-height: 1.8;">And then there is the App Store itself. Screenshot requirements, privacy nutrition labels, review guidelines, StoreKit integration -- the submission process has its own learning curve that can add weeks to your timeline if you have never done it before.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution -->
+    <section style="padding: 80px 0;">
+        <div class="container">
+            <h2 style="font-size: 36px; text-align: center; margin-bottom: 40px;">What We Do</h2>
+            <div style="max-width: 720px; margin: 0 auto;">
+                <div style="display: grid; gap: 24px;">
+                    <div style="padding: 24px; border: 1px solid var(--border); border-radius: 12px;">
+                        <h3 style="font-size: 18px; margin-bottom: 8px;">SwiftUI Universal Apps</h3>
+                        <p style="font-size: 15px; color: var(--gray);">Single codebase, three platforms. Native navigation patterns on each: tab bars on iPhone, sidebars on iPad, menu bars on Mac. Every app feels like it belongs on the platform it is running on.</p>
+                    </div>
+                    <div style="padding: 24px; border: 1px solid var(--border); border-radius: 12px;">
+                        <h3 style="font-size: 18px; margin-bottom: 8px;">StoreKit 2 Integration</h3>
+                        <p style="font-size: 15px; color: var(--gray);">Subscriptions, one-time purchases, and consumables with the latest StoreKit 2 APIs. Proper receipt validation, family sharing, offer codes, and grace periods. Revenue tracking out of the box.</p>
+                    </div>
+                    <div style="padding: 24px; border: 1px solid var(--border); border-radius: 12px;">
+                        <h3 style="font-size: 18px; margin-bottom: 8px;">WidgetKit & Push Notifications</h3>
+                        <p style="font-size: 15px; color: var(--gray);">Home screen widgets that keep users engaged. Lock screen widgets for at-a-glance information. Push notifications with rich content, actions, and proper notification management.</p>
+                    </div>
+                    <div style="padding: 24px; border: 1px solid var(--border); border-radius: 12px;">
+                        <h3 style="font-size: 18px; margin-bottom: 8px;">App Store Preparation</h3>
+                        <p style="font-size: 15px; color: var(--gray);">Screenshots for every device size, App Store description, privacy nutrition labels, review guideline compliance, TestFlight beta testing, and submission. We handle the full process from Xcode to live on the App Store.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Built -->
+    <section class="section-alt" style="padding: 80px 0;">
+        <div class="container">
+            <h2 style="font-size: 36px; text-align: center; margin-bottom: 16px;">Products We Built</h2>
+            <p style="text-align: center; color: var(--gray); margin-bottom: 40px; font-size: 18px;">Live on the App Store, built with the same process we use for clients.</p>
+            <div class="services-grid" style="grid-template-columns: repeat(3, 1fr);">
+                <div class="service-card" style="cursor: default;">
+                    <div class="icon">&#128267;</div>
+                    <h3>Claude Battery</h3>
+                    <p>Track your Claude API usage with native macOS menu bar app. Real-time cost monitoring, daily/weekly trends, usage alerts.</p>
+                    <span class="price-range">macOS &middot; SwiftUI</span>
+                </div>
+                <div class="service-card" style="cursor: default;">
+                    <div class="icon">&#9889;</div>
+                    <h3>Wattora</h3>
+                    <p>Energy cost tracking for Spanish households. Real-time PVPC pricing, consumption analysis, WidgetKit home screen widgets.</p>
+                    <span class="price-range">iOS &middot; iPadOS &middot; SwiftUI</span>
+                </div>
+                <div class="service-card" style="cursor: default;">
+                    <div class="icon">&#9993;</div>
+                    <h3>PARA Mail</h3>
+                    <p>Email organization based on the PARA method. Smart categorization, project-based inbox, productivity-focused email client.</p>
+                    <span class="price-range">macOS &middot; SwiftUI</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Deliverables -->
+    <section style="padding: 80px 0;">
+        <div class="container">
+            <h2 style="font-size: 36px; text-align: center; margin-bottom: 40px;">What You Get</h2>
+            <div style="max-width: 600px; margin: 0 auto;">
+                <ul class="deliverables">
+                    <li>Full source code and Xcode project</li>
+                    <li>App Store screenshots for all required device sizes</li>
+                    <li>Privacy policy tailored to your app's data usage</li>
+                    <li>Deployment guide and App Store Connect setup</li>
+                    <li>TestFlight beta testing before launch</li>
+                    <li>30-day post-launch support included</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing section-alt">
+        <div class="container">
+            <h2>Pricing</h2>
+            <p class="subtitle">Fixed pricing. No hourly rates. No surprises.</p>
+            <div class="pricing-grid" style="grid-template-columns: repeat(2, 1fr); max-width: 700px; margin: 0 auto;">
+                <div class="pricing-card">
+                    <h3>Widget / Utility</h3>
+                    <div class="price">&euro;3-5K</div>
+                    <p class="timeline">2-3 weeks</p>
+                    <ul>
+                        <li>Single-purpose app or widget</li>
+                        <li>SwiftUI native UI</li>
+                        <li>App Store submission</li>
+                        <li>Basic StoreKit integration</li>
+                        <li>Source code & documentation</li>
+                    </ul>
+                    <a href="https://calendar.app.google/md6WqwnhfireNTqx5" class="btn btn-secondary">Book a Call</a>
+                </div>
+                <div class="pricing-card featured">
+                    <h3>Full App</h3>
+                    <div class="price">&euro;10-20K</div>
+                    <p class="timeline">4-8 weeks</p>
+                    <ul>
+                        <li>Multi-screen app with navigation</li>
+                        <li>Universal (iOS + iPadOS + macOS)</li>
+                        <li>StoreKit 2 subscriptions</li>
+                        <li>WidgetKit & push notifications</li>
+                        <li>App Store screenshots & submission</li>
+                        <li>30-day support</li>
+                    </ul>
+                    <a href="https://calendar.app.google/md6WqwnhfireNTqx5" class="btn btn-primary">Book a Call</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3>Do you build for both iOS and macOS?</h3>
+                    <p>Yes. We build universal SwiftUI apps that run natively on iOS, iPadOS, and macOS from a single codebase. The UI adapts to each platform's conventions -- navigation patterns, menu bars, keyboard shortcuts -- so the app feels native everywhere, not like a phone app stretched to a desktop.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Do I own the source code?</h3>
+                    <p>Yes, 100%. You receive the full Xcode project, all source code, and documentation. No licensing fees, no revenue share, no strings attached. You can modify, extend, or hand it off to another developer at any time.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Can you handle App Store submission?</h3>
+                    <p>Yes. We handle the entire App Store submission process: screenshot generation, app description, privacy policy, App Store Connect setup, TestFlight beta testing, and the review submission itself. If Apple rejects anything, we handle the response and resubmission.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>What about ongoing maintenance?</h3>
+                    <p>Every project includes 30 days of post-launch support. After that, you can hire us for maintenance at a monthly retainer or handle it yourself -- you own the code. We also build apps with clean architecture so any competent Swift developer can maintain them.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="final-cta">
+        <div class="container">
+            <h2>Ready to Start?</h2>
+            <p>Book a 15-minute call to discuss your app idea.</p>
+            <a href="https://calendar.app.google/md6WqwnhfireNTqx5" class="btn btn-primary">Book a Call</a>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter" id="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <div class="newsletter-text">
+                    <h2>Get Building Tips</h2>
+                    <p>Weekly insights on automation, AI, and shipping products fast. No spam, unsubscribe anytime.</p>
+                </div>
+                <form class="newsletter-form" action="https://formspree.io/f/xpwzgvqr" method="POST">
+                    <input type="email" name="email" placeholder="your@email.com" required>
+                    <input type="hidden" name="_subject" value="New TechConcepts Newsletter Signup">
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="/services/">Services</a>
+                    <a href="/products/">Products</a>
+                    <a href="/blog/">Blog</a>
+                    <a href="/tools/">Tools</a>
+                    <a href="/podcast/">Podcast</a>
+                    <a href="/about.html">About</a>
+                    <a href="/privacy">Privacy</a>
+                    <a href="/terms">Terms</a>
+                </div>
+                <div class="footer-info">
+                    Madrid, Spain &middot; Mo-Fr 09:00-18:00 CET
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/scripts/analytics.js"></script>
+    <script src="/scripts/i18n.js"></script>
+    <script src="/scripts/nav.js"></script>
+</body>
+</html>

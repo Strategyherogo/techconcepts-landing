@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags -->
+    <title>Products | TechConcepts</title>
+    <meta name="description" content="Developer tools and apps built by TechConcepts. Claude Battery, AI Ticket Classifier, PARA Mail, Wattora, and more.">
+    <meta name="author" content="Evgeny Goncharov">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://techconcepts.org/products/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://techconcepts.org/products/">
+    <meta property="og:title" content="Products | TechConcepts">
+    <meta property="og:description" content="Developer tools and apps built by TechConcepts. Claude Battery, AI Ticket Classifier, PARA Mail, Wattora, and more.">
+    <meta property="og:image" content="https://techconcepts.org/techconcepts-og.png">
+    <meta property="og:site_name" content="TechConcepts">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Products | TechConcepts">
+    <meta name="twitter:description" content="Developer tools and apps built by TechConcepts.">
+    <meta name="twitter:image" content="https://techconcepts.org/techconcepts-og.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💡</text></svg>">
+
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-815E8YDZW8"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-815E8YDZW8');
+    </script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="/styles/main.css">
+
+    <!-- Schema.org - ItemList of SoftwareApplication -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "TechConcepts Products",
+        "description": "Developer tools and apps built by TechConcepts.",
+        "url": "https://techconcepts.org/products/",
+        "numberOfItems": 6,
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "Claude Battery",
+                    "description": "Track Claude Code usage in real-time. macOS menu bar app.",
+                    "url": "https://techconcepts.org/claude-battery/",
+                    "operatingSystem": "macOS",
+                    "applicationCategory": "DeveloperApplication"
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "AI Ticket Classifier",
+                    "description": "Auto-classify Jira tickets with AI. Issue type, priority, assignee.",
+                    "url": "https://techconcepts.org/ai-classifier/",
+                    "operatingSystem": "Jira Cloud",
+                    "applicationCategory": "BusinessApplication"
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "PARA Mail",
+                    "description": "Organize email using the PARA method. Smart categorization across all accounts.",
+                    "url": "https://techconcepts.org/paramail/",
+                    "operatingSystem": "macOS",
+                    "applicationCategory": "BusinessApplication"
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 4,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "Wattora",
+                    "description": "Real-time electricity prices for 5 European markets. Alerts and widgets.",
+                    "url": "https://techconcepts.org/wattora/",
+                    "operatingSystem": "iOS, macOS",
+                    "applicationCategory": "UtilitiesApplication"
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 5,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "Email Exporter",
+                    "description": "Export emails to PDF from Gmail, Outlook, Yahoo. Privacy-first.",
+                    "url": "https://techconcepts.org/email-exporter/",
+                    "operatingSystem": "Chrome",
+                    "applicationCategory": "UtilitiesApplication"
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 6,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "Bulk Issue Rewriter",
+                    "description": "AI-powered bulk text editing for Jira issues.",
+                    "url": "https://techconcepts.org/bulk-issue-rewriter/",
+                    "operatingSystem": "Jira Cloud",
+                    "applicationCategory": "BusinessApplication"
+                }
+            }
+        ]
+    }
+    </script>
+</head>
+<body data-page-type="products">
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">TechConcepts</a>
+            <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Menu">&#9776;</button>
+            <div class="nav-links" id="navLinks">
+                <a href="/services/">Services</a>
+                <a href="/case-studies/">Case Studies</a>
+                <a href="/products/" class="active">Products</a>
+                <a href="/blog/">Blog</a>
+                <a href="/tools/">Tools</a>
+                <a href="/about.html">About</a>
+                <div class="lang-switcher">
+                    <button class="lang-btn" onclick="toggleLangMenu()"><span id="currentLang">EN</span> &#9662;</button>
+                    <div class="lang-dropdown" id="langDropdown">
+                        <button class="lang-option" onclick="setLanguage('en')">English</button>
+                        <button class="lang-option" onclick="setLanguage('es')">Espanol</button>
+                        <button class="lang-option" onclick="setLanguage('fr')">Francais</button>
+                        <button class="lang-option" onclick="setLanguage('de')">Deutsch</button>
+                        <button class="lang-option" onclick="setLanguage('it')">Italiano</button>
+                    </div>
+                </div>
+                <a href="https://calendar.app.google/md6WqwnhfireNTqx5" class="btn btn-primary">Book a Call</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <h1>Products</h1>
+            <p>Tools and apps built by TechConcepts. Each one solves a real problem I ran into.</p>
+        </div>
+    </section>
+
+    <!-- Products Grid -->
+    <section style="padding: 0 0 100px;">
+        <div class="container">
+            <div class="product-grid">
+
+                <!-- Claude Battery -->
+                <a href="/claude-battery/" class="product-card">
+                    <div class="icon">&#x1F50B;</div>
+                    <h3>Claude Battery</h3>
+                    <p>Track Claude Code usage in real-time. macOS menu bar app that shows your remaining tokens and rate limit status at a glance.</p>
+                    <div class="platform">macOS</div>
+                </a>
+
+                <!-- AI Ticket Classifier -->
+                <a href="/ai-classifier/" class="product-card">
+                    <div class="icon">&#x1F3AF;</div>
+                    <h3>AI Ticket Classifier</h3>
+                    <p>Auto-classify Jira tickets with AI. Automatically sets issue type, priority, and assignee based on ticket content.</p>
+                    <div class="platform">Jira Cloud</div>
+                </a>
+
+                <!-- PARA Mail -->
+                <a href="/paramail/" class="product-card">
+                    <div class="icon">&#x1F4EC;</div>
+                    <h3>PARA Mail</h3>
+                    <p>Organize email using the PARA method. Smart categorization across all your email accounts into Projects, Areas, Resources, and Archive.</p>
+                    <div class="platform">macOS</div>
+                </a>
+
+                <!-- Wattora -->
+                <a href="/wattora/" class="product-card">
+                    <div class="icon">&#x26A1;</div>
+                    <h3>Wattora</h3>
+                    <p>Real-time electricity prices for 5 European markets. Price alerts, home screen widgets, and historical data.</p>
+                    <div class="platform">iOS / macOS</div>
+                </a>
+
+                <!-- Email Exporter -->
+                <a href="/email-exporter/" class="product-card">
+                    <div class="icon">&#x1F4E4;</div>
+                    <h3>Email Exporter</h3>
+                    <p>Export emails to PDF from Gmail, Outlook, Yahoo. All processing happens locally. Privacy-first, no data leaves your browser.</p>
+                    <div class="platform">Chrome Extension</div>
+                </a>
+
+                <!-- Bulk Issue Rewriter -->
+                <a href="/bulk-issue-rewriter/" class="product-card">
+                    <div class="icon">&#x270F;&#xFE0F;</div>
+                    <h3>Bulk Issue Rewriter</h3>
+                    <p>AI-powered bulk text editing for Jira issues. Rewrite summaries, descriptions, and comments across hundreds of issues at once.</p>
+                    <div class="platform">Jira Cloud</div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="final-cta">
+        <div class="container">
+            <h2>Need a custom product?</h2>
+            <p>I build products for founders. Fixed pricing, full code ownership.</p>
+            <a href="https://calendar.app.google/md6WqwnhfireNTqx5" class="btn btn-primary">Book a Call</a>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter" id="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <div class="newsletter-text">
+                    <h2>Get Building Tips</h2>
+                    <p>Weekly insights on automation, AI, and shipping products fast. No spam, unsubscribe anytime.</p>
+                </div>
+                <form class="newsletter-form" action="https://formspree.io/f/xpwzgvqr" method="POST">
+                    <input type="email" name="email" placeholder="your@email.com" required>
+                    <input type="hidden" name="_subject" value="New TechConcepts Newsletter Signup">
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="/services/">Services</a>
+                    <a href="/products/">Products</a>
+                    <a href="/blog/">Blog</a>
+                    <a href="/tools/">Tools</a>
+                    <a href="/podcast/">Podcast</a>
+                    <a href="/about.html">About</a>
+                    <a href="/privacy">Privacy</a>
+                    <a href="/terms">Terms</a>
+                </div>
+                <div class="footer-info">
+                    Madrid, Spain &middot; Mo-Fr 09:00-18:00 CET
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/scripts/nav.js"></script>
+    <script src="/scripts/i18n.js"></script>
+    <script src="/scripts/analytics.js"></script>
+</body>
+</html>

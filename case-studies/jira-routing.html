@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags -->
+    <title>Jira Ticket Routing System — Case Study | TechConcepts</title>
+    <meta name="description" content="How TechConcepts built an automated Jira ticket routing system that saved €100K+ annually, eliminated the need for a new hire, and achieved 100% SLA compliance.">
+    <meta name="author" content="Evgeny Goncharov">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://techconcepts.org/case-studies/jira-routing.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://techconcepts.org/case-studies/jira-routing.html">
+    <meta property="og:title" content="Jira Ticket Routing System — Case Study | TechConcepts">
+    <meta property="og:description" content="€100K+ annual savings, 100% SLA compliance, zero new hires needed. Automated Jira ticket routing.">
+    <meta property="og:image" content="https://techconcepts.org/techconcepts-og.png">
+    <meta property="og:site_name" content="TechConcepts">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Jira Ticket Routing System — Case Study">
+    <meta name="twitter:description" content="€100K+ annual savings, 100% SLA compliance, zero new hires needed.">
+    <meta name="twitter:image" content="https://techconcepts.org/techconcepts-og.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💡</text></svg>">
+
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-815E8YDZW8"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-815E8YDZW8');
+    </script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="/styles/main.css">
+
+    <!-- Schema.org - Article -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Jira Ticket Routing System — Case Study",
+        "description": "How TechConcepts built an automated Jira ticket routing system that saved €100K+ annually and achieved 100% SLA compliance.",
+        "url": "https://techconcepts.org/case-studies/jira-routing.html",
+        "author": {
+            "@type": "Person",
+            "name": "Evgeny Goncharov",
+            "url": "https://techconcepts.org"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "TechConcepts",
+            "url": "https://techconcepts.org"
+        },
+        "mainEntityOfPage": "https://techconcepts.org/case-studies/jira-routing.html"
+    }
+    </script>
+</head>
+<body data-page-type="case-study">
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">TechConcepts</a>
+            <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Menu">&#9776;</button>
+            <div class="nav-links" id="navLinks">
+                <a href="/services/">Services</a>
+                <a href="/case-studies/" class="active">Case Studies</a>
+                <a href="/products/">Products</a>
+                <a href="/blog/">Blog</a>
+                <a href="/tools/">Tools</a>
+                <a href="/about.html">About</a>
+                <div class="lang-switcher">
+                    <button class="lang-btn" onclick="toggleLangMenu()"><span id="currentLang">EN</span> &#9662;</button>
+                    <div class="lang-dropdown" id="langDropdown">
+                        <button class="lang-option" onclick="setLanguage('en')">English</button>
+                        <button class="lang-option" onclick="setLanguage('es')">Espanol</button>
+                        <button class="lang-option" onclick="setLanguage('fr')">Francais</button>
+                        <button class="lang-option" onclick="setLanguage('de')">Deutsch</button>
+                        <button class="lang-option" onclick="setLanguage('it')">Italiano</button>
+                    </div>
+                </div>
+                <a href="https://calendar.app.google/md6WqwnhfireNTqx5" class="btn btn-primary">Book a Call</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Case Study Detail -->
+    <section class="case-studies">
+        <div class="container">
+            <div class="case-study">
+                <div class="case-header">
+                    <div class="case-tag">Workflow Automation</div>
+                    <h2 style="font-size: 36px; margin-top: 8px;">Jira Ticket Routing System</h2>
+                </div>
+
+                <div class="case-grid">
+                    <div>
+                        <h4>Problem</h4>
+                        <p>"We need another ops person." That was the request from the IT team lead. The team was spending more time shuffling tickets than solving problems. Every new Jira issue sat in a queue until someone manually triaged it, figured out who should own it, and moved it to the right board. Priority tickets got buried. SLAs were slipping. The team was growing frustrated, and leadership was about to approve a new headcount just to manage the queue.</p>
+                    </div>
+                    <div>
+                        <h4>Solution</h4>
+                        <p>We built an automated routing system that sits on top of Jira. When a new ticket comes in, the system analyzes its type, urgency, and content, then auto-routes it to the right team and assigns it based on current workload. It monitors SLA timers and escalates before breaches happen, not after. Weekly reports go out automatically with queue health metrics, bottleneck identification, and team utilization stats. The entire system runs without human intervention for 95% of tickets.</p>
+                    </div>
+                    <div>
+                        <h4>Results</h4>
+                        <div class="case-metrics">
+                            <div class="metric">
+                                <span class="metric-value">€100K+</span>
+                                <span class="metric-label">Annual Savings</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">0</span>
+                                <span class="metric-label">New Hires Needed</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">100%</span>
+                                <span class="metric-label">SLA Compliance</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">4h</span>
+                                <span class="metric-label">Saved Weekly/Person</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--border);">
+                    <h4 style="font-size: 14px; text-transform: uppercase; color: var(--gray); margin-bottom: 16px;">Lessons Learned</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 8px 0; font-size: 15px; display: flex; align-items: flex-start; gap: 10px;"><span style="color: var(--success); font-weight: bold;">&#10003;</span> The bottleneck was never headcount. It was ticket routing. Fix the system, not the team size.</li>
+                        <li style="padding: 8px 0; font-size: 15px; display: flex; align-items: flex-start; gap: 10px;"><span style="color: var(--success); font-weight: bold;">&#10003;</span> SLA compliance went from "we try" to "automatic" by building escalation into the workflow, not the culture.</li>
+                        <li style="padding: 8px 0; font-size: 15px; display: flex; align-items: flex-start; gap: 10px;"><span style="color: var(--success); font-weight: bold;">&#10003;</span> Weekly automated reports created accountability without creating meetings.</li>
+                    </ul>
+                </div>
+
+                <div style="margin-top: 32px; padding: 24px; background: var(--light-gray); border-radius: 12px;">
+                    <p style="font-size: 15px; color: var(--gray); margin-bottom: 12px;">Related Service</p>
+                    <a href="/services/jira-optimization.html" class="btn btn-secondary">Jira Optimization & AI</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="final-cta">
+        <div class="container">
+            <h2>Tired of shuffling tickets?</h2>
+            <p>Let's automate your Jira workflows and free up your team.</p>
+            <a href="https://calendar.app.google/md6WqwnhfireNTqx5" class="btn btn-primary">Book a Call</a>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter" id="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <div class="newsletter-text">
+                    <h2>Get Building Tips</h2>
+                    <p>Weekly insights on automation, AI, and shipping products fast. No spam, unsubscribe anytime.</p>
+                </div>
+                <form class="newsletter-form" action="https://formspree.io/f/xpwzgvqr" method="POST">
+                    <input type="email" name="email" placeholder="your@email.com" required>
+                    <input type="hidden" name="_subject" value="New TechConcepts Newsletter Signup">
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="/services/">Services</a>
+                    <a href="/products/">Products</a>
+                    <a href="/blog/">Blog</a>
+                    <a href="/tools/">Tools</a>
+                    <a href="/podcast/">Podcast</a>
+                    <a href="/about.html">About</a>
+                    <a href="/privacy">Privacy</a>
+                    <a href="/terms">Terms</a>
+                </div>
+                <div class="footer-info">
+                    Madrid, Spain &middot; Mo-Fr 09:00-18:00 CET
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/scripts/nav.js"></script>
+    <script src="/scripts/i18n.js"></script>
+    <script src="/scripts/analytics.js"></script>
+</body>
+</html>

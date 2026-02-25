@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags -->
+    <title>Jira Optimization & AI Classification | TechConcepts</title>
+    <meta name="description" content="Optimize your Jira workflows with AI ticket classification, SLA design, and automated routing. Saved one company &euro;100K+ annually. Audit from &euro;3K.">
+    <meta name="keywords" content="Jira optimization, AI ticket classification, Jira SLA, automated routing, Jira workflow, Jira audit, ticket management">
+    <meta name="author" content="Evgeny Goncharov">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://techconcepts.org/services/jira-optimization.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://techconcepts.org/services/jira-optimization.html">
+    <meta property="og:title" content="Jira Optimization & AI Classification | TechConcepts">
+    <meta property="og:description" content="Optimize Jira workflows with AI ticket classification and automated routing. Saved one company &euro;100K+ annually.">
+    <meta property="og:image" content="https://techconcepts.org/techconcepts-og.png">
+    <meta property="og:site_name" content="TechConcepts">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@evaborisov">
+    <meta name="twitter:title" content="Jira Optimization & AI Classification | TechConcepts">
+    <meta name="twitter:description" content="AI-powered Jira workflows. Saved one company &euro;100K+ annually.">
+    <meta name="twitter:image" content="https://techconcepts.org/techconcepts-og.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💡</text></svg>">
+
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-815E8YDZW8"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-815E8YDZW8');
+    </script>
+
+    <!-- Schema.org - Service -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "serviceType": "Jira Optimization & AI Classification",
+        "provider": {
+            "@type": "LocalBusiness",
+            "name": "TechConcepts",
+            "url": "https://techconcepts.org"
+        },
+        "areaServed": "Worldwide",
+        "description": "Optimize Jira workflows with AI ticket classification, SLA design, automated routing, and weekly reports.",
+        "offers": [
+            {
+                "@type": "Offer",
+                "name": "Jira Audit",
+                "price": "3000",
+                "priceCurrency": "EUR"
+            },
+            {
+                "@type": "Offer",
+                "name": "Full Implementation",
+                "price": "10000",
+                "priceCurrency": "EUR",
+                "description": "10K-15K depending on complexity"
+            }
+        ]
+    }
+    </script>
+
+    <!-- Schema.org - FAQPage -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "How accurate is AI ticket classification?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Our AI ticket classification achieves 92-97% accuracy after training on your historical data. The system classifies issue type, priority, and assignee automatically. It learns from corrections, so accuracy improves over time. For the remaining edge cases, tickets are flagged for human review rather than misrouted."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Does this work with Jira Cloud and Data Center?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, we support both Jira Cloud and Jira Data Center. The implementation approach differs slightly -- Cloud uses Forge apps and REST APIs, while Data Center uses ScriptRunner or custom plugins -- but the end result is the same: automated classification, routing, and reporting."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How long does a Jira audit take?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "A Jira audit takes 1-2 weeks. We analyze your current workflows, issue types, custom fields, automations, permissions, and SLA compliance. The deliverable is a detailed report with specific recommendations, quick wins you can implement immediately, and a roadmap for larger changes."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What if we already have custom workflows?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Custom workflows are the norm, not the exception. We audit what you have, identify bottlenecks and redundancies, and optimize from there. We never throw away working processes -- we streamline them. If a workflow exists for a good reason, we keep it and make it faster."
+                }
+            }
+        ]
+    }
+    </script>
+
+    <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body data-page-type="service-detail">
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">TechConcepts</a>
+            <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Menu">&#9776;</button>
+            <div class="nav-links" id="navLinks">
+                <a href="/services/" class="active">Services</a>
+                <a href="/case-studies/">Case Studies</a>
+                <a href="/products/">Products</a>
+                <a href="/blog/">Blog</a>
+                <a href="/tools/">Tools</a>
+                <a href="/about.html">About</a>
+                <div class="lang-switcher">
+                    <button class="lang-btn" onclick="toggleLangMenu()"><span id="currentLang">EN</span> &#9662;</button>
+                    <div class="lang-dropdown" id="langDropdown">
+                        <button class="lang-option" onclick="setLanguage('en')">English</button>
+                        <button class="lang-option" onclick="setLanguage('es')">Espanol</button>
+                        <button class="lang-option" onclick="setLanguage('fr')">Francais</button>
+                        <button class="lang-option" onclick="setLanguage('de')">Deutsch</button>
+                        <button class="lang-option" onclick="setLanguage('it')">Italiano</button>
+                    </div>
+                </div>
+                <a href="https://calendar.app.google/md6WqwnhfireNTqx5" class="btn btn-primary">Book a Call</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <h1>Jira Optimization & AI Classification</h1>
+            <p>Stop spending more time managing tickets than solving problems. AI-powered classification, automated routing, and SLA design that actually works.</p>
+            <div class="hero-buttons">
+                <span class="btn btn-secondary">From &euro;3K</span>
+                <a href="https://calendar.app.google/md6WqwnhfireNTqx5" class="btn btn-primary">Book a Call</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem -->
+    <section class="section-alt" style="padding: 80px 0;">
+        <div class="container">
+            <h2 style="font-size: 36px; text-align: center; margin-bottom: 40px;">The Problem</h2>
+            <div style="max-width: 720px; margin: 0 auto;">
+                <p style="font-size: 16px; color: var(--gray); line-height: 1.8; margin-bottom: 16px;">Your team is spending more time managing Jira than doing actual work. Tickets pile up in the wrong queues. Priority levels are meaningless because everything is marked "High." Half your custom fields are never filled in, and the other half are filled in wrong.</p>
+                <p style="font-size: 16px; color: var(--gray); line-height: 1.8; margin-bottom: 16px;">SLAs exist on paper but nobody tracks them. When a ticket does get misrouted, it bounces between teams for days before someone notices. Your weekly status meetings are spent arguing about what is actually in progress rather than making progress.</p>
+                <p style="font-size: 16px; color: var(--gray); line-height: 1.8;">The worst part: you know Jira can do better, but every attempt to "fix it" adds more complexity. More custom fields, more workflow states, more automation rules that fire at the wrong time. The tool that was supposed to organize your work is now generating work.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution -->
+    <section style="padding: 80px 0;">
+        <div class="container">
+            <h2 style="font-size: 36px; text-align: center; margin-bottom: 40px;">What We Do</h2>
+            <div style="max-width: 720px; margin: 0 auto;">
+                <div style="display: grid; gap: 24px;">
+                    <div style="padding: 24px; border: 1px solid var(--border); border-radius: 12px;">
+                        <h3 style="font-size: 18px; margin-bottom: 8px;">Workspace Audit</h3>
+                        <p style="font-size: 15px; color: var(--gray);">Deep analysis of your current Jira setup: workflows, issue types, custom fields, permissions, automations, and actual usage patterns. We find what is working, what is dead weight, and what is actively causing harm.</p>
+                    </div>
+                    <div style="padding: 24px; border: 1px solid var(--border); border-radius: 12px;">
+                        <h3 style="font-size: 18px; margin-bottom: 8px;">AI Classification</h3>
+                        <p style="font-size: 15px; color: var(--gray);">Automatic classification of incoming tickets by issue type, priority, and assignee. The AI learns from your historical data and gets smarter over time. 92-97% accuracy out of the gate, with continuous improvement.</p>
+                    </div>
+                    <div style="padding: 24px; border: 1px solid var(--border); border-radius: 12px;">
+                        <h3 style="font-size: 18px; margin-bottom: 8px;">SLA Scheme Design</h3>
+                        <p style="font-size: 15px; color: var(--gray);">Design SLA schemes that match your actual service commitments. Response times, resolution targets, escalation paths -- all automated with real-time tracking and alerts before breaches happen.</p>
+                    </div>
+                    <div style="padding: 24px; border: 1px solid var(--border); border-radius: 12px;">
+                        <h3 style="font-size: 18px; margin-bottom: 8px;">Automated Routing & Weekly Reports</h3>
+                        <p style="font-size: 15px; color: var(--gray);">Tickets land in the right queue from day one. Workload-balanced assignment ensures no one person is overwhelmed. Weekly reports generated automatically with SLA compliance, throughput, and bottleneck analysis.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Deliverables -->
+    <section class="section-alt" style="padding: 80px 0;">
+        <div class="container">
+            <h2 style="font-size: 36px; text-align: center; margin-bottom: 40px;">What You Get</h2>
+            <div style="max-width: 600px; margin: 0 auto;">
+                <ul class="deliverables">
+                    <li>Comprehensive Jira audit report with specific recommendations</li>
+                    <li>Workflow redesign and simplification</li>
+                    <li>AI classifier setup and training on your historical data</li>
+                    <li>SLA dashboard with real-time compliance tracking</li>
+                    <li>Automated routing rules and escalation paths</li>
+                    <li>Training documentation for your team</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing">
+        <div class="container">
+            <h2>Pricing</h2>
+            <p class="subtitle">Fixed pricing. No hourly rates. No surprises.</p>
+            <div class="pricing-grid" style="grid-template-columns: repeat(2, 1fr); max-width: 700px; margin: 0 auto;">
+                <div class="pricing-card">
+                    <h3>Audit</h3>
+                    <div class="price">&euro;3K</div>
+                    <p class="timeline">1-2 weeks</p>
+                    <ul>
+                        <li>Full workspace analysis</li>
+                        <li>Workflow assessment</li>
+                        <li>Quick wins identified</li>
+                        <li>Optimization roadmap</li>
+                        <li>Prioritized recommendations</li>
+                    </ul>
+                    <a href="https://calendar.app.google/md6WqwnhfireNTqx5" class="btn btn-secondary">Book a Call</a>
+                </div>
+                <div class="pricing-card featured">
+                    <h3>Implementation</h3>
+                    <div class="price">&euro;10-15K</div>
+                    <p class="timeline">4-6 weeks</p>
+                    <ul>
+                        <li>Everything in Audit</li>
+                        <li>AI classifier deployment</li>
+                        <li>Workflow redesign</li>
+                        <li>SLA scheme setup</li>
+                        <li>Automated routing</li>
+                        <li>Team training</li>
+                        <li>30-day support</li>
+                    </ul>
+                    <a href="https://calendar.app.google/md6WqwnhfireNTqx5" class="btn btn-primary">Book a Call</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq section-alt">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3>How accurate is AI ticket classification?</h3>
+                    <p>Our AI ticket classification achieves 92-97% accuracy after training on your historical data. The system classifies issue type, priority, and assignee automatically. It learns from corrections, so accuracy improves over time. For the remaining edge cases, tickets are flagged for human review rather than misrouted.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Does this work with Jira Cloud and Data Center?</h3>
+                    <p>Yes, we support both Jira Cloud and Jira Data Center. The implementation approach differs slightly -- Cloud uses Forge apps and REST APIs, while Data Center uses ScriptRunner or custom plugins -- but the end result is the same: automated classification, routing, and reporting.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>How long does a Jira audit take?</h3>
+                    <p>A Jira audit takes 1-2 weeks. We analyze your current workflows, issue types, custom fields, automations, permissions, and SLA compliance. The deliverable is a detailed report with specific recommendations, quick wins you can implement immediately, and a roadmap for larger changes.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>What if we already have custom workflows?</h3>
+                    <p>Custom workflows are the norm, not the exception. We audit what you have, identify bottlenecks and redundancies, and optimize from there. We never throw away working processes -- we streamline them. If a workflow exists for a good reason, we keep it and make it faster.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Case Study -->
+    <section style="padding: 80px 0;">
+        <div class="container">
+            <div class="case-study">
+                <div class="case-header">
+                    <span class="case-tag">Case Study</span>
+                    <h3>Jira Ticket Routing: &euro;100K+ Annual Savings</h3>
+                </div>
+                <div class="case-grid">
+                    <div>
+                        <h4>Challenge</h4>
+                        <p>A growing company was manually triaging hundreds of tickets per week. Misrouted tickets, missed SLAs, and frustrated teams were the daily norm.</p>
+                    </div>
+                    <div>
+                        <h4>Solution</h4>
+                        <p>AI-powered ticket classification with automated routing by type, workload-balanced assignment, SLA tracking, and automated escalation before breaches.</p>
+                    </div>
+                    <div>
+                        <h4>Results</h4>
+                        <div class="case-metrics">
+                            <div class="metric">
+                                <span class="metric-value">&euro;100K+</span>
+                                <span class="metric-label">Annual Savings</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">95%</span>
+                                <span class="metric-label">SLA Compliance</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-top: 24px;">
+                    <a href="/case-studies/jira-routing.html" class="btn btn-secondary">Read Full Case Study</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="final-cta">
+        <div class="container">
+            <h2>Ready to Start?</h2>
+            <p>Book a 15-minute call to discuss your Jira challenges.</p>
+            <a href="https://calendar.app.google/md6WqwnhfireNTqx5" class="btn btn-primary">Book a Call</a>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter" id="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <div class="newsletter-text">
+                    <h2>Get Building Tips</h2>
+                    <p>Weekly insights on automation, AI, and shipping products fast. No spam, unsubscribe anytime.</p>
+                </div>
+                <form class="newsletter-form" action="https://formspree.io/f/xpwzgvqr" method="POST">
+                    <input type="email" name="email" placeholder="your@email.com" required>
+                    <input type="hidden" name="_subject" value="New TechConcepts Newsletter Signup">
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="/services/">Services</a>
+                    <a href="/products/">Products</a>
+                    <a href="/blog/">Blog</a>
+                    <a href="/tools/">Tools</a>
+                    <a href="/podcast/">Podcast</a>
+                    <a href="/about.html">About</a>
+                    <a href="/privacy">Privacy</a>
+                    <a href="/terms">Terms</a>
+                </div>
+                <div class="footer-info">
+                    Madrid, Spain &middot; Mo-Fr 09:00-18:00 CET
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/scripts/analytics.js"></script>
+    <script src="/scripts/i18n.js"></script>
+    <script src="/scripts/nav.js"></script>
+</body>
+</html>

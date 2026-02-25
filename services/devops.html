@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags -->
+    <title>Infrastructure & DevOps | TechConcepts</title>
+    <meta name="description" content="Cloudflare Workers, Docker, CI/CD pipelines, and infrastructure monitoring. Assessment from &euro;2K, implementation from &euro;5K.">
+    <meta name="keywords" content="DevOps, infrastructure, Cloudflare Workers, Docker, CI/CD, monitoring, cloud architecture, deployment automation">
+    <meta name="author" content="Evgeny Goncharov">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://techconcepts.org/services/devops.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://techconcepts.org/services/devops.html">
+    <meta property="og:title" content="Infrastructure & DevOps | TechConcepts">
+    <meta property="og:description" content="Cloudflare Workers, Docker, CI/CD pipelines, and infrastructure monitoring. Assessment from &euro;2K.">
+    <meta property="og:image" content="https://techconcepts.org/techconcepts-og.png">
+    <meta property="og:site_name" content="TechConcepts">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@evaborisov">
+    <meta name="twitter:title" content="Infrastructure & DevOps | TechConcepts">
+    <meta name="twitter:description" content="Cloud architecture, Docker, CI/CD, and monitoring. From assessment to implementation.">
+    <meta name="twitter:image" content="https://techconcepts.org/techconcepts-og.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💡</text></svg>">
+
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-815E8YDZW8"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-815E8YDZW8');
+    </script>
+
+    <!-- Schema.org - Service -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "serviceType": "Infrastructure & DevOps",
+        "provider": {
+            "@type": "LocalBusiness",
+            "name": "TechConcepts",
+            "url": "https://techconcepts.org"
+        },
+        "areaServed": "Worldwide",
+        "description": "Cloudflare Workers, Docker, CI/CD pipelines, and infrastructure monitoring. From assessment to full implementation.",
+        "offers": [
+            {
+                "@type": "Offer",
+                "name": "Assessment",
+                "price": "2000",
+                "priceCurrency": "EUR"
+            },
+            {
+                "@type": "Offer",
+                "name": "Implementation",
+                "price": "5000",
+                "priceCurrency": "EUR",
+                "description": "5K-15K depending on scope"
+            }
+        ]
+    }
+    </script>
+
+    <!-- Schema.org - FAQPage -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "What cloud providers do you work with?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "We work primarily with Cloudflare (Workers, Pages, R2, D1), DigitalOcean (Droplets, App Platform, Managed Databases), and AWS (for specific services like S3, SES, Lambda). We recommend the simplest and most cost-effective platform for your needs -- not the one with the biggest ecosystem."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Do you offer ongoing support?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Every implementation includes 30 days of post-launch support. For ongoing DevOps support, we offer monthly retainers starting at &euro;2K/month that cover monitoring, incident response, infrastructure updates, and on-call availability. You can also self-manage -- we deliver complete runbooks and documentation."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Can you migrate our existing infrastructure?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes. We handle migrations from legacy setups (bare metal, shared hosting, manually-managed VPS) to modern infrastructure. This includes containerization with Docker, CI/CD pipeline setup, DNS migration, SSL certificate management, and zero-downtime cutover strategies."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How do you handle security?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Security is built into every layer: network isolation, secrets management (never in code), automated security updates, access control with audit logging, DDoS protection via Cloudflare, and container scanning for vulnerabilities. We also set up monitoring alerts for suspicious activity."
+                }
+            }
+        ]
+    }
+    </script>
+
+    <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body data-page-type="service-detail">
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">TechConcepts</a>
+            <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Menu">&#9776;</button>
+            <div class="nav-links" id="navLinks">
+                <a href="/services/" class="active">Services</a>
+                <a href="/case-studies/">Case Studies</a>
+                <a href="/products/">Products</a>
+                <a href="/blog/">Blog</a>
+                <a href="/tools/">Tools</a>
+                <a href="/about.html">About</a>
+                <div class="lang-switcher">
+                    <button class="lang-btn" onclick="toggleLangMenu()"><span id="currentLang">EN</span> &#9662;</button>
+                    <div class="lang-dropdown" id="langDropdown">
+                        <button class="lang-option" onclick="setLanguage('en')">English</button>
+                        <button class="lang-option" onclick="setLanguage('es')">Espanol</button>
+                        <button class="lang-option" onclick="setLanguage('fr')">Francais</button>
+                        <button class="lang-option" onclick="setLanguage('de')">Deutsch</button>
+                        <button class="lang-option" onclick="setLanguage('it')">Italiano</button>
+                    </div>
+                </div>
+                <a href="https://calendar.app.google/md6WqwnhfireNTqx5" class="btn btn-primary">Book a Call</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <h1>Infrastructure & DevOps</h1>
+            <p>Cloud architecture, Docker, CI/CD pipelines, and monitoring. Modern infrastructure without the full-time DevOps hire.</p>
+            <div class="hero-buttons">
+                <span class="btn btn-secondary">From &euro;2K</span>
+                <a href="https://calendar.app.google/md6WqwnhfireNTqx5" class="btn btn-primary">Book a Call</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem -->
+    <section class="section-alt" style="padding: 80px 0;">
+        <div class="container">
+            <h2 style="font-size: 36px; text-align: center; margin-bottom: 40px;">The Problem</h2>
+            <div style="max-width: 720px; margin: 0 auto;">
+                <p style="font-size: 16px; color: var(--gray); line-height: 1.8; margin-bottom: 16px;">Your infrastructure grew organically. What started as a simple VPS now includes three cloud providers, five manual deployment scripts, and a server that "Bob set up two years ago and nobody remembers how it works." Deployments are scary. Rollbacks are scarier.</p>
+                <p style="font-size: 16px; color: var(--gray); line-height: 1.8; margin-bottom: 16px;">You know you need CI/CD, proper containerization, and monitoring. But hiring a full-time DevOps engineer costs &euro;80K+ per year, and your infrastructure does not need full-time attention -- it needs someone to set it up properly once so your developers can ship without fear.</p>
+                <p style="font-size: 16px; color: var(--gray); line-height: 1.8;">Meanwhile, your developers are spending 20% of their time fighting infrastructure instead of building features. Every deployment is a manual process with its own checklist. Monitoring is "someone checks the server once a day." And you are paying for cloud resources nobody is using.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution -->
+    <section style="padding: 80px 0;">
+        <div class="container">
+            <h2 style="font-size: 36px; text-align: center; margin-bottom: 40px;">What We Do</h2>
+            <div style="max-width: 720px; margin: 0 auto;">
+                <div style="display: grid; gap: 24px;">
+                    <div style="padding: 24px; border: 1px solid var(--border); border-radius: 12px;">
+                        <h3 style="font-size: 18px; margin-bottom: 8px;">Cloud Architecture</h3>
+                        <p style="font-size: 15px; color: var(--gray);">Design the right infrastructure for your scale and budget. Cloudflare Workers for edge computing, DigitalOcean for straightforward hosting, AWS for specific services. We choose the simplest solution that meets your requirements, not the most complex one.</p>
+                    </div>
+                    <div style="padding: 24px; border: 1px solid var(--border); border-radius: 12px;">
+                        <h3 style="font-size: 18px; margin-bottom: 8px;">Docker Containerization</h3>
+                        <p style="font-size: 15px; color: var(--gray);">Containerize your applications for consistent deployments across environments. Dockerfiles, docker-compose configurations, multi-stage builds for minimal image sizes, and health checks for reliability.</p>
+                    </div>
+                    <div style="padding: 24px; border: 1px solid var(--border); border-radius: 12px;">
+                        <h3 style="font-size: 18px; margin-bottom: 8px;">CI/CD Pipelines</h3>
+                        <p style="font-size: 15px; color: var(--gray);">Automated build, test, and deploy pipelines using GitHub Actions, GitLab CI, or your preferred platform. Push to main and your code is tested, built, and deployed automatically. Rollback with a single click.</p>
+                    </div>
+                    <div style="padding: 24px; border: 1px solid var(--border); border-radius: 12px;">
+                        <h3 style="font-size: 18px; margin-bottom: 8px;">Monitoring & Alerting</h3>
+                        <p style="font-size: 15px; color: var(--gray);">Dashboards that show what matters: uptime, response times, error rates, resource usage. Alerts that wake you up when something is actually wrong, not when CPU hits 50% for two seconds. Integrated with Slack, PagerDuty, or email.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Deliverables -->
+    <section class="section-alt" style="padding: 80px 0;">
+        <div class="container">
+            <h2 style="font-size: 36px; text-align: center; margin-bottom: 40px;">What You Get</h2>
+            <div style="max-width: 600px; margin: 0 auto;">
+                <ul class="deliverables">
+                    <li>Architecture documentation with diagrams and rationale</li>
+                    <li>Docker configurations (Dockerfile, docker-compose, .dockerignore)</li>
+                    <li>CI/CD pipeline configuration and deployment scripts</li>
+                    <li>Monitoring dashboards with alerting rules</li>
+                    <li>Runbooks for common operations and incident response</li>
+                    <li>30-day post-launch support included</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing">
+        <div class="container">
+            <h2>Pricing</h2>
+            <p class="subtitle">Fixed pricing. No hourly rates. No surprises.</p>
+            <div class="pricing-grid" style="grid-template-columns: repeat(2, 1fr); max-width: 700px; margin: 0 auto;">
+                <div class="pricing-card">
+                    <h3>Assessment</h3>
+                    <div class="price">&euro;2K</div>
+                    <p class="timeline">1 week</p>
+                    <ul>
+                        <li>Infrastructure audit</li>
+                        <li>Cost analysis</li>
+                        <li>Security review</li>
+                        <li>Optimization roadmap</li>
+                        <li>Quick wins identified</li>
+                    </ul>
+                    <a href="https://calendar.app.google/md6WqwnhfireNTqx5" class="btn btn-secondary">Book a Call</a>
+                </div>
+                <div class="pricing-card featured">
+                    <h3>Implementation</h3>
+                    <div class="price">&euro;5-15K</div>
+                    <p class="timeline">2-6 weeks</p>
+                    <ul>
+                        <li>Everything in Assessment</li>
+                        <li>Docker containerization</li>
+                        <li>CI/CD pipeline setup</li>
+                        <li>Monitoring & alerting</li>
+                        <li>Runbooks & documentation</li>
+                        <li>30-day support</li>
+                    </ul>
+                    <a href="https://calendar.app.google/md6WqwnhfireNTqx5" class="btn btn-primary">Book a Call</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq section-alt">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3>What cloud providers do you work with?</h3>
+                    <p>We work primarily with Cloudflare (Workers, Pages, R2, D1), DigitalOcean (Droplets, App Platform, Managed Databases), and AWS (for specific services like S3, SES, Lambda). We recommend the simplest and most cost-effective platform for your needs -- not the one with the biggest ecosystem.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Do you offer ongoing support?</h3>
+                    <p>Every implementation includes 30 days of post-launch support. For ongoing DevOps support, we offer monthly retainers starting at &euro;2K/month that cover monitoring, incident response, infrastructure updates, and on-call availability. You can also self-manage -- we deliver complete runbooks and documentation.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Can you migrate our existing infrastructure?</h3>
+                    <p>Yes. We handle migrations from legacy setups (bare metal, shared hosting, manually-managed VPS) to modern infrastructure. This includes containerization with Docker, CI/CD pipeline setup, DNS migration, SSL certificate management, and zero-downtime cutover strategies.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>How do you handle security?</h3>
+                    <p>Security is built into every layer: network isolation, secrets management (never in code), automated security updates, access control with audit logging, DDoS protection via Cloudflare, and container scanning for vulnerabilities. We also set up monitoring alerts for suspicious activity.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Case Study -->
+    <section style="padding: 80px 0;">
+        <div class="container">
+            <div class="case-study">
+                <div class="case-header">
+                    <span class="case-tag">Case Study</span>
+                    <h3>IT Infrastructure: 72% Cost Reduction</h3>
+                </div>
+                <div class="case-grid">
+                    <div>
+                        <h4>Challenge</h4>
+                        <p>A growing company's infrastructure costs were spiraling. Multiple cloud providers, unused resources, and manual deployments were burning budget and developer time.</p>
+                    </div>
+                    <div>
+                        <h4>Solution</h4>
+                        <p>Infrastructure consolidation, Docker containerization, CI/CD automation, and monitoring setup. Eliminated unused resources and optimized cloud spend.</p>
+                    </div>
+                    <div>
+                        <h4>Results</h4>
+                        <div class="case-metrics">
+                            <div class="metric">
+                                <span class="metric-value">72%</span>
+                                <span class="metric-label">Cost Reduction</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">10x</span>
+                                <span class="metric-label">Faster Deploys</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-top: 24px;">
+                    <a href="/case-studies/it-cost-reduction.html" class="btn btn-secondary">Read Full Case Study</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="final-cta">
+        <div class="container">
+            <h2>Ready to Start?</h2>
+            <p>Book a 15-minute call to discuss your infrastructure challenges.</p>
+            <a href="https://calendar.app.google/md6WqwnhfireNTqx5" class="btn btn-primary">Book a Call</a>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter" id="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <div class="newsletter-text">
+                    <h2>Get Building Tips</h2>
+                    <p>Weekly insights on automation, AI, and shipping products fast. No spam, unsubscribe anytime.</p>
+                </div>
+                <form class="newsletter-form" action="https://formspree.io/f/xpwzgvqr" method="POST">
+                    <input type="email" name="email" placeholder="your@email.com" required>
+                    <input type="hidden" name="_subject" value="New TechConcepts Newsletter Signup">
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="/services/">Services</a>
+                    <a href="/products/">Products</a>
+                    <a href="/blog/">Blog</a>
+                    <a href="/tools/">Tools</a>
+                    <a href="/podcast/">Podcast</a>
+                    <a href="/about.html">About</a>
+                    <a href="/privacy">Privacy</a>
+                    <a href="/terms">Terms</a>
+                </div>
+                <div class="footer-info">
+                    Madrid, Spain &middot; Mo-Fr 09:00-18:00 CET
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/scripts/analytics.js"></script>
+    <script src="/scripts/i18n.js"></script>
+    <script src="/scripts/nav.js"></script>
+</body>
+</html>
