@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Page Not Found | TechConcepts</title>
+    <meta name="description" content="The page you're looking for doesn't exist. Browse TechConcepts services, products, blog, and tools.">
+    <meta name="robots" content="noindex, follow">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💡</text></svg>">
+
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-815E8YDZW8"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-815E8YDZW8');
+    </script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body data-page-type="error">
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">TechConcepts</a>
+            <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Menu">&#9776;</button>
+            <div class="nav-links" id="navLinks">
+                <a href="/services/">Services</a>
+                <a href="/case-studies/">Case Studies</a>
+                <a href="/products/">Products</a>
+                <a href="/blog/">Blog</a>
+                <a href="/tools/">Tools</a>
+                <a href="/about.html">About</a>
+                <div class="lang-switcher">
+                    <button class="lang-btn" onclick="toggleLangMenu()"><span id="currentLang">EN</span> &#9662;</button>
+                    <div class="lang-dropdown" id="langDropdown"></div>
+                </div>
+                <a href="https://calendar.app.google/md6WqwnhfireNTqx5" class="btn btn-primary">Book a Call</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 404 Content -->
+    <section class="hero" style="padding: 120px 0 60px;">
+        <div class="container" style="text-align: center;">
+            <div style="font-size: 120px; margin-bottom: 16px;">404</div>
+            <h1>Page Not Found</h1>
+            <p style="margin-top: 8px;">The page you're looking for doesn't exist or has been moved.</p>
+        </div>
+    </section>
+
+    <section style="padding: 0 0 80px;">
+        <div class="container" style="max-width: 720px;">
+            <h2 style="font-size: 24px; margin-bottom: 24px; text-align: center;">Here's what you might be looking for:</h2>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 48px;">
+                <a href="/services/" style="padding: 20px; border: 1px solid var(--border); border-radius: 12px; text-decoration: none; color: var(--primary);">
+                    <strong>Services</strong>
+                    <p style="font-size: 14px; color: var(--gray); margin-top: 4px;">Automation, AI, iOS dev, DevOps</p>
+                </a>
+                <a href="/products/" style="padding: 20px; border: 1px solid var(--border); border-radius: 12px; text-decoration: none; color: var(--primary);">
+                    <strong>Products</strong>
+                    <p style="font-size: 14px; color: var(--gray); margin-top: 4px;">9 apps for macOS, iOS, Chrome, Jira</p>
+                </a>
+                <a href="/case-studies/" style="padding: 20px; border: 1px solid var(--border); border-radius: 12px; text-decoration: none; color: var(--primary);">
+                    <strong>Case Studies</strong>
+                    <p style="font-size: 14px; color: var(--gray); margin-top: 4px;">Real results from real projects</p>
+                </a>
+                <a href="/blog/" style="padding: 20px; border: 1px solid var(--border); border-radius: 12px; text-decoration: none; color: var(--primary);">
+                    <strong>Blog</strong>
+                    <p style="font-size: 14px; color: var(--gray); margin-top: 4px;">Architecture, optimization, AI</p>
+                </a>
+                <a href="/tools/" style="padding: 20px; border: 1px solid var(--border); border-radius: 12px; text-decoration: none; color: var(--primary);">
+                    <strong>Free Tools</strong>
+                    <p style="font-size: 14px; color: var(--gray); margin-top: 4px;">AI Security Compass, calculators</p>
+                </a>
+                <a href="/about.html" style="padding: 20px; border: 1px solid var(--border); border-radius: 12px; text-decoration: none; color: var(--primary);">
+                    <strong>About</strong>
+                    <p style="font-size: 14px; color: var(--gray); margin-top: 4px;">Evgeny Goncharov, Madrid</p>
+                </a>
+            </div>
+
+            <div style="text-align: center;">
+                <a href="/" class="btn btn-primary">Back to Homepage</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="/services/">Services</a>
+                    <a href="/products/">Products</a>
+                    <a href="/blog/">Blog</a>
+                    <a href="/tools/">Tools</a>
+                    <a href="/podcast/">Podcast</a>
+                    <a href="/about.html">About</a>
+                    <a href="/privacy">Privacy</a>
+                    <a href="/terms">Terms</a>
+                </div>
+                <div class="footer-info">
+                    Madrid, Spain &middot; Mo-Fr 09:00-18:00 CET
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/scripts/nav.js"></script>
+    <script src="/scripts/i18n.js"></script>
+    <script src="/scripts/analytics.js"></script>
+</body>
+</html>

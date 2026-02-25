@@ -5,11 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- SEO Meta Tags -->
-    <title>Case Studies | TechConcepts</title>
+    <title>Case Studies — Real Results & Client Outcomes | TechConcepts</title>
     <meta name="description" content="Real projects, real numbers. See how TechConcepts saved companies €100K+ through automation, reduced IT costs by 72%, and achieved 92% AI accuracy.">
     <meta name="author" content="Evgeny Goncharov">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://techconcepts.org/case-studies/">
+
+    <!-- Resource Hints -->
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <link rel="preconnect" href="https://formspree.io" crossorigin>
+    <link rel="dns-prefetch" href="https://formspree.io">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
@@ -78,6 +84,28 @@
         }
     }
     </script>
+
+    <!-- Schema.org - BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+                {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "TechConcepts",
+                        "item": "https://techconcepts.org/"
+                },
+                {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Case Studies",
+                        "item": "https://techconcepts.org/case-studies/"
+                }
+        ]
+}
+    </script>
 </head>
 <body data-page-type="case-studies">
 
@@ -95,13 +123,7 @@
                 <a href="/about.html">About</a>
                 <div class="lang-switcher">
                     <button class="lang-btn" onclick="toggleLangMenu()"><span id="currentLang">EN</span> &#9662;</button>
-                    <div class="lang-dropdown" id="langDropdown">
-                        <button class="lang-option" onclick="setLanguage('en')">English</button>
-                        <button class="lang-option" onclick="setLanguage('es')">Espanol</button>
-                        <button class="lang-option" onclick="setLanguage('fr')">Francais</button>
-                        <button class="lang-option" onclick="setLanguage('de')">Deutsch</button>
-                        <button class="lang-option" onclick="setLanguage('it')">Italiano</button>
-                    </div>
+                    <div class="lang-dropdown" id="langDropdown"></div>
                 </div>
                 <a href="https://calendar.app.google/md6WqwnhfireNTqx5" class="btn btn-primary">Book a Call</a>
             </div>

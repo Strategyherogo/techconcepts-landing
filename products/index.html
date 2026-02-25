@@ -5,24 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- SEO Meta Tags -->
-    <title>Products | TechConcepts</title>
-    <meta name="description" content="Developer tools and apps built by TechConcepts. Claude Battery, AI Ticket Classifier, PARA Mail, Wattora, and more.">
+    <title>Apps & Developer Tools for macOS, iOS, Chrome, Jira | TechConcepts</title>
+    <meta name="description" content="9 products built by TechConcepts: native macOS/iOS apps, Chrome extensions, and Jira Cloud tools. Claude Battery, Wattora, AI Ticket Classifier, VPN, Deal Analyzer, and more.">
+    <meta name="keywords" content="macOS apps, iOS apps, Chrome extensions, Jira Cloud apps, developer tools, Claude Battery, Wattora, AI Ticket Classifier, PARA Mail, VPN, deal analyzer">
     <meta name="author" content="Evgeny Goncharov">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://techconcepts.org/products/">
 
+    <!-- Resource Hints -->
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <link rel="preconnect" href="https://formspree.io" crossorigin>
+    <link rel="dns-prefetch" href="https://formspree.io">
+
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://techconcepts.org/products/">
-    <meta property="og:title" content="Products | TechConcepts">
-    <meta property="og:description" content="Developer tools and apps built by TechConcepts. Claude Battery, AI Ticket Classifier, PARA Mail, Wattora, and more.">
+    <meta property="og:title" content="Apps & Developer Tools | TechConcepts Products">
+    <meta property="og:description" content="9 products: native macOS/iOS apps, Chrome extensions, and Jira Cloud tools. Built by one developer, used by thousands.">
     <meta property="og:image" content="https://techconcepts.org/techconcepts-og.png">
     <meta property="og:site_name" content="TechConcepts">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Products | TechConcepts">
-    <meta name="twitter:description" content="Developer tools and apps built by TechConcepts.">
+    <meta name="twitter:title" content="Apps & Developer Tools | TechConcepts Products">
+    <meta name="twitter:description" content="9 products: native macOS/iOS apps, Chrome extensions, Jira Cloud tools.">
     <meta name="twitter:image" content="https://techconcepts.org/techconcepts-og.png">
 
     <!-- Favicon -->
@@ -46,9 +53,9 @@
         "@context": "https://schema.org",
         "@type": "ItemList",
         "name": "TechConcepts Products",
-        "description": "Developer tools and apps built by TechConcepts.",
+        "description": "Apps and developer tools built by TechConcepts for macOS, iOS, Chrome, and Jira Cloud.",
         "url": "https://techconcepts.org/products/",
-        "numberOfItems": 6,
+        "numberOfItems": 9,
         "itemListElement": [
             {
                 "@type": "ListItem",
@@ -56,10 +63,11 @@
                 "item": {
                     "@type": "SoftwareApplication",
                     "name": "Claude Battery",
-                    "description": "Track Claude Code usage in real-time. macOS menu bar app.",
+                    "description": "Track Claude Code API usage in real-time from your macOS menu bar. Token consumption, rate limit status, and daily cost trends.",
                     "url": "https://techconcepts.org/claude-battery/",
                     "operatingSystem": "macOS",
-                    "applicationCategory": "DeveloperApplication"
+                    "applicationCategory": "DeveloperApplication",
+                    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
                 }
             },
             {
@@ -67,11 +75,12 @@
                 "position": 2,
                 "item": {
                     "@type": "SoftwareApplication",
-                    "name": "AI Ticket Classifier",
-                    "description": "Auto-classify Jira tickets with AI. Issue type, priority, assignee.",
-                    "url": "https://techconcepts.org/ai-classifier/",
-                    "operatingSystem": "Jira Cloud",
-                    "applicationCategory": "BusinessApplication"
+                    "name": "Wattora",
+                    "description": "Real-time electricity prices for 5 European markets. Price alerts, home screen widgets, and hourly rate comparisons.",
+                    "url": "https://techconcepts.org/wattora/",
+                    "operatingSystem": "iOS, macOS",
+                    "applicationCategory": "UtilitiesApplication",
+                    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
                 }
             },
             {
@@ -80,7 +89,7 @@
                 "item": {
                     "@type": "SoftwareApplication",
                     "name": "PARA Mail",
-                    "description": "Organize email using the PARA method. Smart categorization across all accounts.",
+                    "description": "Organize email using the PARA method. Smart categorization across all your email accounts into Projects, Areas, Resources, and Archive.",
                     "url": "https://techconcepts.org/paramail/",
                     "operatingSystem": "macOS",
                     "applicationCategory": "BusinessApplication"
@@ -91,11 +100,11 @@
                 "position": 4,
                 "item": {
                     "@type": "SoftwareApplication",
-                    "name": "Wattora",
-                    "description": "Real-time electricity prices for 5 European markets. Alerts and widgets.",
-                    "url": "https://techconcepts.org/wattora/",
-                    "operatingSystem": "iOS, macOS",
-                    "applicationCategory": "UtilitiesApplication"
+                    "name": "AI Ticket Classifier",
+                    "description": "Auto-classify Jira tickets with AI. Automatically sets issue type, priority, and assignee based on ticket content. 92% accuracy.",
+                    "url": "https://techconcepts.org/ai-classifier/",
+                    "operatingSystem": "Jira Cloud",
+                    "applicationCategory": "BusinessApplication"
                 }
             },
             {
@@ -103,11 +112,11 @@
                 "position": 5,
                 "item": {
                     "@type": "SoftwareApplication",
-                    "name": "Email Exporter",
-                    "description": "Export emails to PDF from Gmail, Outlook, Yahoo. Privacy-first.",
-                    "url": "https://techconcepts.org/email-exporter/",
-                    "operatingSystem": "Chrome",
-                    "applicationCategory": "UtilitiesApplication"
+                    "name": "Bulk Issue Rewriter",
+                    "description": "AI-powered bulk text editing for Jira issues. Rewrite summaries, descriptions, and comments across hundreds of issues at once.",
+                    "url": "https://techconcepts.org/bulk-issue-rewriter/",
+                    "operatingSystem": "Jira Cloud",
+                    "applicationCategory": "BusinessApplication"
                 }
             },
             {
@@ -115,15 +124,118 @@
                 "position": 6,
                 "item": {
                     "@type": "SoftwareApplication",
-                    "name": "Bulk Issue Rewriter",
-                    "description": "AI-powered bulk text editing for Jira issues.",
-                    "url": "https://techconcepts.org/bulk-issue-rewriter/",
-                    "operatingSystem": "Jira Cloud",
-                    "applicationCategory": "BusinessApplication"
+                    "name": "Email Exporter",
+                    "description": "Export emails to PDF from Gmail, Outlook, Yahoo. All processing happens in your browser. Privacy-first, no data leaves your machine.",
+                    "url": "https://techconcepts.org/email-exporter/",
+                    "operatingSystem": "Chrome",
+                    "applicationCategory": "UtilitiesApplication"
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 7,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "UK Shield VPN",
+                    "description": "Secure VPN Chrome extension with free UK and European servers. 256-bit encryption, zero activity logs, 10GB free monthly data.",
+                    "url": "https://techconcepts.org/uk-vpn",
+                    "operatingSystem": "Chrome",
+                    "applicationCategory": "SecurityApplication",
+                    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 8,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "VC Deal Analyzer",
+                    "description": "AI-powered investment analysis for VCs. One-click company scoring, SEC filings, patent data, and Sequoia-style PDF memos.",
+                    "url": "https://techconcepts.org/dealflow/",
+                    "operatingSystem": "Chrome",
+                    "applicationCategory": "BusinessApplication",
+                    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 9,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "Claude Code Power Pack",
+                    "description": "126 ready-to-use skills, lifecycle hooks, and coding rules for Claude Code. Install in 2 minutes, 10x your CLI productivity.",
+                    "url": "https://techconcepts.org/power-pack/",
+                    "operatingSystem": "macOS, Linux",
+                    "applicationCategory": "DeveloperApplication",
+                    "offers": { "@type": "Offer", "price": "9", "priceCurrency": "USD" }
                 }
             }
         ]
     }
+    </script>
+
+    <!-- Schema.org - FAQPage -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Are TechConcepts products free?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Most TechConcepts products have a free tier. Claude Battery, Wattora, Email Exporter, UK Shield VPN, and VC Deal Analyzer are all free to use. Some products offer premium features through subscriptions or one-time purchases."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Who builds these products?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "All products are built by Evgeny Goncharov, founder of TechConcepts. Previously at Yandex (Search) and EY (Advisory), with a Darden MBA. Every product solves a real problem encountered during consulting work — they're battle-tested tools, not side projects."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Can you build a custom product for my business?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes. TechConcepts offers custom software development with fixed pricing. Native iOS/macOS apps from €3K, Chrome extensions, Jira Cloud apps, and web tools. You own every line of code. Book a 15-minute call to discuss your idea."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What platforms do you develop for?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "TechConcepts builds native apps for macOS and iOS using SwiftUI, Chrome browser extensions, Jira Cloud marketplace apps, and developer CLI tools. All products are built with native technologies — no cross-platform wrappers."
+                }
+            }
+        ]
+    }
+    </script>
+
+    <!-- Schema.org - BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+                {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "TechConcepts",
+                        "item": "https://techconcepts.org/"
+                },
+                {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Products",
+                        "item": "https://techconcepts.org/products/"
+                }
+        ]
+}
     </script>
 </head>
 <body data-page-type="products">
@@ -142,13 +254,7 @@
                 <a href="/about.html">About</a>
                 <div class="lang-switcher">
                     <button class="lang-btn" onclick="toggleLangMenu()"><span id="currentLang">EN</span> &#9662;</button>
-                    <div class="lang-dropdown" id="langDropdown">
-                        <button class="lang-option" onclick="setLanguage('en')">English</button>
-                        <button class="lang-option" onclick="setLanguage('es')">Espanol</button>
-                        <button class="lang-option" onclick="setLanguage('fr')">Francais</button>
-                        <button class="lang-option" onclick="setLanguage('de')">Deutsch</button>
-                        <button class="lang-option" onclick="setLanguage('it')">Italiano</button>
-                    </div>
+                    <div class="lang-dropdown" id="langDropdown"></div>
                 </div>
                 <a href="https://calendar.app.google/md6WqwnhfireNTqx5" class="btn btn-primary">Book a Call</a>
             </div>
@@ -158,64 +264,163 @@
     <!-- Hero -->
     <section class="hero">
         <div class="container">
-            <h1>Products</h1>
-            <p>Tools and apps built by TechConcepts. Each one solves a real problem I ran into.</p>
+            <h1>Apps & Developer Tools</h1>
+            <p>9 products across macOS, iOS, Chrome, and Jira Cloud. Each one solves a real problem I ran into while building software for clients.</p>
         </div>
     </section>
 
-    <!-- Products Grid -->
-    <section style="padding: 0 0 100px;">
+    <!-- Apple Apps -->
+    <section style="padding: 0 0 60px;">
         <div class="container">
+            <h2 style="font-size: 24px; margin-bottom: 8px;">Apple Apps</h2>
+            <p style="color: var(--gray); margin-bottom: 32px;">Native SwiftUI apps for macOS and iOS. No Electron, no cross-platform wrappers.</p>
             <div class="product-grid">
 
                 <!-- Claude Battery -->
                 <a href="/claude-battery/" class="product-card">
                     <div class="icon">&#x1F50B;</div>
                     <h3>Claude Battery</h3>
-                    <p>Track Claude Code usage in real-time. macOS menu bar app that shows your remaining tokens and rate limit status at a glance.</p>
-                    <div class="platform">macOS</div>
-                </a>
-
-                <!-- AI Ticket Classifier -->
-                <a href="/ai-classifier/" class="product-card">
-                    <div class="icon">&#x1F3AF;</div>
-                    <h3>AI Ticket Classifier</h3>
-                    <p>Auto-classify Jira tickets with AI. Automatically sets issue type, priority, and assignee based on ticket content.</p>
-                    <div class="platform">Jira Cloud</div>
-                </a>
-
-                <!-- PARA Mail -->
-                <a href="/paramail/" class="product-card">
-                    <div class="icon">&#x1F4EC;</div>
-                    <h3>PARA Mail</h3>
-                    <p>Organize email using the PARA method. Smart categorization across all your email accounts into Projects, Areas, Resources, and Archive.</p>
-                    <div class="platform">macOS</div>
+                    <p>Track Claude Code API usage from your menu bar. Real-time token consumption, rate limit status, daily cost trends. Built for developers who ship with Claude.</p>
+                    <div class="platform">macOS &middot; Free</div>
                 </a>
 
                 <!-- Wattora -->
                 <a href="/wattora/" class="product-card">
                     <div class="icon">&#x26A1;</div>
                     <h3>Wattora</h3>
-                    <p>Real-time electricity prices for 5 European markets. Price alerts, home screen widgets, and historical data.</p>
-                    <div class="platform">iOS / macOS</div>
+                    <p>Real-time electricity prices for Italy, Czech Republic, Slovenia, Slovakia, and Greece. Price alerts, WidgetKit home screen widgets, hourly rate comparisons.</p>
+                    <div class="platform">iOS / macOS &middot; Free</div>
                 </a>
+
+                <!-- PARA Mail -->
+                <a href="/paramail/" class="product-card">
+                    <div class="icon">&#x1F4EC;</div>
+                    <h3>PARA Mail</h3>
+                    <p>Organize email using the PARA method. Automatically categorize messages across all your accounts into Projects, Areas, Resources, and Archive.</p>
+                    <div class="platform">macOS</div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Chrome Extensions -->
+    <section class="section-alt" style="padding: 60px 0;">
+        <div class="container">
+            <h2 style="font-size: 24px; margin-bottom: 8px;">Chrome Extensions</h2>
+            <p style="color: var(--gray); margin-bottom: 32px;">Browser tools for email, privacy, and investment research.</p>
+            <div class="product-grid">
 
                 <!-- Email Exporter -->
                 <a href="/email-exporter/" class="product-card">
                     <div class="icon">&#x1F4E4;</div>
                     <h3>Email Exporter</h3>
-                    <p>Export emails to PDF from Gmail, Outlook, Yahoo. All processing happens locally. Privacy-first, no data leaves your browser.</p>
-                    <div class="platform">Chrome Extension</div>
+                    <p>Export emails to PDF from Gmail, Outlook, Yahoo. All processing happens in your browser — privacy-first, no data leaves your machine. Used for legal holds and compliance.</p>
+                    <div class="platform">Chrome &middot; Free</div>
+                </a>
+
+                <!-- UK Shield VPN -->
+                <a href="/uk-vpn" class="product-card">
+                    <div class="icon">&#x1F6E1;</div>
+                    <h3>UK Shield VPN</h3>
+                    <p>Secure VPN with free UK and European servers. 256-bit encryption, zero activity logs, 10GB free monthly data. London, Manchester, Brussels, Frankfurt endpoints.</p>
+                    <div class="platform">Chrome &middot; Free tier</div>
+                </a>
+
+                <!-- VC Deal Analyzer -->
+                <a href="/dealflow/" class="product-card">
+                    <div class="icon">&#x1F4CA;</div>
+                    <h3>VC Deal Analyzer</h3>
+                    <p>AI-powered investment analysis for VCs and angel investors. One-click company scoring (0-100), SEC filings, patent data, and Sequoia-style PDF investment memos.</p>
+                    <div class="platform">Chrome &middot; Free</div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Jira & Developer Tools -->
+    <section style="padding: 60px 0;">
+        <div class="container">
+            <h2 style="font-size: 24px; margin-bottom: 8px;">Jira & Developer Tools</h2>
+            <p style="color: var(--gray); margin-bottom: 32px;">Automation tools for Jira Cloud and Claude Code workflows.</p>
+            <div class="product-grid">
+
+                <!-- AI Ticket Classifier -->
+                <a href="/ai-classifier/" class="product-card">
+                    <div class="icon">&#x1F3AF;</div>
+                    <h3>AI Ticket Classifier</h3>
+                    <p>Auto-classify Jira tickets with AI. Automatically sets issue type, priority, and assignee based on ticket content. 92% accuracy on real-world ticket data.</p>
+                    <div class="platform">Jira Cloud</div>
                 </a>
 
                 <!-- Bulk Issue Rewriter -->
                 <a href="/bulk-issue-rewriter/" class="product-card">
                     <div class="icon">&#x270F;&#xFE0F;</div>
                     <h3>Bulk Issue Rewriter</h3>
-                    <p>AI-powered bulk text editing for Jira issues. Rewrite summaries, descriptions, and comments across hundreds of issues at once.</p>
+                    <p>AI-powered bulk text editing for Jira issues. Rewrite summaries, descriptions, and comments across hundreds of issues at once. Standardize formatting in minutes.</p>
                     <div class="platform">Jira Cloud</div>
                 </a>
 
+                <!-- Claude Code Power Pack -->
+                <a href="/power-pack/" class="product-card">
+                    <div class="icon">&#x1F680;</div>
+                    <h3>Claude Code Power Pack</h3>
+                    <p>126 ready-to-use skills, 3 lifecycle hooks, and coding rules for Claude Code. Session automation, deploy workflows, content pipelines. Install in 2 minutes.</p>
+                    <div class="platform">CLI &middot; $9</div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof -->
+    <section class="section-alt" style="padding: 60px 0;">
+        <div class="container" style="text-align: center;">
+            <h2 style="font-size: 24px; margin-bottom: 32px;">Built by One Developer, Backed by Real Usage</h2>
+            <div class="proof-bar">
+                <div class="proof-item">
+                    <div class="number">9</div>
+                    <div class="label">Products shipped</div>
+                </div>
+                <div class="proof-item">
+                    <div class="number">4</div>
+                    <div class="label">Platforms</div>
+                </div>
+                <div class="proof-item">
+                    <div class="number">92%</div>
+                    <div class="label">AI accuracy</div>
+                </div>
+                <div class="proof-item">
+                    <div class="number">5</div>
+                    <div class="label">EU markets</div>
+                </div>
+            </div>
+            <p style="color: var(--gray); margin-top: 24px; max-width: 600px; margin-left: auto; margin-right: auto;">Every product started as a tool I needed for a real project. No venture funding, no team of 50 — just focused engineering solving one problem at a time.</p>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section style="padding: 60px 0;">
+        <div class="container">
+            <h2 style="font-size: 28px; text-align: center; margin-bottom: 40px;">Frequently Asked Questions</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3>Are these products free?</h3>
+                    <p>Most have a free tier. Claude Battery, Wattora, Email Exporter, UK Shield VPN, and VC Deal Analyzer are all free to use. Some offer premium features through subscriptions or one-time purchases.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Who builds these products?</h3>
+                    <p>All products are built by Evgeny Goncharov, founder of TechConcepts. Previously at Yandex (Search) and EY (Advisory), Darden MBA. Every product solves a real problem encountered during consulting work.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Can you build a custom product for my business?</h3>
+                    <p>Yes. Native iOS/macOS apps from &euro;3K, Chrome extensions, Jira Cloud apps, and web tools. Fixed pricing, full code ownership. <a href="https://calendar.app.google/md6WqwnhfireNTqx5">Book a 15-minute call</a> to discuss.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>What platforms do you develop for?</h3>
+                    <p>macOS and iOS (SwiftUI), Chrome browser extensions, Jira Cloud marketplace apps, and developer CLI tools. All native technologies — no cross-platform wrappers.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -223,8 +428,8 @@
     <!-- CTA -->
     <section class="final-cta">
         <div class="container">
-            <h2>Need a custom product?</h2>
-            <p>I build products for founders. Fixed pricing, full code ownership.</p>
+            <h2>Need a custom product built?</h2>
+            <p>I build products for founders and teams. Fixed pricing, full code ownership, 2-8 week delivery.</p>
             <a href="https://calendar.app.google/md6WqwnhfireNTqx5" class="btn btn-primary">Book a Call</a>
         </div>
     </section>

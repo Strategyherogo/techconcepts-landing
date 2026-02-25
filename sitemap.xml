@@ -222,10 +222,26 @@
     <priority>0.3</priority>
   </url>
 
-  <!-- UK VPN landing page -->
+  <!-- UK Shield VPN -->
   <url>
     <loc>https://techconcepts.org/uk-vpn</loc>
-    <lastmod>2025-11-01</lastmod>
+    <lastmod>2026-02-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- VC Deal Analyzer -->
+  <url>
+    <loc>https://techconcepts.org/dealflow/</loc>
+    <lastmod>2026-02-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Claude Code Power Pack -->
+  <url>
+    <loc>https://techconcepts.org/power-pack/</loc>
+    <lastmod>2026-02-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

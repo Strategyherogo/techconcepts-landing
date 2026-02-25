@@ -12,12 +12,8 @@ document.querySelectorAll('.nav-links a').forEach(link => {
 });
 
 // ===========================================
-// LANGUAGE SWITCHER
+// LANGUAGE SWITCHER (click-outside handler)
 // ===========================================
-function toggleLangMenu() {
-    document.getElementById('langDropdown').classList.toggle('active');
-}
-
 document.addEventListener('click', (e) => {
     if (!e.target.closest('.lang-switcher')) {
         document.getElementById('langDropdown').classList.remove('active');

@@ -4,8 +4,29 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="TechConcepts helps businesses automate operations and reduce costs. Fund ops automation saving €100K+, AI classification at 92% accuracy, Jira optimization. Madrid, Spain.">
+  <meta name="keywords" content="business automation, custom development, fund operations, Jira optimization, email forensics, iOS development, Madrid, Spain">
   <title>TechConcepts | Business Automation & Custom Development</title>
   <link rel="canonical" href="https://techconcepts.org/">
+
+  <!-- Resource Hints -->
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <link rel="preconnect" href="https://formspree.io" crossorigin>
+  <link rel="dns-prefetch" href="https://formspree.io">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://techconcepts.org/">
+  <meta property="og:title" content="TechConcepts | Business Automation & Custom Development">
+  <meta property="og:description" content="Automate operations, reduce costs, ship products. Fund ops saving €100K+, AI at 92% accuracy, Jira optimization. Madrid, Spain.">
+  <meta property="og:image" content="https://techconcepts.org/techconcepts-og.png">
+  <meta property="og:site_name" content="TechConcepts">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="TechConcepts | Business Automation & Custom Development">
+  <meta name="twitter:description" content="Automate operations, reduce costs, ship products. €100K+ saved, 92% AI accuracy.">
+  <meta name="twitter:image" content="https://techconcepts.org/techconcepts-og.png">
 
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-815E8YDZW8"></script>
@@ -187,6 +208,54 @@
     ]
   }
   </script>
+
+  <!-- Schema.org - LocalBusiness (for local SEO) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "TechConcepts",
+    "url": "https://techconcepts.org",
+    "logo": "https://techconcepts.org/assets/logo.png",
+    "image": "https://techconcepts.org/techconcepts-og.png",
+    "description": "Business automation, custom software development, and AI integration services. Fund operations automation, Jira optimization, email forensics, iOS development.",
+    "founder": {
+      "@type": "Person",
+      "name": "Evgeny Goncharov"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Madrid",
+      "addressRegion": "Madrid",
+      "addressCountry": "ES"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 40.4168,
+      "longitude": -3.7038
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "09:00",
+      "closes": "18:00"
+    },
+    "telephone": "",
+    "email": "eg@techconcepts.org",
+    "priceRange": "€€-€€€",
+    "areaServed": [
+      { "@type": "Continent", "name": "Europe" },
+      { "@type": "Country", "name": "Spain" },
+      { "@type": "Country", "name": "United Kingdom" },
+      { "@type": "Country", "name": "Germany" }
+    ],
+    "knowsLanguage": ["en", "es", "ru"],
+    "sameAs": [
+      "https://linkedin.com/in/evgoncharov",
+      "https://github.com/Strategyherogo"
+    ]
+  }
+  </script>
 </head>
 <body data-page-type="homepage">
 
@@ -204,13 +273,7 @@
         <a href="/about.html">About</a>
         <div class="lang-switcher">
           <button class="lang-btn" onclick="toggleLangMenu()"><span id="currentLang">EN</span> &#9662;</button>
-          <div class="lang-dropdown" id="langDropdown">
-            <button class="lang-option" onclick="setLanguage('en')">English</button>
-            <button class="lang-option" onclick="setLanguage('es')">Espanol</button>
-            <button class="lang-option" onclick="setLanguage('fr')">Francais</button>
-            <button class="lang-option" onclick="setLanguage('de')">Deutsch</button>
-            <button class="lang-option" onclick="setLanguage('it')">Italiano</button>
-          </div>
+          <div class="lang-dropdown" id="langDropdown"></div>
         </div>
         <a href="https://calendar.app.google/md6WqwnhfireNTqx5" class="btn btn-primary" data-i18n="nav.cta">Book a Call</a>
       </div>

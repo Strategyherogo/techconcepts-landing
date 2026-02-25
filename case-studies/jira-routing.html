@@ -11,6 +11,12 @@
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://techconcepts.org/case-studies/jira-routing.html">
 
+    <!-- Resource Hints -->
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <link rel="preconnect" href="https://formspree.io" crossorigin>
+    <link rel="dns-prefetch" href="https://formspree.io">
+
     <!-- Open Graph -->
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://techconcepts.org/case-studies/jira-routing.html">
@@ -61,6 +67,34 @@
         "mainEntityOfPage": "https://techconcepts.org/case-studies/jira-routing.html"
     }
     </script>
+
+    <!-- Schema.org - BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+                {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "TechConcepts",
+                        "item": "https://techconcepts.org/"
+                },
+                {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Case Studies",
+                        "item": "https://techconcepts.org/case-studies/"
+                },
+                {
+                        "@type": "ListItem",
+                        "position": 3,
+                        "name": "Jira Smart Routing",
+                        "item": "https://techconcepts.org/case-studies/jira-routing.html"
+                }
+        ]
+}
+    </script>
 </head>
 <body data-page-type="case-study">
 
@@ -78,13 +112,7 @@
                 <a href="/about.html">About</a>
                 <div class="lang-switcher">
                     <button class="lang-btn" onclick="toggleLangMenu()"><span id="currentLang">EN</span> &#9662;</button>
-                    <div class="lang-dropdown" id="langDropdown">
-                        <button class="lang-option" onclick="setLanguage('en')">English</button>
-                        <button class="lang-option" onclick="setLanguage('es')">Espanol</button>
-                        <button class="lang-option" onclick="setLanguage('fr')">Francais</button>
-                        <button class="lang-option" onclick="setLanguage('de')">Deutsch</button>
-                        <button class="lang-option" onclick="setLanguage('it')">Italiano</button>
-                    </div>
+                    <div class="lang-dropdown" id="langDropdown"></div>
                 </div>
                 <a href="https://calendar.app.google/md6WqwnhfireNTqx5" class="btn btn-primary">Book a Call</a>
             </div>

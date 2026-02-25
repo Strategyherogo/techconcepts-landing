@@ -147,7 +147,9 @@ nav .container {
     border: 1px solid var(--border);
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    min-width: 140px;
+    min-width: 160px;
+    max-height: 400px;
+    overflow-y: auto;
     z-index: 200;
     margin-top: 4px;
 }
@@ -159,12 +161,12 @@ nav .container {
 .lang-option {
     display: block;
     width: 100%;
-    padding: 10px 16px;
+    padding: 8px 16px;
     text-align: left;
     border: none;
     background: none;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .lang-option:hover {
@@ -178,6 +180,20 @@ nav .container {
 .lang-option:last-child {
     border-radius: 0 0 8px 8px;
 }
+
+/* RTL support for Arabic */
+[dir="rtl"] {
+    direction: rtl;
+    text-align: right;
+}
+[dir="rtl"] .nav-links { flex-direction: row-reverse; }
+[dir="rtl"] .footer-links { flex-direction: row-reverse; }
+[dir="rtl"] .lang-dropdown { right: auto; left: 0; }
+[dir="rtl"] .lang-option { text-align: right; }
+[dir="rtl"] .hero { text-align: right; }
+[dir="rtl"] .faq-item { text-align: right; }
+[dir="rtl"] .product-card { text-align: right; }
+[dir="rtl"] .service-card { text-align: right; }
 
 /* --- Buttons --- */
 .btn {
