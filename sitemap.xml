@@ -253,4 +253,28 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
+
+  <!-- PARA Mail -->
+  <url>
+    <loc>https://techconcepts.org/paramail/</loc>
+    <lastmod>2026-02-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- AI Ticket Classifier -->
+  <url>
+    <loc>https://techconcepts.org/ai-classifier/</loc>
+    <lastmod>2026-02-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- AI Security Compass -->
+  <url>
+    <loc>https://techconcepts.org/ai-security-compass/</loc>
+    <lastmod>2026-02-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>
