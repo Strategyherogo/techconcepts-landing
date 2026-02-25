@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chat Framework Showcase | Apple-Style Design System</title>
+
+<!-- SEO -->
+<meta name="description" content="Interactive showcase of TechConcepts.org conversational UI framework with Apple-level design and animations">
+<meta name="robots" content="noindex, nofollow">
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>">
+
+<!-- Chat Framework -->
+<link rel="stylesheet" href="../styles/chat-ui.css">
+<script src="../scripts/chat-framework.js"></script>
+
+<style>
+  :root {
+    --apple-bg: #F5F5F7;
+    --apple-text: #1D1D1F;
+    --apple-text-secondary: #86868B;
+    --apple-blue: #007AFF;
+    --apple-gradient-start: #007AFF;
+    --apple-gradient-end: #5AC8FA;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", system-ui, sans-serif;
+    background: var(--apple-bg);
+    color: var(--apple-text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Hero Section */
+  .hero {
+    background: linear-gradient(135deg, #1D1D1F 0%, #2D2D2F 100%);
+    color: white;
+    padding: 128px 24px 96px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(0,122,255,0.1) 0%, transparent 70%);
+    animation: rotate 20s linear infinite;
+  }
+
+  @keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .hero-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-icon {
+    font-size: 5rem;
+    margin-bottom: 24px;
+    display: inline-block;
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .hero h1 {
+    font-size: 4.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+    line-height: 1.1;
+  }
+
+  .hero-subtitle {
+    font-size: 1.5rem;
+    font-weight: 300;
+    letter-spacing: -0.01em;
+    opacity: 0.8;
+    margin-bottom: 48px;
+  }
+
+  .hero-features {
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 48px;
+  }
+
+  .feature-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 100px;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Features Grid */
+  .features-section {
+    max-width: 1200px;
+    margin: -48px auto 96px;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .feature-card {
+    background: white;
+    border-radius: 20px;
+    padding: 48px 32px;
+    box-shadow:
+      0 2px 4px rgba(0, 0, 0, 0.02),
+      0 8px 16px rgba(0, 0, 0, 0.03),
+      0 16px 32px rgba(0, 0, 0, 0.04);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .feature-card:hover {
+    transform: translateY(-8px);
+    box-shadow:
+      0 8px 16px rgba(0, 0, 0, 0.04),
+      0 16px 32px rgba(0, 0, 0, 0.06),
+      0 32px 64px rgba(0, 0, 0, 0.08);
+  }
+
+  .feature-icon {
+    font-size: 3rem;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .feature-card h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+
+  .feature-card p {
+    font-size: 1rem;
+    color: var(--apple-text-secondary);
+    line-height: 1.6;
+  }
+
+  /* Demo Section */
+  .demo-section {
+    max-width: 1000px;
+    margin: 0 auto 96px;
+    padding: 0 24px;
+  }
+
+  .demo-header {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+
+  .demo-header h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+  }
+
+  .demo-header p {
+    font-size: 1.25rem;
+    color: var(--apple-text-secondary);
+  }
+
+  /* CTA Section */
+  .cta-section {
+    max-width: 800px;
+    margin: 0 auto 96px;
+    padding: 64px 24px;
+    text-align: center;
+    background: linear-gradient(135deg, var(--apple-gradient-start) 0%, var(--apple-gradient-end) 100%);
+    border-radius: 24px;
+    color: white;
+    box-shadow:
+      0 8px 16px rgba(0, 122, 255, 0.2),
+      0 16px 32px rgba(0, 122, 255, 0.15);
+  }
+
+  .cta-section h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+  }
+
+  .cta-section p {
+    font-size: 1.25rem;
+    opacity: 0.9;
+    margin-bottom: 32px;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 32px;
+    background: white;
+    color: var(--apple-blue);
+    border: none;
+    border-radius: 100px;
+    font-size: 1.0625rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    font-family: inherit;
+    box-shadow:
+      0 2px 4px rgba(0, 0, 0, 0.1),
+      0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .cta-button:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow:
+      0 4px 8px rgba(0, 0, 0, 0.15),
+      0 8px 16px rgba(0, 0, 0, 0.15);
+  }
+
+  .cta-button:active {
+    transform: translateY(0) scale(0.98);
+  }
+
+  .cta-button.secondary {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    backdrop-filter: blur(20px);
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 48px 24px;
+    color: var(--apple-text-secondary);
+  }
+
+  .footer a {
+    color: var(--apple-blue);
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+
+  .footer a:hover {
+    opacity: 0.7;
+  }
+
+  /* Mobile Responsive */
+  @media (max-width: 768px) {
+    .hero h1 {
+      font-size: 2.5rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1.125rem;
+    }
+
+    .demo-header h2 {
+      font-size: 2rem;
+    }
+
+    .cta-section h2 {
+      font-size: 1.75rem;
+    }
+
+    .cta-buttons {
+      flex-direction: column;
+    }
+
+    .cta-button {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .features-section {
+      grid-template-columns: 1fr;
+      margin-top: -32px;
+    }
+  }
+
+  /* Animation utility */
+  .fade-in-up {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .delay-1 { animation-delay: 100ms; }
+  .delay-2 { animation-delay: 200ms; }
+  .delay-3 { animation-delay: 300ms; }
+</style>
+</head>
+<body>
+
+<!-- Hero Section -->
+<div class="hero">
+  <div class="hero-content">
+    <span class="hero-icon">✨</span>
+    <h1>Chat Framework Showcase</h1>
+    <p class="hero-subtitle">Apple-level design system with spring physics and glassmorphism</p>
+
+    <div class="hero-features">
+      <div class="feature-badge">
+        <span>⚡</span> Spring Physics
+      </div>
+      <div class="feature-badge">
+        <span>🎨</span> Glassmorphism
+      </div>
+      <div class="feature-badge">
+        <span>📱</span> Fully Responsive
+      </div>
+      <div class="feature-badge">
+        <span>♿</span> Accessible
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Features Grid -->
+<section class="features-section">
+  <div class="feature-card fade-in-up">
+    <span class="feature-icon">🎭</span>
+    <h3>Apple Design System</h3>
+    <p>SF Pro typography, signature grays, and multi-layer shadows. Every detail matches Apple's design language.</p>
+  </div>
+
+  <div class="feature-card fade-in-up delay-1">
+    <span class="feature-icon">⚡</span>
+    <h3>Spring Animations</h3>
+    <p>Cubic-bezier easing with spring physics. Buttons scale, bubbles bounce, progress bars shimmer.</p>
+  </div>
+
+  <div class="feature-card fade-in-up delay-2">
+    <span class="feature-icon">🔮</span>
+    <h3>Glassmorphism</h3>
+    <p>Frosted glass effects with blur and saturation. Results cards feature dynamic blur-in transitions.</p>
+  </div>
+
+  <div class="feature-card fade-in-up">
+    <span class="feature-icon">🎯</span>
+    <h3>Micro-interactions</h3>
+    <p>Every interaction delights. Hover lifts, active scales, emojis pop, checkmarks bounce.</p>
+  </div>
+
+  <div class="feature-card fade-in-up delay-1">
+    <span class="feature-icon">📐</span>
+    <h3>8px Grid System</h3>
+    <p>Consistent spacing throughout. Massive padding on containers, generous margins between elements.</p>
+  </div>
+
+  <div class="feature-card fade-in-up delay-2">
+    <span class="feature-icon">♿</span>
+    <h3>Accessible</h3>
+    <p>Focus states, reduced motion support, high contrast mode, semantic HTML, keyboard navigation.</p>
+  </div>
+</section>
+
+<!-- Demo Section -->
+<section class="demo-section">
+  <div class="demo-header">
+    <h2>Try It Yourself</h2>
+    <p>Interactive demo showing all question types and animations</p>
+  </div>
+
+  <!-- Chat framework will inject here -->
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+  <h2>Ready to Use This Framework?</h2>
+  <p>Download the source code or view documentation</p>
+  <div class="cta-buttons">
+    <a href="https://github.com/yourusername/techconcepts" class="cta-button">
+      <span>📦</span> View on GitHub
+    </a>
+    <a href="../index.html" class="cta-button secondary">
+      <span>🔙</span> Back to Tools
+    </a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <p>
+    Built with Apple-level attention to detail by
+    <a href="https://techconcepts.org">TechConcepts.org</a>
+  </p>
+  <p style="margin-top: 8px; font-size: 0.875rem;">
+    SF Pro font stack • Glassmorphism • Spring physics • 8px grid
+  </p>
+</footer>
+
+<script>
+  // Chat configuration for showcase
+  const chatConfig = {
+    title: "Framework Showcase",
+    emoji: "✨",
+    toolName: "showcase",
+    formspreeUrl: "https://formspree.io/f/xpwzgvqr",
+    shareText: "Check out this amazing Apple-style chat framework on TechConcepts.org",
+
+    questions: [
+      {
+        id: 'design_quality',
+        type: 'choice',
+        botMessage: "How would you rate the design quality?",
+        emoji: "🎨",
+        options: [
+          { value: 'excellent', label: 'Excellent - Apple level', emoji: '⭐' },
+          { value: 'good', label: 'Good - Professional', emoji: '👍' },
+          { value: 'average', label: 'Average - Needs work', emoji: '😐' }
+        ]
+      },
+      {
+        id: 'animations',
+        type: 'yes-no',
+        botMessage: "Do the animations feel smooth and natural?",
+        emoji: "⚡"
+      },
+      {
+        id: 'use_case',
+        type: 'text',
+        botMessage: "What would you use this framework for?",
+        placeholder: "e.g., lead generation, calculators, surveys",
+        emoji: "💡"
+      },
+      {
+        id: 'rating',
+        type: 'number',
+        botMessage: "Rate this framework 1-10",
+        placeholder: "Enter a number",
+        emoji: "📊",
+        min: 1,
+        max: 10,
+        defaultValue: 9
+      }
+    ],
+
+    onComplete: (answers, chat) => {
+      // Show results
+      chat.showResultsCard([
+        {
+          label: 'Design Quality',
+          value: answers.design_quality === 'excellent' ? '⭐ Excellent' :
+                 answers.design_quality === 'good' ? '👍 Good' : '😐 Average'
+        },
+        {
+          label: 'Smooth Animations',
+          value: answers.animations === 'yes' ? '✅ Yes' : '❌ No'
+        },
+        {
+          label: 'Use Case',
+          value: answers.use_case.substring(0, 30) + (answers.use_case.length > 30 ? '...' : '')
+        },
+        {
+          label: 'Your Rating',
+          value: `${answers.rating}/10`,
+          highlight: answers.rating >= 8
+        }
+      ]);
+
+      // Show thank you message
+      setTimeout(() => {
+        chat.showBotMessage(
+          answers.rating >= 8
+            ? "Thanks for the amazing feedback! We're glad you love the design. 🎉"
+            : "Thanks for your feedback! We're always improving. 💪",
+          '🙏'
+        );
+      }, 1000);
+
+      // Email capture
+      setTimeout(() => {
+        chat.showEmailCapture("Want to get notified about framework updates? Drop your email 👇");
+      }, 2500);
+    }
+  };
+
+  // Initialize chat
+  document.addEventListener('DOMContentLoaded', () => {
+    new ChatEngine(chatConfig);
+
+    // Add intersection observer for fade-in animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in-up').forEach(el => {
+      observer.observe(el);
+    });
+  });
+</script>
+
+</body>
+</html>

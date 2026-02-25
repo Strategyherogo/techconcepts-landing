@@ -77,6 +77,7 @@ class ChatEngine {
   showTypingIndicator() {
     const typingDiv = document.createElement('div');
     typingDiv.className = 'chat-message bot typing-indicator';
+    typingDiv.style.animationDelay = '100ms';
     typingDiv.innerHTML = `
       <div class="chat-bubble">
         <div class="typing-dots">
@@ -100,6 +101,7 @@ class ChatEngine {
   showBotMessage(message, emoji = '') {
     const msgDiv = document.createElement('div');
     msgDiv.className = 'chat-message bot fade-in';
+    msgDiv.style.animationDelay = '50ms';
     msgDiv.innerHTML = `
       <div class="chat-bubble">
         ${emoji ? `<span class="chat-emoji">${emoji}</span> ` : ''}${message}
@@ -107,16 +109,23 @@ class ChatEngine {
     `;
     this.chatMessages.appendChild(msgDiv);
     this.scrollToBottom();
+
+    // Add spring physics to bubble
+    this.addSpringPhysics(msgDiv.querySelector('.chat-bubble'));
   }
 
   showUserMessage(message) {
     const msgDiv = document.createElement('div');
     msgDiv.className = 'chat-message user fade-in';
+    msgDiv.style.animationDelay = '50ms';
     msgDiv.innerHTML = `
       <div class="chat-bubble">${message}</div>
     `;
     this.chatMessages.appendChild(msgDiv);
     this.scrollToBottom();
+
+    // Add spring physics to bubble
+    this.addSpringPhysics(msgDiv.querySelector('.chat-bubble'));
   }
 
   showQuestion(index) {
@@ -128,10 +137,15 @@ class ChatEngine {
     const question = this.config.questions[index];
     this.currentQuestionIndex = index;
 
-    // Update progress
+    // Update progress with spring animation
     const progress = ((index) / this.config.questions.length) * 100;
     this.progressBar.style.width = progress + '%';
     this.progressText.textContent = `${index}/${this.config.questions.length}`;
+
+    // Color shift on completion
+    if (progress === 100) {
+      this.progressBar.style.background = 'linear-gradient(90deg, #30D158 0%, #34C759 100%)';
+    }
 
     // Show typing indicator
     this.isTyping = true;
@@ -184,11 +198,20 @@ class ChatEngine {
       </button>
     `;
 
-    container.querySelectorAll('.chat-button').forEach(btn => {
+    container.querySelectorAll('.chat-button').forEach((btn, index) => {
+      // Stagger animation
+      btn.style.animation = `slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) ${index * 100}ms backwards`;
+
       btn.addEventListener('click', () => {
         const value = btn.dataset.value;
         const label = btn.textContent.trim();
         this.handleAnswer(question.id, value, label);
+
+        // Scale down animation on click
+        btn.style.transform = 'scale(0.9)';
+        setTimeout(() => {
+          btn.style.transform = 'scale(1)';
+        }, 100);
       });
     });
 
@@ -199,7 +222,7 @@ class ChatEngine {
     const container = document.createElement('div');
     container.className = 'chat-buttons';
 
-    question.options.forEach(option => {
+    question.options.forEach((option, index) => {
       const btn = document.createElement('button');
       btn.className = 'chat-button choice-button';
       btn.dataset.value = option.value;
@@ -207,9 +230,20 @@ class ChatEngine {
         ${option.emoji ? `<span class="button-emoji">${option.emoji}</span>` : ''}
         ${option.label}
       `;
+
+      // Stagger animation
+      btn.style.animation = `slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) ${index * 100}ms backwards`;
+
       btn.addEventListener('click', () => {
         this.handleAnswer(question.id, option.value, option.label);
+
+        // Scale down animation on click
+        btn.style.transform = 'scale(0.9)';
+        setTimeout(() => {
+          btn.style.transform = 'scale(1)';
+        }, 100);
       });
+
       container.appendChild(btn);
     });
 
@@ -352,6 +386,12 @@ class ChatEngine {
     feedback.innerHTML = '✓';
     this.chatMessages.appendChild(feedback);
 
+    // Haptic-style feedback
+    setTimeout(() => {
+      feedback.style.transform = 'scale(0.8)';
+      feedback.style.opacity = '0';
+    }, 600);
+
     setTimeout(() => feedback.remove(), 1000);
   }
 
@@ -379,7 +419,7 @@ class ChatEngine {
 
   showResultsCard(results) {
     const resultsDiv = document.createElement('div');
-    resultsDiv.className = 'chat-results-card fade-in';
+    resultsDiv.className = 'chat-results-card';
 
     let html = `<h2>${this.config.resultsTitle || '📊 Your Results'}</h2>`;
 
@@ -395,6 +435,9 @@ class ChatEngine {
     resultsDiv.innerHTML = html;
     this.chatMessages.appendChild(resultsDiv);
     this.scrollToBottom();
+
+    // Add blur-in effect
+    this.addBlurInEffect(resultsDiv);
   }
 
   showEmailCapture(message = "Want your detailed report? Drop your email 👇") {
@@ -545,6 +588,39 @@ class ChatEngine {
 
   formatPercent(value) {
     return Math.round(value) + '%';
+  }
+
+  // Apple-style spring physics for bubbles
+  addSpringPhysics(element) {
+    if (!element) return;
+
+    // Add subtle hover effect
+    element.addEventListener('mouseenter', () => {
+      element.style.transform = 'scale(1.02)';
+      element.style.transition = 'transform 0.2s cubic-bezier(0.16, 1, 0.3, 1)';
+    });
+
+    element.addEventListener('mouseleave', () => {
+      element.style.transform = 'scale(1)';
+    });
+  }
+
+  // Blur-in effect for results card
+  addBlurInEffect(element) {
+    if (!element) return;
+
+    let blurValue = 20;
+    const interval = setInterval(() => {
+      blurValue -= 2;
+      if (blurValue <= 0) {
+        clearInterval(interval);
+        element.style.backdropFilter = 'blur(20px) saturate(180%)';
+        element.style.webkitBackdropFilter = 'blur(20px) saturate(180%)';
+      } else {
+        element.style.backdropFilter = `blur(${blurValue}px) saturate(180%)`;
+        element.style.webkitBackdropFilter = `blur(${blurValue}px) saturate(180%)`;
+      }
+    }, 30);
   }
 }
 
