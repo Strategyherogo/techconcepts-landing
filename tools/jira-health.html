@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jira Health Check | Is Your Jira Helping or Hurting?</title>
+
+<!-- SEO -->
+<meta name="description" content="Free Jira health check. 15 questions to assess workflow complexity, SLA tracking, automation, and user satisfaction. Get instant score and recommendations.">
+<meta name="author" content="Evgeny Goncharov">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://techconcepts.org/tools/jira-health.html">
+
+<!-- Resource Hints -->
+<link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+<link rel="dns-prefetch" href="https://www.googletagmanager.com">
+<link rel="preconnect" href="https://formspree.io" crossorigin>
+<link rel="dns-prefetch" href="https://formspree.io">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://techconcepts.org/tools/jira-health.html">
+<meta property="og:title" content="Jira Health Check">
+<meta property="og:description" content="Free Jira health assessment. 15 questions, instant recommendations.">
+<meta property="og:image" content="https://techconcepts.org/techconcepts-og.png">
+<meta property="og:site_name" content="TechConcepts">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Jira Health Check">
+<meta name="twitter:description" content="Free Jira health check. 15 questions, instant score.">
+<meta name="twitter:image" content="https://techconcepts.org/techconcepts-og.png">
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏥</text></svg>">
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-815E8YDZW8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-815E8YDZW8', {page_path: '/tools/jira-health'});
+
+  function trackQuestionAnswered(questionId, answer) {
+    gtag('event', 'question_answered', {
+      question_id: questionId,
+      answer: answer,
+      event_category: 'jira_health'
+    });
+  }
+
+  function trackHealthScoreCalculated(score, severity) {
+    gtag('event', 'health_score_calculated', {
+      score: score,
+      severity: severity,
+      event_category: 'conversion'
+    });
+  }
+
+  function trackLeadSubmit(email, score) {
+    gtag('event', 'lead_submit', {
+      score: score,
+      event_category: 'lead_generation',
+      event_label: 'audit_request'
+    });
+  }
+</script>
+
+<!-- Schema.org -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Jira Health Check",
+  "description": "Interactive Jira health assessment covering workflows, SLA tracking, automation, and user satisfaction",
+  "url": "https://techconcepts.org/tools/jira-health.html",
+  "applicationCategory": "BusinessApplication",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "TechConcepts"
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "TechConcepts",
+      "item": "https://techconcepts.org/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Tools",
+      "item": "https://techconcepts.org/tools/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Jira Health Check",
+      "item": "https://techconcepts.org/tools/jira-health.html"
+    }
+  ]
+}
+</script>
+
+<style>
+  :root {
+    --primary: #1a1a2e;
+    --accent: #e94560;
+    --accent2: #0f3460;
+    --safe: #00b894;
+    --warn: #fdcb6e;
+    --danger: #e17055;
+    --critical: #d63031;
+    --bg: #f8f9fa;
+    --card: #ffffff;
+    --text: #2d3436;
+    --muted: #636e72;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  .hero {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent2) 100%);
+    color: white;
+    padding: 60px 24px 48px;
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+  }
+
+  .hero .icon {
+    font-size: 3rem;
+    margin-bottom: 16px;
+  }
+
+  .hero p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .progress-container {
+    background: white;
+    padding: 16px 24px;
+    margin: -24px auto 24px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    position: relative;
+    z-index: 2;
+  }
+
+  .progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .progress-header span {
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+
+  .progress-bar {
+    height: 8px;
+    background: #eee;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent2), var(--accent));
+    border-radius: 4px;
+    transition: width 0.5s ease;
+    width: 0%;
+  }
+
+  .question-card {
+    background: var(--card);
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+  }
+
+  .question-card.answered {
+    border-color: var(--safe);
+  }
+
+  .question-number {
+    font-size: 0.75rem;
+    color: var(--accent);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+
+  .question-text {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .option {
+    display: flex;
+    align-items: center;
+    padding: 14px 18px;
+    border: 2px solid #e9ecef;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.95rem;
+  }
+
+  .option:hover {
+    border-color: var(--accent2);
+    background: rgba(15, 52, 96, 0.03);
+  }
+
+  .option.selected {
+    border-color: var(--accent2);
+    background: rgba(15, 52, 96, 0.08);
+  }
+
+  .option-radio {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    margin-right: 12px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+  }
+
+  .option.selected .option-radio {
+    border-color: var(--accent2);
+    background: var(--accent2);
+  }
+
+  .option.selected .option-radio::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: white;
+    border-radius: 50%;
+  }
+
+  .submit-container {
+    text-align: center;
+    margin: 32px 0 48px;
+  }
+
+  .submit-btn {
+    background: linear-gradient(135deg, var(--accent) 0%, #c0392b 100%);
+    color: white;
+    border: none;
+    padding: 18px 48px;
+    border-radius: 14px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(233,69,96,0.3);
+  }
+
+  .submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(233,69,96,0.4);
+  }
+
+  .submit-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .results-card {
+    background: white;
+    border-radius: 20px;
+    padding: 40px 32px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.1);
+    text-align: center;
+    margin-bottom: 24px;
+    display: none;
+  }
+
+  .score-ring {
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 24px;
+    position: relative;
+  }
+
+  .score-ring svg {
+    transform: rotate(-90deg);
+    width: 180px;
+    height: 180px;
+  }
+
+  .score-ring .bg-ring {
+    fill: none;
+    stroke: #eee;
+    stroke-width: 12;
+  }
+
+  .score-ring .score-arc {
+    fill: none;
+    stroke-width: 12;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 1.5s ease, stroke 0.5s ease;
+  }
+
+  .score-value {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.8rem;
+    font-weight: 800;
+  }
+
+  .score-label {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-top: -4px;
+  }
+
+  .severity-badge {
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: 24px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  .severity-badge.critical {
+    background: rgba(214,48,49,0.1);
+    color: var(--critical);
+  }
+
+  .severity-badge.warning {
+    background: rgba(253,203,110,0.2);
+    color: #d68910;
+  }
+
+  .severity-badge.healthy {
+    background: rgba(0,184,148,0.1);
+    color: var(--safe);
+  }
+
+  .score-description {
+    color: var(--muted);
+    max-width: 480px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  .recommendations {
+    background: white;
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    text-align: left;
+    display: none;
+  }
+
+  .recommendations h3 {
+    font-size: 1rem;
+    margin-bottom: 16px;
+    color: var(--primary);
+  }
+
+  .rec-item {
+    display: flex;
+    gap: 12px;
+    padding: 14px;
+    margin-bottom: 8px;
+    border-radius: 12px;
+    background: #f8f9fa;
+  }
+
+  .rec-icon {
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+  }
+
+  .rec-icon.critical { background: rgba(214,48,49,0.1); }
+  .rec-icon.warning { background: rgba(253,203,110,0.2); }
+  .rec-icon.info { background: rgba(0,184,148,0.1); }
+
+  .rec-text strong {
+    display: block;
+    font-size: 0.9rem;
+    margin-bottom: 2px;
+  }
+
+  .rec-text span {
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  .cta-section {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent2) 100%);
+    border-radius: 16px;
+    padding: 36px 28px;
+    text-align: center;
+    color: white;
+    margin-bottom: 48px;
+    display: none;
+  }
+
+  .cta-section h3 {
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+  }
+
+  .cta-section p {
+    opacity: 0.85;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+  }
+
+  .cta-form {
+    display: flex;
+    gap: 8px;
+    max-width: 440px;
+    margin: 0 auto;
+  }
+
+  .cta-form input {
+    flex: 1;
+    padding: 14px 18px;
+    border: none;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    outline: none;
+  }
+
+  .cta-form button {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 14px 24px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .cta-form button:hover {
+    transform: scale(1.02);
+  }
+
+  .back-link {
+    text-align: center;
+    margin: 24px 0;
+  }
+
+  .back-link a {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 1.6rem; }
+    .question-card { padding: 20px; }
+    .results-card { padding: 28px 20px; }
+    .cta-form { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="container">
+    <span class="icon">🏥</span>
+    <h1>Jira Health Check</h1>
+    <p>Is your Jira helping or hurting? 15 questions to assess workflows, automation, and user satisfaction. Free, no signup required.</p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="progress-container">
+    <div class="progress-header">
+      <span>Assessment Progress</span>
+      <span id="progress-text">0 of 15 answered</span>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progress-fill"></div>
+    </div>
+  </div>
+</div>
+
+<div class="container" id="questions-container">
+
+  <div class="question-card" id="q1">
+    <div class="question-number">Question 1 of 15</div>
+    <div class="question-text">Do users complain that Jira is too complex or slow?</div>
+    <div class="options">
+      <div class="option" data-score="0" onclick="selectOption(this, 'q1')">
+        <div class="option-radio"></div>
+        <span>Frequently — it's a common complaint</span>
+      </div>
+      <div class="option" data-score="5" onclick="selectOption(this, 'q1')">
+        <div class="option-radio"></div>
+        <span>Sometimes — a few people mention it</span>
+      </div>
+      <div class="option" data-score="10" onclick="selectOption(this, 'q1')">
+        <div class="option-radio"></div>
+        <span>Rarely — users generally like it</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="question-card" id="q2">
+    <div class="question-number">Question 2 of 15</div>
+    <div class="question-text">Are workflows simple and easy to follow?</div>
+    <div class="options">
+      <div class="option" data-score="10" onclick="selectOption(this, 'q2')">
+        <div class="option-radio"></div>
+        <span>Yes — 3-5 statuses, clear transitions</span>
+      </div>
+      <div class="option" data-score="5" onclick="selectOption(this, 'q2')">
+        <div class="option-radio"></div>
+        <span>Moderate — some workflows have 6-10 statuses</span>
+      </div>
+      <div class="option" data-score="0" onclick="selectOption(this, 'q2')">
+        <div class="option-radio"></div>
+        <span>No — 10+ statuses, confusing transitions</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="question-card" id="q3">
+    <div class="question-number">Question 3 of 15</div>
+    <div class="question-text">Do you track SLAs for response and resolution?</div>
+    <div class="options">
+      <div class="option" data-score="10" onclick="selectOption(this, 'q3')">
+        <div class="option-radio"></div>
+        <span>Yes — SLAs are set and monitored</span>
+      </div>
+      <div class="option" data-score="5" onclick="selectOption(this, 'q3')">
+        <div class="option-radio"></div>
+        <span>Partially — some projects, not all</span>
+      </div>
+      <div class="option" data-score="0" onclick="selectOption(this, 'q3')">
+        <div class="option-radio"></div>
+        <span>No SLA tracking at all</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="question-card" id="q4">
+    <div class="question-number">Question 4 of 15</div>
+    <div class="question-text">Are custom fields excessive?</div>
+    <div class="options">
+      <div class="option" data-score="10" onclick="selectOption(this, 'q4')">
+        <div class="option-radio"></div>
+        <span>No — under 20 custom fields, all are used</span>
+      </div>
+      <div class="option" data-score="5" onclick="selectOption(this, 'q4')">
+        <div class="option-radio"></div>
+        <span>Moderate — 20-50 fields, some unused</span>
+      </div>
+      <div class="option" data-score="0" onclick="selectOption(this, 'q4')">
+        <div class="option-radio"></div>
+        <span>Yes — 50+ fields, many unused or duplicates</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="question-card" id="q5">
+    <div class="question-number">Question 5 of 15</div>
+    <div class="question-text">Do you use automation rules to reduce manual work?</div>
+    <div class="options">
+      <div class="option" data-score="10" onclick="selectOption(this, 'q5')">
+        <div class="option-radio"></div>
+        <span>Yes — we automate notifications, assignments, transitions</span>
+      </div>
+      <div class="option" data-score="5" onclick="selectOption(this, 'q5')">
+        <div class="option-radio"></div>
+        <span>Some — a few basic automations</span>
+      </div>
+      <div class="option" data-score="0" onclick="selectOption(this, 'q5')">
+        <div class="option-radio"></div>
+        <span>No automation — everything is manual</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="question-card" id="q6">
+    <div class="question-number">Question 6 of 15</div>
+    <div class="question-text">Are tickets aging without action?</div>
+    <div class="options">
+      <div class="option" data-score="0" onclick="selectOption(this, 'q6')">
+        <div class="option-radio"></div>
+        <span>Yes — many tickets sit for weeks/months</span>
+      </div>
+      <div class="option" data-score="5" onclick="selectOption(this, 'q6')">
+        <div class="option-radio"></div>
+        <span>Some — a few old tickets</span>
+      </div>
+      <div class="option" data-score="10" onclick="selectOption(this, 'q6')">
+        <div class="option-radio"></div>
+        <span>No — tickets move quickly, old ones are closed</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="question-card" id="q7">
+    <div class="question-number">Question 7 of 15</div>
+    <div class="question-text">Do you have clear ownership and assignment rules?</div>
+    <div class="options">
+      <div class="option" data-score="10" onclick="selectOption(this, 'q7')">
+        <div class="option-radio"></div>
+        <span>Yes — tickets are auto-assigned or have clear owners</span>
+      </div>
+      <div class="option" data-score="5" onclick="selectOption(this, 'q7')">
+        <div class="option-radio"></div>
+        <span>Sometimes — manual assignment, inconsistent</span>
+      </div>
+      <div class="option" data-score="0" onclick="selectOption(this, 'q7')">
+        <div class="option-radio"></div>
+        <span>No — tickets sit unassigned until someone notices</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="question-card" id="q8">
+    <div class="question-number">Question 8 of 15</div>
+    <div class="question-text">Are dashboards useful and regularly viewed?</div>
+    <div class="options">
+      <div class="option" data-score="10" onclick="selectOption(this, 'q8')">
+        <div class="option-radio"></div>
+        <span>Yes — team checks dashboards daily for priorities</span>
+      </div>
+      <div class="option" data-score="5" onclick="selectOption(this, 'q8')">
+        <div class="option-radio"></div>
+        <span>Some — dashboards exist but rarely checked</span>
+      </div>
+      <div class="option" data-score="0" onclick="selectOption(this, 'q8')">
+        <div class="option-radio"></div>
+        <span>No — dashboards are cluttered or ignored</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="question-card" id="q9">
+    <div class="question-number">Question 9 of 15</div>
+    <div class="question-text">Do you use issue linking to track dependencies?</div>
+    <div class="options">
+      <div class="option" data-score="10" onclick="selectOption(this, 'q9')">
+        <div class="option-radio"></div>
+        <span>Yes — blockers, relates to, sub-tasks are used</span>
+      </div>
+      <div class="option" data-score="5" onclick="selectOption(this, 'q9')">
+        <div class="option-radio"></div>
+        <span>Sometimes — inconsistent usage</span>
+      </div>
+      <div class="option" data-score="0" onclick="selectOption(this, 'q9')">
+        <div class="option-radio"></div>
+        <span>No — dependencies tracked outside Jira or not at all</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="question-card" id="q10">
+    <div class="question-number">Question 10 of 15</div>
+    <div class="question-text">Is reporting easy and accurate?</div>
+    <div class="options">
+      <div class="option" data-score="10" onclick="selectOption(this, 'q10')">
+        <div class="option-radio"></div>
+        <span>Yes — reports are accurate and generated in minutes</span>
+      </div>
+      <div class="option" data-score="5" onclick="selectOption(this, 'q10')">
+        <div class="option-radio"></div>
+        <span>Moderate — reports exist but require manual cleanup</span>
+      </div>
+      <div class="option" data-score="0" onclick="selectOption(this, 'q10')">
+        <div class="option-radio"></div>
+        <span>No — data quality issues, reports are unreliable</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="question-card" id="q11">
+    <div class="question-number">Question 11 of 15</div>
+    <div class="question-text">Do you enforce permissions and data visibility rules?</div>
+    <div class="options">
+      <div class="option" data-score="10" onclick="selectOption(this, 'q11')">
+        <div class="option-radio"></div>
+        <span>Yes — permission schemes control who sees what</span>
+      </div>
+      <div class="option" data-score="5" onclick="selectOption(this, 'q11')">
+        <div class="option-radio"></div>
+        <span>Some — basic permissions but not strict</span>
+      </div>
+      <div class="option" data-score="0" onclick="selectOption(this, 'q11')">
+        <div class="option-radio"></div>
+        <span>No — everyone sees everything</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="question-card" id="q12">
+    <div class="question-number">Question 12 of 15</div>
+    <div class="question-text">Is your Jira integrated with other tools?</div>
+    <div class="options">
+      <div class="option" data-score="10" onclick="selectOption(this, 'q12')">
+        <div class="option-radio"></div>
+        <span>Yes — Slack, Confluence, GitHub, etc. all connected</span>
+      </div>
+      <div class="option" data-score="5" onclick="selectOption(this, 'q12')">
+        <div class="option-radio"></div>
+        <span>Some — 1-2 integrations</span>
+      </div>
+      <div class="option" data-score="0" onclick="selectOption(this, 'q12')">
+        <div class="option-radio"></div>
+        <span>No — Jira is siloed</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="question-card" id="q13">
+    <div class="question-number">Question 13 of 15</div>
+    <div class="question-text">Do you regularly clean up old projects and issues?</div>
+    <div class="options">
+      <div class="option" data-score="10" onclick="selectOption(this, 'q13')">
+        <div class="option-radio"></div>
+        <span>Yes — we archive old projects quarterly</span>
+      </div>
+      <div class="option" data-score="5" onclick="selectOption(this, 'q13')">
+        <div class="option-radio"></div>
+        <span>Sometimes — done once a year or less</span>
+      </div>
+      <div class="option" data-score="0" onclick="selectOption(this, 'q13')">
+        <div class="option-radio"></div>
+        <span>No — projects from 5+ years ago still active</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="question-card" id="q14">
+    <div class="question-number">Question 14 of 15</div>
+    <div class="question-text">Do new users get onboarding and training?</div>
+    <div class="options">
+      <div class="option" data-score="10" onclick="selectOption(this, 'q14')">
+        <div class="option-radio"></div>
+        <span>Yes — formal onboarding with documentation</span>
+      </div>
+      <div class="option" data-score="5" onclick="selectOption(this, 'q14')">
+        <div class="option-radio"></div>
+        <span>Informal — team members show them basics</span>
+      </div>
+      <div class="option" data-score="0" onclick="selectOption(this, 'q14')">
+        <div class="option-radio"></div>
+        <span>No — users learn by trial and error</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="question-card" id="q15">
+    <div class="question-number">Question 15 of 15</div>
+    <div class="question-text">Do you review and optimize Jira configuration regularly?</div>
+    <div class="options">
+      <div class="option" data-score="10" onclick="selectOption(this, 'q15')">
+        <div class="option-radio"></div>
+        <span>Yes — quarterly reviews and continuous improvement</span>
+      </div>
+      <div class="option" data-score="5" onclick="selectOption(this, 'q15')">
+        <div class="option-radio"></div>
+        <span>Rarely — only when problems arise</span>
+      </div>
+      <div class="option" data-score="0" onclick="selectOption(this, 'q15')">
+        <div class="option-radio"></div>
+        <span>No — it's been years since we reviewed config</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="submit-container">
+    <button class="submit-btn" id="submit-btn" onclick="showResults()" disabled>
+      Get Your Jira Health Score
+    </button>
+  </div>
+</div>
+
+<div class="container" id="results-container">
+
+  <div class="results-card" id="results">
+    <div class="score-ring">
+      <svg viewBox="0 0 180 180">
+        <circle class="bg-ring" cx="90" cy="90" r="78" />
+        <circle class="score-arc" id="score-arc" cx="90" cy="90" r="78"
+          stroke-dasharray="490" stroke-dashoffset="490" />
+      </svg>
+      <div class="score-value" id="score-value">0</div>
+    </div>
+    <div class="score-label">out of 100</div>
+    <div class="severity-badge" id="severity-badge"></div>
+    <div class="score-description" id="score-description"></div>
+  </div>
+
+  <div class="recommendations" id="recommendations">
+    <h3>Priority Recommendations</h3>
+    <div id="rec-items"></div>
+  </div>
+
+  <div class="cta-section" id="cta">
+    <h3>Get a Full Jira Audit</h3>
+    <p>Receive a comprehensive workspace audit with optimization recommendations, custom field cleanup plan, and workflow redesign suggestions.</p>
+    <form class="cta-form" action="https://formspree.io/f/xpwzgvqr" method="POST" onsubmit="handleSubmit(event)">
+      <input type="email" name="email" id="cta-email" placeholder="Work email" required>
+      <input type="hidden" name="tool" value="jira-health">
+      <input type="hidden" name="score" id="form-score">
+      <input type="hidden" name="_subject" value="Jira Health Check - Full Audit Request">
+      <button type="submit">Get Free Audit</button>
+    </form>
+  </div>
+</div>
+
+<div class="back-link">
+  <a href="/tools/">← Back to Tools</a>
+</div>
+
+<script>
+  const answers = {};
+  const totalQuestions = 15;
+
+  function selectOption(el, qId) {
+    const card = el.closest('.question-card');
+    card.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+    card.classList.add('answered');
+
+    const score = parseInt(el.dataset.score);
+    answers[qId] = score;
+    trackQuestionAnswered(qId, el.textContent.trim());
+
+    updateProgress();
+  }
+
+  function updateProgress() {
+    const answered = Object.keys(answers).length;
+    const pct = (answered / totalQuestions) * 100;
+    document.getElementById('progress-fill').style.width = pct + '%';
+    document.getElementById('progress-text').textContent = `${answered} of ${totalQuestions} answered`;
+    document.getElementById('submit-btn').disabled = answered < totalQuestions;
+  }
+
+  function showResults() {
+    const total = Object.values(answers).reduce((sum, a) => sum + a, 0);
+    const maxScore = totalQuestions * 10;
+    const score = Math.round((total / maxScore) * 100);
+
+    let severity, color;
+    if (score >= 70) {
+      severity = 'Healthy';
+      color = '#00b894';
+    } else if (score >= 40) {
+      severity = 'Warning';
+      color = '#fdcb6e';
+    } else {
+      severity = 'Critical';
+      color = '#d63031';
+    }
+
+    trackHealthScoreCalculated(score, severity);
+
+    document.getElementById('questions-container').style.display = 'none';
+    document.getElementById('results').style.display = 'block';
+    document.getElementById('recommendations').style.display = 'block';
+    document.getElementById('cta').style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    const arc = document.getElementById('score-arc');
+    const circumference = 490;
+    const offset = circumference - (circumference * (score / 100));
+
+    setTimeout(() => {
+      arc.style.strokeDashoffset = offset;
+      arc.style.stroke = color;
+    }, 200);
+
+    animateNumber('score-value', 0, score, 1500);
+
+    const badge = document.getElementById('severity-badge');
+    badge.textContent = severity;
+    badge.className = 'severity-badge ' + severity.toLowerCase();
+
+    const desc = document.getElementById('score-description');
+    if (score >= 70) {
+      desc.textContent = 'Your Jira is in good health. Users are satisfied, workflows are efficient, and automation is reducing manual work. Keep up the regular reviews and continuous improvement.';
+    } else if (score >= 40) {
+      desc.textContent = 'Your Jira has some issues affecting productivity. Complexity, inconsistent processes, or lack of automation are slowing your team down. Address the priority recommendations below.';
+    } else {
+      desc.textContent = 'Your Jira is hurting more than helping. Users are frustrated, workflows are broken, and manual overhead is high. Immediate intervention is needed to restore productivity.';
+    }
+
+    const recContainer = document.getElementById('rec-items');
+    recContainer.innerHTML = '';
+
+    if (score < 70) {
+      if (answers.q2 <= 5) {
+        recContainer.innerHTML += '<div class="rec-item"><div class="rec-icon critical">🚨</div><div class="rec-text"><strong>Simplify Workflows</strong><span>Reduce statuses to 5 or fewer. Remove unused transitions. 80% of teams only need: Backlog → In Progress → Done.</span></div></div>';
+      }
+      if (answers.q5 <= 5) {
+        recContainer.innerHTML += '<div class="rec-item"><div class="rec-icon warning">⚡</div><div class="rec-text"><strong>Implement Automation</strong><span>Auto-assign tickets, send notifications on status changes, close stale issues after 30 days. Saves 5-10 hours per week.</span></div></div>';
+      }
+      if (answers.q4 <= 5) {
+        recContainer.innerHTML += '<div class="rec-item"><div class="rec-icon warning">🧹</div><div class="rec-text"><strong>Clean Up Custom Fields</strong><span>Archive unused fields. Merge duplicates. Every extra field increases complexity and slows Jira performance.</span></div></div>';
+      }
+      if (answers.q3 <= 5) {
+        recContainer.innerHTML += '<div class="rec-item"><div class="rec-icon info">⏱️</div><div class="rec-text"><strong>Set Up SLA Tracking</strong><span>Define response and resolution targets. Track breaches. Hold teams accountable for timely responses.</span></div></div>';
+      }
+      if (answers.q6 <= 5) {
+        recContainer.innerHTML += '<div class="rec-item"><div class="rec-icon info">📅</div><div class="rec-text"><strong>Close Aging Tickets</strong><span>Auto-close tickets with no activity in 30 days. Old tickets skew reports and clutter dashboards.</span></div></div>';
+      }
+    } else {
+      recContainer.innerHTML += '<div class="rec-item"><div class="rec-icon info">✅</div><div class="rec-text"><strong>Keep Up the Good Work</strong><span>Your Jira is well-managed. Consider advanced optimizations: AI-powered classification, cross-project automation, or API integrations.</span></div></div>';
+    }
+
+    document.getElementById('form-score').value = score;
+  }
+
+  function animateNumber(id, start, end, duration) {
+    const el = document.getElementById(id);
+    const range = end - start;
+    const startTime = performance.now();
+    function update(currentTime) {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.round(start + range * eased);
+      if (progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    const email = document.getElementById('cta-email').value;
+    const score = document.getElementById('form-score').value;
+    trackLeadSubmit(email, score);
+
+    event.target.submit();
+    setTimeout(() => {
+      alert('Thanks! Your full Jira audit report will be sent to ' + email + ' within 48 hours.');
+    }, 100);
+  }
+</script>
+
+</body>
+</html>

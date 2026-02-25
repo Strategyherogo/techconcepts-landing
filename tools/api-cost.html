@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI API Cost Calculator | Optimize Your LLM Spending</title>
+
+<!-- SEO -->
+<meta name="description" content="Free AI API cost calculator. Compare GPT-4, Claude Opus, Sonnet, and Haiku pricing. Calculate monthly costs and discover potential savings. No signup required.">
+<meta name="author" content="Evgeny Goncharov">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://techconcepts.org/tools/api-cost.html">
+
+<!-- Resource Hints -->
+<link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+<link rel="dns-prefetch" href="https://www.googletagmanager.com">
+<link rel="preconnect" href="https://formspree.io" crossorigin>
+<link rel="dns-prefetch" href="https://formspree.io">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://techconcepts.org/tools/api-cost.html">
+<meta property="og:title" content="AI API Cost Calculator">
+<meta property="og:description" content="Calculate and optimize your AI API costs across GPT-4 and Claude models.">
+<meta property="og:image" content="https://techconcepts.org/techconcepts-og.png">
+<meta property="og:site_name" content="TechConcepts">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI API Cost Calculator">
+<meta name="twitter:description" content="Compare AI API costs and find savings opportunities.">
+<meta name="twitter:image" content="https://techconcepts.org/techconcepts-og.png">
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💰</text></svg>">
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-815E8YDZW8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-815E8YDZW8', {page_path: '/tools/api-cost'});
+
+  function trackCalculationComplete(currentCost, potentialSavings) {
+    gtag('event', 'calculation_complete', {
+      current_cost: currentCost,
+      potential_savings: potentialSavings,
+      event_category: 'conversion'
+    });
+  }
+
+  function trackLeadSubmit(email, savings) {
+    gtag('event', 'lead_submit', {
+      potential_savings: savings,
+      event_category: 'lead_generation',
+      event_label: 'cost_reduction_plan'
+    });
+  }
+</script>
+
+<!-- Schema.org -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "AI API Cost Calculator",
+  "description": "Calculate and optimize costs for GPT-4 and Claude API usage",
+  "url": "https://techconcepts.org/tools/api-cost.html",
+  "applicationCategory": "BusinessApplication",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "TechConcepts"
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "TechConcepts",
+      "item": "https://techconcepts.org/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Tools",
+      "item": "https://techconcepts.org/tools/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "API Cost Calculator",
+      "item": "https://techconcepts.org/tools/api-cost.html"
+    }
+  ]
+}
+</script>
+
+<style>
+  :root {
+    --primary: #1a1a2e;
+    --accent: #e94560;
+    --accent2: #0f3460;
+    --safe: #00b894;
+    --warn: #fdcb6e;
+    --danger: #e17055;
+    --bg: #f8f9fa;
+    --card: #ffffff;
+    --text: #2d3436;
+    --muted: #636e72;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  .hero {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent2) 100%);
+    color: white;
+    padding: 60px 24px 48px;
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+  }
+
+  .hero .icon {
+    font-size: 3rem;
+    margin-bottom: 16px;
+  }
+
+  .hero p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .calculator-card {
+    background: white;
+    border-radius: 16px;
+    padding: 32px;
+    margin: -24px auto 32px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    position: relative;
+    z-index: 2;
+  }
+
+  .form-group {
+    margin-bottom: 24px;
+  }
+
+  .form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+  }
+
+  .form-group .hint {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  .form-group input, .form-group select {
+    width: 100%;
+    padding: 14px 18px;
+    border: 2px solid #e9ecef;
+    border-radius: 12px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s ease;
+    font-family: inherit;
+  }
+
+  .form-group input:focus, .form-group select:focus {
+    border-color: var(--accent2);
+  }
+
+  .slider-container {
+    margin-top: 12px;
+  }
+
+  .slider-container input[type="range"] {
+    width: 100%;
+    height: 8px;
+    border-radius: 5px;
+    background: #e9ecef;
+    outline: none;
+    padding: 0;
+    border: none;
+  }
+
+  .slider-container input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+  }
+
+  .slider-container input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+    border: none;
+  }
+
+  .slider-value {
+    display: block;
+    text-align: right;
+    font-weight: 700;
+    color: var(--accent);
+    margin-top: 8px;
+  }
+
+  .calculate-btn {
+    width: 100%;
+    background: linear-gradient(135deg, var(--accent) 0%, #c0392b 100%);
+    color: white;
+    border: none;
+    padding: 16px;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    box-shadow: 0 4px 20px rgba(233,69,96,0.3);
+  }
+
+  .calculate-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(233,69,96,0.4);
+  }
+
+  .results-card {
+    background: white;
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 32px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    display: none;
+  }
+
+  .results-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 24px;
+    color: var(--primary);
+  }
+
+  .result-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .result-item:last-child {
+    border-bottom: none;
+  }
+
+  .result-label {
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .result-value {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--accent);
+  }
+
+  .result-value.positive {
+    color: var(--safe);
+  }
+
+  .chart-container {
+    margin: 24px 0;
+    padding: 24px;
+    background: #f8f9fa;
+    border-radius: 12px;
+  }
+
+  .chart-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: var(--primary);
+  }
+
+  .bar-chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+    height: 180px;
+  }
+
+  .bar {
+    flex: 1;
+    background: var(--accent2);
+    border-radius: 8px 8px 0 0;
+    position: relative;
+    transition: height 0.8s ease;
+    min-height: 20px;
+  }
+
+  .bar.optimized {
+    background: var(--safe);
+  }
+
+  .bar-label {
+    position: absolute;
+    bottom: -36px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--muted);
+    line-height: 1.2;
+  }
+
+  .bar-value {
+    position: absolute;
+    top: -24px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--primary);
+  }
+
+  .cta-section {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent2) 100%);
+    border-radius: 16px;
+    padding: 36px 28px;
+    text-align: center;
+    color: white;
+    margin-bottom: 32px;
+    display: none;
+  }
+
+  .cta-section h3 {
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+  }
+
+  .cta-section p {
+    opacity: 0.85;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: transform 0.2s ease;
+  }
+
+  .cta-btn.primary {
+    background: var(--accent);
+    color: white;
+  }
+
+  .cta-btn.secondary {
+    background: white;
+    color: var(--primary);
+  }
+
+  .cta-btn:hover {
+    transform: scale(1.02);
+  }
+
+  .cta-form {
+    display: flex;
+    gap: 8px;
+    max-width: 440px;
+    margin: 0 auto;
+  }
+
+  .cta-form input {
+    flex: 1;
+    padding: 14px 18px;
+    border: none;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    outline: none;
+  }
+
+  .cta-form button {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 14px 24px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .cta-form button:hover {
+    transform: scale(1.02);
+  }
+
+  .back-link {
+    text-align: center;
+    margin: 24px 0;
+  }
+
+  .back-link a {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 1.6rem; }
+    .calculator-card { padding: 24px; }
+    .cta-form { flex-direction: column; }
+    .cta-buttons { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="container">
+    <span class="icon">💰</span>
+    <h1>AI API Cost Calculator</h1>
+    <p>Compare GPT-4 and Claude API costs. Find optimization opportunities and potential annual savings.</p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="calculator-card">
+    <form id="calculator-form">
+      <div class="form-group">
+        <label for="api-calls">Monthly API Calls</label>
+        <input type="number" id="api-calls" value="100000" min="1" required>
+        <div class="hint">How many API requests do you make per month?</div>
+      </div>
+
+      <div class="form-group">
+        <label for="tokens">Average Tokens Per Call</label>
+        <div class="slider-container">
+          <input type="range" id="tokens" min="100" max="5000" value="1000" step="100">
+          <span class="slider-value" id="tokens-value">1,000 tokens</span>
+        </div>
+        <div class="hint">Combined input + output tokens (output typically 2x cost)</div>
+      </div>
+
+      <div class="form-group">
+        <label for="current-model">Current Model</label>
+        <select id="current-model" required>
+          <option value="gpt4">GPT-4 ($30/$60 per million tokens)</option>
+          <option value="opus" selected>Claude Opus ($15/$75 per million tokens)</option>
+          <option value="sonnet">Claude Sonnet ($3/$15 per million tokens)</option>
+          <option value="haiku">Claude Haiku ($0.25/$1.25 per million tokens)</option>
+        </select>
+      </div>
+
+      <button type="submit" class="calculate-btn">Calculate Costs</button>
+    </form>
+  </div>
+
+  <div class="results-card" id="results">
+    <h3>Cost Analysis</h3>
+
+    <div class="result-item">
+      <span class="result-label">Current Monthly Cost</span>
+      <span class="result-value" id="current-cost">$0</span>
+    </div>
+
+    <div class="result-item">
+      <span class="result-label">Optimized Monthly Cost</span>
+      <span class="result-value positive" id="optimized-cost">$0</span>
+    </div>
+
+    <div class="result-item">
+      <span class="result-label">Monthly Savings</span>
+      <span class="result-value positive" id="monthly-savings">$0</span>
+    </div>
+
+    <div class="result-item">
+      <span class="result-label">Annual Savings</span>
+      <span class="result-value positive" id="annual-savings">$0</span>
+    </div>
+
+    <div class="result-item">
+      <span class="result-label">Cost Reduction</span>
+      <span class="result-value positive" id="reduction">0%</span>
+    </div>
+
+    <div class="chart-container">
+      <div class="chart-title">Monthly Cost Comparison</div>
+      <div class="bar-chart">
+        <div class="bar" id="bar-current" style="height: 100%;">
+          <div class="bar-value" id="bar-current-value">$0</div>
+          <div class="bar-label">Current<br>Cost</div>
+        </div>
+        <div class="bar optimized" id="bar-optimized" style="height: 50%;">
+          <div class="bar-value" id="bar-optimized-value">$0</div>
+          <div class="bar-label">Optimized<br>Cost</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 20px; padding: 16px; background: #e8f5e9; border-radius: 12px; font-size: 0.9rem; color: #2e7d32;">
+      <strong>Recommendation:</strong> <span id="recommendation"></span>
+    </div>
+  </div>
+
+  <div class="cta-section" id="cta">
+    <h3>Get Your Custom AI Cost Reduction Plan</h3>
+    <p>We'll analyze your usage patterns and recommend the optimal model mix to reduce costs without sacrificing quality.</p>
+
+    <div class="cta-buttons">
+      <a href="https://techconcepts.org/blog/ai-api-cost-optimization.html" class="cta-btn secondary">Read Our Guide</a>
+      <a href="https://calendly.com/jenyago/30min" class="cta-btn primary" target="_blank">Book a Call</a>
+    </div>
+
+    <form class="cta-form" action="https://formspree.io/f/xpwzgvqr" method="POST">
+      <input type="email" name="email" placeholder="Your email" required>
+      <input type="hidden" name="tool" value="api-cost">
+      <input type="hidden" name="annual_savings" id="form-savings">
+      <button type="submit">Get Plan</button>
+    </form>
+  </div>
+
+  <div class="back-link">
+    <a href="https://techconcepts.org/tools/">&larr; Back to Tools</a>
+  </div>
+</div>
+
+<script>
+  const modelPricing = {
+    gpt4: { input: 30, output: 60, name: 'GPT-4' },
+    opus: { input: 15, output: 75, name: 'Claude Opus' },
+    sonnet: { input: 3, output: 15, name: 'Claude Sonnet' },
+    haiku: { input: 0.25, output: 1.25, name: 'Claude Haiku' }
+  };
+
+  const tokensSlider = document.getElementById('tokens');
+  const tokensValue = document.getElementById('tokens-value');
+
+  tokensSlider.addEventListener('input', function() {
+    tokensValue.textContent = parseInt(this.value).toLocaleString() + ' tokens';
+  });
+
+  document.getElementById('calculator-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const apiCalls = parseInt(document.getElementById('api-calls').value);
+    const tokens = parseInt(document.getElementById('tokens').value);
+    const currentModelKey = document.getElementById('current-model').value;
+    const currentModel = modelPricing[currentModelKey];
+
+    // Assume 40% input, 60% output tokens (output is more expensive)
+    const inputTokens = tokens * 0.4;
+    const outputTokens = tokens * 0.6;
+
+    // Calculate current cost (per million tokens)
+    const currentCostPerCall = (inputTokens * currentModel.input + outputTokens * currentModel.output) / 1000000;
+    const currentMonthlyCost = currentCostPerCall * apiCalls;
+
+    // Find best model for optimization (usually Haiku for simple tasks)
+    let optimizedModel = modelPricing.haiku;
+    let optimizedModelKey = 'haiku';
+
+    // If already using Haiku, suggest Sonnet for better quality
+    if (currentModelKey === 'haiku') {
+      optimizedModel = modelPricing.sonnet;
+      optimizedModelKey = 'sonnet';
+    }
+
+    const optimizedCostPerCall = (inputTokens * optimizedModel.input + outputTokens * optimizedModel.output) / 1000000;
+    const optimizedMonthlyCost = optimizedCostPerCall * apiCalls;
+
+    const monthlySavings = currentMonthlyCost - optimizedMonthlyCost;
+    const annualSavings = monthlySavings * 12;
+    const reduction = ((monthlySavings / currentMonthlyCost) * 100);
+
+    // Update results
+    document.getElementById('current-cost').textContent = '$' + currentMonthlyCost.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 0});
+    document.getElementById('optimized-cost').textContent = '$' + optimizedMonthlyCost.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 0});
+    document.getElementById('monthly-savings').textContent = '$' + monthlySavings.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 0});
+    document.getElementById('annual-savings').textContent = '$' + annualSavings.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 0});
+    document.getElementById('reduction').textContent = reduction.toFixed(0) + '%';
+
+    // Update chart
+    const maxCost = Math.max(currentMonthlyCost, optimizedMonthlyCost);
+    document.getElementById('bar-current').style.height = (currentMonthlyCost / maxCost * 100) + '%';
+    document.getElementById('bar-optimized').style.height = (optimizedMonthlyCost / maxCost * 100) + '%';
+    document.getElementById('bar-current-value').textContent = '$' + currentMonthlyCost.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 0});
+    document.getElementById('bar-optimized-value').textContent = '$' + optimizedMonthlyCost.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 0});
+
+    // Recommendation
+    let recommendation = '';
+    if (currentModelKey === 'haiku') {
+      recommendation = `Consider upgrading to ${optimizedModel.name} for better quality with reasonable cost increase.`;
+    } else {
+      recommendation = `Switch to ${optimizedModel.name} for simple tasks (80% of requests) and keep ${currentModel.name} for complex reasoning. This could save you $${annualSavings.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 0})} annually.`;
+    }
+    document.getElementById('recommendation').textContent = recommendation;
+
+    // Update hidden form field
+    document.getElementById('form-savings').value = annualSavings.toFixed(0);
+
+    // Show results and CTA
+    document.getElementById('results').style.display = 'block';
+    document.getElementById('cta').style.display = 'block';
+
+    // Track event
+    trackCalculationComplete(currentMonthlyCost, annualSavings);
+
+    // Scroll to results
+    document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });
+
+  // Track lead submission
+  document.querySelector('.cta-form').addEventListener('submit', function() {
+    const email = this.querySelector('input[name="email"]').value;
+    const savings = document.getElementById('form-savings').value;
+    trackLeadSubmit(email, savings);
+  });
+</script>
+
+</body>
+</html>

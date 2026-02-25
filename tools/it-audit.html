@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IT Audit Checklist | Find Hidden Waste in Your Tech Stack</title>
+
+<!-- SEO -->
+<meta name="description" content="Free interactive IT audit checklist with 25 items across security, compliance, infrastructure, operations, and documentation. Get instant score and recommendations.">
+<meta name="author" content="Evgeny Goncharov">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://techconcepts.org/tools/it-audit.html">
+
+<!-- Resource Hints -->
+<link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+<link rel="dns-prefetch" href="https://www.googletagmanager.com">
+<link rel="preconnect" href="https://formspree.io" crossorigin>
+<link rel="dns-prefetch" href="https://formspree.io">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://techconcepts.org/tools/it-audit.html">
+<meta property="og:title" content="IT Audit Checklist | Find Hidden Waste">
+<meta property="og:description" content="Free 25-item IT audit checklist. Check security, compliance, infrastructure, operations. Get instant score.">
+<meta property="og:image" content="https://techconcepts.org/techconcepts-og.png">
+<meta property="og:site_name" content="TechConcepts">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="IT Audit Checklist | Find Hidden Waste">
+<meta name="twitter:description" content="Free 25-item IT audit checklist. Security, compliance, infrastructure, operations.">
+<meta name="twitter:image" content="https://techconcepts.org/techconcepts-og.png">
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✅</text></svg>">
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-815E8YDZW8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-815E8YDZW8', {page_path: '/tools/it-audit'});
+
+  function trackItemChecked(itemId, checked) {
+    gtag('event', 'item_checked', {
+      item_id: itemId,
+      checked: checked,
+      event_category: 'audit'
+    });
+  }
+
+  function trackChecklistComplete(score, percentage) {
+    gtag('event', 'checklist_complete', {
+      total_score: score,
+      percentage: percentage,
+      event_category: 'conversion'
+    });
+  }
+
+  function trackLeadSubmit(email, score) {
+    gtag('event', 'lead_submit', {
+      score: score,
+      event_category: 'lead_generation',
+      event_label: 'pdf_request'
+    });
+  }
+</script>
+
+<!-- Schema.org -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "IT Audit Checklist",
+  "description": "Interactive IT audit checklist covering security, compliance, infrastructure, operations, and documentation",
+  "url": "https://techconcepts.org/tools/it-audit.html",
+  "applicationCategory": "BusinessApplication",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "TechConcepts"
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "TechConcepts",
+      "item": "https://techconcepts.org/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Tools",
+      "item": "https://techconcepts.org/tools/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "IT Audit Checklist",
+      "item": "https://techconcepts.org/tools/it-audit.html"
+    }
+  ]
+}
+</script>
+
+<style>
+  :root {
+    --primary: #1a1a2e;
+    --accent: #e94560;
+    --accent2: #0f3460;
+    --safe: #00b894;
+    --warn: #fdcb6e;
+    --danger: #e17055;
+    --critical: #d63031;
+    --bg: #f8f9fa;
+    --card: #ffffff;
+    --text: #2d3436;
+    --muted: #636e72;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  .hero {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent2) 100%);
+    color: white;
+    padding: 60px 24px 48px;
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+  }
+
+  .hero .icon {
+    font-size: 3rem;
+    margin-bottom: 16px;
+  }
+
+  .hero p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .progress-container {
+    background: white;
+    padding: 16px 24px;
+    margin: -24px auto 24px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    position: relative;
+    z-index: 2;
+    max-width: 720px;
+  }
+
+  .progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .progress-header span {
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+
+  .progress-bar {
+    height: 8px;
+    background: #eee;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent2), var(--accent));
+    border-radius: 4px;
+    transition: width 0.5s ease;
+    width: 0%;
+  }
+
+  .section-label {
+    display: inline-block;
+    background: var(--accent2);
+    color: white;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 32px 0 16px;
+  }
+
+  .checklist {
+    background: var(--card);
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  }
+
+  .checklist-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px;
+    margin-bottom: 8px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 2px solid transparent;
+  }
+
+  .checklist-item:hover {
+    background: rgba(15, 52, 96, 0.03);
+  }
+
+  .checklist-item.checked {
+    background: rgba(0, 184, 148, 0.05);
+    border-color: var(--safe);
+  }
+
+  .checkbox {
+    width: 24px;
+    height: 24px;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+  }
+
+  .checklist-item.checked .checkbox {
+    background: var(--safe);
+    border-color: var(--safe);
+    color: white;
+  }
+
+  .checkbox::after {
+    content: '✓';
+    font-size: 1rem;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .checklist-item.checked .checkbox::after {
+    opacity: 1;
+  }
+
+  .checklist-text {
+    flex: 1;
+    font-size: 0.95rem;
+  }
+
+  .results-card {
+    background: white;
+    border-radius: 20px;
+    padding: 40px 32px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.1);
+    text-align: center;
+    margin-bottom: 24px;
+    display: none;
+  }
+
+  .score-ring {
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 24px;
+    position: relative;
+  }
+
+  .score-ring svg {
+    transform: rotate(-90deg);
+    width: 180px;
+    height: 180px;
+  }
+
+  .score-ring .bg-ring {
+    fill: none;
+    stroke: #eee;
+    stroke-width: 12;
+  }
+
+  .score-ring .score-arc {
+    fill: none;
+    stroke-width: 12;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 1.5s ease, stroke 0.5s ease;
+  }
+
+  .score-value {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.8rem;
+    font-weight: 800;
+  }
+
+  .score-label {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-top: -4px;
+  }
+
+  .score-level {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .score-description {
+    color: var(--muted);
+    max-width: 480px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  .recommendations {
+    background: white;
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    text-align: left;
+    display: none;
+  }
+
+  .recommendations h3 {
+    font-size: 1rem;
+    margin-bottom: 16px;
+    color: var(--primary);
+  }
+
+  .rec-item {
+    padding: 14px;
+    margin-bottom: 8px;
+    border-radius: 12px;
+    background: #f8f9fa;
+    font-size: 0.9rem;
+  }
+
+  .rec-item strong {
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .cta-section {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent2) 100%);
+    border-radius: 16px;
+    padding: 36px 28px;
+    text-align: center;
+    color: white;
+    margin-bottom: 48px;
+    display: none;
+  }
+
+  .cta-section h3 {
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+  }
+
+  .cta-section p {
+    opacity: 0.85;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+  }
+
+  .cta-form {
+    display: flex;
+    gap: 8px;
+    max-width: 440px;
+    margin: 0 auto;
+  }
+
+  .cta-form input {
+    flex: 1;
+    padding: 14px 18px;
+    border: none;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    outline: none;
+  }
+
+  .cta-form button {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 14px 24px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .cta-form button:hover {
+    transform: scale(1.02);
+  }
+
+  .back-link {
+    text-align: center;
+    margin: 24px 0;
+  }
+
+  .back-link a {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 1.6rem; }
+    .cta-form { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="container">
+    <span class="icon">✅</span>
+    <h1>IT Audit Checklist</h1>
+    <p>25 critical checkpoints across security, compliance, infrastructure, operations, and documentation. Free, no signup required.</p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="progress-container">
+    <div class="progress-header">
+      <span>Checklist Progress</span>
+      <span id="progress-text">0 of 25 completed</span>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progress-fill"></div>
+    </div>
+  </div>
+</div>
+
+<div class="container" id="checklist-container">
+
+  <div class="section-label">Security (5 items)</div>
+  <div class="checklist">
+    <div class="checklist-item" onclick="toggleItem(this, 'sec1')">
+      <div class="checkbox"></div>
+      <div class="checklist-text">Multi-factor authentication (MFA) enabled for all admin accounts</div>
+    </div>
+    <div class="checklist-item" onclick="toggleItem(this, 'sec2')">
+      <div class="checkbox"></div>
+      <div class="checklist-text">Password policy enforces minimum 12 characters with complexity requirements</div>
+    </div>
+    <div class="checklist-item" onclick="toggleItem(this, 'sec3')">
+      <div class="checkbox"></div>
+      <div class="checklist-text">Regular security patch schedule documented and followed</div>
+    </div>
+    <div class="checklist-item" onclick="toggleItem(this, 'sec4')">
+      <div class="checkbox"></div>
+      <div class="checklist-text">Access reviews conducted quarterly (who has access to what)</div>
+    </div>
+    <div class="checklist-item" onclick="toggleItem(this, 'sec5')">
+      <div class="checkbox"></div>
+      <div class="checklist-text">Offboarding checklist includes revoking all system access within 24 hours</div>
+    </div>
+  </div>
+
+  <div class="section-label">Compliance (5 items)</div>
+  <div class="checklist">
+    <div class="checklist-item" onclick="toggleItem(this, 'comp1')">
+      <div class="checkbox"></div>
+      <div class="checklist-text">Data retention policy documented and automated where possible</div>
+    </div>
+    <div class="checklist-item" onclick="toggleItem(this, 'comp2')">
+      <div class="checkbox"></div>
+      <div class="checklist-text">Privacy policy up to date with GDPR, CCPA, or relevant regulations</div>
+    </div>
+    <div class="checklist-item" onclick="toggleItem(this, 'comp3')">
+      <div class="checkbox"></div>
+      <div class="checklist-text">Audit logs enabled for critical systems and retained for at least 90 days</div>
+    </div>
+    <div class="checklist-item" onclick="toggleItem(this, 'comp4')">
+      <div class="checkbox"></div>
+      <div class="checklist-text">Vendor risk assessment process in place for third-party tools</div>
+    </div>
+    <div class="checklist-item" onclick="toggleItem(this, 'comp5')">
+      <div class="checkbox"></div>
+      <div class="checklist-text">Data processing agreements (DPAs) signed with all vendors handling personal data</div>
+    </div>
+  </div>
+
+  <div class="section-label">Infrastructure (5 items)</div>
+  <div class="checklist">
+    <div class="checklist-item" onclick="toggleItem(this, 'infra1')">
+      <div class="checkbox"></div>
+      <div class="checklist-text">Automated backups tested and verified monthly</div>
+    </div>
+    <div class="checklist-item" onclick="toggleItem(this, 'infra2')">
+      <div class="checkbox"></div>
+      <div class="checklist-text">Disaster recovery plan documented with RTO and RPO targets</div>
+    </div>
+    <div class="checklist-item" onclick="toggleItem(this, 'infra3')">
+      <div class="checkbox"></div>
+      <div class="checklist-text">Infrastructure as code (IaC) used for provisioning and configuration</div>
+    </div>
+    <div class="checklist-item" onclick="toggleItem(this, 'infra4')">
+      <div class="checkbox"></div>
+      <div class="checklist-text">Monitoring and alerting in place for critical systems (uptime, errors, performance)</div>
+    </div>
+    <div class="checklist-item" onclick="toggleItem(this, 'infra5')">
+      <div class="checkbox"></div>
+      <div class="checklist-text">Cloud cost optimization reviewed quarterly (unused resources, rightsizing)</div>
+    </div>
+  </div>
+
+  <div class="section-label">Operations (5 items)</div>
+  <div class="checklist">
+    <div class="checklist-item" onclick="toggleItem(this, 'ops1')">
+      <div class="checkbox"></div>
+      <div class="checklist-text">SaaS license audit conducted at least twice per year (unused seats)</div>
+    </div>
+    <div class="checklist-item" onclick="toggleItem(this, 'ops2')">
+      <div class="checkbox"></div>
+      <div class="checklist-text">IT ticketing system in place with SLA tracking</div>
+    </div>
+    <div class="checklist-item" onclick="toggleItem(this, 'ops3')">
+      <div class="checkbox"></div>
+      <div class="checklist-text">Change management process for production deployments</div>
+    </div>
+    <div class="checklist-item" onclick="toggleItem(this, 'ops4')">
+      <div class="checkbox"></div>
+      <div class="checklist-text">Onboarding checklist automates provisioning of accounts and access</div>
+    </div>
+    <div class="checklist-item" onclick="toggleItem(this, 'ops5')">
+      <div class="checkbox"></div>
+      <div class="checklist-text">IT asset inventory maintained and up to date (hardware, software, licenses)</div>
+    </div>
+  </div>
+
+  <div class="section-label">Documentation (5 items)</div>
+  <div class="checklist">
+    <div class="checklist-item" onclick="toggleItem(this, 'doc1')">
+      <div class="checkbox"></div>
+      <div class="checklist-text">Network diagram documenting all systems and data flows</div>
+    </div>
+    <div class="checklist-item" onclick="toggleItem(this, 'doc2')">
+      <div class="checkbox"></div>
+      <div class="checklist-text">Runbooks for critical incidents (outages, security events)</div>
+    </div>
+    <div class="checklist-item" onclick="toggleItem(this, 'doc3')">
+      <div class="checkbox"></div>
+      <div class="checklist-text">API documentation kept up to date with code changes</div>
+    </div>
+    <div class="checklist-item" onclick="toggleItem(this, 'doc4')">
+      <div class="checkbox"></div>
+      <div class="checklist-text">Business continuity plan reviewed annually</div>
+    </div>
+    <div class="checklist-item" onclick="toggleItem(this, 'doc5')">
+      <div class="checkbox"></div>
+      <div class="checklist-text">Single source of truth for internal documentation (not scattered across Slack, email, wikis)</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="container" id="results-container">
+  <div class="results-card" id="results">
+    <div class="score-ring">
+      <svg viewBox="0 0 180 180">
+        <circle class="bg-ring" cx="90" cy="90" r="78" />
+        <circle class="score-arc" id="score-arc" cx="90" cy="90" r="78"
+          stroke-dasharray="490" stroke-dashoffset="490" />
+      </svg>
+      <div class="score-value" id="score-value">0</div>
+    </div>
+    <div class="score-label">out of 100</div>
+    <div class="score-level" id="score-level"></div>
+    <div class="score-description" id="score-description"></div>
+  </div>
+
+  <div class="recommendations" id="recommendations">
+    <h3>Priority Recommendations</h3>
+    <div id="rec-items"></div>
+  </div>
+
+  <div class="cta-section" id="cta">
+    <h3>Get Your Full IT Audit Report</h3>
+    <p>Receive a detailed PDF with your results, plus 5 quick wins you can implement this week.</p>
+    <form class="cta-form" action="https://formspree.io/f/xpwzgvqr" method="POST" onsubmit="handleSubmit(event)">
+      <input type="email" name="email" id="cta-email" placeholder="Work email" required>
+      <input type="hidden" name="tool" value="it-audit">
+      <input type="hidden" name="score" id="form-score">
+      <input type="hidden" name="_subject" value="IT Audit Checklist - PDF Request">
+      <button type="submit">Get PDF Report</button>
+    </form>
+  </div>
+</div>
+
+<div class="back-link">
+  <a href="/tools/">← Back to Tools</a>
+</div>
+
+<script>
+  const checkedItems = new Set();
+  const totalItems = 25;
+
+  function toggleItem(el, itemId) {
+    el.classList.toggle('checked');
+    if (el.classList.contains('checked')) {
+      checkedItems.add(itemId);
+      trackItemChecked(itemId, true);
+    } else {
+      checkedItems.delete(itemId);
+      trackItemChecked(itemId, false);
+    }
+    updateProgress();
+  }
+
+  function updateProgress() {
+    const count = checkedItems.size;
+    const pct = (count / totalItems) * 100;
+    document.getElementById('progress-fill').style.width = pct + '%';
+    document.getElementById('progress-text').textContent = `${count} of ${totalItems} completed`;
+
+    if (count === totalItems) {
+      showResults();
+    }
+  }
+
+  function showResults() {
+    const score = (checkedItems.size / totalItems) * 100;
+    trackChecklistComplete(checkedItems.size, score);
+
+    document.getElementById('checklist-container').style.display = 'none';
+    document.getElementById('results').style.display = 'block';
+    document.getElementById('recommendations').style.display = 'block';
+    document.getElementById('cta').style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    const arc = document.getElementById('score-arc');
+    const circumference = 490;
+    const offset = circumference - (circumference * (score / 100));
+    let color;
+
+    if (score >= 80) color = '#00b894';
+    else if (score >= 60) color = '#fdcb6e';
+    else if (score >= 40) color = '#e17055';
+    else color = '#d63031';
+
+    setTimeout(() => {
+      arc.style.strokeDashoffset = offset;
+      arc.style.stroke = color;
+    }, 200);
+
+    animateNumber('score-value', 0, Math.round(score), 1500);
+
+    const level = document.getElementById('score-level');
+    const desc = document.getElementById('score-description');
+    level.style.color = color;
+
+    if (score >= 80) {
+      level.textContent = 'Strong IT Posture';
+      desc.textContent = 'Your IT operations are well-managed with good coverage across security, compliance, infrastructure, operations, and documentation. Focus on maintaining this standard and staying ahead of emerging risks.';
+    } else if (score >= 60) {
+      level.textContent = 'Good Foundation, Some Gaps';
+      desc.textContent = 'You have solid fundamentals in place, but there are areas that need attention. Addressing these gaps will reduce risk and improve operational efficiency.';
+    } else if (score >= 40) {
+      level.textContent = 'Moderate Risk - Action Needed';
+      desc.textContent = 'Significant gaps exist in your IT operations. These gaps expose you to security incidents, compliance violations, and operational inefficiencies. Prioritize the critical items below.';
+    } else {
+      level.textContent = 'Critical Exposure - Immediate Action';
+      desc.textContent = 'Your IT environment has major vulnerabilities across multiple areas. Immediate action is required to prevent security breaches, compliance failures, and system outages.';
+    }
+
+    const recContainer = document.getElementById('rec-items');
+    recContainer.innerHTML = '';
+
+    if (score < 80) {
+      if (!checkedItems.has('sec1')) {
+        recContainer.innerHTML += '<div class="rec-item"><strong>Enable MFA for all admin accounts</strong>Single biggest security win. Takes 30 minutes, prevents 99% of credential-based attacks.</div>';
+      }
+      if (!checkedItems.has('infra1')) {
+        recContainer.innerHTML += '<div class="rec-item"><strong>Test your backups this week</strong>40% of businesses discover backup failures during recovery. Test now, not during a disaster.</div>';
+      }
+      if (!checkedItems.has('ops1')) {
+        recContainer.innerHTML += '<div class="rec-item"><strong>Audit SaaS licenses for unused seats</strong>Average company wastes 30% of SaaS spend on unused licenses. Quick audit = immediate savings.</div>';
+      }
+      if (!checkedItems.has('comp3')) {
+        recContainer.innerHTML += '<div class="rec-item"><strong>Enable audit logs for critical systems</strong>Required for compliance, essential for incident investigation. Enable now before you need them.</div>';
+      }
+      if (!checkedItems.has('doc2')) {
+        recContainer.innerHTML += '<div class="rec-item"><strong>Create runbooks for critical incidents</strong>Reduces incident response time by 60%. Start with your top 3 most critical systems.</div>';
+      }
+    } else {
+      recContainer.innerHTML += '<div class="rec-item"><strong>Maintain Your Strong Standard</strong>Consider advanced initiatives: red team exercises, automated compliance reporting, or SOC 2 certification.</div>';
+    }
+
+    document.getElementById('form-score').value = Math.round(score);
+  }
+
+  function animateNumber(id, start, end, duration) {
+    const el = document.getElementById(id);
+    const range = end - start;
+    const startTime = performance.now();
+    function update(currentTime) {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.round(start + range * eased);
+      if (progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    const email = document.getElementById('cta-email').value;
+    const score = document.getElementById('form-score').value;
+    trackLeadSubmit(email, score);
+
+    event.target.submit();
+    setTimeout(() => {
+      alert('Thanks! Your IT Audit Report will be sent to ' + email + ' within 24 hours.');
+    }, 100);
+  }
+</script>
+
+</body>
+</html>
