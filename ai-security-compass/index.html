@@ -14,54 +14,17 @@
   gtag('config', 'G-815E8YDZW8', {
     page_path: '/ai-security-compass'
   });
-
-  // Custom event tracking functions
-  function trackQuestionAnswer(questionId, answer) {
-    gtag('event', 'question_answered', {
-      question_id: questionId,
-      answer_value: answer,
-      event_category: 'assessment'
-    });
-  }
-
-  function trackAssessmentComplete(score, percentage) {
-    gtag('event', 'assessment_complete', {
-      total_score: score,
-      percentage: percentage,
-      event_category: 'conversion'
-    });
-  }
-
-  function trackLeadSubmit(email, score) {
-    gtag('event', 'lead_submit', {
-      score: score,
-      event_category: 'lead_generation',
-      event_label: 'cta_form'
-    });
-  }
-
-  function trackShare(platform) {
-    gtag('event', 'share', {
-      method: platform,
-      content_type: 'assessment_results',
-      event_category: 'engagement'
-    });
-  }
 </script>
+
+<!-- Chat Framework -->
+<link rel="stylesheet" href="../styles/chat-ui.css">
 
 <style>
   :root {
     --primary: #1a1a2e;
     --accent: #e94560;
     --accent2: #0f3460;
-    --safe: #00b894;
-    --warn: #fdcb6e;
-    --danger: #e17055;
-    --critical: #d63031;
     --bg: #f8f9fa;
-    --card: #ffffff;
-    --text: #2d3436;
-    --muted: #636e72;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -69,11 +32,10 @@
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background: var(--bg);
-    color: var(--text);
+    color: #2d3436;
     line-height: 1.6;
   }
 
-  /* ── Hero Section ── */
   .hero {
     background: linear-gradient(135deg, var(--primary) 0%, var(--accent2) 100%);
     color: white;
@@ -104,12 +66,15 @@
     font-weight: 800;
     margin-bottom: 12px;
     position: relative;
+    z-index: 1;
   }
 
   .hero .compass-icon {
     font-size: 3rem;
     margin-bottom: 16px;
     display: block;
+    position: relative;
+    z-index: 1;
   }
 
   .hero p {
@@ -118,1073 +83,230 @@
     max-width: 600px;
     margin: 0 auto 24px;
     position: relative;
+    z-index: 1;
   }
 
-  .hero .stats-bar {
-    display: flex;
-    justify-content: center;
-    gap: 32px;
-    margin-top: 24px;
-    position: relative;
-  }
-
-  .hero .stat {
-    text-align: center;
-  }
-
-  .hero .stat-number {
-    font-size: 1.8rem;
-    font-weight: 800;
-    color: var(--accent);
-  }
-
-  .hero .stat-label {
-    font-size: 0.75rem;
-    opacity: 0.7;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-
-  /* ── Container ── */
   .container {
     max-width: 720px;
     margin: 0 auto;
     padding: 0 20px;
   }
 
-  /* ── Progress Bar ── */
-  .progress-container {
-    background: white;
-    padding: 16px 24px;
-    margin: -24px auto 24px;
-    border-radius: 16px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    position: relative;
-    z-index: 2;
-    max-width: 720px;
+  .back-link {
+    text-align: center;
+    margin: 24px 0;
   }
 
-  .progress-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 8px;
-  }
-
-  .progress-header span {
-    font-size: 0.85rem;
-    color: var(--muted);
-  }
-
-  .progress-bar {
-    height: 8px;
-    background: #eee;
-    border-radius: 4px;
-    overflow: hidden;
-  }
-
-  .progress-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--accent2), var(--accent));
-    border-radius: 4px;
-    transition: width 0.5s ease;
-    width: 0%;
-  }
-
-  /* ── Question Cards ── */
-  .question-section {
-    margin-bottom: 32px;
-  }
-
-  .section-label {
-    display: inline-block;
-    background: var(--accent2);
-    color: white;
-    padding: 4px 14px;
-    border-radius: 20px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 16px;
-  }
-
-  .question-card {
-    background: var(--card);
-    border-radius: 16px;
-    padding: 28px;
-    margin-bottom: 16px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
-    border: 2px solid transparent;
-    transition: all 0.3s ease;
-  }
-
-  .question-card:hover {
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-  }
-
-  .question-card.answered {
-    border-color: var(--safe);
-  }
-
-  .question-number {
-    font-size: 0.75rem;
+  .back-link a {
     color: var(--accent);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 8px;
-  }
-
-  .question-text {
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin-bottom: 4px;
-  }
-
-  .question-context {
-    font-size: 0.85rem;
-    color: var(--muted);
-    margin-bottom: 16px;
-  }
-
-  .options {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .option {
-    display: flex;
-    align-items: center;
-    padding: 14px 18px;
-    border: 2px solid #e9ecef;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    font-size: 0.95rem;
-  }
-
-  .option:hover {
-    border-color: var(--accent2);
-    background: rgba(15, 52, 96, 0.03);
-  }
-
-  .option.selected {
-    border-color: var(--accent2);
-    background: rgba(15, 52, 96, 0.08);
-  }
-
-  .option-radio {
-    width: 20px;
-    height: 20px;
-    border: 2px solid #ccc;
-    border-radius: 50%;
-    margin-right: 12px;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease;
-  }
-
-  .option.selected .option-radio {
-    border-color: var(--accent2);
-    background: var(--accent2);
-  }
-
-  .option.selected .option-radio::after {
-    content: '';
-    width: 8px;
-    height: 8px;
-    background: white;
-    border-radius: 50%;
-  }
-
-  /* ── Results Section ── */
-  #results {
-    display: none;
-    margin-bottom: 48px;
-  }
-
-  .results-card {
-    background: white;
-    border-radius: 20px;
-    padding: 40px 32px;
-    box-shadow: 0 8px 40px rgba(0,0,0,0.1);
-    text-align: center;
-    margin-bottom: 24px;
-  }
-
-  .score-ring {
-    width: 180px;
-    height: 180px;
-    margin: 0 auto 24px;
-    position: relative;
-  }
-
-  .score-ring svg {
-    transform: rotate(-90deg);
-    width: 180px;
-    height: 180px;
-  }
-
-  .score-ring .bg-ring {
-    fill: none;
-    stroke: #eee;
-    stroke-width: 12;
-  }
-
-  .score-ring .score-arc {
-    fill: none;
-    stroke-width: 12;
-    stroke-linecap: round;
-    transition: stroke-dashoffset 1.5s ease, stroke 0.5s ease;
-  }
-
-  .score-value {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 2.8rem;
-    font-weight: 800;
-  }
-
-  .score-label {
-    font-size: 0.85rem;
-    color: var(--muted);
-    margin-top: -4px;
-  }
-
-  .risk-level {
-    font-size: 1.4rem;
-    font-weight: 700;
-    margin-bottom: 8px;
-  }
-
-  .risk-description {
-    color: var(--muted);
-    max-width: 480px;
-    margin: 0 auto;
-    line-height: 1.7;
-  }
-
-  /* ── Breakdown ── */
-  .breakdown {
-    background: white;
-    border-radius: 16px;
-    padding: 28px;
-    margin-bottom: 16px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
-  }
-
-  .breakdown h3 {
-    font-size: 1rem;
-    margin-bottom: 20px;
-    color: var(--primary);
-  }
-
-  .breakdown-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px 0;
-    border-bottom: 1px solid #f0f0f0;
-  }
-
-  .breakdown-item:last-child {
-    border-bottom: none;
-  }
-
-  .breakdown-label {
-    font-weight: 600;
+    text-decoration: none;
     font-size: 0.9rem;
   }
 
-  .breakdown-bar-container {
-    flex: 1;
-    margin: 0 16px;
-    height: 8px;
-    background: #eee;
-    border-radius: 4px;
-    overflow: hidden;
-  }
-
-  .breakdown-bar {
-    height: 100%;
-    border-radius: 4px;
-    transition: width 1s ease;
-  }
-
-  .breakdown-score {
-    font-weight: 700;
-    font-size: 0.9rem;
-    min-width: 40px;
-    text-align: right;
-  }
-
-  /* ── Recommendations ── */
-  .recommendations {
-    background: white;
-    border-radius: 16px;
-    padding: 28px;
-    margin-bottom: 16px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
-    text-align: left;
-  }
-
-  .recommendations h3 {
-    font-size: 1rem;
-    margin-bottom: 16px;
-    color: var(--primary);
-  }
-
-  .rec-item {
-    display: flex;
-    gap: 12px;
-    padding: 14px;
-    margin-bottom: 8px;
-    border-radius: 12px;
-    background: #f8f9fa;
-  }
-
-  .rec-icon {
-    font-size: 1.2rem;
-    flex-shrink: 0;
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 8px;
-  }
-
-  .rec-icon.critical { background: rgba(214,48,49,0.1); }
-  .rec-icon.warning { background: rgba(253,203,110,0.2); }
-  .rec-icon.info { background: rgba(0,184,148,0.1); }
-
-  .rec-text strong {
-    display: block;
-    font-size: 0.9rem;
-    margin-bottom: 2px;
-  }
-
-  .rec-text span {
-    font-size: 0.8rem;
-    color: var(--muted);
-  }
-
-  /* ── CTA ── */
-  .cta-section {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--accent2) 100%);
-    border-radius: 16px;
-    padding: 36px 28px;
-    text-align: center;
-    color: white;
-    margin-bottom: 24px;
-  }
-
-  .cta-section h3 {
-    font-size: 1.3rem;
-    margin-bottom: 8px;
-  }
-
-  .cta-section p {
-    opacity: 0.85;
-    margin-bottom: 20px;
-    font-size: 0.95rem;
-  }
-
-  .cta-form {
-    display: flex;
-    gap: 8px;
-    max-width: 440px;
-    margin: 0 auto;
-  }
-
-  .cta-form input {
-    flex: 1;
-    padding: 14px 18px;
-    border: none;
-    border-radius: 12px;
-    font-size: 0.95rem;
-    outline: none;
-  }
-
-  .cta-form button {
-    background: var(--accent);
-    color: white;
-    border: none;
-    padding: 14px 24px;
-    border-radius: 12px;
-    font-weight: 700;
-    font-size: 0.95rem;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-    white-space: nowrap;
-  }
-
-  .cta-form button:hover {
-    transform: scale(1.02);
-  }
-
-  /* ── Submit Button ── */
-  .submit-container {
-    text-align: center;
-    margin: 32px 0 48px;
-  }
-
-  .submit-btn {
-    background: linear-gradient(135deg, var(--accent) 0%, #c0392b 100%);
-    color: white;
-    border: none;
-    padding: 18px 48px;
-    border-radius: 14px;
-    font-size: 1.1rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 20px rgba(233,69,96,0.3);
-  }
-
-  .submit-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(233,69,96,0.4);
-  }
-
-  .submit-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    transform: none;
-    box-shadow: none;
-  }
-
-  .submit-hint {
-    font-size: 0.8rem;
-    color: var(--muted);
-    margin-top: 8px;
-  }
-
-  /* ── Share ── */
-  .share-section {
-    text-align: center;
-    margin-bottom: 48px;
-  }
-
-  .share-section p {
-    color: var(--muted);
-    margin-bottom: 12px;
-    font-size: 0.85rem;
-  }
-
-  .share-buttons {
-    display: flex;
-    gap: 8px;
-    justify-content: center;
-  }
-
-  .share-btn {
-    padding: 10px 20px;
-    border: 2px solid #e9ecef;
-    border-radius: 10px;
-    background: white;
-    cursor: pointer;
-    font-size: 0.85rem;
-    font-weight: 600;
-    transition: all 0.2s ease;
-  }
-
-  .share-btn:hover {
-    border-color: var(--accent2);
-    background: rgba(15,52,96,0.03);
-  }
-
-  /* ── Footer ── */
-  .footer {
-    text-align: center;
-    padding: 32px 24px;
-    color: var(--muted);
-    font-size: 0.8rem;
-    border-top: 1px solid #eee;
-  }
-
-  /* ── Mobile ── */
   @media (max-width: 600px) {
     .hero h1 { font-size: 1.6rem; }
-    .hero .stats-bar { gap: 16px; }
-    .hero .stat-number { font-size: 1.3rem; }
-    .cta-form { flex-direction: column; }
-    .question-card { padding: 20px; }
-    .results-card { padding: 28px 20px; }
   }
 </style>
 </head>
 <body>
 
-<!-- ── Hero ── -->
 <div class="hero">
   <div class="container">
-    <span class="compass-icon">&#x1F9ED;</span>
+    <span class="compass-icon">🧭</span>
     <h1>AI Security Compass</h1>
-    <p>How prepared is your team for AI-era threats? Take this 2-minute assessment and find out.</p>
-    <div class="stats-bar">
-      <div class="stat">
-        <div class="stat-number">78%</div>
-        <div class="stat-label">of employees leak<br>data to AI tools</div>
-      </div>
-      <div class="stat">
-        <div class="stat-number">3.4x</div>
-        <div class="stat-label">increase in AI<br>phishing attacks</div>
-      </div>
-      <div class="stat">
-        <div class="stat-number">$4.2M</div>
-        <div class="stat-label">avg. cost of<br>AI-related breach</div>
-      </div>
-    </div>
+    <p>How AI-ready is your team? 12 questions to assess your AI adoption maturity and security posture.</p>
   </div>
 </div>
 
-<!-- ── Progress ── -->
 <div class="container">
-  <div class="progress-container">
-    <div class="progress-header">
-      <span>Assessment Progress</span>
-      <span id="progress-text">0 of 10 answered</span>
-    </div>
-    <div class="progress-bar">
-      <div class="progress-fill" id="progress-fill"></div>
-    </div>
+  <div class="back-link">
+    <a href="https://techconcepts.org/">&larr; Back to Home</a>
   </div>
 </div>
 
-<!-- ── Questions ── -->
-<div class="container" id="questions-container">
-
-  <!-- Section 1: Data Handling -->
-  <div class="question-section">
-    <div class="section-label">Data Handling & AI Tools</div>
-
-    <div class="question-card" data-category="data-leakage" id="q1">
-      <div class="question-number">Question 1 of 10</div>
-      <div class="question-text">Does your company have a policy on which data can be shared with AI tools?</div>
-      <div class="question-context">e.g., rules about pasting customer data, source code, or financials into ChatGPT/Copilot</div>
-      <div class="options">
-        <div class="option" data-score="3" onclick="selectOption(this)">
-          <div class="option-radio"></div>
-          <span>Yes, documented and enforced with regular training</span>
-        </div>
-        <div class="option" data-score="2" onclick="selectOption(this)">
-          <div class="option-radio"></div>
-          <span>We have guidelines but they're informal</span>
-        </div>
-        <div class="option" data-score="1" onclick="selectOption(this)">
-          <div class="option-radio"></div>
-          <span>It's been discussed but nothing formalized</span>
-        </div>
-        <div class="option" data-score="0" onclick="selectOption(this)">
-          <div class="option-radio"></div>
-          <span>No policy — employees use AI tools freely</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="question-card" data-category="data-leakage" id="q2">
-      <div class="question-number">Question 2 of 10</div>
-      <div class="question-text">Do employees know which AI tools are approved vs. prohibited?</div>
-      <div class="question-context">Shadow AI: unauthorized tools processing company data without IT visibility</div>
-      <div class="options">
-        <div class="option" data-score="3" onclick="selectOption(this)">
-          <div class="option-radio"></div>
-          <span>Yes — approved list exists and is communicated regularly</span>
-        </div>
-        <div class="option" data-score="2" onclick="selectOption(this)">
-          <div class="option-radio"></div>
-          <span>IT has a list but most employees don't know about it</span>
-        </div>
-        <div class="option" data-score="1" onclick="selectOption(this)">
-          <div class="option-radio"></div>
-          <span>We block some tools but haven't communicated why</span>
-        </div>
-        <div class="option" data-score="0" onclick="selectOption(this)">
-          <div class="option-radio"></div>
-          <span>No approved list — everyone uses what they want</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Section 2: AI Phishing & Social Engineering -->
-  <div class="question-section">
-    <div class="section-label">AI-Powered Threats</div>
-
-    <div class="question-card" data-category="ai-phishing" id="q3">
-      <div class="question-number">Question 3 of 10</div>
-      <div class="question-text">Can your employees identify AI-generated phishing emails?</div>
-      <div class="question-context">AI-crafted phishing is grammatically perfect, personalized, and nearly indistinguishable from real emails</div>
-      <div class="options">
-        <div class="option" data-score="3" onclick="selectOption(this)">
-          <div class="option-radio"></div>
-          <span>We run AI-phishing simulations and train on detection</span>
-        </div>
-        <div class="option" data-score="2" onclick="selectOption(this)">
-          <div class="option-radio"></div>
-          <span>General phishing training, but nothing AI-specific</span>
-        </div>
-        <div class="option" data-score="1" onclick="selectOption(this)">
-          <div class="option-radio"></div>
-          <span>Basic awareness only — "don't click suspicious links"</span>
-        </div>
-        <div class="option" data-score="0" onclick="selectOption(this)">
-          <div class="option-radio"></div>
-          <span>No phishing training at all</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="question-card" data-category="ai-phishing" id="q4">
-      <div class="question-number">Question 4 of 10</div>
-      <div class="question-text">Does your team know how to verify a request that might be a deepfake?</div>
-      <div class="question-context">Deepfake voice/video calls impersonating executives to authorize payments or data access</div>
-      <div class="options">
-        <div class="option" data-score="3" onclick="selectOption(this)">
-          <div class="option-radio"></div>
-          <span>Yes — we have verification protocols for sensitive requests</span>
-        </div>
-        <div class="option" data-score="2" onclick="selectOption(this)">
-          <div class="option-radio"></div>
-          <span>We have approval workflows but no deepfake-specific training</span>
-        </div>
-        <div class="option" data-score="1" onclick="selectOption(this)">
-          <div class="option-radio"></div>
-          <span>Employees are aware of deepfakes but have no protocol</span>
-        </div>
-        <div class="option" data-score="0" onclick="selectOption(this)">
-          <div class="option-radio"></div>
-          <span>Most employees don't know deepfakes can target businesses</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Section 3: AI Output Trust -->
-  <div class="question-section">
-    <div class="section-label">AI Output & Decision Making</div>
-
-    <div class="question-card" data-category="ai-trust" id="q5">
-      <div class="question-number">Question 5 of 10</div>
-      <div class="question-text">Do employees verify AI-generated outputs before using them in work?</div>
-      <div class="question-context">AI hallucinations: fabricated data, wrong legal citations, incorrect calculations presented confidently</div>
-      <div class="options">
-        <div class="option" data-score="3" onclick="selectOption(this)">
-          <div class="option-radio"></div>
-          <span>Yes — we have a review process for AI-assisted work</span>
-        </div>
-        <div class="option" data-score="2" onclick="selectOption(this)">
-          <div class="option-radio"></div>
-          <span>Some teams verify, but it's not consistent</span>
-        </div>
-        <div class="option" data-score="1" onclick="selectOption(this)">
-          <div class="option-radio"></div>
-          <span>Employees are told to verify, but there's no process</span>
-        </div>
-        <div class="option" data-score="0" onclick="selectOption(this)">
-          <div class="option-radio"></div>
-          <span>AI outputs are often used as-is without verification</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="question-card" data-category="ai-trust" id="q6">
-      <div class="question-number">Question 6 of 10</div>
-      <div class="question-text">Are there guardrails on using AI for sensitive decisions?</div>
-      <div class="question-context">HR screening, financial analysis, legal review, customer communications — areas where AI errors have serious consequences</div>
-      <div class="options">
-        <div class="option" data-score="3" onclick="selectOption(this)">
-          <div class="option-radio"></div>
-          <span>Yes — AI is prohibited or requires human review in sensitive areas</span>
-        </div>
-        <div class="option" data-score="2" onclick="selectOption(this)">
-          <div class="option-radio"></div>
-          <span>Guidelines exist for some departments but not all</span>
-        </div>
-        <div class="option" data-score="1" onclick="selectOption(this)">
-          <div class="option-radio"></div>
-          <span>Managers decide individually — no company-wide rules</span>
-        </div>
-        <div class="option" data-score="0" onclick="selectOption(this)">
-          <div class="option-radio"></div>
-          <span>No restrictions — AI is used however employees choose</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Section 4: Governance & Compliance -->
-  <div class="question-section">
-    <div class="section-label">Governance & Compliance</div>
-
-    <div class="question-card" data-category="governance" id="q7">
-      <div class="question-number">Question 7 of 10</div>
-      <div class="question-text">Does your organization track which AI tools employees actually use?</div>
-      <div class="question-context">Shadow AI audit: knowing what's running, what data it accesses, and who's using it</div>
-      <div class="options">
-        <div class="option" data-score="3" onclick="selectOption(this)">
-          <div class="option-radio"></div>
-          <span>Yes — we monitor and audit AI tool usage regularly</span>
-        </div>
-        <div class="option" data-score="2" onclick="selectOption(this)">
-          <div class="option-radio"></div>
-          <span>We track licensed tools but not free/personal ones</span>
-        </div>
-        <div class="option" data-score="1" onclick="selectOption(this)">
-          <div class="option-radio"></div>
-          <span>We've done a one-time survey but don't monitor ongoing</span>
-        </div>
-        <div class="option" data-score="0" onclick="selectOption(this)">
-          <div class="option-radio"></div>
-          <span>No visibility into what AI tools are being used</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="question-card" data-category="governance" id="q8">
-      <div class="question-number">Question 8 of 10</div>
-      <div class="question-text">Is your organization prepared for AI-related regulatory requirements?</div>
-      <div class="question-context">EU AI Act, PDPA (Singapore), industry-specific AI regulations, upcoming disclosure requirements</div>
-      <div class="options">
-        <div class="option" data-score="3" onclick="selectOption(this)">
-          <div class="option-radio"></div>
-          <span>Yes — we've assessed requirements and have a compliance roadmap</span>
-        </div>
-        <div class="option" data-score="2" onclick="selectOption(this)">
-          <div class="option-radio"></div>
-          <span>We're aware of regulations but haven't started compliance work</span>
-        </div>
-        <div class="option" data-score="1" onclick="selectOption(this)">
-          <div class="option-radio"></div>
-          <span>Legal team is looking into it, no action yet</span>
-        </div>
-        <div class="option" data-score="0" onclick="selectOption(this)">
-          <div class="option-radio"></div>
-          <span>Haven't considered AI-specific regulatory requirements</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Section 5: Culture & Training -->
-  <div class="question-section">
-    <div class="section-label">Culture & Readiness</div>
-
-    <div class="question-card" data-category="culture" id="q9">
-      <div class="question-number">Question 9 of 10</div>
-      <div class="question-text">Do employees know how to report AI-related security concerns?</div>
-      <div class="question-context">e.g., suspicious AI-generated communications, data exposure incidents, unauthorized AI tool usage</div>
-      <div class="options">
-        <div class="option" data-score="3" onclick="selectOption(this)">
-          <div class="option-radio"></div>
-          <span>Yes — clear reporting channel with AI-specific incident categories</span>
-        </div>
-        <div class="option" data-score="2" onclick="selectOption(this)">
-          <div class="option-radio"></div>
-          <span>General incident reporting exists, no AI-specific guidance</span>
-        </div>
-        <div class="option" data-score="1" onclick="selectOption(this)">
-          <div class="option-radio"></div>
-          <span>Employees would report to their manager, no formal process</span>
-        </div>
-        <div class="option" data-score="0" onclick="selectOption(this)">
-          <div class="option-radio"></div>
-          <span>No process — employees wouldn't know who to tell</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="question-card" data-category="culture" id="q10">
-      <div class="question-number">Question 10 of 10</div>
-      <div class="question-text">When was the last AI security awareness activity at your company?</div>
-      <div class="question-context">Training, workshops, simulations, policy updates, or team discussions about AI risks</div>
-      <div class="options">
-        <div class="option" data-score="3" onclick="selectOption(this)">
-          <div class="option-radio"></div>
-          <span>Within the last month</span>
-        </div>
-        <div class="option" data-score="2" onclick="selectOption(this)">
-          <div class="option-radio"></div>
-          <span>Within the last quarter</span>
-        </div>
-        <div class="option" data-score="1" onclick="selectOption(this)">
-          <div class="option-radio"></div>
-          <span>More than 6 months ago</span>
-        </div>
-        <div class="option" data-score="0" onclick="selectOption(this)">
-          <div class="option-radio"></div>
-          <span>Never — we haven't done any AI-specific training</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Submit -->
-  <div class="submit-container">
-    <button class="submit-btn" id="submit-btn" onclick="showResults()" disabled>
-      Get Your AI Security Score
-    </button>
-    <div class="submit-hint">Answer all 10 questions to unlock your score</div>
-  </div>
-</div>
-
-<!-- ── Results ── -->
-<div class="container" id="results">
-
-  <div class="results-card">
-    <div class="score-ring">
-      <svg viewBox="0 0 180 180">
-        <circle class="bg-ring" cx="90" cy="90" r="78" />
-        <circle class="score-arc" id="score-arc" cx="90" cy="90" r="78"
-          stroke-dasharray="490" stroke-dashoffset="490" />
-      </svg>
-      <div class="score-value" id="score-value">0</div>
-    </div>
-    <div class="score-label">out of 30</div>
-    <div class="risk-level" id="risk-level"></div>
-    <div class="risk-description" id="risk-description"></div>
-  </div>
-
-  <!-- Category Breakdown -->
-  <div class="breakdown">
-    <h3>Score Breakdown by Category</h3>
-    <div id="breakdown-items"></div>
-  </div>
-
-  <!-- Recommendations -->
-  <div class="recommendations" id="recommendations">
-    <h3>Priority Recommendations</h3>
-    <div id="rec-items"></div>
-  </div>
-
-  <!-- CTA -->
-  <div class="cta-section">
-    <h3>Want to close these gaps?</h3>
-    <p>Get a personalized AI Security Training plan for your team — tailored to your risk profile.</p>
-    <div class="cta-form">
-      <input type="email" placeholder="Work email" id="cta-email">
-      <button onclick="submitLead()">Get Free Plan</button>
-    </div>
-  </div>
-
-  <!-- Share -->
-  <div class="share-section">
-    <p>Share your results with your team</p>
-    <div class="share-buttons">
-      <button class="share-btn" onclick="shareResults('linkedin')">LinkedIn</button>
-      <button class="share-btn" onclick="shareResults('email')">Email Team</button>
-      <button class="share-btn" onclick="shareResults('copy')">Copy Link</button>
-    </div>
-  </div>
-</div>
-
-<div class="footer">
-  <p>AI Security Compass &copy; 2026 | Free assessment tool for businesses</p>
-  <p style="margin-top: 4px;">Questions? <a href="#" style="color: var(--accent);">Contact us</a> | <a href="#" style="color: var(--accent);">Full AI Security Training</a></p>
-</div>
-
+<script src="../scripts/chat-framework.js"></script>
 <script>
-  const answers = {};
-  const totalQuestions = 10;
+  const chatConfig = {
+    title: "AI Security Compass",
+    emoji: "🧭",
+    toolName: "ai-security-compass",
+    formspreeUrl: "https://formspree.io/f/xpwzgvqr",
 
-  function selectOption(el) {
-    const card = el.closest('.question-card');
-    card.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
-    el.classList.add('selected');
-    card.classList.add('answered');
+    questions: [
+      // AI Adoption Maturity (6 questions)
+      {
+        id: 'q1',
+        type: 'choice',
+        botMessage: "How are employees currently using AI tools?",
+        emoji: "🤖",
+        options: [
+          { value: 0, label: 'Not using AI at all', emoji: '❌' },
+          { value: 2, label: 'Using personal ChatGPT accounts', emoji: '👤' },
+          { value: 4, label: 'Using approved enterprise AI tools', emoji: '✅' },
+          { value: 5, label: 'Custom AI integrations built in-house', emoji: '🏗️' }
+        ]
+      },
+      {
+        id: 'q2',
+        type: 'yes-no',
+        botMessage: "Do you have an AI usage policy?",
+        emoji: "📋"
+      },
+      {
+        id: 'q3',
+        type: 'choice',
+        botMessage: "What data is being shared with AI tools?",
+        emoji: "📊",
+        options: [
+          { value: 0, label: 'Don\'t know', emoji: '❓' },
+          { value: 2, label: 'Public data only', emoji: '🌐' },
+          { value: 3, label: 'Internal docs (non-sensitive)', emoji: '📄' },
+          { value: 1, label: 'Customer data or PII', emoji: '⚠️' }
+        ]
+      },
+      {
+        id: 'q4',
+        type: 'yes-no',
+        botMessage: "Is AI usage monitored or logged?",
+        emoji: "📈"
+      },
+      {
+        id: 'q5',
+        type: 'yes-no',
+        botMessage: "Have employees received AI security training?",
+        emoji: "🎓"
+      },
+      {
+        id: 'q6',
+        type: 'choice',
+        botMessage: "What's your biggest AI concern?",
+        emoji: "⚠️",
+        options: [
+          { value: 1, label: 'Data leakage', emoji: '🔓' },
+          { value: 1, label: 'Compliance violations', emoji: '⚖️' },
+          { value: 1, label: 'Misinformation/hallucinations', emoji: '🤔' },
+          { value: 1, label: 'Shadow IT usage', emoji: '👻' }
+        ]
+      },
 
-    const qId = card.id;
-    const score = parseInt(el.dataset.score);
-    const category = card.dataset.category;
-    answers[qId] = { score, category };
+      // Security & Governance (6 questions)
+      {
+        id: 'q7',
+        type: 'yes-no',
+        botMessage: "Do you vet AI vendors before adoption?",
+        emoji: "🔍"
+      },
+      {
+        id: 'q8',
+        type: 'yes-no',
+        botMessage: "Are AI tools integrated with SSO/MFA?",
+        emoji: "🔐"
+      },
+      {
+        id: 'q9',
+        type: 'choice',
+        botMessage: "How do you handle AI-generated code?",
+        emoji: "💻",
+        options: [
+          { value: 0, label: 'No code review for AI code', emoji: '❌' },
+          { value: 2, label: 'Same review as human code', emoji: '👁️' },
+          { value: 3, label: 'Extra security scan for AI code', emoji: '🛡️' }
+        ]
+      },
+      {
+        id: 'q10',
+        type: 'yes-no',
+        botMessage: "Do you have data retention policies for AI interactions?",
+        emoji: "💾"
+      },
+      {
+        id: 'q11',
+        type: 'yes-no',
+        botMessage: "Can you audit all AI tool usage?",
+        emoji: "📜"
+      },
+      {
+        id: 'q12',
+        type: 'choice',
+        botMessage: "What's your AI strategy?",
+        emoji: "🎯",
+        options: [
+          { value: 0, label: 'No formal strategy', emoji: '❓' },
+          { value: 2, label: 'Experimenting with pilot projects', emoji: '🧪' },
+          { value: 4, label: 'Enterprise-wide AI roadmap', emoji: '🗺️' }
+        ]
+      }
+    ],
 
-    updateProgress();
-  }
+    onComplete: (answers, chat) => {
+      // Calculate score
+      let totalScore = 0;
+      Object.entries(answers).forEach(([key, value]) => {
+        if (key.startsWith('q')) {
+          if (value === 'yes') totalScore += 3;
+          else if (value === 'no') totalScore += 0;
+          else totalScore += parseInt(value);
+        }
+      });
 
-  function updateProgress() {
-    const answered = Object.keys(answers).length;
-    const pct = (answered / totalQuestions) * 100;
-    document.getElementById('progress-fill').style.width = pct + '%';
-    document.getElementById('progress-text').textContent = `${answered} of ${totalQuestions} answered`;
-    document.getElementById('submit-btn').disabled = answered < totalQuestions;
-  }
+      // Determine maturity level
+      let level, description;
+      if (totalScore >= 30) {
+        level = 'AI-Native';
+        description = 'Your organization has mature AI governance and security practices. Keep monitoring emerging risks.';
+      } else if (totalScore >= 20) {
+        level = 'AI-Ready';
+        description = 'You have foundational controls. Focus on monitoring, audit logs, and training.';
+      } else if (totalScore >= 10) {
+        level = 'AI-Aware';
+        description = 'You\'re starting to adopt AI but lack governance. Prioritize usage policies and vendor vetting.';
+      } else {
+        level = 'AI-Unprepared';
+        description = 'High risk of shadow IT and data leakage. Start with an AI usage policy and security training.';
+      }
 
-  function showResults() {
-    const total = Object.values(answers).reduce((sum, a) => sum + a.score, 0);
-    const maxScore = totalQuestions * 3;
-    const pct = total / maxScore;
+      // Show results
+      chat.showResultsCard([
+        {
+          label: 'AI Maturity Score',
+          value: `${totalScore}/42`,
+          highlight: true
+        },
+        {
+          label: 'Maturity Level',
+          value: level,
+          highlight: true
+        }
+      ]);
 
-    // Track assessment completion
-    trackAssessmentComplete(total, Math.round(pct * 100));
+      // Show description
+      setTimeout(() => {
+        chat.showBotMessage(description, '📊');
+      }, 1000);
 
-    // Hide questions, show results
-    document.getElementById('questions-container').style.display = 'none';
-    document.getElementById('results').style.display = 'block';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+      // Show recommendations
+      const recommendations = [];
+      if (answers.q2 !== 'yes') recommendations.push('Create AI usage policy');
+      if (answers.q5 !== 'yes') recommendations.push('Train employees on AI security');
+      if (answers.q8 !== 'yes') recommendations.push('Enable SSO/MFA for AI tools');
 
-    // Animate score ring
-    const arc = document.getElementById('score-arc');
-    const circumference = 490;
-    const offset = circumference - (circumference * pct);
-    let color;
-    if (pct >= 0.8) color = '#00b894';
-    else if (pct >= 0.6) color = '#fdcb6e';
-    else if (pct >= 0.4) color = '#e17055';
-    else color = '#d63031';
+      if (recommendations.length > 0) {
+        setTimeout(() => {
+          chat.showBotMessage(`Priority actions: ${recommendations.join(', ')}`, '⚡');
+        }, 2000);
+      }
 
-    setTimeout(() => {
-      arc.style.strokeDashoffset = offset;
-      arc.style.stroke = color;
-    }, 200);
-
-    // Animate score number
-    animateNumber('score-value', 0, total, 1500);
-
-    // Risk level
-    const riskLevel = document.getElementById('risk-level');
-    const riskDesc = document.getElementById('risk-description');
-    riskLevel.style.color = color;
-
-    if (pct >= 0.8) {
-      riskLevel.textContent = 'Strong AI Security Posture';
-      riskDesc.textContent = 'Your organization demonstrates strong awareness of AI-related risks. You have policies, training, and governance structures in place. Focus on staying ahead of emerging threats and running continuous simulations.';
-    } else if (pct >= 0.6) {
-      riskLevel.textContent = 'Moderate Readiness — Gaps Exist';
-      riskDesc.textContent = 'You have some foundations in place, but significant gaps remain. Employees may be unaware of AI-specific threats like deepfakes and data leakage. Structured training would close these gaps within 30 days.';
-    } else if (pct >= 0.4) {
-      riskLevel.textContent = 'Elevated Risk — Action Needed';
-      riskDesc.textContent = 'Your team has limited AI security awareness. Without intervention, you\'re exposed to data leakage, AI-powered social engineering, and compliance risks. Immediate training is recommended.';
-    } else {
-      riskLevel.textContent = 'Critical Exposure — Immediate Action Required';
-      riskDesc.textContent = 'Your organization has minimal protection against AI-era threats. Employees are likely leaking data to AI tools, vulnerable to AI-generated attacks, and unaware of regulatory requirements. This requires urgent attention.';
+      // Email capture
+      setTimeout(() => {
+        chat.showEmailCapture("Want your full AI governance playbook? 📧");
+      }, 3000);
     }
+  };
 
-    // Category breakdown
-    const categories = {
-      'data-leakage': { label: 'Data Handling', max: 6 },
-      'ai-phishing': { label: 'AI Threats', max: 6 },
-      'ai-trust': { label: 'AI Output Trust', max: 6 },
-      'governance': { label: 'Governance', max: 6 },
-      'culture': { label: 'Culture & Training', max: 6 }
-    };
-
-    const breakdownContainer = document.getElementById('breakdown-items');
-    breakdownContainer.innerHTML = '';
-    const catScores = {};
-
-    for (const [catId, catInfo] of Object.entries(categories)) {
-      const catScore = Object.values(answers)
-        .filter(a => a.category === catId)
-        .reduce((sum, a) => sum + a.score, 0);
-      catScores[catId] = catScore;
-      const catPct = (catScore / catInfo.max) * 100;
-      let barColor;
-      if (catPct >= 80) barColor = '#00b894';
-      else if (catPct >= 50) barColor = '#fdcb6e';
-      else if (catPct >= 30) barColor = '#e17055';
-      else barColor = '#d63031';
-
-      breakdownContainer.innerHTML += `
-        <div class="breakdown-item">
-          <span class="breakdown-label">${catInfo.label}</span>
-          <div class="breakdown-bar-container">
-            <div class="breakdown-bar" style="width: ${catPct}%; background: ${barColor};"></div>
-          </div>
-          <span class="breakdown-score" style="color: ${barColor}">${catScore}/${catInfo.max}</span>
-        </div>`;
-    }
-
-    // Generate recommendations based on lowest scores
-    const recContainer = document.getElementById('rec-items');
-    recContainer.innerHTML = '';
-    const recs = [];
-
-    if (catScores['data-leakage'] <= 2) {
-      recs.push({ icon: '&#x1F6A8;', cls: 'critical', title: 'Implement AI Data Policy Immediately', desc: 'Create an approved AI tools list and define what data can/cannot be shared. Train all employees within 2 weeks.' });
-    }
-    if (catScores['ai-phishing'] <= 2) {
-      recs.push({ icon: '&#x1F3A3;', cls: 'critical', title: 'Start AI Phishing Simulations', desc: 'Run AI-generated phishing tests monthly. 78% of employees fail the first test — but scores improve 60% after 3 rounds.' });
-    }
-    if (catScores['ai-trust'] <= 2) {
-      recs.push({ icon: '&#x26A0;&#xFE0F;', cls: 'warning', title: 'Establish AI Output Review Process', desc: 'Require human verification for AI-assisted work in legal, finance, HR, and customer-facing communications.' });
-    }
-    if (catScores['governance'] <= 2) {
-      recs.push({ icon: '&#x1F4CB;', cls: 'warning', title: 'Conduct Shadow AI Audit', desc: 'Survey employees on AI tool usage. You\'ll likely find 3-5x more tools in use than IT knows about.' });
-    }
-    if (catScores['culture'] <= 2) {
-      recs.push({ icon: '&#x1F4DA;', cls: 'info', title: 'Launch AI Security Awareness Program', desc: 'Start with a 30-minute all-hands workshop. Follow up with monthly 5-minute micro-trainings on specific threats.' });
-    }
-
-    if (recs.length === 0) {
-      recs.push({ icon: '&#x2705;', cls: 'info', title: 'Maintain Your Strong Posture', desc: 'Continue regular training, keep policies updated with emerging AI threats, and consider advanced red-team exercises.' });
-    }
-
-    recs.forEach(r => {
-      recContainer.innerHTML += `
-        <div class="rec-item">
-          <div class="rec-icon ${r.cls}">${r.icon}</div>
-          <div class="rec-text">
-            <strong>${r.title}</strong>
-            <span>${r.desc}</span>
-          </div>
-        </div>`;
-    });
-  }
-
-  function animateNumber(id, start, end, duration) {
-    const el = document.getElementById(id);
-    const range = end - start;
-    const startTime = performance.now();
-    function update(currentTime) {
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      el.textContent = Math.round(start + range * eased);
-      if (progress < 1) requestAnimationFrame(update);
-    }
-    requestAnimationFrame(update);
-  }
-
-  function submitLead() {
-    const email = document.getElementById('cta-email').value;
-    if (!email || !email.includes('@')) {
-      alert('Please enter a valid work email');
-      return;
-    }
-    // In production: POST to your API
-    const total = Object.values(answers).reduce((sum, a) => sum + a.score, 0);
-
-    // Track lead submission
-    trackLeadSubmit(email, total);
-
-    console.log('Lead captured:', { email, score: total, answers });
-    alert('Thanks! We\'ll send your personalized AI Security Training plan within 24 hours.');
-  }
-
-  function shareResults(platform) {
-    const total = Object.values(answers).reduce((sum, a) => sum + a.score, 0);
-    const pct = Math.round((total / 30) * 100);
-    const text = `Our team scored ${total}/30 (${pct}%) on the AI Security Compass. How prepared is your organization for AI-era threats? Take the free assessment:`;
-    const url = window.location.href;
-
-    // Track share action
-    trackShare(platform);
-
-    if (platform === 'linkedin') {
-      window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, '_blank');
-    } else if (platform === 'email') {
-      window.location.href = `mailto:?subject=AI Security Assessment Results&body=${encodeURIComponent(text + '\n\n' + url)}`;
-    } else if (platform === 'copy') {
-      navigator.clipboard.writeText(text + ' ' + url).then(() => alert('Link copied!'));
-    }
-  }
+  // Initialize chat
+  document.addEventListener('DOMContentLoaded', () => {
+    new ChatEngine(chatConfig);
+  });
 </script>
 
 </body>

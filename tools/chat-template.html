@@ -3,36 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI API Cost Calculator | Optimize Your LLM Spending</title>
+<title>Chat Template | TechConcepts</title>
 
 <!-- SEO -->
-<meta name="description" content="Free AI API cost calculator. Compare GPT-4, Claude Opus, Sonnet, and Haiku pricing. Calculate monthly costs and discover potential savings. No signup required.">
-<meta name="author" content="Evgeny Goncharov">
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://techconcepts.org/tools/api-cost.html">
-
-<!-- Resource Hints -->
-<link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
-<link rel="dns-prefetch" href="https://www.googletagmanager.com">
-<link rel="preconnect" href="https://formspree.io" crossorigin>
-<link rel="dns-prefetch" href="https://formspree.io">
-
-<!-- Open Graph -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://techconcepts.org/tools/api-cost.html">
-<meta property="og:title" content="AI API Cost Calculator">
-<meta property="og:description" content="Calculate and optimize your AI API costs across GPT-4 and Claude models.">
-<meta property="og:image" content="https://techconcepts.org/techconcepts-og.png">
-<meta property="og:site_name" content="TechConcepts">
-
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="AI API Cost Calculator">
-<meta name="twitter:description" content="Compare AI API costs and find savings opportunities.">
-<meta name="twitter:image" content="https://techconcepts.org/techconcepts-og.png">
-
-<!-- Favicon -->
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💰</text></svg>">
+<meta name="description" content="Conversational calculator template">
+<link rel="canonical" href="https://techconcepts.org/tools/chat-template.html">
 
 <!-- Google Analytics 4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-815E8YDZW8"></script>
@@ -40,55 +15,7 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-815E8YDZW8', {page_path: '/tools/api-cost'});
-</script>
-
-<!-- Schema.org -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "AI API Cost Calculator",
-  "description": "Calculate and optimize costs for GPT-4 and Claude API usage",
-  "url": "https://techconcepts.org/tools/api-cost.html",
-  "applicationCategory": "BusinessApplication",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "provider": {
-    "@type": "Organization",
-    "name": "TechConcepts"
-  }
-}
-</script>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "TechConcepts",
-      "item": "https://techconcepts.org/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Tools",
-      "item": "https://techconcepts.org/tools/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "name": "API Cost Calculator",
-      "item": "https://techconcepts.org/tools/api-cost.html"
-    }
-  ]
-}
+  gtag('config', 'G-815E8YDZW8');
 </script>
 
 <!-- Chat Framework -->
@@ -164,8 +91,8 @@
 <div class="hero">
   <div class="container">
     <span class="icon">💰</span>
-    <h1>AI API Cost Calculator</h1>
-    <p>Compare GPT-4 and Claude API costs. Find optimization opportunities and potential annual savings.</p>
+    <h1>Example Calculator</h1>
+    <p>Interactive conversational calculator with modern UI</p>
   </div>
 </div>
 
@@ -176,12 +103,12 @@
 </div>
 
 <script>
+  // Chat configuration
   const chatConfig = {
-    title: "AI API Cost Calculator",
+    title: "Example Calculator",
     emoji: "💰",
-    toolName: "api-cost",
+    toolName: "example-calc",
     formspreeUrl: "https://formspree.io/f/xpwzgvqr",
-    shareText: "I just calculated my AI API costs and found potential savings with TechConcepts.org",
 
     questions: [
       {
@@ -191,18 +118,16 @@
         placeholder: "e.g., 100000",
         emoji: "📊",
         min: 1,
-        max: 10000000,
-        defaultValue: 100000
+        max: 10000000
       },
       {
         id: 'tokens',
         type: 'number',
-        botMessage: "What's the average tokens per call? (Input + output combined)",
+        botMessage: "What's the average tokens per call?",
         placeholder: "e.g., 1500",
         emoji: "🔢",
         min: 100,
-        max: 100000,
-        defaultValue: 1000
+        max: 100000
       },
       {
         id: 'model',
@@ -215,10 +140,17 @@
           { value: 'sonnet', label: 'Claude Sonnet', emoji: '⚡' },
           { value: 'haiku', label: 'Claude Haiku', emoji: '🎯' }
         ]
+      },
+      {
+        id: 'optimize',
+        type: 'yes-no',
+        botMessage: "Would you like to see optimization recommendations?",
+        emoji: "💡"
       }
     ],
 
     onComplete: (answers, chat) => {
+      // Calculate results
       const modelPricing = {
         gpt4: { input: 30, output: 60, name: 'GPT-4' },
         opus: { input: 15, output: 75, name: 'Claude Opus' },
@@ -231,15 +163,14 @@
       const currentModelKey = answers.model;
       const currentModel = modelPricing[currentModelKey];
 
-      // Assume 40% input, 60% output tokens (output is more expensive)
+      // Assume 40% input, 60% output tokens
       const inputTokens = tokens * 0.4;
       const outputTokens = tokens * 0.6;
 
-      // Calculate current cost
       const currentCostPerCall = (inputTokens * currentModel.input + outputTokens * currentModel.output) / 1000000;
       const currentMonthlyCost = currentCostPerCall * apiCalls;
 
-      // Find best model for optimization
+      // Find optimized model
       let optimizedModel = modelPricing.haiku;
       let optimizedModelKey = 'haiku';
 
@@ -250,10 +181,8 @@
 
       const optimizedCostPerCall = (inputTokens * optimizedModel.input + outputTokens * optimizedModel.output) / 1000000;
       const optimizedMonthlyCost = optimizedCostPerCall * apiCalls;
-
       const monthlySavings = currentMonthlyCost - optimizedMonthlyCost;
       const annualSavings = monthlySavings * 12;
-      const reduction = ((monthlySavings / currentMonthlyCost) * 100);
 
       // Show results
       chat.showResultsCard([
@@ -267,40 +196,26 @@
           highlight: true
         },
         {
-          label: 'Monthly Savings',
-          value: chat.formatCurrency(monthlySavings),
-          highlight: true
-        },
-        {
           label: 'Annual Savings',
           value: chat.formatCurrency(annualSavings),
-          highlight: true
-        },
-        {
-          label: 'Cost Reduction',
-          value: chat.formatPercent(reduction),
           highlight: true
         }
       ]);
 
-      // Store savings for form
-      answers.annual_savings = Math.round(annualSavings);
-
       // Show recommendation
-      setTimeout(() => {
-        let recommendation = '';
-        if (currentModelKey === 'haiku') {
-          recommendation = `Consider upgrading to ${optimizedModel.name} for better quality with reasonable cost increase.`;
-        } else {
-          recommendation = `Switch to ${optimizedModel.name} for simple tasks (80% of requests) and keep ${currentModel.name} for complex reasoning. This could save you ${chat.formatCurrency(annualSavings)} annually! 🎉`;
-        }
-        chat.showBotMessage(recommendation, '💡');
-      }, 1000);
+      if (answers.optimize === 'yes') {
+        setTimeout(() => {
+          chat.showBotMessage(
+            `Switch to ${optimizedModel.name} for simple tasks and save ${chat.formatCurrency(annualSavings)} annually!`,
+            '💡'
+          );
+        }, 1000);
+      }
 
       // Email capture
       setTimeout(() => {
-        chat.showEmailCapture("Want your detailed cost reduction plan? Drop your email 👇");
-      }, 2500);
+        chat.showEmailCapture("Want a detailed cost breakdown? Drop your email 👇");
+      }, 2000);
     }
   };
 

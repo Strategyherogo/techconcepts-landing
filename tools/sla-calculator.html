@@ -44,7 +44,7 @@
   gtag('config', 'G-815E8YDZW8', {page_path: '/tools/sla-calculator'});
 </script>
 
-<!-- Schema.org WebApplication -->
+<!-- Schema.org -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -66,7 +66,6 @@
 }
 </script>
 
-<!-- Schema.org Breadcrumb -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -94,679 +93,249 @@
 }
 </script>
 
-<link rel="stylesheet" href="/styles/main.css">
+<!-- Chat Framework -->
+<link rel="stylesheet" href="../styles/chat-ui.css">
 
 <style>
   :root {
-    --primary: #000;
-    --accent: #2563eb;
-    --border: #e5e7eb;
-    --light-gray: #f3f4f6;
-    --gray: #6b7280;
-    --success: #10b981;
-    --warning: #f59e0b;
-    --danger: #ef4444;
+    --primary: #1a1a2e;
+    --accent: #e94560;
+    --accent2: #0f3460;
+    --bg: #f8f9fa;
   }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    background: var(--light-gray);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: #2d3436;
+    line-height: 1.6;
   }
 
-  .tool-container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 40px 24px 80px;
+  .hero {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent2) 100%);
+    color: white;
+    padding: 60px 24px 48px;
+    text-align: center;
   }
 
-  .tool-card {
-    background: #fff;
-    border-radius: 16px;
-    padding: 40px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    margin-bottom: 24px;
+  .hero h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 12px;
   }
 
-  .tool-card h2 {
-    font-size: 24px;
-    margin-bottom: 24px;
-    color: var(--primary);
-  }
-
-  .form-row {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    gap: 16px;
-    align-items: end;
+  .hero .icon {
+    font-size: 3rem;
     margin-bottom: 16px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid var(--border);
   }
 
-  .form-row:last-child {
-    border-bottom: none;
+  .hero p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
   }
 
-  .form-group {
-    margin-bottom: 24px;
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 20px;
   }
 
-  .form-group label {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 8px;
-    font-size: 14px;
-    color: var(--primary);
+  .back-link {
+    text-align: center;
+    margin: 24px 0;
   }
 
-  .form-group select,
-  .form-group input {
-    width: 100%;
-    padding: 12px 16px;
-    border: 2px solid var(--border);
-    border-radius: 8px;
-    font-size: 15px;
-    transition: border-color 0.2s;
-  }
-
-  .form-group select:focus,
-  .form-group input:focus {
-    outline: none;
-    border-color: var(--accent);
-  }
-
-  .priority-label {
-    font-weight: 600;
-    font-size: 14px;
-    color: var(--primary);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .priority-badge {
-    display: inline-block;
-    padding: 2px 8px;
-    border-radius: 4px;
-    font-size: 11px;
-    font-weight: 600;
-    text-transform: uppercase;
-  }
-
-  .priority-critical { background: #fee; color: #dc2626; }
-  .priority-high { background: #fef3c7; color: #d97706; }
-  .priority-medium { background: #dbeafe; color: #2563eb; }
-  .priority-low { background: #f0fdf4; color: #16a34a; }
-
-  .btn-generate {
-    width: 100%;
-    background: var(--primary);
-    color: #fff;
-    border: none;
-    padding: 14px 24px;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.2s;
-    margin-top: 12px;
-  }
-
-  .btn-generate:hover {
-    background: #333;
-  }
-
-  .result-container {
-    display: none;
-    margin-top: 32px;
-  }
-
-  .result-container.active {
-    display: block;
-  }
-
-  .result-card {
-    background: #fff;
-    border-radius: 12px;
-    padding: 32px;
-    margin-bottom: 24px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-  }
-
-  .result-card h3 {
-    font-size: 20px;
-    margin-bottom: 20px;
-    color: var(--primary);
+  .back-link a {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.9rem;
   }
 
   .sla-table {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    margin: 16px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+
+  .sla-table table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 16px;
   }
 
   .sla-table th,
   .sla-table td {
     padding: 12px;
     text-align: left;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid #e9ecef;
   }
 
   .sla-table th {
-    background: var(--light-gray);
+    background: #f8f9fa;
     font-weight: 600;
-    font-size: 13px;
+    font-size: 0.85rem;
     text-transform: uppercase;
-    color: var(--gray);
+    color: #6c757d;
   }
 
-  .timeline-chart {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-top: 20px;
-  }
-
-  .timeline-row {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .timeline-label {
-    width: 120px;
-    font-size: 14px;
-    font-weight: 600;
-  }
-
-  .timeline-bar {
-    flex: 1;
-    height: 32px;
-    border-radius: 6px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    padding-left: 12px;
-    color: #fff;
-    font-size: 13px;
-    font-weight: 600;
-  }
-
-  .btn-download {
-    background: var(--accent);
-    color: #fff;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 8px;
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
-    margin-right: 12px;
-  }
-
-  .btn-download:hover {
-    background: #1d4ed8;
-  }
-
-  .btn-print {
-    background: var(--light-gray);
-    color: var(--primary);
-    border: 1px solid var(--border);
-    padding: 12px 24px;
-    border-radius: 8px;
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
-  }
-
-  .escalation-matrix {
-    display: grid;
-    gap: 8px;
-  }
-
-  .escalation-row {
-    display: grid;
-    grid-template-columns: 120px 1fr;
-    gap: 12px;
-    padding: 12px;
-    background: var(--light-gray);
-    border-radius: 6px;
-  }
-
-  .escalation-time {
-    font-weight: 600;
-    color: var(--danger);
-  }
-
-  .lead-capture {
-    background: #e0f2fe;
-    border: 2px solid var(--accent);
-    border-radius: 12px;
-    padding: 32px;
-    text-align: center;
-    margin-top: 32px;
-  }
-
-  .lead-capture h3 {
-    font-size: 22px;
-    margin-bottom: 12px;
-    color: var(--primary);
-  }
-
-  .lead-capture p {
-    font-size: 16px;
-    color: var(--gray);
-    margin-bottom: 20px;
-  }
-
-  .lead-capture form {
-    display: flex;
-    gap: 12px;
-    max-width: 400px;
-    margin: 0 auto;
-  }
-
-  .lead-capture input {
-    flex: 1;
-    padding: 12px 16px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    font-size: 15px;
-  }
-
-  .lead-capture button {
-    background: var(--primary);
-    color: #fff;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 8px;
-    font-weight: 600;
-    cursor: pointer;
-    white-space: nowrap;
-  }
-
-  @media (max-width: 768px) {
-    .form-row {
-      grid-template-columns: 1fr;
-      gap: 12px;
-    }
-
-    .timeline-row {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-
-    .timeline-label {
-      width: 100%;
-    }
-
-    .escalation-row {
-      grid-template-columns: 1fr;
-    }
-
-    .lead-capture form {
-      flex-direction: column;
-    }
-  }
-
-  @media print {
-    nav, footer, .btn-download, .btn-print, .lead-capture {
-      display: none !important;
-    }
-
-    .result-card {
-      box-shadow: none;
-      border: 1px solid var(--border);
-      page-break-inside: avoid;
-    }
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 1.6rem; }
   }
 </style>
 </head>
-<body data-page-type="tool">
+<body>
 
-<!-- Navigation -->
-<nav>
+<div class="hero">
   <div class="container">
-    <a href="/" class="logo">TechConcepts</a>
-    <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Menu">&#9776;</button>
-    <div class="nav-links" id="navLinks">
-      <a href="/services/">Services</a>
-      <a href="/case-studies/">Case Studies</a>
-      <a href="/products/">Products</a>
-      <a href="/blog/">Blog</a>
-      <a href="/tools/" class="active">Tools</a>
-      <a href="/about.html">About</a>
-      <div class="lang-switcher">
-        <button class="lang-btn" onclick="toggleLangMenu()"><span id="currentLang">EN</span> &#9662;</button>
-        <div class="lang-dropdown" id="langDropdown"></div>
-      </div>
-      <a href="https://calendar.app.google/md6WqwnhfireNTqx5" class="btn btn-primary">Book a Call</a>
-    </div>
-  </div>
-</nav>
-
-<!-- Hero -->
-<section class="hero">
-  <div class="container">
+    <span class="icon">⏱️</span>
     <h1>SLA Calculator</h1>
-    <p>Generate professional IT service level agreements with response times and escalation rules.</p>
+    <p>Generate professional SLA policies with response and resolution times by priority level.</p>
   </div>
-</section>
+</div>
 
-<!-- Tool -->
-<section class="tool-container">
-  <div class="tool-card">
-    <h2>Configure Your SLA Policy</h2>
-
-    <div class="form-group">
-      <label for="businessHours">Business Hours Coverage</label>
-      <select id="businessHours">
-        <option value="8">8x5 (Business Hours Only)</option>
-        <option value="12">12x5 (Extended Hours)</option>
-        <option value="24">24x7 (Always On)</option>
-      </select>
-    </div>
-
-    <h3 style="font-size: 18px; margin: 32px 0 16px;">Response & Resolution Times</h3>
-
-    <div class="form-row">
-      <div class="priority-label">
-        <span class="priority-badge priority-critical">Critical</span>
-        System Down / Data Loss
-      </div>
-      <div>
-        <label style="font-size: 12px; color: var(--gray);">Response Time</label>
-        <input type="number" id="critical-response" value="15" min="1"> <span style="font-size: 13px; color: var(--gray);">minutes</span>
-      </div>
-      <div>
-        <label style="font-size: 12px; color: var(--gray);">Resolution Time</label>
-        <input type="number" id="critical-resolution" value="4" min="1"> <span style="font-size: 13px; color: var(--gray);">hours</span>
-      </div>
-    </div>
-
-    <div class="form-row">
-      <div class="priority-label">
-        <span class="priority-badge priority-high">High</span>
-        Major Functionality Impaired
-      </div>
-      <div>
-        <input type="number" id="high-response" value="1" min="1"> <span style="font-size: 13px; color: var(--gray);">hours</span>
-      </div>
-      <div>
-        <input type="number" id="high-resolution" value="8" min="1"> <span style="font-size: 13px; color: var(--gray);">hours</span>
-      </div>
-    </div>
-
-    <div class="form-row">
-      <div class="priority-label">
-        <span class="priority-badge priority-medium">Medium</span>
-        Minor Issue / Workaround Available
-      </div>
-      <div>
-        <input type="number" id="medium-response" value="4" min="1"> <span style="font-size: 13px; color: var(--gray);">hours</span>
-      </div>
-      <div>
-        <input type="number" id="medium-resolution" value="24" min="1"> <span style="font-size: 13px; color: var(--gray);">hours</span>
-      </div>
-    </div>
-
-    <div class="form-row">
-      <div class="priority-label">
-        <span class="priority-badge priority-low">Low</span>
-        Question / Enhancement Request
-      </div>
-      <div>
-        <input type="number" id="low-response" value="24" min="1"> <span style="font-size: 13px; color: var(--gray);">hours</span>
-      </div>
-      <div>
-        <input type="number" id="low-resolution" value="72" min="1"> <span style="font-size: 13px; color: var(--gray);">hours</span>
-      </div>
-    </div>
-
-    <button class="btn-generate" onclick="generateSLA()">Generate SLA Policy</button>
+<div class="container">
+  <div class="back-link">
+    <a href="https://techconcepts.org/tools/">&larr; Back to Tools</a>
   </div>
+</div>
 
-  <!-- Results -->
-  <div class="result-container" id="resultContainer">
-    <div class="result-card">
-      <h3>Service Level Agreement Policy</h3>
-      <div style="margin-bottom: 20px;">
-        <button class="btn-download" onclick="downloadPolicy()">Download HTML</button>
-        <button class="btn-print" onclick="window.print()">Print to PDF</button>
-      </div>
-
-      <div id="slaPolicy"></div>
-    </div>
-
-    <div class="result-card">
-      <h3>Response Time Timeline</h3>
-      <div class="timeline-chart" id="timelineChart"></div>
-    </div>
-
-    <div class="result-card">
-      <h3>Escalation Matrix</h3>
-      <div class="escalation-matrix" id="escalationMatrix"></div>
-    </div>
-  </div>
-
-  <!-- Lead Capture -->
-  <div class="lead-capture">
-    <h3>Get Editable SLA Policy Template (Word)</h3>
-    <p>Professional SLA template with legal language, escalation procedures, and measurement criteria.</p>
-    <form action="https://formspree.io/f/xpwzgvqr" method="POST" onsubmit="trackLeadSubmit(event)">
-      <input type="email" name="email" placeholder="your@email.com" required>
-      <input type="hidden" name="_subject" value="Lead: SLA Policy Template">
-      <input type="hidden" name="tool" value="sla-calculator">
-      <input type="hidden" name="page_url" value="https://techconcepts.org/tools/sla-calculator.html">
-      <button type="submit">Send Me the Template</button>
-    </form>
-  </div>
-
-  <div style="margin-top: 32px; padding: 32px; background: #fff; border-radius: 12px; text-align: center;">
-    <h3 style="margin-bottom: 12px;">Need Help Implementing SLAs?</h3>
-    <p style="color: var(--gray); margin-bottom: 20px;">I help teams design and implement SLA policies with Jira automation, monitoring, and escalation workflows.</p>
-    <a href="/services/jira-optimization.html" style="color: var(--accent); font-weight: 600;">Learn About Jira Optimization →</a>
-  </div>
-</section>
-
-<!-- Footer -->
-<footer>
-  <div class="container">
-    <div class="footer-content">
-      <div class="footer-links">
-        <a href="/services/">Services</a>
-        <a href="/products/">Products</a>
-        <a href="/blog/">Blog</a>
-        <a href="/tools/">Tools</a>
-        <a href="/about.html">About</a>
-        <a href="/privacy">Privacy</a>
-        <a href="/terms">Terms</a>
-      </div>
-      <div class="footer-info">
-        Madrid, Spain &middot; Mo-Fr 09:00-18:00 CET
-      </div>
-    </div>
-  </div>
-</footer>
-
-<script src="/scripts/analytics.js"></script>
-<script src="/scripts/i18n.js"></script>
-<script src="/scripts/nav.js"></script>
-<script src="/scripts/exit-intent.js"></script>
-
+<script src="../scripts/chat-framework.js"></script>
 <script>
-function generateSLA() {
-  const businessHours = document.getElementById('businessHours').value;
-  const coverage = businessHours === '8' ? '8x5 (Mon-Fri, 9am-5pm)' :
-                   businessHours === '12' ? '12x5 (Mon-Fri, 8am-8pm)' : '24x7 (Always On)';
+  const chatConfig = {
+    title: "SLA Calculator",
+    emoji: "⏱️",
+    toolName: "sla-calculator",
+    formspreeUrl: "https://formspree.io/f/xpwzgvqr",
 
-  const priorities = ['critical', 'high', 'medium', 'low'];
-  const slaData = priorities.map(p => ({
-    name: p.charAt(0).toUpperCase() + p.slice(1),
-    response: document.getElementById(`${p}-response`).value,
-    resolution: document.getElementById(`${p}-resolution`).value,
-    responseUnit: p === 'critical' ? 'minutes' : 'hours',
-    resolutionUnit: 'hours'
-  }));
+    questions: [
+      {
+        id: 'business_hours',
+        type: 'choice',
+        botMessage: "Do you offer 24/7 support or business hours only?",
+        emoji: "🕐",
+        options: [
+          { value: '24_7', label: '24/7 Support', emoji: '🌐' },
+          { value: 'business', label: 'Business Hours (9-5)', emoji: '🏢' }
+        ]
+      },
+      {
+        id: 'critical_response',
+        type: 'number',
+        botMessage: "Response time for Critical issues (minutes)?",
+        emoji: "🚨",
+        placeholder: "15",
+        min: 5,
+        max: 120
+      },
+      {
+        id: 'critical_resolution',
+        type: 'number',
+        botMessage: "Resolution time for Critical issues (hours)?",
+        emoji: "⏱️",
+        placeholder: "4",
+        min: 1,
+        max: 48
+      },
+      {
+        id: 'high_response',
+        type: 'number',
+        botMessage: "Response time for High priority issues (hours)?",
+        emoji: "⚠️",
+        placeholder: "2",
+        min: 1,
+        max: 24
+      },
+      {
+        id: 'high_resolution',
+        type: 'number',
+        botMessage: "Resolution time for High priority issues (hours)?",
+        emoji: "⏰",
+        placeholder: "8",
+        min: 2,
+        max: 72
+      },
+      {
+        id: 'escalation',
+        type: 'yes-no',
+        botMessage: "Do you need an escalation policy?",
+        emoji: "📈"
+      }
+    ],
 
-  // Generate policy document
-  let policyHTML = `
-    <div style="padding: 20px 0;">
-      <h4 style="font-size: 18px; margin-bottom: 16px;">Service Coverage</h4>
-      <p style="color: var(--gray); margin-bottom: 24px;">Support provided ${coverage}</p>
+    onComplete: (answers, chat) => {
+      const businessHours = answers.business_hours === '24_7' ? '24/7' : 'Business Hours (9-5)';
 
-      <h4 style="font-size: 18px; margin-bottom: 16px;">Priority Definitions & Response Times</h4>
-      <table class="sla-table">
-        <thead>
-          <tr>
-            <th>Priority</th>
-            <th>Definition</th>
-            <th>Response Time</th>
-            <th>Resolution Time</th>
-          </tr>
-        </thead>
-        <tbody>`;
+      // Generate SLA policy
+      chat.showBotMessage("Here's your SLA policy:", '📋');
 
-  const definitions = {
-    Critical: 'System is completely unavailable or data loss has occurred. Business operations are severely impacted.',
-    High: 'Major functionality is impaired. Significant impact on business operations with no acceptable workaround.',
-    Medium: 'Minor functionality issues or performance degradation. Workaround available. Limited business impact.',
-    Low: 'General questions, feature requests, or cosmetic issues. No significant business impact.'
+      setTimeout(() => {
+        const slaDiv = document.createElement('div');
+        slaDiv.className = 'chat-message bot fade-in';
+        slaDiv.innerHTML = `
+          <div class="chat-bubble" style="max-width: 90%;">
+            <div class="sla-table">
+              <h3 style="margin-bottom: 16px; color: var(--accent2);">Service Level Agreement</h3>
+              <p style="margin-bottom: 16px;"><strong>Support Hours:</strong> ${businessHours}</p>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Priority</th>
+                    <th>Response Time</th>
+                    <th>Resolution Time</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>🚨 Critical</strong></td>
+                    <td>${answers.critical_response} minutes</td>
+                    <td>${answers.critical_resolution} hours</td>
+                  </tr>
+                  <tr>
+                    <td><strong>⚠️ High</strong></td>
+                    <td>${answers.high_response} hours</td>
+                    <td>${answers.high_resolution} hours</td>
+                  </tr>
+                  <tr>
+                    <td><strong>📝 Medium</strong></td>
+                    <td>${answers.high_response * 2} hours</td>
+                    <td>${answers.high_resolution * 2} hours</td>
+                  </tr>
+                  <tr>
+                    <td><strong>🔹 Low</strong></td>
+                    <td>${answers.high_response * 4} hours</td>
+                    <td>${answers.high_resolution * 3} hours</td>
+                  </tr>
+                </tbody>
+              </table>
+              ${answers.escalation === 'yes' ? '<p style="margin-top: 16px;"><strong>Escalation:</strong> Auto-escalate to manager if response SLA breached</p>' : ''}
+            </div>
+          </div>
+        `;
+        document.getElementById('chat-messages').appendChild(slaDiv);
+        chat.scrollToBottom();
+      }, 500);
+
+      // Show recommendations
+      setTimeout(() => {
+        chat.showBotMessage("Your SLA is ready! Screenshot this or request a formatted PDF document.", '💡');
+      }, 2000);
+
+      // Email capture
+      setTimeout(() => {
+        chat.showEmailCapture("Want this as a formatted SLA document? 📧");
+      }, 3000);
+    }
   };
 
-  slaData.forEach((item, i) => {
-    policyHTML += `
-      <tr>
-        <td><strong>${item.name}</strong></td>
-        <td>${definitions[item.name]}</td>
-        <td>${item.response} ${item.responseUnit}</td>
-        <td>${item.resolution} ${item.resolutionUnit}</td>
-      </tr>`;
+  // Initialize chat
+  document.addEventListener('DOMContentLoaded', () => {
+    new ChatEngine(chatConfig);
   });
-
-  policyHTML += `
-        </tbody>
-      </table>
-
-      <h4 style="font-size: 18px; margin: 24px 0 16px;">Measurement & Reporting</h4>
-      <ul style="color: var(--gray); line-height: 1.8;">
-        <li>Response time begins when the ticket is logged in the system</li>
-        <li>Resolution time ends when the issue is resolved or a permanent workaround is provided</li>
-        <li>SLA compliance is measured monthly and reported to stakeholders</li>
-        <li>Target compliance rate: 95% or higher for all priority levels</li>
-      </ul>
-    </div>
-  `;
-
-  document.getElementById('slaPolicy').innerHTML = policyHTML;
-
-  // Generate timeline chart
-  let chartHTML = '';
-  const colors = { Critical: '#ef4444', High: '#f59e0b', Medium: '#3b82f6', Low: '#10b981' };
-
-  slaData.forEach(item => {
-    const responseMinutes = item.responseUnit === 'minutes' ? parseInt(item.response) : parseInt(item.response) * 60;
-    const resolutionMinutes = parseInt(item.resolution) * 60;
-    const maxMinutes = Math.max(...slaData.map(s => parseInt(s.resolution) * 60));
-    const widthPercent = (resolutionMinutes / maxMinutes) * 100;
-
-    chartHTML += `
-      <div class="timeline-row">
-        <div class="timeline-label">${item.name}</div>
-        <div class="timeline-bar" style="background: ${colors[item.name]}; width: ${widthPercent}%;">
-          Response: ${item.response}${item.responseUnit.charAt(0)} | Resolution: ${item.resolution}h
-        </div>
-      </div>
-    `;
-  });
-
-  document.getElementById('timelineChart').innerHTML = chartHTML;
-
-  // Generate escalation matrix
-  let escalationHTML = '';
-  slaData.forEach(item => {
-    const responseMinutes = item.responseUnit === 'minutes' ? parseInt(item.response) : parseInt(item.response) * 60;
-    const escalation1 = Math.floor(responseMinutes * 1.5);
-    const escalation2 = responseMinutes * 2;
-
-    escalationHTML += `
-      <div class="escalation-row">
-        <div class="escalation-time">${item.name}</div>
-        <div style="font-size: 14px; color: var(--gray);">
-          ${responseMinutes}min → Assigned Agent |
-          ${escalation1}min → Team Lead |
-          ${escalation2}min → Manager
-        </div>
-      </div>
-    `;
-  });
-
-  document.getElementById('escalationMatrix').innerHTML = escalationHTML;
-
-  // Show results
-  document.getElementById('resultContainer').classList.add('active');
-
-  // Track event
-  if (typeof gtag === 'function') {
-    gtag('event', 'sla_calculated', {
-      event_category: 'engagement',
-      business_hours: coverage
-    });
-  }
-
-  // Scroll to results
-  document.getElementById('resultContainer').scrollIntoView({ behavior: 'smooth' });
-}
-
-function downloadPolicy() {
-  const policyContent = document.getElementById('slaPolicy').innerHTML;
-  const fullHTML = `
-    <!DOCTYPE html>
-    <html>
-    <head>
-      <meta charset="UTF-8">
-      <title>SLA Policy</title>
-      <style>
-        body { font-family: Arial, sans-serif; padding: 40px; line-height: 1.6; }
-        h4 { color: #000; margin-top: 24px; }
-        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
-        th, td { padding: 12px; text-align: left; border: 1px solid #ddd; }
-        th { background: #f3f4f6; }
-        ul { margin: 16px 0; padding-left: 24px; }
-      </style>
-    </head>
-    <body>
-      <h1>Service Level Agreement Policy</h1>
-      <p>Generated: ${new Date().toLocaleDateString()}</p>
-      ${policyContent}
-    </body>
-    </html>
-  `;
-
-  const blob = new Blob([fullHTML], { type: 'text/html' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'SLA-Policy-' + new Date().toISOString().split('T')[0] + '.html';
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
-
-  if (typeof gtag === 'function') {
-    gtag('event', 'policy_downloaded', {
-      event_category: 'conversion'
-    });
-  }
-}
-
-function trackLeadSubmit(event) {
-  if (typeof gtag === 'function') {
-    gtag('event', 'lead_submit', {
-      event_category: 'conversion',
-      tool: 'sla-calculator'
-    });
-  }
-}
 </script>
 
 </body>

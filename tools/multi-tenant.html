@@ -41,22 +41,6 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-815E8YDZW8', {page_path: '/tools/multi-tenant'});
-
-  function trackAssessmentComplete(score, readinessLevel) {
-    gtag('event', 'assessment_complete', {
-      readiness_score: score,
-      readiness_level: readinessLevel,
-      event_category: 'conversion'
-    });
-  }
-
-  function trackLeadSubmit(email, score) {
-    gtag('event', 'lead_submit', {
-      readiness_score: score,
-      event_category: 'lead_generation',
-      event_label: 'architecture_blueprint'
-    });
-  }
 </script>
 
 <!-- Schema.org -->
@@ -107,18 +91,15 @@
 }
 </script>
 
+<!-- Chat Framework -->
+<link rel="stylesheet" href="../styles/chat-ui.css">
+
 <style>
   :root {
     --primary: #1a1a2e;
     --accent: #e94560;
     --accent2: #0f3460;
-    --safe: #00b894;
-    --warn: #fdcb6e;
-    --danger: #e17055;
     --bg: #f8f9fa;
-    --card: #ffffff;
-    --text: #2d3436;
-    --muted: #636e72;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -126,7 +107,7 @@
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background: var(--bg);
-    color: var(--text);
+    color: #2d3436;
     line-height: 1.6;
   }
 
@@ -161,263 +142,6 @@
     padding: 0 20px;
   }
 
-  .assessment-card {
-    background: white;
-    border-radius: 16px;
-    padding: 32px;
-    margin: -24px auto 32px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    position: relative;
-    z-index: 2;
-  }
-
-  .question-group {
-    margin-bottom: 32px;
-  }
-
-  .question-label {
-    font-weight: 700;
-    font-size: 1rem;
-    color: var(--primary);
-    margin-bottom: 12px;
-    display: block;
-  }
-
-  .radio-option {
-    display: block;
-    padding: 12px;
-    margin-bottom: 8px;
-    border: 2px solid #e9ecef;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-
-  .radio-option:hover {
-    border-color: var(--accent2);
-    background: #f8f9fa;
-  }
-
-  .radio-option input[type="radio"] {
-    margin-right: 10px;
-    cursor: pointer;
-  }
-
-  .radio-option input[type="radio"]:checked + span {
-    font-weight: 600;
-  }
-
-  .radio-option.selected {
-    border-color: var(--accent2);
-    background: #e8f4f8;
-  }
-
-  .calculate-btn {
-    width: 100%;
-    background: linear-gradient(135deg, var(--accent) 0%, #c0392b 100%);
-    color: white;
-    border: none;
-    padding: 16px;
-    border-radius: 12px;
-    font-size: 1.1rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-    box-shadow: 0 4px 20px rgba(233,69,96,0.3);
-    margin-top: 24px;
-  }
-
-  .calculate-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(233,69,96,0.4);
-  }
-
-  .results-card {
-    background: white;
-    border-radius: 16px;
-    padding: 32px;
-    margin-bottom: 32px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    display: none;
-  }
-
-  .score-display {
-    text-align: center;
-    padding: 32px;
-    background: linear-gradient(135deg, var(--primary) 0%, var(--accent2) 100%);
-    border-radius: 16px;
-    color: white;
-    margin-bottom: 24px;
-  }
-
-  .score-number {
-    font-size: 4rem;
-    font-weight: 800;
-    line-height: 1;
-    margin-bottom: 8px;
-  }
-
-  .score-label {
-    font-size: 1.3rem;
-    opacity: 0.9;
-    font-weight: 600;
-  }
-
-  .readiness-description {
-    padding: 20px;
-    background: #e8f5e9;
-    border-radius: 12px;
-    margin-bottom: 24px;
-  }
-
-  .readiness-description strong {
-    display: block;
-    font-size: 1.1rem;
-    color: #2e7d32;
-    margin-bottom: 8px;
-  }
-
-  .readiness-description p {
-    font-size: 0.95rem;
-    color: #2e7d32;
-  }
-
-  .gaps-section {
-    margin-top: 24px;
-    padding: 20px;
-    background: #fff3e0;
-    border-radius: 12px;
-    border-left: 4px solid var(--warn);
-  }
-
-  .gaps-section h4 {
-    color: #e65100;
-    margin-bottom: 12px;
-    font-size: 1rem;
-  }
-
-  .gaps-section ul {
-    list-style: none;
-    padding: 0;
-  }
-
-  .gaps-section li {
-    padding: 6px 0;
-    color: #e65100;
-    font-size: 0.9rem;
-  }
-
-  .patterns-section {
-    margin-top: 24px;
-    padding: 20px;
-    background: #e3f2fd;
-    border-radius: 12px;
-    border-left: 4px solid #2196f3;
-  }
-
-  .patterns-section h4 {
-    color: #1565c0;
-    margin-bottom: 12px;
-    font-size: 1rem;
-  }
-
-  .patterns-section ul {
-    list-style: none;
-    padding: 0;
-  }
-
-  .patterns-section li {
-    padding: 6px 0;
-    color: #1565c0;
-    font-size: 0.9rem;
-  }
-
-  .cta-section {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--accent2) 100%);
-    border-radius: 16px;
-    padding: 36px 28px;
-    text-align: center;
-    color: white;
-    margin-bottom: 32px;
-    display: none;
-  }
-
-  .cta-section h3 {
-    font-size: 1.3rem;
-    margin-bottom: 8px;
-  }
-
-  .cta-section p {
-    opacity: 0.85;
-    margin-bottom: 20px;
-    font-size: 0.95rem;
-  }
-
-  .cta-buttons {
-    display: flex;
-    gap: 12px;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-bottom: 24px;
-  }
-
-  .cta-btn {
-    display: inline-block;
-    padding: 12px 24px;
-    border-radius: 12px;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 0.95rem;
-    transition: transform 0.2s ease;
-  }
-
-  .cta-btn.primary {
-    background: var(--accent);
-    color: white;
-  }
-
-  .cta-btn.secondary {
-    background: white;
-    color: var(--primary);
-  }
-
-  .cta-btn:hover {
-    transform: scale(1.02);
-  }
-
-  .cta-form {
-    display: flex;
-    gap: 8px;
-    max-width: 440px;
-    margin: 0 auto;
-  }
-
-  .cta-form input {
-    flex: 1;
-    padding: 14px 18px;
-    border: none;
-    border-radius: 12px;
-    font-size: 0.95rem;
-    outline: none;
-  }
-
-  .cta-form button {
-    background: var(--accent);
-    color: white;
-    border: none;
-    padding: 14px 24px;
-    border-radius: 12px;
-    font-weight: 700;
-    font-size: 0.95rem;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-    white-space: nowrap;
-  }
-
-  .cta-form button:hover {
-    transform: scale(1.02);
-  }
-
   .back-link {
     text-align: center;
     margin: 24px 0;
@@ -431,10 +155,6 @@
 
   @media (max-width: 600px) {
     .hero h1 { font-size: 1.6rem; }
-    .assessment-card { padding: 24px; }
-    .score-number { font-size: 3rem; }
-    .cta-form { flex-direction: column; }
-    .cta-buttons { flex-direction: column; }
   }
 </style>
 </head>
@@ -449,417 +169,256 @@
 </div>
 
 <div class="container">
-  <div class="assessment-card">
-    <form id="assessment-form">
-      <div class="question-group">
-        <label class="question-label">1. Data Isolation Strategy</label>
-        <label class="radio-option">
-          <input type="radio" name="q1" value="3" required>
-          <span>Shared DB with tenant_id column</span>
-        </label>
-        <label class="radio-option">
-          <input type="radio" name="q1" value="5">
-          <span>Separate database per tenant</span>
-        </label>
-        <label class="radio-option">
-          <input type="radio" name="q1" value="7">
-          <span>Separate schemas per tenant (PostgreSQL/MySQL)</span>
-        </label>
-      </div>
-
-      <div class="question-group">
-        <label class="question-label">2. Tenant Routing</label>
-        <label class="radio-option">
-          <input type="radio" name="q2" value="0" required>
-          <span>No routing (single-tenant only)</span>
-        </label>
-        <label class="radio-option">
-          <input type="radio" name="q2" value="5">
-          <span>Subdomain-based (tenant.app.com)</span>
-        </label>
-        <label class="radio-option">
-          <input type="radio" name="q2" value="4">
-          <span>Path-based (/tenant/app) or header-based</span>
-        </label>
-      </div>
-
-      <div class="question-group">
-        <label class="question-label">3. Configuration Management</label>
-        <label class="radio-option">
-          <input type="radio" name="q3" value="0" required>
-          <span>Hardcoded in application</span>
-        </label>
-        <label class="radio-option">
-          <input type="radio" name="q3" value="3">
-          <span>Environment variables (per deployment)</span>
-        </label>
-        <label class="radio-option">
-          <input type="radio" name="q3" value="7">
-          <span>Database-driven per-tenant config</span>
-        </label>
-      </div>
-
-      <div class="question-group">
-        <label class="question-label">4. Billing Separation</label>
-        <label class="radio-option">
-          <input type="radio" name="q4" value="0" required>
-          <span>Manual invoicing</span>
-        </label>
-        <label class="radio-option">
-          <input type="radio" name="q4" value="3">
-          <span>Separate Stripe accounts per tenant</span>
-        </label>
-        <label class="radio-option">
-          <input type="radio" name="q4" value="7">
-          <span>Unified Stripe with tenant metadata</span>
-        </label>
-      </div>
-
-      <div class="question-group">
-        <label class="question-label">5. Feature Flags Per Tenant</label>
-        <label class="radio-option">
-          <input type="radio" name="q5" value="0" required>
-          <span>Global feature flags only</span>
-        </label>
-        <label class="radio-option">
-          <input type="radio" name="q5" value="4">
-          <span>Plan-based feature access</span>
-        </label>
-        <label class="radio-option">
-          <input type="radio" name="q5" value="7">
-          <span>Tenant-specific feature toggles (LaunchDarkly/custom)</span>
-        </label>
-      </div>
-
-      <div class="question-group">
-        <label class="question-label">6. User Permissions</label>
-        <label class="radio-option">
-          <input type="radio" name="q6" value="2" required>
-          <span>Basic role-based access (admin/user)</span>
-        </label>
-        <label class="radio-option">
-          <input type="radio" name="q6" value="5">
-          <span>Multi-level roles per tenant</span>
-        </label>
-        <label class="radio-option">
-          <input type="radio" name="q6" value="7">
-          <span>Attribute-based access control (ABAC)</span>
-        </label>
-      </div>
-
-      <div class="question-group">
-        <label class="question-label">7. API Rate Limiting</label>
-        <label class="radio-option">
-          <input type="radio" name="q7" value="0" required>
-          <span>No rate limiting</span>
-        </label>
-        <label class="radio-option">
-          <input type="radio" name="q7" value="4">
-          <span>Global rate limits (all tenants)</span>
-        </label>
-        <label class="radio-option">
-          <input type="radio" name="q7" value="7">
-          <span>Per-tenant rate limits (Redis/API gateway)</span>
-        </label>
-      </div>
-
-      <div class="question-group">
-        <label class="question-label">8. Tenant Provisioning</label>
-        <label class="radio-option">
-          <input type="radio" name="q8" value="0" required>
-          <span>Manual setup (dev intervention)</span>
-        </label>
-        <label class="radio-option">
-          <input type="radio" name="q8" value="5">
-          <span>Semi-automated (script execution)</span>
-        </label>
-        <label class="radio-option">
-          <input type="radio" name="q8" value="7">
-          <span>Fully automated onboarding flow</span>
-        </label>
-      </div>
-
-      <div class="question-group">
-        <label class="question-label">9. Database Migrations</label>
-        <label class="radio-option">
-          <input type="radio" name="q9" value="2" required>
-          <span>Manual migrations with downtime</span>
-        </label>
-        <label class="radio-option">
-          <input type="radio" name="q9" value="5">
-          <span>Automated migrations (all tenants at once)</span>
-        </label>
-        <label class="radio-option">
-          <input type="radio" name="q9" value="7">
-          <span>Zero-downtime migrations with tenant rollout control</span>
-        </label>
-      </div>
-
-      <div class="question-group">
-        <label class="question-label">10. Backup Strategy</label>
-        <label class="radio-option">
-          <input type="radio" name="q10" value="1" required>
-          <span>Shared backups (no tenant isolation)</span>
-        </label>
-        <label class="radio-option">
-          <input type="radio" name="q10" value="4">
-          <span>Tenant-specific backup snapshots</span>
-        </label>
-        <label class="radio-option">
-          <input type="radio" name="q10" value="7">
-          <span>Per-tenant point-in-time recovery</span>
-        </label>
-      </div>
-
-      <div class="question-group">
-        <label class="question-label">11. Monitoring & Logging</label>
-        <label class="radio-option">
-          <input type="radio" name="q11" value="1" required>
-          <span>Application-level logs only</span>
-        </label>
-        <label class="radio-option">
-          <input type="radio" name="q11" value="4">
-          <span>Per-tenant metrics tracking</span>
-        </label>
-        <label class="radio-option">
-          <input type="radio" name="q11" value="7">
-          <span>Tenant-filtered dashboards + alerting</span>
-        </label>
-      </div>
-
-      <div class="question-group">
-        <label class="question-label">12. Security Isolation</label>
-        <label class="radio-option">
-          <input type="radio" name="q12" value="2" required>
-          <span>Application-level checks only</span>
-        </label>
-        <label class="radio-option">
-          <input type="radio" name="q12" value="5">
-          <span>Row-level security (RLS) in database</span>
-        </label>
-        <label class="radio-option">
-          <input type="radio" name="q12" value="7">
-          <span>Network/infrastructure isolation per tenant</span>
-        </label>
-      </div>
-
-      <div class="question-group">
-        <label class="question-label">13. Performance Impact</label>
-        <label class="radio-option">
-          <input type="radio" name="q13" value="2" required>
-          <span>Not tested with multiple tenants</span>
-        </label>
-        <label class="radio-option">
-          <input type="radio" name="q13" value="5">
-          <span>Load tested with 10+ tenants</span>
-        </label>
-        <label class="radio-option">
-          <input type="radio" name="q13" value="7">
-          <span>Tenant-specific resource allocation/quotas</span>
-        </label>
-      </div>
-
-      <div class="question-group">
-        <label class="question-label">14. Scaling Plan</label>
-        <label class="radio-option">
-          <input type="radio" name="q14" value="0" required>
-          <span>No horizontal scaling (vertical only)</span>
-        </label>
-        <label class="radio-option">
-          <input type="radio" name="q14" value="4">
-          <span>Horizontal app scaling (stateless)</span>
-        </label>
-        <label class="radio-option">
-          <input type="radio" name="q14" value="7">
-          <span>Tenant sharding across multiple clusters</span>
-        </label>
-      </div>
-
-      <div class="question-group">
-        <label class="question-label">15. Custom Domains</label>
-        <label class="radio-option">
-          <input type="radio" name="q15" value="0" required>
-          <span>Not supported</span>
-        </label>
-        <label class="radio-option">
-          <input type="radio" name="q15" value="3">
-          <span>Manual DNS setup required</span>
-        </label>
-        <label class="radio-option">
-          <input type="radio" name="q15" value="6">
-          <span>Automated custom domain provisioning + SSL</span>
-        </label>
-      </div>
-
-      <button type="submit" class="calculate-btn">Calculate Readiness</button>
-    </form>
-  </div>
-
-  <div class="results-card" id="results">
-    <div class="score-display">
-      <div class="score-number" id="score">0</div>
-      <div class="score-label" id="readiness-level">Readiness Level</div>
-    </div>
-
-    <div class="readiness-description" id="readiness-description"></div>
-
-    <div class="gaps-section" id="gaps">
-      <h4>Architectural Gaps</h4>
-      <ul id="gaps-list"></ul>
-    </div>
-
-    <div class="patterns-section" id="patterns">
-      <h4>Recommended Patterns</h4>
-      <ul id="patterns-list"></ul>
-    </div>
-  </div>
-
-  <div class="cta-section" id="cta">
-    <h3>Get Multi-Tenant Architecture Blueprint</h3>
-    <p>Detailed guide covering data isolation, tenant routing, security, and scaling patterns for production SaaS.</p>
-
-    <div class="cta-buttons">
-      <a href="https://techconcepts.org/blog/multi-tenant-slack-bot.html" class="cta-btn secondary">Case Study</a>
-      <a href="https://calendly.com/jenyago/30min" class="cta-btn primary" target="_blank">Book Consultation</a>
-    </div>
-
-    <form class="cta-form" action="https://formspree.io/f/xpwzgvqr" method="POST">
-      <input type="email" name="email" placeholder="Your email" required>
-      <input type="hidden" name="tool" value="multi-tenant">
-      <input type="hidden" name="readiness_score" id="form-score">
-      <button type="submit">Get Blueprint</button>
-      <p style="font-size: 12px; color: var(--gray); margin-top: 8px; text-align: center;">
-        By submitting, you agree to our <a href="/privacy" style="color: var(--accent); text-decoration: underline;">Privacy Policy</a>.
-      </p>
-    </form>
-  </div>
-
   <div class="back-link">
     <a href="https://techconcepts.org/tools/">&larr; Back to Tools</a>
   </div>
 </div>
 
+<script src="../scripts/chat-framework.js"></script>
 <script>
-  const readinessLevels = {
-    production: { min: 80, label: 'Production Ready', description: 'Your architecture is ready for multi-tenant production deployment. Focus on operational excellence and cost optimization.' },
-    mvp: { min: 60, label: 'MVP Ready', description: 'You have core multi-tenancy patterns in place. Address security and scaling gaps before large-scale launch.' },
-    prototype: { min: 40, label: 'Prototype Stage', description: 'Basic multi-tenant structure exists but needs hardening. Prioritize data isolation and tenant routing.' },
-    single: { min: 0, label: 'Single-Tenant Only', description: 'Architecture is designed for single-tenant deployment. Requires significant refactoring for multi-tenancy.' }
+  const chatConfig = {
+    title: "Multi-Tenant SaaS Readiness",
+    emoji: "🏢",
+    toolName: "multi-tenant",
+    formspreeUrl: "https://formspree.io/f/xpwzgvqr",
+
+    questions: [
+      {
+        id: 'q1',
+        type: 'choice',
+        botMessage: "Let's start with data isolation. What strategy are you using?",
+        emoji: "🗄️",
+        options: [
+          { value: 3, label: 'Shared DB with tenant_id column', emoji: '📊' },
+          { value: 5, label: 'Separate database per tenant', emoji: '💾' },
+          { value: 7, label: 'Separate schemas per tenant (PostgreSQL/MySQL)', emoji: '🏗️' }
+        ]
+      },
+      {
+        id: 'q2',
+        type: 'choice',
+        botMessage: "How do you handle tenant routing?",
+        emoji: "🧭",
+        options: [
+          { value: 0, label: 'No routing (single-tenant only)', emoji: '❌' },
+          { value: 5, label: 'Subdomain-based (tenant.app.com)', emoji: '🌐' },
+          { value: 4, label: 'Path-based (/tenant/app) or header-based', emoji: '🔗' }
+        ]
+      },
+      {
+        id: 'q3',
+        type: 'choice',
+        botMessage: "What's your configuration management approach?",
+        emoji: "⚙️",
+        options: [
+          { value: 0, label: 'Hardcoded in application', emoji: '🔧' },
+          { value: 3, label: 'Environment variables (per deployment)', emoji: '📝' },
+          { value: 7, label: 'Database-driven per-tenant config', emoji: '💾' }
+        ]
+      },
+      {
+        id: 'q4',
+        type: 'choice',
+        botMessage: "How do you separate billing per tenant?",
+        emoji: "💳",
+        options: [
+          { value: 0, label: 'Manual invoicing', emoji: '📄' },
+          { value: 3, label: 'Separate Stripe accounts per tenant', emoji: '🏦' },
+          { value: 7, label: 'Unified Stripe with tenant metadata', emoji: '💰' }
+        ]
+      },
+      {
+        id: 'q5',
+        type: 'choice',
+        botMessage: "Do you have feature flags per tenant?",
+        emoji: "🚩",
+        options: [
+          { value: 0, label: 'Global feature flags only', emoji: '🌍' },
+          { value: 4, label: 'Plan-based feature access', emoji: '📋' },
+          { value: 7, label: 'Tenant-specific feature toggles (LaunchDarkly/custom)', emoji: '🎛️' }
+        ]
+      },
+      {
+        id: 'q6',
+        type: 'choice',
+        botMessage: "What's your user permissions model?",
+        emoji: "🔐",
+        options: [
+          { value: 2, label: 'Basic role-based access (admin/user)', emoji: '👤' },
+          { value: 5, label: 'Multi-level roles per tenant', emoji: '👥' },
+          { value: 7, label: 'Attribute-based access control (ABAC)', emoji: '🎯' }
+        ]
+      },
+      {
+        id: 'q7',
+        type: 'choice',
+        botMessage: "Do you have API rate limiting per tenant?",
+        emoji: "🚦",
+        options: [
+          { value: 0, label: 'No rate limiting', emoji: '⚠️' },
+          { value: 4, label: 'Global rate limits (all tenants)', emoji: '🌐' },
+          { value: 7, label: 'Per-tenant rate limits (Redis/API gateway)', emoji: '✅' }
+        ]
+      },
+      {
+        id: 'q8',
+        type: 'choice',
+        botMessage: "How automated is your tenant provisioning?",
+        emoji: "🎛️",
+        options: [
+          { value: 0, label: 'Manual setup (dev intervention)', emoji: '🛠️' },
+          { value: 5, label: 'Semi-automated (script execution)', emoji: '⚡' },
+          { value: 7, label: 'Fully automated onboarding flow', emoji: '🚀' }
+        ]
+      },
+      {
+        id: 'q9',
+        type: 'choice',
+        botMessage: "What's your database migration strategy?",
+        emoji: "🔄",
+        options: [
+          { value: 2, label: 'Manual migrations with downtime', emoji: '⏸️' },
+          { value: 5, label: 'Automated migrations (all tenants at once)', emoji: '⚡' },
+          { value: 7, label: 'Zero-downtime migrations with tenant rollout control', emoji: '✅' }
+        ]
+      },
+      {
+        id: 'q10',
+        type: 'choice',
+        botMessage: "How do you handle backups?",
+        emoji: "💾",
+        options: [
+          { value: 1, label: 'Shared backups (no tenant isolation)', emoji: '📦' },
+          { value: 4, label: 'Tenant-specific backup snapshots', emoji: '📸' },
+          { value: 7, label: 'Per-tenant point-in-time recovery', emoji: '⏮️' }
+        ]
+      },
+      {
+        id: 'q11',
+        type: 'choice',
+        botMessage: "What's your monitoring & logging setup?",
+        emoji: "📊",
+        options: [
+          { value: 1, label: 'Application-level logs only', emoji: '📝' },
+          { value: 4, label: 'Per-tenant metrics tracking', emoji: '📈' },
+          { value: 7, label: 'Tenant-filtered dashboards + alerting', emoji: '🎯' }
+        ]
+      },
+      {
+        id: 'q12',
+        type: 'choice',
+        botMessage: "How do you ensure security isolation?",
+        emoji: "🔒",
+        options: [
+          { value: 2, label: 'Application-level checks only', emoji: '✅' },
+          { value: 5, label: 'Row-level security (RLS) in database', emoji: '🛡️' },
+          { value: 7, label: 'Network/infrastructure isolation per tenant', emoji: '🏰' }
+        ]
+      },
+      {
+        id: 'q13',
+        type: 'choice',
+        botMessage: "Have you tested performance with multiple tenants?",
+        emoji: "⚡",
+        options: [
+          { value: 2, label: 'Not tested with multiple tenants', emoji: '❓' },
+          { value: 5, label: 'Load tested with 10+ tenants', emoji: '📊' },
+          { value: 7, label: 'Tenant-specific resource allocation/quotas', emoji: '🎯' }
+        ]
+      },
+      {
+        id: 'q14',
+        type: 'choice',
+        botMessage: "What's your scaling plan?",
+        emoji: "📈",
+        options: [
+          { value: 0, label: 'No horizontal scaling (vertical only)', emoji: '⬆️' },
+          { value: 4, label: 'Horizontal app scaling (stateless)', emoji: '↔️' },
+          { value: 7, label: 'Tenant sharding across multiple clusters', emoji: '🌐' }
+        ]
+      },
+      {
+        id: 'q15',
+        type: 'choice',
+        botMessage: "Last one! Do you support custom domains?",
+        emoji: "🌍",
+        options: [
+          { value: 0, label: 'Not supported', emoji: '❌' },
+          { value: 3, label: 'Manual DNS setup required', emoji: '🛠️' },
+          { value: 6, label: 'Automated custom domain provisioning + SSL', emoji: '✅' }
+        ]
+      }
+    ],
+
+    onComplete: (answers, chat) => {
+      // Calculate total score
+      let totalScore = 0;
+      Object.values(answers).forEach(value => {
+        totalScore += parseInt(value);
+      });
+
+      // Determine readiness level
+      let readinessLevel, description, levelClass;
+      if (totalScore >= 80) {
+        readinessLevel = 'Production Ready';
+        description = 'Your architecture is ready for multi-tenant production deployment. Focus on operational excellence and cost optimization.';
+        levelClass = 'production';
+      } else if (totalScore >= 60) {
+        readinessLevel = 'MVP Ready';
+        description = 'You have core multi-tenancy patterns in place. Address security and scaling gaps before large-scale launch.';
+        levelClass = 'mvp';
+      } else if (totalScore >= 40) {
+        readinessLevel = 'Prototype Stage';
+        description = 'Basic multi-tenant structure exists but needs hardening. Prioritize data isolation and tenant routing.';
+        levelClass = 'prototype';
+      } else {
+        readinessLevel = 'Single-Tenant Only';
+        description = 'Architecture is designed for single-tenant deployment. Requires significant refactoring for multi-tenancy.';
+        levelClass = 'single';
+      }
+
+      // Show results
+      chat.showResultsCard([
+        {
+          label: 'Readiness Score',
+          value: `${totalScore}/105`,
+          highlight: true
+        },
+        {
+          label: 'Readiness Level',
+          value: readinessLevel,
+          highlight: true
+        }
+      ]);
+
+      // Show description
+      setTimeout(() => {
+        chat.showBotMessage(description, '📋');
+      }, 1000);
+
+      // Show recommendations
+      const recommendations = [];
+      if (parseInt(answers.q1) < 5) recommendations.push('Upgrade to separate schemas for better isolation');
+      if (parseInt(answers.q2) < 4) recommendations.push('Implement subdomain-based routing');
+      if (parseInt(answers.q7) < 5) recommendations.push('Add per-tenant rate limiting');
+      if (parseInt(answers.q12) < 5) recommendations.push('Enable Row-Level Security (RLS)');
+
+      if (recommendations.length > 0) {
+        setTimeout(() => {
+          chat.showBotMessage(`Top recommendations: ${recommendations.slice(0, 2).join(', ')}`, '💡');
+        }, 2000);
+      }
+
+      // Email capture
+      setTimeout(() => {
+        chat.showEmailCapture("Want a detailed architecture blueprint? Drop your email 👇");
+      }, 3000);
+    }
   };
 
-  const recommendations = [
-    { q: 'q1', threshold: 5, gap: 'Shared DB with tenant_id lacks strong isolation', pattern: 'Use separate schemas (PostgreSQL) or databases for compliance-sensitive data' },
-    { q: 'q2', threshold: 4, gap: 'Missing tenant routing', pattern: 'Implement subdomain-based routing with middleware tenant resolution' },
-    { q: 'q3', threshold: 5, gap: 'Hardcoded config prevents per-tenant customization', pattern: 'Store tenant config in database with caching layer (Redis)' },
-    { q: 'q4', threshold: 5, gap: 'Manual billing is error-prone', pattern: 'Use Stripe with tenant metadata for unified billing' },
-    { q: 'q5', threshold: 5, gap: 'Global features only', pattern: 'Implement per-tenant feature flags for gradual rollouts' },
-    { q: 'q6', threshold: 5, gap: 'Basic permissions insufficient', pattern: 'Build role-based access control (RBAC) scoped to tenants' },
-    { q: 'q7', threshold: 5, gap: 'No rate limiting allows tenant abuse', pattern: 'Implement per-tenant rate limits with Redis or API gateway' },
-    { q: 'q8', threshold: 5, gap: 'Manual provisioning slows onboarding', pattern: 'Automate tenant creation with async job processing' },
-    { q: 'q9', threshold: 5, gap: 'Migrations cause downtime', pattern: 'Use zero-downtime migrations with tenant-level rollout control' },
-    { q: 'q10', threshold: 5, gap: 'Shared backups risk data leakage', pattern: 'Implement tenant-specific backup snapshots with encryption' },
-    { q: 'q11', threshold: 5, gap: 'No tenant-level observability', pattern: 'Tag all metrics/logs with tenant_id for filtered dashboards' },
-    { q: 'q12', threshold: 5, gap: 'Application-only security is weak', pattern: 'Add PostgreSQL Row-Level Security (RLS) as defense-in-depth' },
-    { q: 'q13', threshold: 5, gap: 'Untested performance with scale', pattern: 'Load test with 100+ tenants, monitor resource usage per tenant' },
-    { q: 'q14', threshold: 5, gap: 'No horizontal scaling plan', pattern: 'Design stateless app tier with tenant sharding strategy' },
-    { q: 'q15', threshold: 4, gap: 'No custom domain support', pattern: 'Automate DNS setup + SSL provisioning (Let\'s Encrypt)' }
-  ];
-
-  // Add radio option selection styling
-  document.querySelectorAll('.radio-option input[type="radio"]').forEach(radio => {
-    radio.addEventListener('change', function() {
-      const name = this.name;
-      document.querySelectorAll(`input[name="${name}"]`).forEach(r => {
-        r.closest('.radio-option').classList.remove('selected');
-      });
-      this.closest('.radio-option').classList.add('selected');
-    });
-  });
-
-  document.getElementById('assessment-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    let totalScore = 0;
-    const gaps = [];
-    const patterns = [];
-
-    for (let i = 1; i <= 15; i++) {
-      const selectedOption = document.querySelector(`input[name="q${i}"]:checked`);
-      if (selectedOption) {
-        const score = parseInt(selectedOption.value);
-        totalScore += score;
-
-        const rec = recommendations.find(r => r.q === 'q' + i);
-        if (rec && score < rec.threshold) {
-          gaps.push(rec.gap);
-          patterns.push(rec.pattern);
-        }
-      }
-    }
-
-    // Determine readiness level
-    let readinessLevel = readinessLevels.single;
-    for (const [key, level] of Object.entries(readinessLevels)) {
-      if (totalScore >= level.min) {
-        readinessLevel = level;
-        break;
-      }
-    }
-
-    // Update score display
-    document.getElementById('score').textContent = totalScore;
-    document.getElementById('readiness-level').textContent = readinessLevel.label;
-    document.getElementById('form-score').value = totalScore;
-
-    // Update description
-    document.getElementById('readiness-description').innerHTML = `<strong>${readinessLevel.label} (${totalScore}/100)</strong><p>${readinessLevel.description}</p>`;
-
-    // Update gaps
-    const gapsList = document.getElementById('gaps-list');
-    gapsList.innerHTML = '';
-    if (gaps.length > 0) {
-      gaps.forEach(gap => {
-        const li = document.createElement('li');
-        li.textContent = '• ' + gap;
-        gapsList.appendChild(li);
-      });
-    } else {
-      const li = document.createElement('li');
-      li.textContent = '• No critical gaps identified';
-      gapsList.appendChild(li);
-    }
-
-    // Update patterns
-    const patternsList = document.getElementById('patterns-list');
-    patternsList.innerHTML = '';
-    if (patterns.length > 0) {
-      patterns.forEach(pattern => {
-        const li = document.createElement('li');
-        li.textContent = '• ' + pattern;
-        patternsList.appendChild(li);
-      });
-    } else {
-      const li = document.createElement('li');
-      li.textContent = '• Continue monitoring best practices and emerging patterns';
-      patternsList.appendChild(li);
-    }
-
-    // Show results and CTA
-    document.getElementById('results').style.display = 'block';
-    document.getElementById('cta').style.display = 'block';
-
-    // Track event
-    trackAssessmentComplete(totalScore, readinessLevel.label);
-
-    // Scroll to results
-    document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  });
-
-  // Track lead submission
-  document.querySelector('.cta-form').addEventListener('submit', function() {
-    const email = this.querySelector('input[name="email"]').value;
-    const score = document.getElementById('form-score').value;
-    trackLeadSubmit(email, score);
+  // Initialize chat
+  document.addEventListener('DOMContentLoaded', () => {
+    new ChatEngine(chatConfig);
   });
 </script>
 

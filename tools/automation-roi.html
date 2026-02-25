@@ -3,560 +3,187 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Automation ROI Calculator | Calculate Payback Period</title>
+<title>Automation ROI Calculator | Calculate Process Automation Savings</title>
 
-<!-- SEO -->
-<meta name="description" content="Free automation ROI calculator. Input hourly wage, time spent, and implementation cost. Get annual savings, payback period, and 3-year ROI. No signup required.">
+<meta name="description" content="Free automation ROI calculator. Calculate time savings, cost reduction, and payback period for process automation. Get instant recommendations.">
 <meta name="author" content="Evgeny Goncharov">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://techconcepts.org/tools/automation-roi.html">
 
-<!-- Resource Hints -->
 <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
 <link rel="dns-prefetch" href="https://www.googletagmanager.com">
-<link rel="preconnect" href="https://formspree.io" crossorigin>
-<link rel="dns-prefetch" href="https://formspree.io">
 
-<!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://techconcepts.org/tools/automation-roi.html">
 <meta property="og:title" content="Automation ROI Calculator">
-<meta property="og:description" content="Calculate if automating a process is worth it. Get payback period and 3-year ROI.">
+<meta property="og:description" content="Calculate ROI for process automation projects">
 <meta property="og:image" content="https://techconcepts.org/techconcepts-og.png">
-<meta property="og:site_name" content="TechConcepts">
 
-<!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Automation ROI Calculator">
-<meta name="twitter:description" content="Calculate automation ROI: payback period and 3-year savings.">
-<meta name="twitter:image" content="https://techconcepts.org/techconcepts-og.png">
 
-<!-- Favicon -->
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
 
-<!-- Google Analytics 4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-815E8YDZW8"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-815E8YDZW8', {page_path: '/tools/automation-roi'});
-
-  function trackCalculationComplete(annualSavings, paybackMonths) {
-    gtag('event', 'calculation_complete', {
-      annual_savings: annualSavings,
-      payback_months: paybackMonths,
-      event_category: 'conversion'
-    });
-  }
-
-  function trackLeadSubmit(email, annualSavings) {
-    gtag('event', 'lead_submit', {
-      annual_savings: annualSavings,
-      event_category: 'lead_generation',
-      event_label: 'detailed_report'
-    });
-  }
 </script>
 
-<!-- Schema.org -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   "name": "Automation ROI Calculator",
-  "description": "Calculate the return on investment for automating manual processes",
+  "description": "Calculate return on investment for process automation",
   "url": "https://techconcepts.org/tools/automation-roi.html",
   "applicationCategory": "BusinessApplication",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "provider": {
-    "@type": "Organization",
-    "name": "TechConcepts"
-  }
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "provider": { "@type": "Organization", "name": "TechConcepts" }
 }
 </script>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "TechConcepts",
-      "item": "https://techconcepts.org/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Tools",
-      "item": "https://techconcepts.org/tools/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "name": "Automation ROI Calculator",
-      "item": "https://techconcepts.org/tools/automation-roi.html"
-    }
-  ]
-}
-</script>
+<link rel="stylesheet" href="../styles/chat-ui.css">
+<script src="../scripts/chat-framework.js"></script>
 
 <style>
-  :root {
-    --primary: #1a1a2e;
-    --accent: #e94560;
-    --accent2: #0f3460;
-    --safe: #00b894;
-    --warn: #fdcb6e;
-    --danger: #e17055;
-    --bg: #f8f9fa;
-    --card: #ffffff;
-    --text: #2d3436;
-    --muted: #636e72;
-  }
-
+  :root { --primary: #1a1a2e; --accent: #e94560; --accent2: #0f3460; --bg: #f8f9fa; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.6;
-  }
-
-  .hero {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--accent2) 100%);
-    color: white;
-    padding: 60px 24px 48px;
-    text-align: center;
-  }
-
-  .hero h1 {
-    font-size: 2.2rem;
-    font-weight: 800;
-    margin-bottom: 12px;
-  }
-
-  .hero .icon {
-    font-size: 3rem;
-    margin-bottom: 16px;
-  }
-
-  .hero p {
-    font-size: 1.1rem;
-    opacity: 0.9;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-
-  .container {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-
-  .calculator-card {
-    background: white;
-    border-radius: 16px;
-    padding: 32px;
-    margin: -24px auto 32px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    position: relative;
-    z-index: 2;
-  }
-
-  .form-group {
-    margin-bottom: 24px;
-  }
-
-  .form-group label {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 8px;
-    font-size: 0.95rem;
-  }
-
-  .form-group .hint {
-    font-size: 0.8rem;
-    color: var(--muted);
-    margin-top: 4px;
-  }
-
-  .form-group input {
-    width: 100%;
-    padding: 14px 18px;
-    border: 2px solid #e9ecef;
-    border-radius: 12px;
-    font-size: 1rem;
-    outline: none;
-    transition: border-color 0.2s ease;
-  }
-
-  .form-group input:focus {
-    border-color: var(--accent2);
-  }
-
-  .calculate-btn {
-    width: 100%;
-    background: linear-gradient(135deg, var(--accent) 0%, #c0392b 100%);
-    color: white;
-    border: none;
-    padding: 16px;
-    border-radius: 12px;
-    font-size: 1.1rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-    box-shadow: 0 4px 20px rgba(233,69,96,0.3);
-  }
-
-  .calculate-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(233,69,96,0.4);
-  }
-
-  .results-card {
-    background: white;
-    border-radius: 16px;
-    padding: 32px;
-    margin-bottom: 32px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    display: none;
-  }
-
-  .results-card h3 {
-    font-size: 1.3rem;
-    margin-bottom: 24px;
-    color: var(--primary);
-  }
-
-  .result-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 16px 0;
-    border-bottom: 1px solid #f0f0f0;
-  }
-
-  .result-item:last-child {
-    border-bottom: none;
-  }
-
-  .result-label {
-    font-weight: 600;
-    font-size: 0.95rem;
-  }
-
-  .result-value {
-    font-size: 1.3rem;
-    font-weight: 800;
-    color: var(--accent);
-  }
-
-  .result-value.positive {
-    color: var(--safe);
-  }
-
-  .chart-container {
-    margin: 24px 0;
-    padding: 24px;
-    background: #f8f9fa;
-    border-radius: 12px;
-  }
-
-  .chart-title {
-    font-size: 0.9rem;
-    font-weight: 600;
-    margin-bottom: 16px;
-    color: var(--primary);
-  }
-
-  .bar-chart {
-    display: flex;
-    align-items: flex-end;
-    gap: 12px;
-    height: 180px;
-  }
-
-  .bar {
-    flex: 1;
-    background: var(--accent2);
-    border-radius: 8px 8px 0 0;
-    position: relative;
-    transition: height 0.8s ease;
-    min-height: 20px;
-  }
-
-  .bar.positive {
-    background: var(--safe);
-  }
-
-  .bar-label {
-    position: absolute;
-    bottom: -24px;
-    left: 0;
-    right: 0;
-    text-align: center;
-    font-size: 0.75rem;
-    color: var(--muted);
-  }
-
-  .bar-value {
-    position: absolute;
-    top: -24px;
-    left: 0;
-    right: 0;
-    text-align: center;
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: var(--primary);
-  }
-
-  .cta-section {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--accent2) 100%);
-    border-radius: 16px;
-    padding: 36px 28px;
-    text-align: center;
-    color: white;
-    margin-bottom: 48px;
-    display: none;
-  }
-
-  .cta-section h3 {
-    font-size: 1.3rem;
-    margin-bottom: 8px;
-  }
-
-  .cta-section p {
-    opacity: 0.85;
-    margin-bottom: 20px;
-    font-size: 0.95rem;
-  }
-
-  .cta-form {
-    display: flex;
-    gap: 8px;
-    max-width: 440px;
-    margin: 0 auto;
-  }
-
-  .cta-form input {
-    flex: 1;
-    padding: 14px 18px;
-    border: none;
-    border-radius: 12px;
-    font-size: 0.95rem;
-    outline: none;
-  }
-
-  .cta-form button {
-    background: var(--accent);
-    color: white;
-    border: none;
-    padding: 14px 24px;
-    border-radius: 12px;
-    font-weight: 700;
-    font-size: 0.95rem;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-    white-space: nowrap;
-  }
-
-  .cta-form button:hover {
-    transform: scale(1.02);
-  }
-
-  .back-link {
-    text-align: center;
-    margin: 24px 0;
-  }
-
-  .back-link a {
-    color: var(--accent);
-    text-decoration: none;
-    font-size: 0.9rem;
-  }
-
-  @media (max-width: 600px) {
-    .hero h1 { font-size: 1.6rem; }
-    .calculator-card { padding: 24px; }
-    .cta-form { flex-direction: column; }
-  }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: #2d3436; line-height: 1.6; }
+  .hero { background: linear-gradient(135deg, var(--primary) 0%, var(--accent2) 100%); color: white; padding: 60px 24px 48px; text-align: center; }
+  .hero h1 { font-size: 2.2rem; font-weight: 800; margin-bottom: 12px; }
+  .hero .icon { font-size: 3rem; margin-bottom: 16px; }
+  .hero p { font-size: 1.1rem; opacity: 0.9; max-width: 600px; margin: 0 auto; }
+  .container { max-width: 720px; margin: 0 auto; padding: 0 20px; }
+  .back-link { text-align: center; margin: 24px 0; }
+  .back-link a { color: var(--accent); text-decoration: none; font-size: 0.9rem; }
+  @media (max-width: 600px) { .hero h1 { font-size: 1.6rem; } }
 </style>
 </head>
 <body>
 
 <div class="hero">
   <div class="container">
-    <span class="icon">📊</span>
+    <span class="icon">⚡</span>
     <h1>Automation ROI Calculator</h1>
-    <p>Calculate if automating a manual process is worth it. Get annual savings, payback period, and 3-year ROI.</p>
+    <p>Calculate time savings, cost reduction, and payback period for process automation.</p>
   </div>
 </div>
 
 <div class="container">
-  <div class="calculator-card">
-    <form id="calc-form" onsubmit="calculate(event)">
-      <div class="form-group">
-        <label for="hourly-wage">Average Hourly Wage (€)</label>
-        <input type="number" id="hourly-wage" placeholder="50" required min="1" step="0.01">
-        <div class="hint">Include salary, benefits, and overhead (typically 1.4x base salary)</div>
-      </div>
-
-      <div class="form-group">
-        <label for="hours-per-week">Hours Spent per Week on This Task</label>
-        <input type="number" id="hours-per-week" placeholder="5" required min="0.1" step="0.1">
-        <div class="hint">How much time does this manual process consume weekly?</div>
-      </div>
-
-      <div class="form-group">
-        <label for="implementation-cost">One-Time Implementation Cost (€)</label>
-        <input type="number" id="implementation-cost" placeholder="10000" required min="0" step="1">
-        <div class="hint">Development + testing + deployment (get a free estimate from us)</div>
-      </div>
-
-      <button type="submit" class="calculate-btn">Calculate ROI</button>
-    </form>
+  <div class="back-link">
+    <a href="https://techconcepts.org/tools/">&larr; Back to Tools</a>
   </div>
-
-  <div class="results-card" id="results">
-    <h3>Your Automation ROI</h3>
-    <div class="result-item">
-      <span class="result-label">Annual Labor Cost (Current)</span>
-      <span class="result-value" id="annual-cost">€0</span>
-    </div>
-    <div class="result-item">
-      <span class="result-label">Annual Savings (After Automation)</span>
-      <span class="result-value positive" id="annual-savings">€0</span>
-    </div>
-    <div class="result-item">
-      <span class="result-label">Payback Period</span>
-      <span class="result-value" id="payback-period">0 months</span>
-    </div>
-    <div class="result-item">
-      <span class="result-label">3-Year Net ROI</span>
-      <span class="result-value positive" id="three-year-roi">€0</span>
-    </div>
-
-    <div class="chart-container">
-      <div class="chart-title">3-Year Financial Comparison</div>
-      <div class="bar-chart">
-        <div class="bar" id="bar-year1" style="height: 0;">
-          <div class="bar-value" id="val-year1">€0</div>
-          <div class="bar-label">Year 1</div>
-        </div>
-        <div class="bar" id="bar-year2" style="height: 0;">
-          <div class="bar-value" id="val-year2">€0</div>
-          <div class="bar-label">Year 2</div>
-        </div>
-        <div class="bar" id="bar-year3" style="height: 0;">
-          <div class="bar-value" id="val-year3">€0</div>
-          <div class="bar-label">Year 3</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="cta-section" id="cta">
-    <h3>Get a Detailed Implementation Plan</h3>
-    <p>Receive a breakdown of your specific automation opportunity, plus estimated development timeline and cost.</p>
-    <form class="cta-form" action="https://formspree.io/f/xpwzgvqr" method="POST" onsubmit="handleSubmit(event)">
-      <input type="email" name="email" id="cta-email" placeholder="Work email" required>
-      <input type="hidden" name="tool" value="automation-roi">
-      <input type="hidden" name="annual_savings" id="form-savings">
-      <input type="hidden" name="payback_months" id="form-payback">
-      <input type="hidden" name="_subject" value="Automation ROI - Implementation Plan Request">
-      <button type="submit">Get Free Plan</button>
-      <p style="font-size: 12px; color: var(--gray); margin-top: 8px; text-align: center;">
-        By submitting, you agree to our <a href="/privacy" style="color: var(--accent); text-decoration: underline;">Privacy Policy</a>.
-      </p>
-    </form>
-  </div>
-</div>
-
-<div class="back-link">
-  <a href="/tools/">← Back to Tools</a>
 </div>
 
 <script>
-  function calculate(event) {
-    event.preventDefault();
+  const chatConfig = {
+    title: "Automation ROI Calculator",
+    emoji: "⚡",
+    toolName: "automation-roi",
+    formspreeUrl: "https://formspree.io/f/xpwzgvqr",
+    shareText: "I just calculated my automation ROI with TechConcepts.org",
+    questions: [
+      {
+        id: 'process_name',
+        type: 'text',
+        botMessage: "What process are you looking to automate?",
+        placeholder: "e.g., Invoice processing",
+        emoji: "📋"
+      },
+      {
+        id: 'people_involved',
+        type: 'number',
+        botMessage: "How many people work on this process?",
+        placeholder: "e.g., 5",
+        emoji: "👥",
+        min: 1,
+        max: 1000,
+        defaultValue: 5
+      },
+      {
+        id: 'hours_per_week',
+        type: 'number',
+        botMessage: "How many hours per week does each person spend on this?",
+        placeholder: "e.g., 10",
+        emoji: "⏱️",
+        min: 1,
+        max: 40,
+        defaultValue: 10
+      },
+      {
+        id: 'hourly_rate',
+        type: 'number',
+        botMessage: "What's the average hourly rate for these employees?",
+        placeholder: "e.g., 50",
+        emoji: "💰",
+        min: 10,
+        max: 500,
+        defaultValue: 50
+      },
+      {
+        id: 'automation_percentage',
+        type: 'choice',
+        botMessage: "How much of this process can be automated?",
+        emoji: "🤖",
+        options: [
+          { value: 90, label: '90%+ - Fully automatable', emoji: '🚀' },
+          { value: 70, label: '70% - Mostly automatable', emoji: '✅' },
+          { value: 50, label: '50% - Partially automatable', emoji: '⚡' },
+          { value: 30, label: '30% - Limited automation', emoji: '⚠️' }
+        ]
+      }
+    ],
+    onComplete: (answers, chat) => {
+      const peopleInvolved = answers.people_involved;
+      const hoursPerWeek = answers.hours_per_week;
+      const hourlyRate = answers.hourly_rate;
+      const automationPct = answers.automation_percentage / 100;
 
-    const hourlyWage = parseFloat(document.getElementById('hourly-wage').value);
-    const hoursPerWeek = parseFloat(document.getElementById('hours-per-week').value);
-    const implementationCost = parseFloat(document.getElementById('implementation-cost').value);
+      const weeklyHours = peopleInvolved * hoursPerWeek;
+      const annualHours = weeklyHours * 52;
+      const currentAnnualCost = annualHours * hourlyRate;
 
-    // Calculations
-    const annualHours = hoursPerWeek * 52;
-    const annualCost = hourlyWage * annualHours;
-    const annualSavings = annualCost * 0.95; // Assume 95% reduction (not 100% due to maintenance)
-    const paybackMonths = (implementationCost / (annualSavings / 12));
-    const threeYearSavings = (annualSavings * 3) - implementationCost;
+      const hoursSaved = annualHours * automationPct;
+      const annualSavings = hoursSaved * hourlyRate;
 
-    // Track calculation
-    trackCalculationComplete(Math.round(annualSavings), Math.round(paybackMonths));
+      const implementationCost = 15000; // Typical automation project
+      const paybackMonths = Math.ceil((implementationCost / annualSavings) * 12);
+      const roi = ((annualSavings - implementationCost) / implementationCost) * 100;
 
-    // Display results
-    document.getElementById('annual-cost').textContent = '€' + Math.round(annualCost).toLocaleString();
-    document.getElementById('annual-savings').textContent = '€' + Math.round(annualSavings).toLocaleString();
-    document.getElementById('payback-period').textContent = paybackMonths.toFixed(1) + ' months';
-    document.getElementById('three-year-roi').textContent = '€' + Math.round(threeYearSavings).toLocaleString();
+      answers.annual_savings = Math.round(annualSavings);
 
-    // Chart data
-    const year1Net = annualSavings - implementationCost;
-    const year2Net = annualSavings;
-    const year3Net = annualSavings;
+      chat.showResultsCard([
+        { label: 'Current Annual Cost', value: chat.formatCurrency(currentAnnualCost) },
+        { label: 'Hours Saved Annually', value: chat.formatNumber(hoursSaved) + ' hrs', highlight: true },
+        { label: 'Annual Savings', value: chat.formatCurrency(annualSavings), highlight: true },
+        { label: 'Payback Period', value: paybackMonths + ' months', highlight: true },
+        { label: 'First Year ROI', value: chat.formatPercent(roi), highlight: true }
+      ]);
 
-    const maxValue = Math.max(Math.abs(year1Net), year2Net, year3Net);
+      setTimeout(() => {
+        let recommendation = '';
+        if (paybackMonths <= 6) {
+          recommendation = `Excellent ROI! This automation pays for itself in just ${paybackMonths} months. 🚀`;
+        } else if (paybackMonths <= 12) {
+          recommendation = `Good ROI with ${paybackMonths}-month payback. Start with the highest-impact workflows first.`;
+        } else {
+          recommendation = `Consider starting with smaller, high-frequency tasks to build momentum and demonstrate value.`;
+        }
+        chat.showBotMessage(recommendation, '💡');
+      }, 1000);
 
-    // Update chart
-    setTimeout(() => {
-      updateBar('bar-year1', 'val-year1', year1Net, maxValue);
-      updateBar('bar-year2', 'val-year2', year2Net, maxValue);
-      updateBar('bar-year3', 'val-year3', year3Net, maxValue);
-    }, 100);
-
-    // Show results
-    document.getElementById('results').style.display = 'block';
-    document.getElementById('cta').style.display = 'block';
-    document.getElementById('form-savings').value = Math.round(annualSavings);
-    document.getElementById('form-payback').value = paybackMonths.toFixed(1);
-
-    document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-
-  function updateBar(barId, valId, value, maxValue) {
-    const bar = document.getElementById(barId);
-    const valEl = document.getElementById(valId);
-    const heightPct = (Math.abs(value) / maxValue) * 100;
-
-    bar.style.height = heightPct + '%';
-    valEl.textContent = '€' + Math.round(value).toLocaleString();
-
-    if (value >= 0) {
-      bar.classList.add('positive');
-    } else {
-      bar.classList.remove('positive');
+      setTimeout(() => {
+        chat.showEmailCapture("Want a detailed automation roadmap? Drop your email 👇");
+      }, 2500);
     }
-  }
+  };
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    const email = document.getElementById('cta-email').value;
-    const savings = document.getElementById('form-savings').value;
-    trackLeadSubmit(email, savings);
-
-    event.target.submit();
-    setTimeout(() => {
-      alert('Thanks! Your automation implementation plan will be sent to ' + email + ' within 24 hours.');
-    }, 100);
-  }
+  document.addEventListener('DOMContentLoaded', () => {
+    new ChatEngine(chatConfig);
+  });
 </script>
 
 </body>

@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Slack Bot ROI Calculator | Support Automation Savings</title>
+<title>Slack Bot ROI Calculator | TechConcepts</title>
 
 <!-- SEO -->
-<meta name="description" content="Free Slack bot ROI calculator. Calculate time and cost savings from automating support tickets. Get payback period and annual ROI. No signup required.">
+<meta name="description" content="Calculate time and cost savings from automating support tickets with a Slack bot.">
 <meta name="author" content="Evgeny Goncharov">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://techconcepts.org/tools/slack-roi.html">
@@ -28,7 +28,7 @@
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Slack Bot ROI Calculator">
-<meta name="twitter:description" content="Calculate support automation ROI and time savings.">
+<meta name="twitter:description" content="Calculate ROI from automating Slack support with a bot. Get cost savings and payback analysis.">
 <meta name="twitter:image" content="https://techconcepts.org/techconcepts-og.png">
 
 <!-- Favicon -->
@@ -41,22 +41,6 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-815E8YDZW8', {page_path: '/tools/slack-roi'});
-
-  function trackCalculationComplete(annualSavings, paybackMonths) {
-    gtag('event', 'calculation_complete', {
-      annual_savings: annualSavings,
-      payback_months: paybackMonths,
-      event_category: 'conversion'
-    });
-  }
-
-  function trackLeadSubmit(email, savings) {
-    gtag('event', 'lead_submit', {
-      annual_savings: savings,
-      event_category: 'lead_generation',
-      event_label: 'slack_bot_plan'
-    });
-  }
 </script>
 
 <!-- Schema.org -->
@@ -65,7 +49,7 @@
   "@context": "https://schema.org",
   "@type": "WebApplication",
   "name": "Slack Bot ROI Calculator",
-  "description": "Calculate return on investment for Slack support automation",
+  "description": "Calculate time and cost savings from automating support tickets with a Slack bot.",
   "url": "https://techconcepts.org/tools/slack-roi.html",
   "applicationCategory": "BusinessApplication",
   "offers": {
@@ -100,25 +84,23 @@
     {
       "@type": "ListItem",
       "position": 3,
-      "name": "Slack ROI Calculator",
+      "name": "Slack Bot ROI Calculator",
       "item": "https://techconcepts.org/tools/slack-roi.html"
     }
   ]
 }
 </script>
 
+<!-- Chat Framework -->
+<link rel="stylesheet" href="../styles/chat-ui.css">
+<script src="../scripts/chat-framework.js"></script>
+
 <style>
   :root {
     --primary: #1a1a2e;
     --accent: #e94560;
     --accent2: #0f3460;
-    --safe: #00b894;
-    --warn: #fdcb6e;
-    --danger: #e17055;
     --bg: #f8f9fa;
-    --card: #ffffff;
-    --text: #2d3436;
-    --muted: #636e72;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -126,7 +108,7 @@
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background: var(--bg);
-    color: var(--text);
+    color: #2d3436;
     line-height: 1.6;
   }
 
@@ -161,268 +143,6 @@
     padding: 0 20px;
   }
 
-  .calculator-card {
-    background: white;
-    border-radius: 16px;
-    padding: 32px;
-    margin: -24px auto 32px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    position: relative;
-    z-index: 2;
-  }
-
-  .form-group {
-    margin-bottom: 24px;
-  }
-
-  .form-group label {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 8px;
-    font-size: 0.95rem;
-  }
-
-  .form-group .hint {
-    font-size: 0.8rem;
-    color: var(--muted);
-    margin-top: 4px;
-  }
-
-  .form-group input {
-    width: 100%;
-    padding: 14px 18px;
-    border: 2px solid #e9ecef;
-    border-radius: 12px;
-    font-size: 1rem;
-    outline: none;
-    transition: border-color 0.2s ease;
-  }
-
-  .form-group input:focus {
-    border-color: var(--accent2);
-  }
-
-  .calculate-btn {
-    width: 100%;
-    background: linear-gradient(135deg, var(--accent) 0%, #c0392b 100%);
-    color: white;
-    border: none;
-    padding: 16px;
-    border-radius: 12px;
-    font-size: 1.1rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-    box-shadow: 0 4px 20px rgba(233,69,96,0.3);
-  }
-
-  .calculate-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(233,69,96,0.4);
-  }
-
-  .results-card {
-    background: white;
-    border-radius: 16px;
-    padding: 32px;
-    margin-bottom: 32px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    display: none;
-  }
-
-  .results-card h3 {
-    font-size: 1.3rem;
-    margin-bottom: 24px;
-    color: var(--primary);
-  }
-
-  .result-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 16px 0;
-    border-bottom: 1px solid #f0f0f0;
-  }
-
-  .result-item:last-child {
-    border-bottom: none;
-  }
-
-  .result-label {
-    font-weight: 600;
-    font-size: 0.95rem;
-  }
-
-  .result-value {
-    font-size: 1.3rem;
-    font-weight: 800;
-    color: var(--accent);
-  }
-
-  .result-value.positive {
-    color: var(--safe);
-  }
-
-  .pie-chart {
-    margin: 24px 0;
-    padding: 24px;
-    background: #f8f9fa;
-    border-radius: 12px;
-  }
-
-  .pie-title {
-    font-size: 0.9rem;
-    font-weight: 600;
-    margin-bottom: 16px;
-    color: var(--primary);
-    text-align: center;
-  }
-
-  .pie-comparison {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-  }
-
-  .pie-section {
-    text-align: center;
-  }
-
-  .pie-section h4 {
-    font-size: 0.85rem;
-    font-weight: 600;
-    margin-bottom: 12px;
-    color: var(--muted);
-  }
-
-  .pie-visual {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    margin: 0 auto 12px;
-    position: relative;
-    background: conic-gradient(
-      var(--danger) 0deg,
-      var(--danger) var(--manual-deg, 288deg),
-      var(--safe) var(--manual-deg, 288deg),
-      var(--safe) 360deg
-    );
-  }
-
-  .pie-visual.after {
-    background: conic-gradient(
-      var(--danger) 0deg,
-      var(--danger) var(--manual-after-deg, 58deg),
-      var(--safe) var(--manual-after-deg, 58deg),
-      var(--safe) 360deg
-    );
-  }
-
-  .pie-legend {
-    font-size: 0.75rem;
-    text-align: left;
-    margin-top: 8px;
-  }
-
-  .pie-legend-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 4px;
-  }
-
-  .pie-legend-color {
-    width: 12px;
-    height: 12px;
-    border-radius: 2px;
-  }
-
-  .cta-section {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--accent2) 100%);
-    border-radius: 16px;
-    padding: 36px 28px;
-    text-align: center;
-    color: white;
-    margin-bottom: 32px;
-    display: none;
-  }
-
-  .cta-section h3 {
-    font-size: 1.3rem;
-    margin-bottom: 8px;
-  }
-
-  .cta-section p {
-    opacity: 0.85;
-    margin-bottom: 20px;
-    font-size: 0.95rem;
-  }
-
-  .cta-buttons {
-    display: flex;
-    gap: 12px;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-bottom: 24px;
-  }
-
-  .cta-btn {
-    display: inline-block;
-    padding: 12px 24px;
-    border-radius: 12px;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 0.95rem;
-    transition: transform 0.2s ease;
-  }
-
-  .cta-btn.primary {
-    background: var(--accent);
-    color: white;
-  }
-
-  .cta-btn.secondary {
-    background: white;
-    color: var(--primary);
-  }
-
-  .cta-btn:hover {
-    transform: scale(1.02);
-  }
-
-  .cta-form {
-    display: flex;
-    gap: 8px;
-    max-width: 440px;
-    margin: 0 auto;
-  }
-
-  .cta-form input {
-    flex: 1;
-    padding: 14px 18px;
-    border: none;
-    border-radius: 12px;
-    font-size: 0.95rem;
-    outline: none;
-  }
-
-  .cta-form button {
-    background: var(--accent);
-    color: white;
-    border: none;
-    padding: 14px 24px;
-    border-radius: 12px;
-    font-weight: 700;
-    font-size: 0.95rem;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-    white-space: nowrap;
-  }
-
-  .cta-form button:hover {
-    transform: scale(1.02);
-  }
-
   .back-link {
     text-align: center;
     margin: 24px 0;
@@ -436,10 +156,6 @@
 
   @media (max-width: 600px) {
     .hero h1 { font-size: 1.6rem; }
-    .calculator-card { padding: 24px; }
-    .cta-form { flex-direction: column; }
-    .cta-buttons { flex-direction: column; }
-    .pie-comparison { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -454,200 +170,103 @@
 </div>
 
 <div class="container">
-  <div class="calculator-card">
-    <form id="calculator-form">
-      <div class="form-group">
-        <label for="team-size">Team Size</label>
-        <input type="number" id="team-size" value="15" min="1" required>
-        <div class="hint">Number of employees handling support</div>
-      </div>
-
-      <div class="form-group">
-        <label for="tickets-per-day">Support Tickets Per Day</label>
-        <input type="number" id="tickets-per-day" value="50" min="1" required>
-        <div class="hint">Average daily tickets across all channels</div>
-      </div>
-
-      <div class="form-group">
-        <label for="minutes-per-ticket">Minutes Per Ticket</label>
-        <input type="number" id="minutes-per-ticket" value="8" min="1" required>
-        <div class="hint">Average time to resolve a ticket</div>
-      </div>
-
-      <div class="form-group">
-        <label for="hourly-cost">Hourly Cost Per Employee</label>
-        <input type="number" id="hourly-cost" value="50" min="1" required>
-        <div class="hint">Fully loaded cost (salary + benefits + overhead)</div>
-      </div>
-
-      <button type="submit" class="calculate-btn">Calculate ROI</button>
-    </form>
-  </div>
-
-  <div class="results-card" id="results">
-    <h3>ROI Analysis</h3>
-
-    <div class="result-item">
-      <span class="result-label">Annual Hours Spent</span>
-      <span class="result-value" id="annual-hours">0 hrs</span>
-    </div>
-
-    <div class="result-item">
-      <span class="result-label">Annual Cost (Current)</span>
-      <span class="result-value" id="annual-cost">$0</span>
-    </div>
-
-    <div class="result-item">
-      <span class="result-label">Time Saved with Bot (80%)</span>
-      <span class="result-value positive" id="time-saved">0 hrs</span>
-    </div>
-
-    <div class="result-item">
-      <span class="result-label">Annual Cost Savings</span>
-      <span class="result-value positive" id="cost-savings">$0</span>
-    </div>
-
-    <div class="result-item">
-      <span class="result-label">Payback Period</span>
-      <span class="result-value positive" id="payback">0 months</span>
-    </div>
-
-    <div class="pie-chart">
-      <div class="pie-title">Time Allocation: Before vs After</div>
-      <div class="pie-comparison">
-        <div class="pie-section">
-          <h4>Before Automation</h4>
-          <div class="pie-visual" id="pie-before"></div>
-          <div class="pie-legend">
-            <div class="pie-legend-item">
-              <div class="pie-legend-color" style="background: var(--danger);"></div>
-              <span id="manual-hours-before">0h</span> Manual Support
-            </div>
-            <div class="pie-legend-item">
-              <div class="pie-legend-color" style="background: var(--safe);"></div>
-              <span id="productive-hours-before">0h</span> Productive Work
-            </div>
-          </div>
-        </div>
-        <div class="pie-section">
-          <h4>After Automation</h4>
-          <div class="pie-visual after" id="pie-after"></div>
-          <div class="pie-legend">
-            <div class="pie-legend-item">
-              <div class="pie-legend-color" style="background: var(--danger);"></div>
-              <span id="manual-hours-after">0h</span> Manual Support
-            </div>
-            <div class="pie-legend-item">
-              <div class="pie-legend-color" style="background: var(--safe);"></div>
-              <span id="productive-hours-after">0h</span> Productive Work
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="cta-section" id="cta">
-    <h3>Get Your Custom Slack Bot Implementation Plan</h3>
-    <p>We'll design a multi-tenant bot that routes tickets, automates responses, and integrates with your Jira.</p>
-
-    <div class="cta-buttons">
-      <a href="https://techconcepts.org/blog/multi-tenant-slack-bot.html" class="cta-btn secondary">Read Case Study</a>
-      <a href="https://techconcepts.org/services/jira-optimization.html" class="cta-btn secondary">Jira Optimization</a>
-      <a href="https://calendly.com/jenyago/30min" class="cta-btn primary" target="_blank">Book a Call</a>
-    </div>
-
-    <form class="cta-form" action="https://formspree.io/f/xpwzgvqr" method="POST">
-      <input type="email" name="email" placeholder="Your email" required>
-      <input type="hidden" name="tool" value="slack-roi">
-      <input type="hidden" name="annual_savings" id="form-savings">
-      <button type="submit">Get Plan</button>
-      <p style="font-size: 12px; color: var(--gray); margin-top: 8px; text-align: center;">
-        By submitting, you agree to our <a href="/privacy" style="color: var(--accent); text-decoration: underline;">Privacy Policy</a>.
-      </p>
-    </form>
-  </div>
-
   <div class="back-link">
     <a href="https://techconcepts.org/tools/">&larr; Back to Tools</a>
   </div>
 </div>
 
 <script>
-  document.getElementById('calculator-form').addEventListener('submit', function(e) {
-    e.preventDefault();
+  const chatConfig = {
+    title: "Slack Bot ROI Calculator",
+    emoji: "🤖",
+    toolName: "slack-roi",
+    formspreeUrl: "https://formspree.io/f/xpwzgvqr",
+    shareText: "I just used Slack Bot ROI Calculator on TechConcepts.org",
+    questions: [
+      {
+            "id": "team_size",
+            "type": "number",
+            "botMessage": "How many people are on your support team?",
+            "placeholder": "e.g., 15",
+            "emoji": "👥",
+            "min": 1,
+            "max": 1000,
+            "defaultValue": 15
+      },
+      {
+            "id": "tickets_per_day",
+            "type": "number",
+            "botMessage": "How many support tickets do you get per day?",
+            "placeholder": "e.g., 50",
+            "emoji": "📋",
+            "min": 1,
+            "max": 10000,
+            "defaultValue": 50
+      },
+      {
+            "id": "minutes_per_ticket",
+            "type": "number",
+            "botMessage": "How many minutes does it take to resolve an average ticket?",
+            "placeholder": "e.g., 8",
+            "emoji": "⏱️",
+            "min": 1,
+            "max": 120,
+            "defaultValue": 8
+      },
+      {
+            "id": "hourly_cost",
+            "type": "number",
+            "botMessage": "What's the fully-loaded hourly cost per employee? (salary + benefits + overhead)",
+            "placeholder": "e.g., 50",
+            "emoji": "💰",
+            "min": 10,
+            "max": 500,
+            "defaultValue": 50
+      }
+],
+    onComplete: (answers, chat) => {
+      
+      const teamSize = answers.team_size;
+      const ticketsPerDay = answers.tickets_per_day;
+      const minutesPerTicket = answers.minutes_per_ticket;
+      const hourlyCost = answers.hourly_cost;
 
-    const teamSize = parseInt(document.getElementById('team-size').value);
-    const ticketsPerDay = parseInt(document.getElementById('tickets-per-day').value);
-    const minutesPerTicket = parseInt(document.getElementById('minutes-per-ticket').value);
-    const hourlyCost = parseFloat(document.getElementById('hourly-cost').value);
+      const workingDaysPerYear = 250;
+      const annualTickets = ticketsPerDay * workingDaysPerYear;
+      const annualHours = (annualTickets * minutesPerTicket) / 60;
+      const annualCost = annualHours * hourlyCost;
 
-    // Calculate current state
-    const workingDaysPerYear = 250;
-    const annualTickets = ticketsPerDay * workingDaysPerYear;
-    const annualHours = (annualTickets * minutesPerTicket) / 60;
-    const annualCost = annualHours * hourlyCost;
+      const automationRate = 0.8;
+      const timeSaved = annualHours * automationRate;
+      const costSavings = timeSaved * hourlyCost;
 
-    // Calculate with bot (80% automation)
-    const automationRate = 0.8;
-    const timeSaved = annualHours * automationRate;
-    const costSavings = timeSaved * hourlyCost;
+      const implementationCost = 5000;
+      const monthlyWage = costSavings / 12;
+      const paybackMonths = Math.ceil(implementationCost / monthlyWage);
 
-    // Payback period (assume $5K implementation)
-    const implementationCost = 5000;
-    const monthlyWage = costSavings / 12;
-    const paybackMonths = Math.ceil(implementationCost / monthlyWage);
+      answers.annual_savings = Math.round(costSavings);
 
-    // Time allocation for pie charts (40 hour work week)
-    const weeklyHours = 40;
-    const annualWorkHours = weeklyHours * 52 * teamSize;
-    const supportHoursBefore = annualHours;
-    const productiveHoursBefore = annualWorkHours - supportHoursBefore;
-    const supportHoursAfter = annualHours * (1 - automationRate);
-    const productiveHoursAfter = annualWorkHours - supportHoursAfter;
+      chat.showResultsCard([
+        { label: 'Annual Hours Spent', value: chat.formatNumber(annualHours) + ' hrs' },
+        { label: 'Annual Cost (Current)', value: chat.formatCurrency(annualCost) },
+        { label: 'Time Saved with Bot (80%)', value: chat.formatNumber(timeSaved) + ' hrs', highlight: true },
+        { label: 'Annual Cost Savings', value: chat.formatCurrency(costSavings), highlight: true },
+        { label: 'Payback Period', value: paybackMonths + ' months', highlight: true }
+      ]);
 
-    // Update results
-    document.getElementById('annual-hours').textContent = annualHours.toLocaleString('en-US', {maximumFractionDigits: 0}) + ' hrs';
-    document.getElementById('annual-cost').textContent = '$' + annualCost.toLocaleString('en-US', {maximumFractionDigits: 0});
-    document.getElementById('time-saved').textContent = timeSaved.toLocaleString('en-US', {maximumFractionDigits: 0}) + ' hrs';
-    document.getElementById('cost-savings').textContent = '$' + costSavings.toLocaleString('en-US', {maximumFractionDigits: 0});
-    document.getElementById('payback').textContent = paybackMonths + ' months';
+      setTimeout(() => {
+        chat.showBotMessage(`A Slack bot can automate 80% of routine tickets, saving your team ${chat.formatCurrency(costSavings)} annually! 🎉`, '💡');
+      }, 1000);
 
-    // Update pie charts
-    const supportPercentBefore = (supportHoursBefore / annualWorkHours) * 100;
-    const supportPercentAfter = (supportHoursAfter / annualWorkHours) * 100;
-    const manualDegBefore = (supportPercentBefore / 100) * 360;
-    const manualDegAfter = (supportPercentAfter / 100) * 360;
+      setTimeout(() => {
+        chat.showEmailCapture("Want a detailed implementation plan? Drop your email 👇");
+      }, 2500);
+    
+    }
+  };
 
-    const pieBefore = document.getElementById('pie-before');
-    const pieAfter = document.getElementById('pie-after');
-    pieBefore.style.background = `conic-gradient(var(--danger) 0deg, var(--danger) ${manualDegBefore}deg, var(--safe) ${manualDegBefore}deg, var(--safe) 360deg)`;
-    pieAfter.style.background = `conic-gradient(var(--danger) 0deg, var(--danger) ${manualDegAfter}deg, var(--safe) ${manualDegAfter}deg, var(--safe) 360deg)`;
-
-    document.getElementById('manual-hours-before').textContent = Math.round(supportHoursBefore) + 'h';
-    document.getElementById('productive-hours-before').textContent = Math.round(productiveHoursBefore) + 'h';
-    document.getElementById('manual-hours-after').textContent = Math.round(supportHoursAfter) + 'h';
-    document.getElementById('productive-hours-after').textContent = Math.round(productiveHoursAfter) + 'h';
-
-    // Update hidden form field
-    document.getElementById('form-savings').value = costSavings.toFixed(0);
-
-    // Show results and CTA
-    document.getElementById('results').style.display = 'block';
-    document.getElementById('cta').style.display = 'block';
-
-    // Track event
-    trackCalculationComplete(costSavings, paybackMonths);
-
-    // Scroll to results
-    document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  });
-
-  // Track lead submission
-  document.querySelector('.cta-form').addEventListener('submit', function() {
-    const email = this.querySelector('input[name="email"]').value;
-    const savings = document.getElementById('form-savings').value;
-    trackLeadSubmit(email, savings);
+  document.addEventListener('DOMContentLoaded', () => {
+    new ChatEngine(chatConfig);
   });
 </script>
 

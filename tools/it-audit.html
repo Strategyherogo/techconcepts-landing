@@ -41,30 +41,6 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-815E8YDZW8', {page_path: '/tools/it-audit'});
-
-  function trackItemChecked(itemId, checked) {
-    gtag('event', 'item_checked', {
-      item_id: itemId,
-      checked: checked,
-      event_category: 'audit'
-    });
-  }
-
-  function trackChecklistComplete(score, percentage) {
-    gtag('event', 'checklist_complete', {
-      total_score: score,
-      percentage: percentage,
-      event_category: 'conversion'
-    });
-  }
-
-  function trackLeadSubmit(email, score) {
-    gtag('event', 'lead_submit', {
-      score: score,
-      event_category: 'lead_generation',
-      event_label: 'pdf_request'
-    });
-  }
 </script>
 
 <!-- Schema.org -->
@@ -115,19 +91,15 @@
 }
 </script>
 
+<!-- Chat Framework -->
+<link rel="stylesheet" href="../styles/chat-ui.css">
+
 <style>
   :root {
     --primary: #1a1a2e;
     --accent: #e94560;
     --accent2: #0f3460;
-    --safe: #00b894;
-    --warn: #fdcb6e;
-    --danger: #e17055;
-    --critical: #d63031;
     --bg: #f8f9fa;
-    --card: #ffffff;
-    --text: #2d3436;
-    --muted: #636e72;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -135,7 +107,7 @@
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background: var(--bg);
-    color: var(--text);
+    color: #2d3436;
     line-height: 1.6;
   }
 
@@ -170,268 +142,6 @@
     padding: 0 20px;
   }
 
-  .progress-container {
-    background: white;
-    padding: 16px 24px;
-    margin: -24px auto 24px;
-    border-radius: 16px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    position: relative;
-    z-index: 2;
-    max-width: 720px;
-  }
-
-  .progress-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 8px;
-  }
-
-  .progress-header span {
-    font-size: 0.85rem;
-    color: var(--muted);
-  }
-
-  .progress-bar {
-    height: 8px;
-    background: #eee;
-    border-radius: 4px;
-    overflow: hidden;
-  }
-
-  .progress-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--accent2), var(--accent));
-    border-radius: 4px;
-    transition: width 0.5s ease;
-    width: 0%;
-  }
-
-  .section-label {
-    display: inline-block;
-    background: var(--accent2);
-    color: white;
-    padding: 4px 14px;
-    border-radius: 20px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin: 32px 0 16px;
-  }
-
-  .checklist {
-    background: var(--card);
-    border-radius: 16px;
-    padding: 28px;
-    margin-bottom: 16px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
-  }
-
-  .checklist-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
-    padding: 14px;
-    margin-bottom: 8px;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    border: 2px solid transparent;
-  }
-
-  .checklist-item:hover {
-    background: rgba(15, 52, 96, 0.03);
-  }
-
-  .checklist-item.checked {
-    background: rgba(0, 184, 148, 0.05);
-    border-color: var(--safe);
-  }
-
-  .checkbox {
-    width: 24px;
-    height: 24px;
-    border: 2px solid #ccc;
-    border-radius: 6px;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease;
-  }
-
-  .checklist-item.checked .checkbox {
-    background: var(--safe);
-    border-color: var(--safe);
-    color: white;
-  }
-
-  .checkbox::after {
-    content: '✓';
-    font-size: 1rem;
-    font-weight: bold;
-    opacity: 0;
-    transition: opacity 0.2s ease;
-  }
-
-  .checklist-item.checked .checkbox::after {
-    opacity: 1;
-  }
-
-  .checklist-text {
-    flex: 1;
-    font-size: 0.95rem;
-  }
-
-  .results-card {
-    background: white;
-    border-radius: 20px;
-    padding: 40px 32px;
-    box-shadow: 0 8px 40px rgba(0,0,0,0.1);
-    text-align: center;
-    margin-bottom: 24px;
-    display: none;
-  }
-
-  .score-ring {
-    width: 180px;
-    height: 180px;
-    margin: 0 auto 24px;
-    position: relative;
-  }
-
-  .score-ring svg {
-    transform: rotate(-90deg);
-    width: 180px;
-    height: 180px;
-  }
-
-  .score-ring .bg-ring {
-    fill: none;
-    stroke: #eee;
-    stroke-width: 12;
-  }
-
-  .score-ring .score-arc {
-    fill: none;
-    stroke-width: 12;
-    stroke-linecap: round;
-    transition: stroke-dashoffset 1.5s ease, stroke 0.5s ease;
-  }
-
-  .score-value {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 2.8rem;
-    font-weight: 800;
-  }
-
-  .score-label {
-    font-size: 0.85rem;
-    color: var(--muted);
-    margin-top: -4px;
-  }
-
-  .score-level {
-    font-size: 1.4rem;
-    font-weight: 700;
-    margin-bottom: 8px;
-  }
-
-  .score-description {
-    color: var(--muted);
-    max-width: 480px;
-    margin: 0 auto;
-    line-height: 1.7;
-  }
-
-  .recommendations {
-    background: white;
-    border-radius: 16px;
-    padding: 28px;
-    margin-bottom: 16px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
-    text-align: left;
-    display: none;
-  }
-
-  .recommendations h3 {
-    font-size: 1rem;
-    margin-bottom: 16px;
-    color: var(--primary);
-  }
-
-  .rec-item {
-    padding: 14px;
-    margin-bottom: 8px;
-    border-radius: 12px;
-    background: #f8f9fa;
-    font-size: 0.9rem;
-  }
-
-  .rec-item strong {
-    display: block;
-    margin-bottom: 4px;
-  }
-
-  .cta-section {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--accent2) 100%);
-    border-radius: 16px;
-    padding: 36px 28px;
-    text-align: center;
-    color: white;
-    margin-bottom: 48px;
-    display: none;
-  }
-
-  .cta-section h3 {
-    font-size: 1.3rem;
-    margin-bottom: 8px;
-  }
-
-  .cta-section p {
-    opacity: 0.85;
-    margin-bottom: 20px;
-    font-size: 0.95rem;
-  }
-
-  .cta-form {
-    display: flex;
-    gap: 8px;
-    max-width: 440px;
-    margin: 0 auto;
-  }
-
-  .cta-form input {
-    flex: 1;
-    padding: 14px 18px;
-    border: none;
-    border-radius: 12px;
-    font-size: 0.95rem;
-    outline: none;
-  }
-
-  .cta-form button {
-    background: var(--accent);
-    color: white;
-    border: none;
-    padding: 14px 24px;
-    border-radius: 12px;
-    font-weight: 700;
-    font-size: 0.95rem;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-    white-space: nowrap;
-  }
-
-  .cta-form button:hover {
-    transform: scale(1.02);
-  }
-
   .back-link {
     text-align: center;
     margin: 24px 0;
@@ -445,7 +155,6 @@
 
   @media (max-width: 600px) {
     .hero h1 { font-size: 1.6rem; }
-    .cta-form { flex-direction: column; }
   }
 </style>
 </head>
@@ -455,309 +164,134 @@
   <div class="container">
     <span class="icon">✅</span>
     <h1>IT Audit Checklist</h1>
-    <p>25 critical checkpoints across security, compliance, infrastructure, operations, and documentation. Free, no signup required.</p>
+    <p>25 critical checkpoints across security, compliance, infrastructure, operations, and documentation.</p>
   </div>
 </div>
 
 <div class="container">
-  <div class="progress-container">
-    <div class="progress-header">
-      <span>Checklist Progress</span>
-      <span id="progress-text">0 of 25 completed</span>
-    </div>
-    <div class="progress-bar">
-      <div class="progress-fill" id="progress-fill"></div>
-    </div>
+  <div class="back-link">
+    <a href="https://techconcepts.org/tools/">&larr; Back to Tools</a>
   </div>
 </div>
 
-<div class="container" id="checklist-container">
-
-  <div class="section-label">Security (5 items)</div>
-  <div class="checklist">
-    <div class="checklist-item" onclick="toggleItem(this, 'sec1')">
-      <div class="checkbox"></div>
-      <div class="checklist-text">Multi-factor authentication (MFA) enabled for all admin accounts</div>
-    </div>
-    <div class="checklist-item" onclick="toggleItem(this, 'sec2')">
-      <div class="checkbox"></div>
-      <div class="checklist-text">Password policy enforces minimum 12 characters with complexity requirements</div>
-    </div>
-    <div class="checklist-item" onclick="toggleItem(this, 'sec3')">
-      <div class="checkbox"></div>
-      <div class="checklist-text">Regular security patch schedule documented and followed</div>
-    </div>
-    <div class="checklist-item" onclick="toggleItem(this, 'sec4')">
-      <div class="checkbox"></div>
-      <div class="checklist-text">Access reviews conducted quarterly (who has access to what)</div>
-    </div>
-    <div class="checklist-item" onclick="toggleItem(this, 'sec5')">
-      <div class="checkbox"></div>
-      <div class="checklist-text">Offboarding checklist includes revoking all system access within 24 hours</div>
-    </div>
-  </div>
-
-  <div class="section-label">Compliance (5 items)</div>
-  <div class="checklist">
-    <div class="checklist-item" onclick="toggleItem(this, 'comp1')">
-      <div class="checkbox"></div>
-      <div class="checklist-text">Data retention policy documented and automated where possible</div>
-    </div>
-    <div class="checklist-item" onclick="toggleItem(this, 'comp2')">
-      <div class="checkbox"></div>
-      <div class="checklist-text">Privacy policy up to date with GDPR, CCPA, or relevant regulations</div>
-    </div>
-    <div class="checklist-item" onclick="toggleItem(this, 'comp3')">
-      <div class="checkbox"></div>
-      <div class="checklist-text">Audit logs enabled for critical systems and retained for at least 90 days</div>
-    </div>
-    <div class="checklist-item" onclick="toggleItem(this, 'comp4')">
-      <div class="checkbox"></div>
-      <div class="checklist-text">Vendor risk assessment process in place for third-party tools</div>
-    </div>
-    <div class="checklist-item" onclick="toggleItem(this, 'comp5')">
-      <div class="checkbox"></div>
-      <div class="checklist-text">Data processing agreements (DPAs) signed with all vendors handling personal data</div>
-    </div>
-  </div>
-
-  <div class="section-label">Infrastructure (5 items)</div>
-  <div class="checklist">
-    <div class="checklist-item" onclick="toggleItem(this, 'infra1')">
-      <div class="checkbox"></div>
-      <div class="checklist-text">Automated backups tested and verified monthly</div>
-    </div>
-    <div class="checklist-item" onclick="toggleItem(this, 'infra2')">
-      <div class="checkbox"></div>
-      <div class="checklist-text">Disaster recovery plan documented with RTO and RPO targets</div>
-    </div>
-    <div class="checklist-item" onclick="toggleItem(this, 'infra3')">
-      <div class="checkbox"></div>
-      <div class="checklist-text">Infrastructure as code (IaC) used for provisioning and configuration</div>
-    </div>
-    <div class="checklist-item" onclick="toggleItem(this, 'infra4')">
-      <div class="checkbox"></div>
-      <div class="checklist-text">Monitoring and alerting in place for critical systems (uptime, errors, performance)</div>
-    </div>
-    <div class="checklist-item" onclick="toggleItem(this, 'infra5')">
-      <div class="checkbox"></div>
-      <div class="checklist-text">Cloud cost optimization reviewed quarterly (unused resources, rightsizing)</div>
-    </div>
-  </div>
-
-  <div class="section-label">Operations (5 items)</div>
-  <div class="checklist">
-    <div class="checklist-item" onclick="toggleItem(this, 'ops1')">
-      <div class="checkbox"></div>
-      <div class="checklist-text">SaaS license audit conducted at least twice per year (unused seats)</div>
-    </div>
-    <div class="checklist-item" onclick="toggleItem(this, 'ops2')">
-      <div class="checkbox"></div>
-      <div class="checklist-text">IT ticketing system in place with SLA tracking</div>
-    </div>
-    <div class="checklist-item" onclick="toggleItem(this, 'ops3')">
-      <div class="checkbox"></div>
-      <div class="checklist-text">Change management process for production deployments</div>
-    </div>
-    <div class="checklist-item" onclick="toggleItem(this, 'ops4')">
-      <div class="checkbox"></div>
-      <div class="checklist-text">Onboarding checklist automates provisioning of accounts and access</div>
-    </div>
-    <div class="checklist-item" onclick="toggleItem(this, 'ops5')">
-      <div class="checkbox"></div>
-      <div class="checklist-text">IT asset inventory maintained and up to date (hardware, software, licenses)</div>
-    </div>
-  </div>
-
-  <div class="section-label">Documentation (5 items)</div>
-  <div class="checklist">
-    <div class="checklist-item" onclick="toggleItem(this, 'doc1')">
-      <div class="checkbox"></div>
-      <div class="checklist-text">Network diagram documenting all systems and data flows</div>
-    </div>
-    <div class="checklist-item" onclick="toggleItem(this, 'doc2')">
-      <div class="checkbox"></div>
-      <div class="checklist-text">Runbooks for critical incidents (outages, security events)</div>
-    </div>
-    <div class="checklist-item" onclick="toggleItem(this, 'doc3')">
-      <div class="checkbox"></div>
-      <div class="checklist-text">API documentation kept up to date with code changes</div>
-    </div>
-    <div class="checklist-item" onclick="toggleItem(this, 'doc4')">
-      <div class="checkbox"></div>
-      <div class="checklist-text">Business continuity plan reviewed annually</div>
-    </div>
-    <div class="checklist-item" onclick="toggleItem(this, 'doc5')">
-      <div class="checkbox"></div>
-      <div class="checklist-text">Single source of truth for internal documentation (not scattered across Slack, email, wikis)</div>
-    </div>
-  </div>
-
-</div>
-
-<div class="container" id="results-container">
-  <div class="results-card" id="results">
-    <div class="score-ring">
-      <svg viewBox="0 0 180 180">
-        <circle class="bg-ring" cx="90" cy="90" r="78" />
-        <circle class="score-arc" id="score-arc" cx="90" cy="90" r="78"
-          stroke-dasharray="490" stroke-dashoffset="490" />
-      </svg>
-      <div class="score-value" id="score-value">0</div>
-    </div>
-    <div class="score-label">out of 100</div>
-    <div class="score-level" id="score-level"></div>
-    <div class="score-description" id="score-description"></div>
-  </div>
-
-  <div class="recommendations" id="recommendations">
-    <h3>Priority Recommendations</h3>
-    <div id="rec-items"></div>
-  </div>
-
-  <div class="cta-section" id="cta">
-    <h3>Get Your Full IT Audit Report</h3>
-    <p>Receive a detailed PDF with your results, plus 5 quick wins you can implement this week.</p>
-    <form class="cta-form" action="https://formspree.io/f/xpwzgvqr" method="POST" onsubmit="handleSubmit(event)">
-      <input type="email" name="email" id="cta-email" placeholder="Work email" required>
-      <input type="hidden" name="tool" value="it-audit">
-      <input type="hidden" name="score" id="form-score">
-      <input type="hidden" name="_subject" value="IT Audit Checklist - PDF Request">
-      <button type="submit">Get PDF Report</button>
-      <p style="font-size: 12px; color: var(--gray); margin-top: 8px; text-align: center;">
-        By submitting, you agree to our <a href="/privacy" style="color: var(--accent); text-decoration: underline;">Privacy Policy</a>.
-      </p>
-    </form>
-  </div>
-</div>
-
-<div class="back-link">
-  <a href="/tools/">← Back to Tools</a>
-</div>
-
+<script src="../scripts/chat-framework.js"></script>
 <script>
-  const checkedItems = new Set();
-  const totalItems = 25;
+  const chatConfig = {
+    title: "IT Audit Checklist",
+    emoji: "✅",
+    toolName: "it-audit",
+    formspreeUrl: "https://formspree.io/f/xpwzgvqr",
 
-  function toggleItem(el, itemId) {
-    el.classList.toggle('checked');
-    if (el.classList.contains('checked')) {
-      checkedItems.add(itemId);
-      trackItemChecked(itemId, true);
-    } else {
-      checkedItems.delete(itemId);
-      trackItemChecked(itemId, false);
-    }
-    updateProgress();
-  }
+    questions: [
+      // Security (5 items)
+      { id: 'sec1', type: 'yes-no', botMessage: "MFA enabled for all admin accounts?", emoji: "🔐" },
+      { id: 'sec2', type: 'yes-no', botMessage: "Password policy enforces 12+ characters with complexity?", emoji: "🔑" },
+      { id: 'sec3', type: 'yes-no', botMessage: "Regular security patch schedule documented?", emoji: "🔧" },
+      { id: 'sec4', type: 'yes-no', botMessage: "Access reviews conducted quarterly?", emoji: "👥" },
+      { id: 'sec5', type: 'yes-no', botMessage: "Offboarding revokes system access within 24 hours?", emoji: "🚪" },
 
-  function updateProgress() {
-    const count = checkedItems.size;
-    const pct = (count / totalItems) * 100;
-    document.getElementById('progress-fill').style.width = pct + '%';
-    document.getElementById('progress-text').textContent = `${count} of ${totalItems} completed`;
+      // Compliance (5 items)
+      { id: 'comp1', type: 'yes-no', botMessage: "Data retention policy documented and automated?", emoji: "📋" },
+      { id: 'comp2', type: 'yes-no', botMessage: "Privacy policy up to date with GDPR/CCPA?", emoji: "🛡️" },
+      { id: 'comp3', type: 'yes-no', botMessage: "Audit logs enabled for critical systems (90+ days)?", emoji: "📜" },
+      { id: 'comp4', type: 'yes-no', botMessage: "Vendor risk assessment process in place?", emoji: "🔍" },
+      { id: 'comp5', type: 'yes-no', botMessage: "DPAs signed with all vendors handling personal data?", emoji: "📝" },
 
-    if (count === totalItems) {
-      showResults();
-    }
-  }
+      // Infrastructure (5 items)
+      { id: 'infra1', type: 'yes-no', botMessage: "Automated backups tested monthly?", emoji: "💾" },
+      { id: 'infra2', type: 'yes-no', botMessage: "Disaster recovery plan with RTO/RPO targets?", emoji: "🔥" },
+      { id: 'infra3', type: 'yes-no', botMessage: "Infrastructure as code (IaC) for provisioning?", emoji: "🏗️" },
+      { id: 'infra4', type: 'yes-no', botMessage: "Monitoring and alerting for critical systems?", emoji: "📊" },
+      { id: 'infra5', type: 'yes-no', botMessage: "Cloud cost optimization reviewed quarterly?", emoji: "💰" },
 
-  function showResults() {
-    const score = (checkedItems.size / totalItems) * 100;
-    trackChecklistComplete(checkedItems.size, score);
+      // Operations (5 items)
+      { id: 'ops1', type: 'yes-no', botMessage: "SaaS license audit twice per year?", emoji: "🎫" },
+      { id: 'ops2', type: 'yes-no', botMessage: "IT ticketing system with SLA tracking?", emoji: "🎯" },
+      { id: 'ops3', type: 'yes-no', botMessage: "Change management for production deployments?", emoji: "⚙️" },
+      { id: 'ops4', type: 'yes-no', botMessage: "Onboarding checklist automates account provisioning?", emoji: "🚀" },
+      { id: 'ops5', type: 'yes-no', botMessage: "IT asset inventory up to date?", emoji: "📦" },
 
-    document.getElementById('checklist-container').style.display = 'none';
-    document.getElementById('results').style.display = 'block';
-    document.getElementById('recommendations').style.display = 'block';
-    document.getElementById('cta').style.display = 'block';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+      // Documentation (5 items)
+      { id: 'doc1', type: 'yes-no', botMessage: "Network diagram documenting all systems?", emoji: "🗺️" },
+      { id: 'doc2', type: 'yes-no', botMessage: "Runbooks for critical incidents?", emoji: "📖" },
+      { id: 'doc3', type: 'yes-no', botMessage: "API documentation kept up to date?", emoji: "📚" },
+      { id: 'doc4', type: 'yes-no', botMessage: "Business continuity plan reviewed annually?", emoji: "📋" },
+      { id: 'doc5', type: 'yes-no', botMessage: "Single source of truth for internal docs?", emoji: "🎯" }
+    ],
 
-    const arc = document.getElementById('score-arc');
-    const circumference = 490;
-    const offset = circumference - (circumference * (score / 100));
-    let color;
+    onComplete: (answers, chat) => {
+      // Calculate score
+      const totalItems = 25;
+      let checkedCount = 0;
+      Object.values(answers).forEach(value => {
+        if (value === 'yes') checkedCount++;
+      });
 
-    if (score >= 80) color = '#00b894';
-    else if (score >= 60) color = '#fdcb6e';
-    else if (score >= 40) color = '#e17055';
-    else color = '#d63031';
+      const score = Math.round((checkedCount / totalItems) * 100);
 
-    setTimeout(() => {
-      arc.style.strokeDashoffset = offset;
-      arc.style.stroke = color;
-    }, 200);
-
-    animateNumber('score-value', 0, Math.round(score), 1500);
-
-    const level = document.getElementById('score-level');
-    const desc = document.getElementById('score-description');
-    level.style.color = color;
-
-    if (score >= 80) {
-      level.textContent = 'Strong IT Posture';
-      desc.textContent = 'Your IT operations are well-managed with good coverage across security, compliance, infrastructure, operations, and documentation. Focus on maintaining this standard and staying ahead of emerging risks.';
-    } else if (score >= 60) {
-      level.textContent = 'Good Foundation, Some Gaps';
-      desc.textContent = 'You have solid fundamentals in place, but there are areas that need attention. Addressing these gaps will reduce risk and improve operational efficiency.';
-    } else if (score >= 40) {
-      level.textContent = 'Moderate Risk - Action Needed';
-      desc.textContent = 'Significant gaps exist in your IT operations. These gaps expose you to security incidents, compliance violations, and operational inefficiencies. Prioritize the critical items below.';
-    } else {
-      level.textContent = 'Critical Exposure - Immediate Action';
-      desc.textContent = 'Your IT environment has major vulnerabilities across multiple areas. Immediate action is required to prevent security breaches, compliance failures, and system outages.';
-    }
-
-    const recContainer = document.getElementById('rec-items');
-    recContainer.innerHTML = '';
-
-    if (score < 80) {
-      if (!checkedItems.has('sec1')) {
-        recContainer.innerHTML += '<div class="rec-item"><strong>Enable MFA for all admin accounts</strong>Single biggest security win. Takes 30 minutes, prevents 99% of credential-based attacks.</div>';
+      // Determine level
+      let level, description;
+      if (score >= 80) {
+        level = 'Strong IT Posture';
+        description = 'Your IT operations are well-managed with good coverage across all areas. Keep maintaining this standard!';
+      } else if (score >= 60) {
+        level = 'Moderate Gaps';
+        description = 'You have a solid foundation but some gaps that need attention. Focus on the missing areas to reduce risk.';
+      } else if (score >= 40) {
+        level = 'Significant Risk';
+        description = 'Multiple critical gaps exist. Prioritize security and compliance items first, then infrastructure.';
+      } else {
+        level = 'High Risk';
+        description = 'Urgent attention needed. Start with MFA, backups, and access reviews immediately.';
       }
-      if (!checkedItems.has('infra1')) {
-        recContainer.innerHTML += '<div class="rec-item"><strong>Test your backups this week</strong>40% of businesses discover backup failures during recovery. Test now, not during a disaster.</div>';
+
+      // Show results
+      chat.showResultsCard([
+        {
+          label: 'Checklist Score',
+          value: `${checkedCount}/25`,
+          highlight: true
+        },
+        {
+          label: 'Completion Rate',
+          value: `${score}%`,
+          highlight: true
+        },
+        {
+          label: 'Status',
+          value: level
+        }
+      ]);
+
+      // Show description
+      setTimeout(() => {
+        chat.showBotMessage(description, '📊');
+      }, 1000);
+
+      // Show recommendations
+      const recommendations = [];
+      if (answers.sec1 !== 'yes') recommendations.push('Enable MFA for all admin accounts');
+      if (answers.infra1 !== 'yes') recommendations.push('Set up automated backup testing');
+      if (answers.comp3 !== 'yes') recommendations.push('Enable audit logging for critical systems');
+      if (answers.ops5 !== 'yes') recommendations.push('Create IT asset inventory');
+
+      if (recommendations.length > 0) {
+        setTimeout(() => {
+          chat.showBotMessage(`Priority fixes: ${recommendations.slice(0, 2).join(', ')}`, '⚠️');
+        }, 2000);
       }
-      if (!checkedItems.has('ops1')) {
-        recContainer.innerHTML += '<div class="rec-item"><strong>Audit SaaS licenses for unused seats</strong>Average company wastes 30% of SaaS spend on unused licenses. Quick audit = immediate savings.</div>';
-      }
-      if (!checkedItems.has('comp3')) {
-        recContainer.innerHTML += '<div class="rec-item"><strong>Enable audit logs for critical systems</strong>Required for compliance, essential for incident investigation. Enable now before you need them.</div>';
-      }
-      if (!checkedItems.has('doc2')) {
-        recContainer.innerHTML += '<div class="rec-item"><strong>Create runbooks for critical incidents</strong>Reduces incident response time by 60%. Start with your top 3 most critical systems.</div>';
-      }
-    } else {
-      recContainer.innerHTML += '<div class="rec-item"><strong>Maintain Your Strong Standard</strong>Consider advanced initiatives: red team exercises, automated compliance reporting, or SOC 2 certification.</div>';
+
+      // Email capture
+      setTimeout(() => {
+        chat.showEmailCapture("Want your full audit report with 5 quick wins? 📧");
+      }, 3000);
     }
+  };
 
-    document.getElementById('form-score').value = Math.round(score);
-  }
-
-  function animateNumber(id, start, end, duration) {
-    const el = document.getElementById(id);
-    const range = end - start;
-    const startTime = performance.now();
-    function update(currentTime) {
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      el.textContent = Math.round(start + range * eased);
-      if (progress < 1) requestAnimationFrame(update);
-    }
-    requestAnimationFrame(update);
-  }
-
-  function handleSubmit(event) {
-    event.preventDefault();
-    const email = document.getElementById('cta-email').value;
-    const score = document.getElementById('form-score').value;
-    trackLeadSubmit(email, score);
-
-    event.target.submit();
-    setTimeout(() => {
-      alert('Thanks! Your IT Audit Report will be sent to ' + email + ' within 24 hours.');
-    }, 100);
-  }
+  // Initialize chat
+  document.addEventListener('DOMContentLoaded', () => {
+    new ChatEngine(chatConfig);
+  });
 </script>
 
 </body>

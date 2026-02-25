@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Email Migration Cost Estimator | MBOX PST EML Converter</title>
+<title>Email Migration Cost Estimator | TechConcepts</title>
 
 <!-- SEO -->
-<meta name="description" content="Free email migration cost estimator. Calculate time and cost for Google to Outlook, MBOX to PST, or archive migrations. Get timeline and recommendations.">
+<meta name="description" content="Calculate time and cost for Google to Outlook, MBOX to PST, or archive migrations.">
 <meta name="author" content="Evgeny Goncharov">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://techconcepts.org/tools/email-migration.html">
@@ -28,7 +28,7 @@
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Email Migration Cost Estimator">
-<meta name="twitter:description" content="Estimate email migration time and costs.">
+<meta name="twitter:description" content="Calculate email migration costs and timeline for Google, Outlook, MBOX, PST, and EML.">
 <meta name="twitter:image" content="https://techconcepts.org/techconcepts-og.png">
 
 <!-- Favicon -->
@@ -41,22 +41,6 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-815E8YDZW8', {page_path: '/tools/email-migration'});
-
-  function trackCalculationComplete(totalEmails, estimatedCost) {
-    gtag('event', 'calculation_complete', {
-      total_emails: totalEmails,
-      estimated_cost: estimatedCost,
-      event_category: 'conversion'
-    });
-  }
-
-  function trackLeadSubmit(email, migrationType) {
-    gtag('event', 'lead_submit', {
-      migration_type: migrationType,
-      event_category: 'lead_generation',
-      event_label: 'migration_guide'
-    });
-  }
 </script>
 
 <!-- Schema.org -->
@@ -65,7 +49,7 @@
   "@context": "https://schema.org",
   "@type": "WebApplication",
   "name": "Email Migration Cost Estimator",
-  "description": "Estimate time and cost for email migrations between platforms",
+  "description": "Calculate time and cost for Google to Outlook, MBOX to PST, or archive migrations.",
   "url": "https://techconcepts.org/tools/email-migration.html",
   "applicationCategory": "BusinessApplication",
   "offers": {
@@ -100,25 +84,23 @@
     {
       "@type": "ListItem",
       "position": 3,
-      "name": "Email Migration Estimator",
+      "name": "Email Migration Cost Estimator",
       "item": "https://techconcepts.org/tools/email-migration.html"
     }
   ]
 }
 </script>
 
+<!-- Chat Framework -->
+<link rel="stylesheet" href="../styles/chat-ui.css">
+<script src="../scripts/chat-framework.js"></script>
+
 <style>
   :root {
     --primary: #1a1a2e;
     --accent: #e94560;
     --accent2: #0f3460;
-    --safe: #00b894;
-    --warn: #fdcb6e;
-    --danger: #e17055;
     --bg: #f8f9fa;
-    --card: #ffffff;
-    --text: #2d3436;
-    --muted: #636e72;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -126,7 +108,7 @@
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background: var(--bg);
-    color: var(--text);
+    color: #2d3436;
     line-height: 1.6;
   }
 
@@ -161,299 +143,6 @@
     padding: 0 20px;
   }
 
-  .calculator-card {
-    background: white;
-    border-radius: 16px;
-    padding: 32px;
-    margin: -24px auto 32px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    position: relative;
-    z-index: 2;
-  }
-
-  .form-group {
-    margin-bottom: 24px;
-  }
-
-  .form-group label {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 8px;
-    font-size: 0.95rem;
-  }
-
-  .form-group .hint {
-    font-size: 0.8rem;
-    color: var(--muted);
-    margin-top: 4px;
-  }
-
-  .form-group input, .form-group select {
-    width: 100%;
-    padding: 14px 18px;
-    border: 2px solid #e9ecef;
-    border-radius: 12px;
-    font-size: 1rem;
-    outline: none;
-    transition: border-color 0.2s ease;
-    font-family: inherit;
-  }
-
-  .form-group input:focus, .form-group select:focus {
-    border-color: var(--accent2);
-  }
-
-  .slider-container {
-    margin-top: 12px;
-  }
-
-  .slider-container input[type="range"] {
-    width: 100%;
-    height: 8px;
-    border-radius: 5px;
-    background: #e9ecef;
-    outline: none;
-    padding: 0;
-    border: none;
-  }
-
-  .slider-container input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: var(--accent);
-    cursor: pointer;
-  }
-
-  .slider-container input[type="range"]::-moz-range-thumb {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: var(--accent);
-    cursor: pointer;
-    border: none;
-  }
-
-  .slider-value {
-    display: block;
-    text-align: right;
-    font-weight: 700;
-    color: var(--accent);
-    margin-top: 8px;
-  }
-
-  .calculate-btn {
-    width: 100%;
-    background: linear-gradient(135deg, var(--accent) 0%, #c0392b 100%);
-    color: white;
-    border: none;
-    padding: 16px;
-    border-radius: 12px;
-    font-size: 1.1rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-    box-shadow: 0 4px 20px rgba(233,69,96,0.3);
-  }
-
-  .calculate-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(233,69,96,0.4);
-  }
-
-  .results-card {
-    background: white;
-    border-radius: 16px;
-    padding: 32px;
-    margin-bottom: 32px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    display: none;
-  }
-
-  .results-card h3 {
-    font-size: 1.3rem;
-    margin-bottom: 24px;
-    color: var(--primary);
-  }
-
-  .result-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 16px 0;
-    border-bottom: 1px solid #f0f0f0;
-  }
-
-  .result-item:last-child {
-    border-bottom: none;
-  }
-
-  .result-label {
-    font-weight: 600;
-    font-size: 0.95rem;
-  }
-
-  .result-value {
-    font-size: 1.3rem;
-    font-weight: 800;
-    color: var(--accent);
-  }
-
-  .timeline-breakdown {
-    margin: 24px 0;
-    padding: 24px;
-    background: #f8f9fa;
-    border-radius: 12px;
-  }
-
-  .timeline-title {
-    font-size: 0.9rem;
-    font-weight: 600;
-    margin-bottom: 16px;
-    color: var(--primary);
-  }
-
-  .timeline-item {
-    display: flex;
-    align-items: center;
-    padding: 12px 0;
-    border-bottom: 1px solid #e9ecef;
-  }
-
-  .timeline-item:last-child {
-    border-bottom: none;
-  }
-
-  .timeline-phase {
-    flex: 0 0 140px;
-    font-weight: 600;
-    font-size: 0.85rem;
-  }
-
-  .timeline-bar-container {
-    flex: 1;
-    height: 24px;
-    background: #e9ecef;
-    border-radius: 4px;
-    overflow: hidden;
-    margin: 0 12px;
-  }
-
-  .timeline-bar {
-    height: 100%;
-    background: var(--accent2);
-    transition: width 0.8s ease;
-  }
-
-  .timeline-duration {
-    flex: 0 0 80px;
-    text-align: right;
-    font-size: 0.85rem;
-    color: var(--muted);
-  }
-
-  .format-info {
-    margin: 24px 0;
-    padding: 16px;
-    background: #e8f5e9;
-    border-radius: 12px;
-    font-size: 0.9rem;
-    color: #2e7d32;
-  }
-
-  .format-info strong {
-    display: block;
-    margin-bottom: 8px;
-  }
-
-  .cta-section {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--accent2) 100%);
-    border-radius: 16px;
-    padding: 36px 28px;
-    text-align: center;
-    color: white;
-    margin-bottom: 32px;
-    display: none;
-  }
-
-  .cta-section h3 {
-    font-size: 1.3rem;
-    margin-bottom: 8px;
-  }
-
-  .cta-section p {
-    opacity: 0.85;
-    margin-bottom: 20px;
-    font-size: 0.95rem;
-  }
-
-  .cta-buttons {
-    display: flex;
-    gap: 12px;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-bottom: 24px;
-  }
-
-  .cta-btn {
-    display: inline-block;
-    padding: 12px 24px;
-    border-radius: 12px;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 0.95rem;
-    transition: transform 0.2s ease;
-  }
-
-  .cta-btn.primary {
-    background: var(--accent);
-    color: white;
-  }
-
-  .cta-btn.secondary {
-    background: white;
-    color: var(--primary);
-  }
-
-  .cta-btn:hover {
-    transform: scale(1.02);
-  }
-
-  .cta-form {
-    display: flex;
-    gap: 8px;
-    max-width: 440px;
-    margin: 0 auto;
-  }
-
-  .cta-form input {
-    flex: 1;
-    padding: 14px 18px;
-    border: none;
-    border-radius: 12px;
-    font-size: 0.95rem;
-    outline: none;
-  }
-
-  .cta-form button {
-    background: var(--accent);
-    color: white;
-    border: none;
-    padding: 14px 24px;
-    border-radius: 12px;
-    font-weight: 700;
-    font-size: 0.95rem;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-    white-space: nowrap;
-  }
-
-  .cta-form button:hover {
-    transform: scale(1.02);
-  }
-
   .back-link {
     text-align: center;
     margin: 24px 0;
@@ -467,11 +156,6 @@
 
   @media (max-width: 600px) {
     .hero h1 { font-size: 1.6rem; }
-    .calculator-card { padding: 24px; }
-    .cta-form { flex-direction: column; }
-    .cta-buttons { flex-direction: column; }
-    .timeline-phase { flex: 0 0 100px; font-size: 0.75rem; }
-    .timeline-duration { flex: 0 0 60px; }
   }
 </style>
 </head>
@@ -480,212 +164,136 @@
 <div class="hero">
   <div class="container">
     <span class="icon">📧</span>
-    <h1>Email Migration Estimator</h1>
-    <p>Calculate time and cost for migrating emails between Google, Outlook, MBOX, PST, and EML formats.</p>
+    <h1>Email Migration Cost Estimator</h1>
+    <p>Calculate time and cost for Google to Outlook, MBOX to PST, or archive migrations.</p>
   </div>
 </div>
 
 <div class="container">
-  <div class="calculator-card">
-    <form id="calculator-form">
-      <div class="form-group">
-        <label for="mailbox-count">Number of Mailboxes</label>
-        <div class="slider-container">
-          <input type="range" id="mailbox-count" min="1" max="1000" value="50" step="1">
-          <span class="slider-value" id="mailbox-value">50 mailboxes</span>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="emails-per-mailbox">Average Emails Per Mailbox</label>
-        <select id="emails-per-mailbox" required>
-          <option value="500">Less than 1,000</option>
-          <option value="3000" selected>1,000 - 5,000</option>
-          <option value="7500">5,000 - 10,000</option>
-          <option value="15000">10,000+</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label for="migration-type">Migration Type</label>
-        <select id="migration-type" required>
-          <option value="google-outlook">Google Workspace → Outlook/Exchange</option>
-          <option value="outlook-google">Outlook/Exchange → Google Workspace</option>
-          <option value="archive-eml" selected>Archive to EML (forensics/backup)</option>
-          <option value="mbox-pst">MBOX → PST Conversion</option>
-          <option value="pst-mbox">PST → MBOX Conversion</option>
-        </select>
-      </div>
-
-      <button type="submit" class="calculate-btn">Calculate Migration</button>
-    </form>
-  </div>
-
-  <div class="results-card" id="results">
-    <h3>Migration Estimate</h3>
-
-    <div class="result-item">
-      <span class="result-label">Total Emails</span>
-      <span class="result-value" id="total-emails">0</span>
-    </div>
-
-    <div class="result-item">
-      <span class="result-label">Estimated Time</span>
-      <span class="result-value" id="estimated-time">0 hours</span>
-    </div>
-
-    <div class="result-item">
-      <span class="result-label">Estimated Cost</span>
-      <span class="result-value" id="estimated-cost">$0</span>
-    </div>
-
-    <div class="timeline-breakdown">
-      <div class="timeline-title">Project Timeline</div>
-      <div class="timeline-item">
-        <div class="timeline-phase">Planning</div>
-        <div class="timeline-bar-container">
-          <div class="timeline-bar" id="bar-planning" style="width: 10%;"></div>
-        </div>
-        <div class="timeline-duration" id="dur-planning">1 day</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-phase">Setup</div>
-        <div class="timeline-bar-container">
-          <div class="timeline-bar" id="bar-setup" style="width: 15%;"></div>
-        </div>
-        <div class="timeline-duration" id="dur-setup">2 days</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-phase">Migration</div>
-        <div class="timeline-bar-container">
-          <div class="timeline-bar" id="bar-migration" style="width: 60%;"></div>
-        </div>
-        <div class="timeline-duration" id="dur-migration">5 days</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-phase">Verification</div>
-        <div class="timeline-bar-container">
-          <div class="timeline-bar" id="bar-verification" style="width: 15%;"></div>
-        </div>
-        <div class="timeline-duration" id="dur-verification">2 days</div>
-      </div>
-    </div>
-
-    <div class="format-info" id="format-info">
-      <strong>Recommended Approach:</strong>
-      <span id="approach-text"></span>
-    </div>
-  </div>
-
-  <div class="cta-section" id="cta">
-    <h3>Get Free MBOX Converter App + Migration Guide</h3>
-    <p>Download our Email Converter app for Mac or get expert help with large-scale migrations.</p>
-
-    <div class="cta-buttons">
-      <a href="https://techconcepts.org/blog/mbox-converter.html" class="cta-btn secondary">Read Guide</a>
-      <a href="https://techconcepts.org/services/email-forensics.html" class="cta-btn secondary">Email Forensics</a>
-      <a href="https://calendly.com/jenyago/30min" class="cta-btn primary" target="_blank">Book a Call</a>
-    </div>
-
-    <form class="cta-form" action="https://formspree.io/f/xpwzgvqr" method="POST">
-      <input type="email" name="email" placeholder="Your email" required>
-      <input type="hidden" name="tool" value="email-migration">
-      <input type="hidden" name="migration_type" id="form-migration-type">
-      <input type="hidden" name="total_emails" id="form-total-emails">
-      <button type="submit">Get Guide</button>
-      <p style="font-size: 12px; color: var(--gray); margin-top: 8px; text-align: center;">
-        By submitting, you agree to our <a href="/privacy" style="color: var(--accent); text-decoration: underline;">Privacy Policy</a>.
-      </p>
-    </form>
-  </div>
-
   <div class="back-link">
     <a href="https://techconcepts.org/tools/">&larr; Back to Tools</a>
   </div>
 </div>
 
 <script>
-  const mailboxSlider = document.getElementById('mailbox-count');
-  const mailboxValue = document.getElementById('mailbox-value');
+  const chatConfig = {
+    title: "Email Migration Cost Estimator",
+    emoji: "📧",
+    toolName: "email-migration",
+    formspreeUrl: "https://formspree.io/f/xpwzgvqr",
+    shareText: "I just used Email Migration Cost Estimator on TechConcepts.org",
+    questions: [
+      {
+            "id": "mailbox_count",
+            "type": "number",
+            "botMessage": "How many mailboxes need to be migrated?",
+            "placeholder": "e.g., 100",
+            "emoji": "📬",
+            "min": 1,
+            "max": 100000,
+            "defaultValue": 100
+      },
+      {
+            "id": "avg_mailbox_size",
+            "type": "number",
+            "botMessage": "What's the average mailbox size in GB?",
+            "placeholder": "e.g., 5",
+            "emoji": "💾",
+            "min": 1,
+            "max": 100,
+            "defaultValue": 5
+      },
+      {
+            "id": "migration_type",
+            "type": "choice",
+            "botMessage": "What type of migration are you planning?",
+            "emoji": "🔄",
+            "options": [
+                  {
+                        "value": "cloud_to_cloud",
+                        "label": "Cloud to Cloud (Google ↔ Microsoft)",
+                        "emoji": "☁️"
+                  },
+                  {
+                        "value": "on_prem_to_cloud",
+                        "label": "On-Premises to Cloud",
+                        "emoji": "📤"
+                  },
+                  {
+                        "value": "archive",
+                        "label": "Archive Migration",
+                        "emoji": "📦"
+                  },
+                  {
+                        "value": "pst_conversion",
+                        "label": "PST/MBOX Conversion",
+                        "emoji": "🔧"
+                  }
+            ]
+      },
+      {
+            "id": "downtime_acceptable",
+            "type": "yes-no",
+            "botMessage": "Can users tolerate some downtime during migration?",
+            "emoji": "⏸️"
+      }
+],
+    onComplete: (answers, chat) => {
+      
+      const mailboxCount = answers.mailbox_count;
+      const avgSize = answers.avg_mailbox_size;
+      const totalSize = mailboxCount * avgSize;
+      const migrationType = answers.migration_type;
 
-  mailboxSlider.addEventListener('input', function() {
-    mailboxValue.textContent = parseInt(this.value).toLocaleString() + ' mailboxes';
-  });
+      // Migration speed: GB per hour
+      const speeds = {
+        cloud_to_cloud: 50,
+        on_prem_to_cloud: 30,
+        archive: 40,
+        pst_conversion: 20
+      };
 
-  const migrationApproaches = {
-    'google-outlook': 'Use Google Workspace Migration tool (native) or BitTitan MigrationWiz for zero downtime. IMAP sync recommended for preserving folder structure.',
-    'outlook-google': 'Use Google Workspace Migration for Microsoft Exchange (GWMME) or PST upload via Drive. Preserve permissions and shared mailboxes with admin API.',
-    'archive-eml': 'Export via IMAP to EML format for litigation hold, compliance, or forensic analysis. EML files are human-readable and compatible with all email clients.',
-    'mbox-pst': 'Use Email Converter app for batches under 100 mailboxes. For larger migrations, use server-based tools with parallel processing (500 emails/hour/thread).',
-    'pst-mbox': 'Convert PST to MBOX for importing to Gmail, Thunderbird, or Apple Mail. Preserve folder hierarchy and metadata with UTF-8 encoding.'
+      const speed = speeds[migrationType];
+      const totalHours = totalSize / speed;
+      const totalDays = Math.ceil(totalHours / 24);
+
+      // Cost estimates
+      const costPerMailbox = {
+        cloud_to_cloud: 15,
+        on_prem_to_cloud: 25,
+        archive: 20,
+        pst_conversion: 30
+      };
+
+      const estimatedCost = mailboxCount * costPerMailbox[migrationType];
+      const supportHours = mailboxCount * 0.5; // 30 min per user
+      const totalProjectHours = totalHours + supportHours;
+
+      answers.estimated_cost = Math.round(estimatedCost);
+
+      chat.showResultsCard([
+        { label: 'Total Data to Migrate', value: chat.formatNumber(totalSize) + ' GB' },
+        { label: 'Estimated Timeline', value: totalDays + ' days', highlight: true },
+        { label: 'Project Hours', value: chat.formatNumber(Math.round(totalProjectHours)) + ' hrs' },
+        { label: 'Estimated Cost', value: chat.formatCurrency(estimatedCost), highlight: true }
+      ]);
+
+      setTimeout(() => {
+        const downtimeMsg = answers.downtime_acceptable === 'yes'
+          ? "With planned downtime, we can parallelize the migration and reduce timeline by 30%."
+          : "For zero-downtime migration, we'll use staged sync with cutover windows.";
+        chat.showBotMessage(downtimeMsg, '💡');
+      }, 1000);
+
+      setTimeout(() => {
+        chat.showEmailCapture("Want a detailed migration plan? Drop your email 👇");
+      }, 2500);
+    
+    }
   };
 
-  document.getElementById('calculator-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    const mailboxCount = parseInt(document.getElementById('mailbox-count').value);
-    const emailsPerMailbox = parseInt(document.getElementById('emails-per-mailbox').value);
-    const migrationType = document.getElementById('migration-type').value;
-
-    const totalEmails = mailboxCount * emailsPerMailbox;
-
-    // Estimate processing time (500 emails/hour as baseline)
-    const baselineRate = 500;
-    const migrationHours = Math.ceil(totalEmails / baselineRate);
-
-    // Timeline breakdown (business days)
-    const planningDays = 1;
-    const setupDays = Math.ceil(mailboxCount / 100) + 1; // 1 day per 100 mailboxes + 1 base
-    const migrationDays = Math.ceil(migrationHours / 8); // 8 hours per day
-    const verificationDays = Math.ceil(mailboxCount / 50); // 1 day per 50 mailboxes
-
-    const totalDays = planningDays + setupDays + migrationDays + verificationDays;
-
-    // Cost estimate: $200 setup + $0.01 per email
-    const setupCost = 200;
-    const perEmailCost = 0.01;
-    const totalCost = setupCost + (totalEmails * perEmailCost);
-
-    // Update results
-    document.getElementById('total-emails').textContent = totalEmails.toLocaleString();
-    document.getElementById('estimated-time').textContent = migrationHours.toLocaleString() + ' hours';
-    document.getElementById('estimated-cost').textContent = '$' + totalCost.toLocaleString('en-US', {maximumFractionDigits: 0});
-
-    // Update timeline
-    document.getElementById('dur-planning').textContent = planningDays + ' day' + (planningDays > 1 ? 's' : '');
-    document.getElementById('dur-setup').textContent = setupDays + ' day' + (setupDays > 1 ? 's' : '');
-    document.getElementById('dur-migration').textContent = migrationDays + ' day' + (migrationDays > 1 ? 's' : '');
-    document.getElementById('dur-verification').textContent = verificationDays + ' day' + (verificationDays > 1 ? 's' : '');
-
-    const totalPercent = planningDays + setupDays + migrationDays + verificationDays;
-    document.getElementById('bar-planning').style.width = ((planningDays / totalPercent) * 100) + '%';
-    document.getElementById('bar-setup').style.width = ((setupDays / totalPercent) * 100) + '%';
-    document.getElementById('bar-migration').style.width = ((migrationDays / totalPercent) * 100) + '%';
-    document.getElementById('bar-verification').style.width = ((verificationDays / totalPercent) * 100) + '%';
-
-    // Approach recommendation
-    document.getElementById('approach-text').textContent = migrationApproaches[migrationType];
-
-    // Update hidden form fields
-    document.getElementById('form-migration-type').value = migrationType;
-    document.getElementById('form-total-emails').value = totalEmails;
-
-    // Show results and CTA
-    document.getElementById('results').style.display = 'block';
-    document.getElementById('cta').style.display = 'block';
-
-    // Track event
-    trackCalculationComplete(totalEmails, totalCost);
-
-    // Scroll to results
-    document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  });
-
-  // Track lead submission
-  document.querySelector('.cta-form').addEventListener('submit', function() {
-    const email = this.querySelector('input[name="email"]').value;
-    const migrationType = document.getElementById('form-migration-type').value;
-    trackLeadSubmit(email, migrationType);
+  document.addEventListener('DOMContentLoaded', () => {
+    new ChatEngine(chatConfig);
   });
 </script>
 

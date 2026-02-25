@@ -4,819 +4,111 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>iOS App Launch Readiness Checker | App Store Submission</title>
-
-<!-- SEO -->
 <meta name="description" content="Free iOS app launch readiness checker. 20-item checklist covering App Store assets, metadata, legal, technical, and pre-launch requirements. Get your score.">
-<meta name="author" content="Evgeny Goncharov">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://techconcepts.org/tools/ios-launch.html">
-
-<!-- Resource Hints -->
-<link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
-<link rel="dns-prefetch" href="https://www.googletagmanager.com">
-<link rel="preconnect" href="https://formspree.io" crossorigin>
-<link rel="dns-prefetch" href="https://formspree.io">
-
-<!-- Open Graph -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://techconcepts.org/tools/ios-launch.html">
-<meta property="og:title" content="iOS App Launch Readiness Checker">
-<meta property="og:description" content="20-item checklist for App Store submission readiness. Identify blockers before review.">
-<meta property="og:image" content="https://techconcepts.org/techconcepts-og.png">
-<meta property="og:site_name" content="TechConcepts">
-
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="iOS App Launch Readiness Checker">
-<meta name="twitter:description" content="Check your app's readiness for App Store submission.">
-<meta name="twitter:image" content="https://techconcepts.org/techconcepts-og.png">
-
-<!-- Favicon -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📱</text></svg>">
-
-<!-- Google Analytics 4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-815E8YDZW8"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-815E8YDZW8', {page_path: '/tools/ios-launch'});
-
-  function trackChecklistComplete(score, blockerCount) {
-    gtag('event', 'checklist_complete', {
-      readiness_score: score,
-      blocker_count: blockerCount,
-      event_category: 'conversion'
-    });
-  }
-
-  function trackLeadSubmit(email, score) {
-    gtag('event', 'lead_submit', {
-      readiness_score: score,
-      event_category: 'lead_generation',
-      event_label: 'app_store_checklist'
-    });
-  }
 </script>
-
-<!-- Schema.org -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "iOS App Launch Readiness Checker",
-  "description": "20-item checklist for iOS app store submission readiness",
-  "url": "https://techconcepts.org/tools/ios-launch.html",
-  "applicationCategory": "DeveloperApplication",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "provider": {
-    "@type": "Organization",
-    "name": "TechConcepts"
-  }
-}
-</script>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "TechConcepts",
-      "item": "https://techconcepts.org/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Tools",
-      "item": "https://techconcepts.org/tools/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "name": "iOS Launch Readiness",
-      "item": "https://techconcepts.org/tools/ios-launch.html"
-    }
-  ]
-}
-</script>
-
+<link rel="stylesheet" href="../styles/chat-ui.css">
+<script src="../scripts/chat-framework.js"></script>
 <style>
-  :root {
-    --primary: #1a1a2e;
-    --accent: #e94560;
-    --accent2: #0f3460;
-    --safe: #00b894;
-    --warn: #fdcb6e;
-    --danger: #e17055;
-    --bg: #f8f9fa;
-    --card: #ffffff;
-    --text: #2d3436;
-    --muted: #636e72;
-  }
-
+  :root { --primary: #1a1a2e; --accent: #e94560; --accent2: #0f3460; --bg: #f8f9fa; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.6;
-  }
-
-  .hero {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--accent2) 100%);
-    color: white;
-    padding: 60px 24px 48px;
-    text-align: center;
-  }
-
-  .hero h1 {
-    font-size: 2.2rem;
-    font-weight: 800;
-    margin-bottom: 12px;
-  }
-
-  .hero .icon {
-    font-size: 3rem;
-    margin-bottom: 16px;
-  }
-
-  .hero p {
-    font-size: 1.1rem;
-    opacity: 0.9;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-
-  .container {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-
-  .checklist-card {
-    background: white;
-    border-radius: 16px;
-    padding: 32px;
-    margin: -24px auto 32px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    position: relative;
-    z-index: 2;
-  }
-
-  .section-header {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--primary);
-    margin-top: 24px;
-    margin-bottom: 16px;
-    padding-bottom: 8px;
-    border-bottom: 2px solid var(--accent);
-  }
-
-  .section-header:first-child {
-    margin-top: 0;
-  }
-
-  .checklist-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    padding: 12px 0;
-    border-bottom: 1px solid #f0f0f0;
-  }
-
-  .checklist-item:last-child {
-    border-bottom: none;
-  }
-
-  .checkbox-wrapper {
-    flex-shrink: 0;
-    margin-top: 2px;
-  }
-
-  .checkbox-wrapper input[type="checkbox"] {
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
-  }
-
-  .item-content {
-    flex: 1;
-  }
-
-  .item-label {
-    font-weight: 600;
-    font-size: 0.95rem;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .blocker-badge {
-    display: inline-block;
-    background: var(--danger);
-    color: white;
-    font-size: 0.65rem;
-    font-weight: 700;
-    padding: 2px 6px;
-    border-radius: 4px;
-    text-transform: uppercase;
-  }
-
-  .item-hint {
-    font-size: 0.8rem;
-    color: var(--muted);
-    margin-top: 4px;
-  }
-
-  .calculate-btn {
-    width: 100%;
-    background: linear-gradient(135deg, var(--accent) 0%, #c0392b 100%);
-    color: white;
-    border: none;
-    padding: 16px;
-    border-radius: 12px;
-    font-size: 1.1rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-    box-shadow: 0 4px 20px rgba(233,69,96,0.3);
-    margin-top: 24px;
-  }
-
-  .calculate-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(233,69,96,0.4);
-  }
-
-  .results-card {
-    background: white;
-    border-radius: 16px;
-    padding: 32px;
-    margin-bottom: 32px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    display: none;
-  }
-
-  .score-display {
-    text-align: center;
-    padding: 32px;
-    background: linear-gradient(135deg, var(--primary) 0%, var(--accent2) 100%);
-    border-radius: 16px;
-    color: white;
-    margin-bottom: 24px;
-  }
-
-  .score-number {
-    font-size: 4rem;
-    font-weight: 800;
-    line-height: 1;
-    margin-bottom: 8px;
-  }
-
-  .score-label {
-    font-size: 1.1rem;
-    opacity: 0.9;
-  }
-
-  .status-section {
-    margin-bottom: 24px;
-  }
-
-  .status-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 12px;
-    border-radius: 8px;
-    margin-bottom: 8px;
-  }
-
-  .status-item.green {
-    background: #e8f5e9;
-    color: #2e7d32;
-  }
-
-  .status-item.yellow {
-    background: #fff3e0;
-    color: #e65100;
-  }
-
-  .status-item.red {
-    background: #ffebee;
-    color: #c62828;
-  }
-
-  .status-icon {
-    font-size: 1.5rem;
-  }
-
-  .status-text {
-    flex: 1;
-    font-weight: 600;
-  }
-
-  .blockers-section {
-    margin-top: 24px;
-    padding: 16px;
-    background: #ffebee;
-    border-radius: 12px;
-    border-left: 4px solid var(--danger);
-  }
-
-  .blockers-section h4 {
-    color: #c62828;
-    margin-bottom: 12px;
-    font-size: 1rem;
-  }
-
-  .blockers-section ul {
-    list-style: none;
-    padding: 0;
-  }
-
-  .blockers-section li {
-    padding: 8px 0;
-    color: #c62828;
-    font-weight: 600;
-    font-size: 0.9rem;
-  }
-
-  .cta-section {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--accent2) 100%);
-    border-radius: 16px;
-    padding: 36px 28px;
-    text-align: center;
-    color: white;
-    margin-bottom: 32px;
-    display: none;
-  }
-
-  .cta-section h3 {
-    font-size: 1.3rem;
-    margin-bottom: 8px;
-  }
-
-  .cta-section p {
-    opacity: 0.85;
-    margin-bottom: 20px;
-    font-size: 0.95rem;
-  }
-
-  .cta-buttons {
-    display: flex;
-    gap: 12px;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-bottom: 24px;
-  }
-
-  .cta-btn {
-    display: inline-block;
-    padding: 12px 24px;
-    border-radius: 12px;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 0.95rem;
-    transition: transform 0.2s ease;
-  }
-
-  .cta-btn.primary {
-    background: var(--accent);
-    color: white;
-  }
-
-  .cta-btn.secondary {
-    background: white;
-    color: var(--primary);
-  }
-
-  .cta-btn:hover {
-    transform: scale(1.02);
-  }
-
-  .cta-form {
-    display: flex;
-    gap: 8px;
-    max-width: 440px;
-    margin: 0 auto;
-  }
-
-  .cta-form input {
-    flex: 1;
-    padding: 14px 18px;
-    border: none;
-    border-radius: 12px;
-    font-size: 0.95rem;
-    outline: none;
-  }
-
-  .cta-form button {
-    background: var(--accent);
-    color: white;
-    border: none;
-    padding: 14px 24px;
-    border-radius: 12px;
-    font-weight: 700;
-    font-size: 0.95rem;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-    white-space: nowrap;
-  }
-
-  .cta-form button:hover {
-    transform: scale(1.02);
-  }
-
-  .back-link {
-    text-align: center;
-    margin: 24px 0;
-  }
-
-  .back-link a {
-    color: var(--accent);
-    text-decoration: none;
-    font-size: 0.9rem;
-  }
-
-  @media (max-width: 600px) {
-    .hero h1 { font-size: 1.6rem; }
-    .checklist-card { padding: 24px; }
-    .score-number { font-size: 3rem; }
-    .cta-form { flex-direction: column; }
-    .cta-buttons { flex-direction: column; }
-  }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: #2d3436; line-height: 1.6; }
+  .hero { background: linear-gradient(135deg, var(--primary) 0%, var(--accent2) 100%); color: white; padding: 60px 24px 48px; text-align: center; }
+  .hero h1 { font-size: 2.2rem; font-weight: 800; margin-bottom: 12px; }
+  .hero .icon { font-size: 3rem; margin-bottom: 16px; }
+  .hero p { font-size: 1.1rem; opacity: 0.9; max-width: 600px; margin: 0 auto; }
+  .container { max-width: 720px; margin: 0 auto; padding: 0 20px; }
+  .back-link { text-align: center; margin: 24px 0; }
+  .back-link a { color: var(--accent); text-decoration: none; font-size: 0.9rem; }
+  @media (max-width: 600px) { .hero h1 { font-size: 1.6rem; } }
 </style>
 </head>
 <body>
-
 <div class="hero">
   <div class="container">
     <span class="icon">📱</span>
-    <h1>iOS App Launch Readiness</h1>
-    <p>20-item checklist to ensure your app is ready for App Store submission. Identify blockers before review.</p>
+    <h1>iOS Launch Readiness Checker</h1>
+    <p>20-item checklist for App Store submission. Find blockers before review.</p>
   </div>
 </div>
-
 <div class="container">
-  <div class="checklist-card">
-    <form id="checklist-form">
-      <div class="section-header">App Store Assets</div>
-
-      <div class="checklist-item">
-        <div class="checkbox-wrapper">
-          <input type="checkbox" id="item-1" data-blocker="true">
-        </div>
-        <div class="item-content">
-          <label for="item-1" class="item-label">
-            App Icon (1024x1024) <span class="blocker-badge">Blocker</span>
-          </label>
-          <div class="item-hint">Required for submission. No transparency, no text.</div>
-        </div>
-      </div>
-
-      <div class="checklist-item">
-        <div class="checkbox-wrapper">
-          <input type="checkbox" id="item-2" data-blocker="true">
-        </div>
-        <div class="item-content">
-          <label for="item-2" class="item-label">
-            Screenshots (3+ per device size) <span class="blocker-badge">Blocker</span>
-          </label>
-          <div class="item-hint">6.7" iPhone required minimum. iPad if universal.</div>
-        </div>
-      </div>
-
-      <div class="checklist-item">
-        <div class="checkbox-wrapper">
-          <input type="checkbox" id="item-3">
-        </div>
-        <div class="item-content">
-          <label for="item-3" class="item-label">App Preview Video</label>
-          <div class="item-hint">Optional but boosts conversion by 30%+</div>
-        </div>
-      </div>
-
-      <div class="section-header">Metadata</div>
-
-      <div class="checklist-item">
-        <div class="checkbox-wrapper">
-          <input type="checkbox" id="item-4" data-blocker="true">
-        </div>
-        <div class="item-content">
-          <label for="item-4" class="item-label">
-            App Name (max 30 chars) <span class="blocker-badge">Blocker</span>
-          </label>
-          <div class="item-hint">Visible on App Store. Include keywords if space allows.</div>
-        </div>
-      </div>
-
-      <div class="checklist-item">
-        <div class="checkbox-wrapper">
-          <input type="checkbox" id="item-5">
-        </div>
-        <div class="item-content">
-          <label for="item-5" class="item-label">Subtitle (max 30 chars)</label>
-          <div class="item-hint">Summarize your app's purpose concisely.</div>
-        </div>
-      </div>
-
-      <div class="checklist-item">
-        <div class="checkbox-wrapper">
-          <input type="checkbox" id="item-6">
-        </div>
-        <div class="item-content">
-          <label for="item-6" class="item-label">Keywords (max 100 chars)</label>
-          <div class="item-hint">Comma-separated. No spaces after commas. ASO critical.</div>
-        </div>
-      </div>
-
-      <div class="checklist-item">
-        <div class="checkbox-wrapper">
-          <input type="checkbox" id="item-7" data-blocker="true">
-        </div>
-        <div class="item-content">
-          <label for="item-7" class="item-label">
-            Description (max 4000 chars) <span class="blocker-badge">Blocker</span>
-          </label>
-          <div class="item-hint">First 3 lines are most important (above fold).</div>
-        </div>
-      </div>
-
-      <div class="checklist-item">
-        <div class="checkbox-wrapper">
-          <input type="checkbox" id="item-8">
-        </div>
-        <div class="item-content">
-          <label for="item-8" class="item-label">Promotional Text (max 170 chars)</label>
-          <div class="item-hint">Editable after approval. Use for promotions/updates.</div>
-        </div>
-      </div>
-
-      <div class="section-header">Legal</div>
-
-      <div class="checklist-item">
-        <div class="checkbox-wrapper">
-          <input type="checkbox" id="item-9" data-blocker="true">
-        </div>
-        <div class="item-content">
-          <label for="item-9" class="item-label">
-            Privacy Policy URL <span class="blocker-badge">Blocker</span>
-          </label>
-          <div class="item-hint">Required for all apps. Must be accessible without login.</div>
-        </div>
-      </div>
-
-      <div class="checklist-item">
-        <div class="checkbox-wrapper">
-          <input type="checkbox" id="item-10">
-        </div>
-        <div class="item-content">
-          <label for="item-10" class="item-label">EULA (if applicable)</label>
-          <div class="item-hint">Custom terms override standard Apple EULA.</div>
-        </div>
-      </div>
-
-      <div class="checklist-item">
-        <div class="checkbox-wrapper">
-          <input type="checkbox" id="item-11" data-blocker="true">
-        </div>
-        <div class="item-content">
-          <label for="item-11" class="item-label">
-            Age Rating Questionnaire <span class="blocker-badge">Blocker</span>
-          </label>
-          <div class="item-hint">Required. Determines content rating (4+, 9+, 12+, 17+).</div>
-        </div>
-      </div>
-
-      <div class="section-header">Technical</div>
-
-      <div class="checklist-item">
-        <div class="checkbox-wrapper">
-          <input type="checkbox" id="item-12">
-        </div>
-        <div class="item-content">
-          <label for="item-12" class="item-label">TestFlight Beta Tested</label>
-          <div class="item-hint">External testing catches bugs reviewers will reject for.</div>
-        </div>
-      </div>
-
-      <div class="checklist-item">
-        <div class="checkbox-wrapper">
-          <input type="checkbox" id="item-13">
-        </div>
-        <div class="item-content">
-          <label for="item-13" class="item-label">Crash Reporting Integrated</label>
-          <div class="item-hint">Firebase Crashlytics or Sentry recommended.</div>
-        </div>
-      </div>
-
-      <div class="checklist-item">
-        <div class="checkbox-wrapper">
-          <input type="checkbox" id="item-14">
-        </div>
-        <div class="item-content">
-          <label for="item-14" class="item-label">Analytics Implemented</label>
-          <div class="item-hint">Track user behavior for ASO optimization.</div>
-        </div>
-      </div>
-
-      <div class="checklist-item">
-        <div class="checkbox-wrapper">
-          <input type="checkbox" id="item-15">
-        </div>
-        <div class="item-content">
-          <label for="item-15" class="item-label">IAP Testing (if applicable)</label>
-          <div class="item-hint">Sandbox testing for all purchase flows.</div>
-        </div>
-      </div>
-
-      <div class="section-header">Pre-Launch</div>
-
-      <div class="checklist-item">
-        <div class="checkbox-wrapper">
-          <input type="checkbox" id="item-16">
-        </div>
-        <div class="item-content">
-          <label for="item-16" class="item-label">App Review Guidelines Check</label>
-          <div class="item-hint">Read section 2 (Performance) and 4 (Design) at minimum.</div>
-        </div>
-      </div>
-
-      <div class="checklist-item">
-        <div class="checkbox-wrapper">
-          <input type="checkbox" id="item-17">
-        </div>
-        <div class="item-content">
-          <label for="item-17" class="item-label">Metadata Optimization</label>
-          <div class="item-hint">A/B test screenshots/text with target users.</div>
-        </div>
-      </div>
-
-      <div class="checklist-item">
-        <div class="checkbox-wrapper">
-          <input type="checkbox" id="item-18">
-        </div>
-        <div class="item-content">
-          <label for="item-18" class="item-label">App Store Optimization (ASO)</label>
-          <div class="item-hint">Keyword research with tools like AppTweak or Sensor Tower.</div>
-        </div>
-      </div>
-
-      <div class="checklist-item">
-        <div class="checkbox-wrapper">
-          <input type="checkbox" id="item-19">
-        </div>
-        <div class="item-content">
-          <label for="item-19" class="item-label">Support Contact Setup</label>
-          <div class="item-hint">Email/URL where users can reach you. Monitored daily.</div>
-        </div>
-      </div>
-
-      <div class="checklist-item">
-        <div class="checkbox-wrapper">
-          <input type="checkbox" id="item-20">
-        </div>
-        <div class="item-content">
-          <label for="item-20" class="item-label">Marketing Website/Landing Page</label>
-          <div class="item-hint">Drives pre-launch signups and improves ASO credibility.</div>
-        </div>
-      </div>
-
-      <button type="submit" class="calculate-btn">Calculate Readiness</button>
-    </form>
-  </div>
-
-  <div class="results-card" id="results">
-    <div class="score-display">
-      <div class="score-number" id="score">0</div>
-      <div class="score-label" id="score-label">Readiness Score</div>
-    </div>
-
-    <div class="status-section" id="status-section"></div>
-
-    <div class="blockers-section" id="blockers" style="display: none;">
-      <h4>Submission Blockers</h4>
-      <ul id="blockers-list"></ul>
-    </div>
-  </div>
-
-  <div class="cta-section" id="cta">
-    <h3>Get App Store Submission Checklist PDF</h3>
-    <p>Detailed guide covering all requirements, common rejection reasons, and optimization tips.</p>
-
-    <div class="cta-buttons">
-      <a href="https://techconcepts.org/services/ios-development.html" class="cta-btn secondary">iOS Development</a>
-      <a href="https://calendly.com/jenyago/30min" class="cta-btn primary" target="_blank">Book a Call</a>
-    </div>
-
-    <form class="cta-form" action="https://formspree.io/f/xpwzgvqr" method="POST">
-      <input type="email" name="email" placeholder="Your email" required>
-      <input type="hidden" name="tool" value="ios-launch">
-      <input type="hidden" name="readiness_score" id="form-score">
-      <button type="submit">Get Checklist</button>
-    </form>
-  </div>
-
-  <div class="back-link">
-    <a href="https://techconcepts.org/tools/">&larr; Back to Tools</a>
-  </div>
+  <div class="back-link"><a href="https://techconcepts.org/tools/">&larr; Back to Tools</a></div>
 </div>
-
 <script>
-  const blockerItems = [
-    'App Icon (1024x1024)',
-    'Screenshots (3+ per device size)',
-    'App Name (max 30 chars)',
-    'Description (max 4000 chars)',
-    'Privacy Policy URL',
-    'Age Rating Questionnaire'
-  ];
+  const chatConfig = {
+    title: "iOS Launch Readiness",
+    emoji: "📱",
+    toolName: "ios-launch",
+    formspreeUrl: "https://formspree.io/f/xpwzgvqr",
+    questions: [
+      { id: 'app_icon', type: 'yes-no', botMessage: "Do you have a 1024x1024 App Store icon?", emoji: "🎨" },
+      { id: 'screenshots', type: 'yes-no', botMessage: "Do you have screenshots for all required device sizes?", emoji: "📸" },
+      { id: 'privacy_policy', type: 'yes-no', botMessage: "Do you have a published privacy policy URL?", emoji: "🔒" },
+      { id: 'support_url', type: 'yes-no', botMessage: "Do you have a support/contact URL?", emoji: "📧" },
+      { id: 'description', type: 'yes-no', botMessage: "Have you written compelling app description and keywords?", emoji: "✍️" },
+      { id: 'test_flight', type: 'yes-no', botMessage: "Have you tested the app via TestFlight?", emoji: "🧪" },
+      { id: 'crash_free', type: 'yes-no', botMessage: "Is the app crash-free and stable?", emoji: "🐛" },
+      { id: 'terms', type: 'yes-no', botMessage: "Have you added Terms of Service (if applicable)?", emoji: "📄" }
+    ],
+    onComplete: (answers, chat) => {
+      const checklist = [
+        { key: 'app_icon', label: 'App Store Icon', critical: true },
+        { key: 'screenshots', label: 'Screenshots', critical: true },
+        { key: 'privacy_policy', label: 'Privacy Policy', critical: true },
+        { key: 'support_url', label: 'Support URL', critical: true },
+        { key: 'description', label: 'Description & Keywords', critical: false },
+        { key: 'test_flight', label: 'TestFlight Testing', critical: false },
+        { key: 'crash_free', label: 'Crash-Free Build', critical: true },
+        { key: 'terms', label: 'Terms of Service', critical: false }
+      ];
 
-  document.getElementById('checklist-form').addEventListener('submit', function(e) {
-    e.preventDefault();
+      let completed = 0;
+      let blockers = [];
 
-    const totalItems = 20;
-    let checkedCount = 0;
-    let uncheckedBlockers = [];
-
-    for (let i = 1; i <= totalItems; i++) {
-      const checkbox = document.getElementById('item-' + i);
-      if (checkbox.checked) {
-        checkedCount++;
-      } else if (checkbox.dataset.blocker === 'true') {
-        const label = checkbox.parentElement.nextElementSibling.querySelector('.item-label').textContent.replace('Blocker', '').trim();
-        uncheckedBlockers.push(label);
-      }
-    }
-
-    const score = Math.round((checkedCount / totalItems) * 100);
-
-    // Update score display
-    document.getElementById('score').textContent = score;
-    document.getElementById('form-score').value = score;
-
-    // Determine readiness level
-    let readinessLevel = '';
-    let statusHtml = '';
-
-    if (score >= 85 && uncheckedBlockers.length === 0) {
-      readinessLevel = 'Ready to Submit';
-      statusHtml = '<div class="status-item green"><span class="status-icon">✓</span><span class="status-text">Your app is ready for App Store submission!</span></div>';
-    } else if (score >= 70 && uncheckedBlockers.length === 0) {
-      readinessLevel = 'Almost Ready';
-      statusHtml = '<div class="status-item yellow"><span class="status-icon">⚠</span><span class="status-text">Complete remaining items for optimal launch success.</span></div>';
-    } else if (uncheckedBlockers.length > 0) {
-      readinessLevel = 'Not Ready';
-      statusHtml = '<div class="status-item red"><span class="status-icon">✗</span><span class="status-text">You have ' + uncheckedBlockers.length + ' blocker(s) that will prevent submission.</span></div>';
-    } else {
-      readinessLevel = 'In Progress';
-      statusHtml = '<div class="status-item yellow"><span class="status-icon">⚠</span><span class="status-text">Continue working through the checklist.</span></div>';
-    }
-
-    document.getElementById('score-label').textContent = readinessLevel;
-    document.getElementById('status-section').innerHTML = statusHtml;
-
-    // Show blockers if any
-    if (uncheckedBlockers.length > 0) {
-      const blockersList = document.getElementById('blockers-list');
-      blockersList.innerHTML = '';
-      uncheckedBlockers.forEach(blocker => {
-        const li = document.createElement('li');
-        li.textContent = '• ' + blocker;
-        blockersList.appendChild(li);
+      checklist.forEach(item => {
+        if (answers[item.key] === 'yes') {
+          completed++;
+        } else if (item.critical) {
+          blockers.push(item.label);
+        }
       });
-      document.getElementById('blockers').style.display = 'block';
-    } else {
-      document.getElementById('blockers').style.display = 'none';
+
+      const score = Math.round((completed / checklist.length) * 100);
+      const status = score >= 90 ? 'Ready to Submit! ✅' :
+                     score >= 70 ? 'Almost Ready ⚠️' :
+                     'Not Ready Yet 🔴';
+
+      answers.readiness_score = score;
+
+      chat.showResultsCard([
+        { label: 'Readiness Score', value: score + '/100', highlight: true },
+        { label: 'Status', value: status },
+        { label: 'Items Complete', value: completed + '/' + checklist.length },
+        { label: 'Critical Blockers', value: blockers.length }
+      ]);
+
+      setTimeout(() => {
+        if (blockers.length > 0) {
+          chat.showBotMessage(`Fix these critical items before submitting: ${blockers.join(', ')} 🚨`, '⚠️');
+        } else {
+          chat.showBotMessage("All critical items complete! You're ready to submit. 🎉", '✅');
+        }
+      }, 1000);
+
+      setTimeout(() => {
+        chat.showEmailCapture("Want a detailed launch checklist? Drop your email 👇");
+      }, 2500);
     }
-
-    // Show results and CTA
-    document.getElementById('results').style.display = 'block';
-    document.getElementById('cta').style.display = 'block';
-
-    // Track event
-    trackChecklistComplete(score, uncheckedBlockers.length);
-
-    // Scroll to results
-    document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  });
-
-  // Track lead submission
-  document.querySelector('.cta-form').addEventListener('submit', function() {
-    const email = this.querySelector('input[name="email"]').value;
-    const score = document.getElementById('form-score').value;
-    trackLeadSubmit(email, score);
-  });
+  };
+  document.addEventListener('DOMContentLoaded', () => { new ChatEngine(chatConfig); });
 </script>
-
 </body>
 </html>

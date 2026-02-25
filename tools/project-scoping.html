@@ -41,26 +41,6 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-815E8YDZW8', {page_path: '/tools/project-scoping'});
-
-  function trackQuestionAnswered(questionId) {
-    gtag('event', 'question_answered', {
-      question_id: questionId,
-      event_category: 'scoping'
-    });
-  }
-
-  function trackTemplateGenerated() {
-    gtag('event', 'template_generated', {
-      event_category: 'conversion'
-    });
-  }
-
-  function trackLeadSubmit(email) {
-    gtag('event', 'lead_submit', {
-      event_category: 'lead_generation',
-      event_label: 'consultation_request'
-    });
-  }
 </script>
 
 <!-- Schema.org -->
@@ -111,17 +91,15 @@
 }
 </script>
 
+<!-- Chat Framework -->
+<link rel="stylesheet" href="../styles/chat-ui.css">
+
 <style>
   :root {
     --primary: #1a1a2e;
     --accent: #e94560;
     --accent2: #0f3460;
-    --safe: #00b894;
-    --warn: #fdcb6e;
     --bg: #f8f9fa;
-    --card: #ffffff;
-    --text: #2d3436;
-    --muted: #636e72;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -129,7 +107,7 @@
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background: var(--bg);
-    color: var(--text);
+    color: #2d3436;
     line-height: 1.6;
   }
 
@@ -164,234 +142,6 @@
     padding: 0 20px;
   }
 
-  .progress-container {
-    background: white;
-    padding: 16px 24px;
-    margin: -24px auto 24px;
-    border-radius: 16px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    position: relative;
-    z-index: 2;
-  }
-
-  .progress-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 8px;
-  }
-
-  .progress-header span {
-    font-size: 0.85rem;
-    color: var(--muted);
-  }
-
-  .progress-bar {
-    height: 8px;
-    background: #eee;
-    border-radius: 4px;
-    overflow: hidden;
-  }
-
-  .progress-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--accent2), var(--accent));
-    border-radius: 4px;
-    transition: width 0.5s ease;
-    width: 0%;
-  }
-
-  .question-card {
-    background: var(--card);
-    border-radius: 16px;
-    padding: 28px;
-    margin-bottom: 24px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
-  }
-
-  .question-card h3 {
-    font-size: 1rem;
-    margin-bottom: 12px;
-    color: var(--primary);
-  }
-
-  .question-card .hint {
-    font-size: 0.85rem;
-    color: var(--muted);
-    margin-bottom: 16px;
-  }
-
-  .question-card input,
-  .question-card select,
-  .question-card textarea {
-    width: 100%;
-    padding: 12px 16px;
-    border: 2px solid #e9ecef;
-    border-radius: 12px;
-    font-size: 0.95rem;
-    outline: none;
-    font-family: inherit;
-    transition: border-color 0.2s ease;
-  }
-
-  .question-card input:focus,
-  .question-card select:focus,
-  .question-card textarea:focus {
-    border-color: var(--accent2);
-  }
-
-  .question-card textarea {
-    min-height: 100px;
-    resize: vertical;
-  }
-
-  .generate-btn {
-    width: 100%;
-    background: linear-gradient(135deg, var(--accent) 0%, #c0392b 100%);
-    color: white;
-    border: none;
-    padding: 18px;
-    border-radius: 14px;
-    font-size: 1.1rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-    box-shadow: 0 4px 20px rgba(233,69,96,0.3);
-    margin-top: 16px;
-  }
-
-  .generate-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(233,69,96,0.4);
-  }
-
-  .generate-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    transform: none;
-  }
-
-  .brief-output {
-    background: white;
-    border-radius: 16px;
-    padding: 40px;
-    margin-bottom: 32px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    display: none;
-  }
-
-  .brief-output h2 {
-    font-size: 1.8rem;
-    margin-bottom: 8px;
-    color: var(--primary);
-  }
-
-  .brief-output .meta {
-    font-size: 0.85rem;
-    color: var(--muted);
-    margin-bottom: 32px;
-    padding-bottom: 16px;
-    border-bottom: 2px solid #f0f0f0;
-  }
-
-  .brief-section {
-    margin-bottom: 32px;
-  }
-
-  .brief-section h3 {
-    font-size: 1.2rem;
-    margin-bottom: 12px;
-    color: var(--accent2);
-  }
-
-  .brief-section p {
-    line-height: 1.8;
-    color: var(--text);
-  }
-
-  .brief-section ul {
-    margin-left: 20px;
-    line-height: 1.8;
-  }
-
-  .action-buttons {
-    display: flex;
-    gap: 12px;
-    margin-bottom: 32px;
-  }
-
-  .action-btn {
-    flex: 1;
-    padding: 14px;
-    border: 2px solid var(--accent2);
-    background: white;
-    color: var(--accent2);
-    border-radius: 12px;
-    font-size: 0.95rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-
-  .action-btn:hover {
-    background: var(--accent2);
-    color: white;
-  }
-
-  .cta-section {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--accent2) 100%);
-    border-radius: 16px;
-    padding: 36px 28px;
-    text-align: center;
-    color: white;
-    margin-bottom: 48px;
-    display: none;
-  }
-
-  .cta-section h3 {
-    font-size: 1.3rem;
-    margin-bottom: 8px;
-  }
-
-  .cta-section p {
-    opacity: 0.85;
-    margin-bottom: 20px;
-    font-size: 0.95rem;
-  }
-
-  .cta-form {
-    display: flex;
-    gap: 8px;
-    max-width: 440px;
-    margin: 0 auto;
-  }
-
-  .cta-form input {
-    flex: 1;
-    padding: 14px 18px;
-    border: none;
-    border-radius: 12px;
-    font-size: 0.95rem;
-    outline: none;
-  }
-
-  .cta-form button {
-    background: var(--accent);
-    color: white;
-    border: none;
-    padding: 14px 24px;
-    border-radius: 12px;
-    font-weight: 700;
-    font-size: 0.95rem;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-    white-space: nowrap;
-  }
-
-  .cta-form button:hover {
-    transform: scale(1.02);
-  }
-
   .back-link {
     text-align: center;
     margin: 24px 0;
@@ -403,17 +153,27 @@
     font-size: 0.9rem;
   }
 
-  @media (max-width: 600px) {
-    .hero h1 { font-size: 1.6rem; }
-    .brief-output { padding: 28px; }
-    .action-buttons { flex-direction: column; }
-    .cta-form { flex-direction: column; }
+  .brief-section {
+    background: white;
+    padding: 24px;
+    border-radius: 12px;
+    margin: 16px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
   }
 
-  @media print {
-    body { background: white; }
-    .progress-container, .action-buttons, .cta-section, .back-link { display: none !important; }
-    .brief-output { box-shadow: none; margin: 0; padding: 20px; }
+  .brief-section h3 {
+    color: var(--accent2);
+    margin-bottom: 12px;
+    font-size: 1.1rem;
+  }
+
+  .brief-section p {
+    line-height: 1.7;
+    color: #2d3436;
+  }
+
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 1.6rem; }
   }
 </style>
 </head>
@@ -423,265 +183,163 @@
   <div class="container">
     <span class="icon">📋</span>
     <h1>Project Scoping Template</h1>
-    <p>Answer 10 questions to generate a professional project brief. Free, no signup required.</p>
+    <p>10 questions to generate a complete project brief with clear deliverables and timeline.</p>
   </div>
 </div>
 
 <div class="container">
-  <div class="progress-container">
-    <div class="progress-header">
-      <span>Progress</span>
-      <span id="progress-text">0 of 10 answered</span>
-    </div>
-    <div class="progress-bar">
-      <div class="progress-fill" id="progress-fill"></div>
-    </div>
+  <div class="back-link">
+    <a href="https://techconcepts.org/tools/">&larr; Back to Tools</a>
   </div>
 </div>
 
-<div class="container" id="form-container">
-  <form id="scoping-form">
-
-    <div class="question-card">
-      <h3>1. Project Name</h3>
-      <div class="hint">What is this project called?</div>
-      <input type="text" id="q1" required oninput="updateProgress()">
-    </div>
-
-    <div class="question-card">
-      <h3>2. Project Type</h3>
-      <div class="hint">What kind of project is this?</div>
-      <select id="q2" required onchange="updateProgress()">
-        <option value="">Select type...</option>
-        <option value="Web Application">Web Application</option>
-        <option value="Mobile App (iOS/Android)">Mobile App (iOS/Android)</option>
-        <option value="Automation/Integration">Automation/Integration</option>
-        <option value="Data Pipeline">Data Pipeline</option>
-        <option value="API Development">API Development</option>
-        <option value="Infrastructure/DevOps">Infrastructure/DevOps</option>
-        <option value="Other">Other</option>
-      </select>
-    </div>
-
-    <div class="question-card">
-      <h3>3. Problem Statement</h3>
-      <div class="hint">What business problem does this project solve?</div>
-      <textarea id="q3" required oninput="updateProgress()" placeholder="e.g., Manual invoice processing takes 10 hours per week and is error-prone"></textarea>
-    </div>
-
-    <div class="question-card">
-      <h3>4. Target Users</h3>
-      <div class="hint">Who will use this solution?</div>
-      <textarea id="q4" required oninput="updateProgress()" placeholder="e.g., Finance team (5 people), Operations managers"></textarea>
-    </div>
-
-    <div class="question-card">
-      <h3>5. Key Features (Top 3-5)</h3>
-      <div class="hint">What are the must-have features?</div>
-      <textarea id="q5" required oninput="updateProgress()" placeholder="e.g., Upload PDF invoices, Extract data via AI, Send to accounting system, Email notifications"></textarea>
-    </div>
-
-    <div class="question-card">
-      <h3>6. Timeline</h3>
-      <div class="hint">When do you need this delivered?</div>
-      <select id="q6" required onchange="updateProgress()">
-        <option value="">Select timeline...</option>
-        <option value="2-4 weeks">2-4 weeks</option>
-        <option value="1-2 months">1-2 months</option>
-        <option value="2-3 months">2-3 months</option>
-        <option value="3-6 months">3-6 months</option>
-        <option value="Flexible">Flexible</option>
-      </select>
-    </div>
-
-    <div class="question-card">
-      <h3>7. Budget Range (€)</h3>
-      <div class="hint">What is your budget for this project?</div>
-      <select id="q7" required onchange="updateProgress()">
-        <option value="">Select budget...</option>
-        <option value="Under €5,000">Under €5,000</option>
-        <option value="€5,000 - €15,000">€5,000 - €15,000</option>
-        <option value="€15,000 - €30,000">€15,000 - €30,000</option>
-        <option value="€30,000 - €50,000">€30,000 - €50,000</option>
-        <option value="€50,000+">€50,000+</option>
-      </select>
-    </div>
-
-    <div class="question-card">
-      <h3>8. Tech Stack Preferences</h3>
-      <div class="hint">Any required or preferred technologies?</div>
-      <textarea id="q8" required oninput="updateProgress()" placeholder="e.g., Must integrate with Salesforce, prefer Python, hosted on AWS"></textarea>
-    </div>
-
-    <div class="question-card">
-      <h3>9. Success Criteria</h3>
-      <div class="hint">How will you measure success?</div>
-      <textarea id="q9" required oninput="updateProgress()" placeholder="e.g., Reduce processing time from 10 hours to 1 hour per week, 95% accuracy"></textarea>
-    </div>
-
-    <div class="question-card">
-      <h3>10. Constraints & Risks</h3>
-      <div class="hint">Any constraints, dependencies, or known risks?</div>
-      <textarea id="q10" required oninput="updateProgress()" placeholder="e.g., Must comply with GDPR, depends on vendor API availability, tight deadline"></textarea>
-    </div>
-
-    <button type="submit" class="generate-btn" id="generate-btn" disabled>Generate Project Brief</button>
-  </form>
-</div>
-
-<div class="container" id="output-container" style="display: none;">
-  <div class="brief-output" id="brief-output">
-    <h2 id="brief-title">Project Brief</h2>
-    <div class="meta" id="brief-meta">Generated on <span id="brief-date"></span></div>
-
-    <div class="brief-section">
-      <h3>Project Overview</h3>
-      <p id="brief-overview"></p>
-    </div>
-
-    <div class="brief-section">
-      <h3>Problem Statement</h3>
-      <p id="brief-problem"></p>
-    </div>
-
-    <div class="brief-section">
-      <h3>Target Users</h3>
-      <p id="brief-users"></p>
-    </div>
-
-    <div class="brief-section">
-      <h3>Key Features</h3>
-      <ul id="brief-features"></ul>
-    </div>
-
-    <div class="brief-section">
-      <h3>Timeline & Budget</h3>
-      <p id="brief-timeline-budget"></p>
-    </div>
-
-    <div class="brief-section">
-      <h3>Technical Requirements</h3>
-      <p id="brief-tech"></p>
-    </div>
-
-    <div class="brief-section">
-      <h3>Success Criteria</h3>
-      <p id="brief-success"></p>
-    </div>
-
-    <div class="brief-section">
-      <h3>Constraints & Risks</h3>
-      <p id="brief-risks"></p>
-    </div>
-  </div>
-
-  <div class="action-buttons">
-    <button class="action-btn" onclick="window.print()">Download as PDF</button>
-    <button class="action-btn" onclick="copyToClipboard()">Copy to Clipboard</button>
-  </div>
-
-  <div class="cta-section" id="cta">
-    <h3>Want a Free Consultation?</h3>
-    <p>Get a 30-minute call to discuss your project scope, timeline, and implementation approach.</p>
-    <form class="cta-form" action="https://formspree.io/f/xpwzgvqr" method="POST" onsubmit="handleSubmit(event)">
-      <input type="email" name="email" id="cta-email" placeholder="Work email" required>
-      <input type="hidden" name="tool" value="project-scoping">
-      <input type="hidden" name="project_name" id="form-project-name">
-      <input type="hidden" name="_subject" value="Project Scoping - Consultation Request">
-      <button type="submit">Book Free Call</button>
-      <p style="font-size: 12px; color: var(--gray); margin-top: 8px; text-align: center;">
-        By submitting, you agree to our <a href="/privacy" style="color: var(--accent); text-decoration: underline;">Privacy Policy</a>.
-      </p>
-    </form>
-  </div>
-</div>
-
-<div class="back-link">
-  <a href="/tools/">← Back to Tools</a>
-</div>
-
+<script src="../scripts/chat-framework.js"></script>
 <script>
-  const form = document.getElementById('scoping-form');
-  const totalQuestions = 10;
-  let answeredCount = 0;
+  const chatConfig = {
+    title: "Project Scoping Template",
+    emoji: "📋",
+    toolName: "project-scoping",
+    formspreeUrl: "https://formspree.io/f/xpwzgvqr",
 
-  function updateProgress() {
-    answeredCount = 0;
-    for (let i = 1; i <= totalQuestions; i++) {
-      const el = document.getElementById('q' + i);
-      if (el && el.value.trim() !== '') {
-        answeredCount++;
-        trackQuestionAnswered('q' + i);
+    questions: [
+      {
+        id: 'project_name',
+        type: 'text',
+        botMessage: "What's the project name?",
+        emoji: "🎯",
+        placeholder: "Customer Portal Redesign"
+      },
+      {
+        id: 'problem',
+        type: 'text',
+        botMessage: "What problem are you solving?",
+        emoji: "❓",
+        placeholder: "Current portal has 40% bounce rate"
+      },
+      {
+        id: 'goals',
+        type: 'text',
+        botMessage: "What are the key goals? (separate multiple with commas)",
+        emoji: "🎯",
+        placeholder: "Reduce bounce rate, improve UX, increase conversions"
+      },
+      {
+        id: 'scope',
+        type: 'choice',
+        botMessage: "What's the project scope?",
+        emoji: "📐",
+        options: [
+          { value: 'small', label: 'Small (1-2 weeks)', emoji: '🔹' },
+          { value: 'medium', label: 'Medium (1-2 months)', emoji: '🔸' },
+          { value: 'large', label: 'Large (3+ months)', emoji: '🔶' }
+        ]
+      },
+      {
+        id: 'stakeholders',
+        type: 'text',
+        botMessage: "Who are the key stakeholders?",
+        emoji: "👥",
+        placeholder: "Product Manager, Engineering Lead, UX Designer"
+      },
+      {
+        id: 'deliverables',
+        type: 'text',
+        botMessage: "What are the main deliverables? (separate with commas)",
+        emoji: "📦",
+        placeholder: "New UI design, API integration, user testing report"
+      },
+      {
+        id: 'constraints',
+        type: 'text',
+        botMessage: "Any constraints or risks?",
+        emoji: "⚠️",
+        placeholder: "Legacy system integration, tight deadline"
+      },
+      {
+        id: 'budget',
+        type: 'choice',
+        botMessage: "What's the budget range?",
+        emoji: "💰",
+        options: [
+          { value: 'under_10k', label: 'Under $10k', emoji: '💵' },
+          { value: '10k_50k', label: '$10k - $50k', emoji: '💰' },
+          { value: 'over_50k', label: 'Over $50k', emoji: '💎' },
+          { value: 'tbd', label: 'To be determined', emoji: '❓' }
+        ]
+      },
+      {
+        id: 'success_metrics',
+        type: 'text',
+        botMessage: "How will you measure success?",
+        emoji: "📊",
+        placeholder: "Bounce rate below 20%, NPS score above 8"
+      },
+      {
+        id: 'timeline',
+        type: 'text',
+        botMessage: "What's the target launch date or timeline?",
+        emoji: "📅",
+        placeholder: "Q2 2026, or 8 weeks from kickoff"
       }
+    ],
+
+    onComplete: (answers, chat) => {
+      // Generate project brief
+      chat.showBotMessage("Here's your project brief:", '📋');
+
+      // Show sections
+      setTimeout(() => {
+        const briefDiv = document.createElement('div');
+        briefDiv.className = 'chat-message bot fade-in';
+        briefDiv.innerHTML = `
+          <div class="chat-bubble" style="max-width: 90%;">
+            <div class="brief-section">
+              <h3>📝 Project Overview</h3>
+              <p><strong>Name:</strong> ${answers.project_name}</p>
+              <p><strong>Problem:</strong> ${answers.problem}</p>
+              <p><strong>Scope:</strong> ${answers.scope.replace('_', ' ')}</p>
+            </div>
+            <div class="brief-section">
+              <h3>🎯 Goals & Success Metrics</h3>
+              <p><strong>Goals:</strong> ${answers.goals}</p>
+              <p><strong>Success Metrics:</strong> ${answers.success_metrics}</p>
+            </div>
+            <div class="brief-section">
+              <h3>📦 Deliverables & Timeline</h3>
+              <p><strong>Deliverables:</strong> ${answers.deliverables}</p>
+              <p><strong>Timeline:</strong> ${answers.timeline}</p>
+            </div>
+            <div class="brief-section">
+              <h3>👥 Team & Budget</h3>
+              <p><strong>Stakeholders:</strong> ${answers.stakeholders}</p>
+              <p><strong>Budget:</strong> ${answers.budget.replace('_', ' ')}</p>
+            </div>
+            <div class="brief-section">
+              <h3>⚠️ Constraints & Risks</h3>
+              <p>${answers.constraints}</p>
+            </div>
+          </div>
+        `;
+        document.getElementById('chat-messages').appendChild(briefDiv);
+        chat.scrollToBottom();
+      }, 500);
+
+      // Show next steps
+      setTimeout(() => {
+        chat.showBotMessage("Screenshot this brief or request a formatted PDF version by email.", '💡');
+      }, 2000);
+
+      // Email capture
+      setTimeout(() => {
+        chat.showEmailCapture("Want this as a formatted PDF with project charter template? 📧");
+      }, 3000);
     }
+  };
 
-    const pct = (answeredCount / totalQuestions) * 100;
-    document.getElementById('progress-fill').style.width = pct + '%';
-    document.getElementById('progress-text').textContent = `${answeredCount} of ${totalQuestions} answered`;
-    document.getElementById('generate-btn').disabled = answeredCount < totalQuestions;
-  }
-
-  form.addEventListener('submit', function(event) {
-    event.preventDefault();
-    generateBrief();
+  // Initialize chat
+  document.addEventListener('DOMContentLoaded', () => {
+    new ChatEngine(chatConfig);
   });
-
-  function generateBrief() {
-    const data = {};
-    for (let i = 1; i <= totalQuestions; i++) {
-      data['q' + i] = document.getElementById('q' + i).value.trim();
-    }
-
-    trackTemplateGenerated();
-
-    // Populate brief
-    document.getElementById('brief-title').textContent = data.q1;
-    document.getElementById('brief-date').textContent = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-    document.getElementById('brief-overview').textContent = `${data.q1} is a ${data.q2} project aimed at improving operational efficiency and solving key business challenges.`;
-    document.getElementById('brief-problem').textContent = data.q3;
-    document.getElementById('brief-users').textContent = data.q4;
-
-    const features = data.q5.split('\n').filter(f => f.trim() !== '');
-    const featuresList = document.getElementById('brief-features');
-    featuresList.innerHTML = '';
-    features.forEach(f => {
-      const li = document.createElement('li');
-      li.textContent = f.trim();
-      featuresList.appendChild(li);
-    });
-
-    document.getElementById('brief-timeline-budget').textContent = `Timeline: ${data.q6}. Budget: ${data.q7}.`;
-    document.getElementById('brief-tech').textContent = data.q8;
-    document.getElementById('brief-success').textContent = data.q9;
-    document.getElementById('brief-risks').textContent = data.q10;
-
-    // Show output
-    document.getElementById('form-container').style.display = 'none';
-    document.getElementById('output-container').style.display = 'block';
-    document.getElementById('brief-output').style.display = 'block';
-    document.getElementById('cta').style.display = 'block';
-    document.getElementById('form-project-name').value = data.q1;
-
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  function copyToClipboard() {
-    const brief = document.getElementById('brief-output').innerText;
-    navigator.clipboard.writeText(brief).then(() => {
-      alert('Project brief copied to clipboard!');
-    });
-  }
-
-  function handleSubmit(event) {
-    event.preventDefault();
-    const email = document.getElementById('cta-email').value;
-    trackLeadSubmit(email);
-
-    event.target.submit();
-    setTimeout(() => {
-      alert('Thanks! We\'ll send you a calendar link to book your free consultation within 24 hours.');
-    }, 100);
-  }
 </script>
 
 </body>
