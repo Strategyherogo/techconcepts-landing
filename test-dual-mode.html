@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dual-Mode Test - TechConcepts</title>
+
+<!-- Chat Framework -->
+<link rel="stylesheet" href="styles/chat-ui.css">
+<script src="scripts/chat-framework.js"></script>
+
+<style>
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #f8f9fa;
+    margin: 0;
+    padding: 0;
+  }
+
+  .hero {
+    background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
+    color: white;
+    padding: 60px 24px 48px;
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+  }
+
+  .hero p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+  }
+
+  .test-info {
+    max-width: 760px;
+    margin: 24px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  .test-info h2 {
+    margin-top: 0;
+    color: #1a1a2e;
+  }
+
+  .test-info ul {
+    line-height: 1.8;
+  }
+
+  .test-info code {
+    background: #f5f5f7;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'SF Mono', Monaco, monospace;
+    font-size: 0.9em;
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>🧪 Dual-Mode Test</h1>
+  <p>Testing Chat Mode + Interactive Survey Mode</p>
+</div>
+
+<div class="test-info">
+  <h2>Testing Checklist</h2>
+  <ul>
+    <li><strong>Mode Toggle:</strong> Click "Chat" and "Survey" buttons - should switch smoothly</li>
+    <li><strong>Chat Mode:</strong> One question at a time, typing indicators, user bubbles</li>
+    <li><strong>Survey Mode:</strong> All questions visible, progress circle, live updates</li>
+    <li><strong>LocalStorage:</strong> Refresh page - should remember your preferred mode</li>
+    <li><strong>Survey Answers:</strong> Answer questions, refresh - should restore answers</li>
+    <li><strong>Progress:</strong> Both modes update the progress bar correctly</li>
+    <li><strong>Animations:</strong> Smooth transitions, spring physics, confetti on complete</li>
+    <li><strong>Mobile:</strong> Resize window - responsive layout works</li>
+  </ul>
+
+  <h2>Question Types Tested</h2>
+  <ul>
+    <li><code>yes-no</code> - Toggle buttons (✅/❌)</li>
+    <li><code>choice</code> - Multiple options with emojis</li>
+    <li><code>number</code> - Input + slider sync</li>
+    <li><code>text</code> - Auto-expanding textarea</li>
+  </ul>
+</div>
+
+<script>
+  const testConfig = {
+    title: "Dual-Mode Test",
+    emoji: "🧪",
+    toolName: "dual-mode-test",
+    formspreeUrl: "https://formspree.io/f/xpwzgvqr",
+    shareText: "I just tested the new dual-mode chat framework!",
+
+    // Enable both modes
+    modes: ['chat', 'survey'],
+    defaultMode: 'chat',
+    allowToggle: true,
+
+    questions: [
+      {
+        id: 'ready',
+        type: 'yes-no',
+        botMessage: "Are you ready to test the dual-mode system?",
+        emoji: "🚀"
+      },
+      {
+        id: 'mode_preference',
+        type: 'choice',
+        botMessage: "Which mode do you prefer?",
+        emoji: "🎯",
+        options: [
+          { value: 'chat', label: 'Chat Mode', emoji: '💬' },
+          { value: 'survey', label: 'Survey Mode', emoji: '📋' },
+          { value: 'both', label: 'Both are great!', emoji: '🎉' }
+        ]
+      },
+      {
+        id: 'rating',
+        type: 'number',
+        botMessage: "Rate the animation quality (1-10)",
+        placeholder: "e.g., 9",
+        emoji: "⭐",
+        min: 1,
+        max: 10,
+        defaultValue: 5
+      },
+      {
+        id: 'feedback',
+        type: 'text',
+        botMessage: "Any feedback or suggestions?",
+        placeholder: "Your thoughts here...",
+        emoji: "💭"
+      }
+    ],
+
+    onComplete: (answers, chat) => {
+      // Show simple results
+      const results = [
+        {
+          label: 'Ready for Testing',
+          value: answers.ready === 'yes' ? '✅ Yes' : '❌ No'
+        },
+        {
+          label: 'Preferred Mode',
+          value: answers.mode_preference.toUpperCase(),
+          highlight: true
+        },
+        {
+          label: 'Animation Rating',
+          value: `${answers.rating}/10 ⭐`,
+          highlight: true
+        }
+      ];
+
+      chat.showResultsCard(results);
+
+      // Show thank you message
+      setTimeout(() => {
+        chat.showBotMessage("Thanks for testing! Switch modes and try again to see the difference. 🎉", '✅');
+      }, 1000);
+
+      // Show email capture
+      setTimeout(() => {
+        chat.showEmailCapture("Want to be notified of future updates? 📧");
+      }, 2500);
+    }
+  };
+
+  // Initialize on load
+  document.addEventListener('DOMContentLoaded', () => {
+    new ChatEngine(testConfig);
+  });
+</script>
+
+</body>
+</html>
