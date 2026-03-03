@@ -13,13 +13,6 @@
   <link rel="dns-prefetch" href="https://www.googletagmanager.com">
   <link rel="preconnect" href="https://formspree.io" crossorigin>
   <link rel="dns-prefetch" href="https://formspree.io">
-  <link rel="preconnect" href="https://assets.calendly.com" crossorigin>
-  <link rel="dns-prefetch" href="https://assets.calendly.com">
-
-  <!-- Calendly Widget -->
-  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
-
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://techconcepts.org/">
@@ -281,7 +274,7 @@
           <button class="lang-btn" onclick="toggleLangMenu()"><span id="currentLang">EN</span> &#9662;</button>
           <div class="lang-dropdown" id="langDropdown"></div>
         </div>
-        <a href="#" onclick="openCalendly('nav_cta'); return false;" class="btn btn-primary" data-i18n="nav.cta">Book a Free 15-Min Call</a>
+        <a href="mailto:eg@techconcepts.org?subject=Project%20Inquiry" class="btn btn-primary" data-i18n="nav.cta">Get in Touch</a>
       </div>
     </div>
   </nav>
@@ -292,7 +285,7 @@
       <h1 data-i18n="hero.title">Technology That Works.<br>Results You Can Measure.</h1>
       <p class="hero-subtitle" data-i18n="hero.subtitle">I help businesses automate operations, optimize workflows, and build custom tools. From Jira automation saving €100K+ to AI document classification at 92% accuracy.</p>
       <div class="hero-cta">
-        <a href="#" onclick="openCalendly('hero_cta'); return false;" class="btn btn-primary btn-lg" data-i18n="hero.cta-primary">Book a Free 15-Min Call</a>
+        <a href="mailto:eg@techconcepts.org?subject=Project%20Inquiry" class="btn btn-primary btn-lg" data-i18n="hero.cta-primary">Get in Touch</a>
         <a href="/case-studies/" class="btn btn-secondary btn-lg" data-i18n="hero.cta-secondary">See Case Studies</a>
       </div>
       <div class="trust-badges">
@@ -429,7 +422,7 @@
     <div class="container">
       <h2>Let's talk about your project</h2>
       <p>15 minutes. No pitch. Just honest advice on what's possible.</p>
-      <a href="#" onclick="openCalendly('final_cta'); return false;" class="btn btn-primary btn-lg">Book a Free 15-Min Call</a>
+      <a href="mailto:eg@techconcepts.org?subject=Project%20Inquiry" class="btn btn-primary btn-lg">Get in Touch</a>
     </div>
   </section>
 
@@ -480,7 +473,7 @@
         <div class="footer-col">
           <h4>Location</h4>
           <p>Madrid, Spain</p>
-          <p><a href="#" onclick="openCalendly('footer_cta'); return false;">Book a Free Call</a></p>
+          <p><a href="mailto:eg@techconcepts.org?subject=Project%20Inquiry">Get in Touch</a></p>
         </div>
       </div>
       <div class="footer-bottom">
@@ -494,25 +487,6 @@
   <script src="/scripts/i18n.js"></script>
   <script src="/scripts/nav.js"></script>
   <script src="/scripts/exit-intent.js"></script>
-
-  <!-- Calendly Popup Helper -->
-  <script>
-    // PLACEHOLDER: Replace 'https://calendly.com/techconcepts' with your real Calendly URL
-    function openCalendly(source) {
-      if (typeof gtag === 'function') {
-        gtag('event', 'cta_click', {
-          'event_category': 'conversion',
-          'event_label': 'calendly_booking',
-          'cta_source': source
-        });
-      }
-      if (typeof Calendly !== 'undefined') {
-        Calendly.initPopupWidget({url: 'https://calendly.com/techconcepts'});
-      } else {
-        window.open('https://calendly.com/techconcepts', '_blank');
-      }
-    }
-  </script>
 
   <!-- Legacy Hash Redirect -->
   <script>
