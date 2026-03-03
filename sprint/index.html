@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Ops Sprint — TechConcepts</title>
+<meta name="description" content="Fixed-scope AI automation for your team. Audit + implement the 3 highest-ROI workflow automations in 5 business days.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--ink:#1a1a2e;--accent:#2563eb;--accent-dark:#1d4ed8;--bg:#fafafa;--card:#fff;--muted:#64748b;--border:#e2e8f0;--green:#059669;--radius:12px}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
+a{color:var(--accent);text-decoration:none}
+
+/* Nav */
+.nav{background:var(--ink);padding:16px 0}
+.nav-inner{max-width:960px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{color:#fff;font-weight:700;font-size:18px;letter-spacing:-0.5px}
+.nav-logo span{color:var(--accent)}
+.nav-cta{background:var(--accent);color:#fff;padding:8px 20px;border-radius:8px;font-size:14px;font-weight:600;transition:background .2s}
+.nav-cta:hover{background:var(--accent-dark)}
+
+/* Hero */
+.hero{background:linear-gradient(135deg,var(--ink) 0%,#16213e 100%);color:#fff;padding:80px 24px;text-align:center}
+.hero h1{font-size:clamp(32px,5vw,52px);font-weight:800;line-height:1.15;margin-bottom:16px;letter-spacing:-1px}
+.hero h1 em{font-style:normal;color:#60a5fa}
+.hero .subtitle{font-size:clamp(16px,2.5vw,20px);color:#94a3b8;max-width:600px;margin:0 auto 32px}
+.hero-cta{display:inline-block;background:var(--accent);color:#fff;padding:14px 36px;border-radius:10px;font-size:17px;font-weight:700;transition:transform .2s,background .2s}
+.hero-cta:hover{background:var(--accent-dark);transform:translateY(-2px)}
+.hero-proof{margin-top:24px;font-size:14px;color:#94a3b8}
+
+/* Stats */
+.stats{background:var(--card);border-bottom:1px solid var(--border);padding:40px 24px}
+.stats-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:32px;text-align:center}
+.stat-num{font-size:36px;font-weight:800;color:var(--accent)}
+.stat-label{font-size:14px;color:var(--muted);margin-top:4px}
+
+/* Sections */
+.section{max-width:960px;margin:0 auto;padding:64px 24px}
+.section-label{font-size:13px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px}
+.section h2{font-size:clamp(24px,3.5vw,36px);font-weight:800;margin-bottom:16px;letter-spacing:-0.5px}
+.section .lead{font-size:18px;color:var(--muted);margin-bottom:40px;max-width:640px}
+
+/* How it works */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:24px}
+.step{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:28px;position:relative}
+.step-num{width:36px;height:36px;background:var(--accent);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;margin-bottom:16px}
+.step h3{font-size:17px;font-weight:700;margin-bottom:8px}
+.step p{font-size:14px;color:var(--muted)}
+
+/* Pricing */
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
+.price-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:32px;position:relative}
+.price-card.featured{border:2px solid var(--accent);box-shadow:0 4px 24px rgba(37,99,235,.12)}
+.price-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;font-size:12px;font-weight:700;padding:4px 16px;border-radius:20px;text-transform:uppercase}
+.price-name{font-size:18px;font-weight:700;margin-bottom:4px}
+.price-amount{font-size:40px;font-weight:800;margin:12px 0 4px}
+.price-amount span{font-size:16px;font-weight:500;color:var(--muted)}
+.price-desc{font-size:14px;color:var(--muted);margin-bottom:20px}
+.price-list{list-style:none;margin-bottom:24px}
+.price-list li{font-size:14px;padding:6px 0;display:flex;align-items:start;gap:8px}
+.price-list li::before{content:"✓";color:var(--green);font-weight:700;flex-shrink:0}
+.price-btn{display:block;text-align:center;padding:12px;border-radius:8px;font-weight:700;font-size:15px;transition:all .2s}
+.price-btn-primary{background:var(--accent);color:#fff}
+.price-btn-primary:hover{background:var(--accent-dark)}
+.price-btn-outline{border:2px solid var(--border);color:var(--ink)}
+.price-btn-outline:hover{border-color:var(--accent);color:var(--accent)}
+
+/* Results */
+.results-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.result-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:28px}
+.result-card .metric{font-size:28px;font-weight:800;color:var(--green);margin-bottom:8px}
+.result-card h3{font-size:16px;font-weight:700;margin-bottom:8px}
+.result-card p{font-size:14px;color:var(--muted)}
+
+/* About */
+.about-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:40px;align-items:start}
+@media(max-width:640px){.about-grid{grid-template-columns:1fr}}
+.about-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:28px}
+.about-card h3{font-size:18px;font-weight:700;margin-bottom:4px}
+.about-card .role{font-size:14px;color:var(--muted);margin-bottom:12px}
+.about-card p{font-size:14px;color:var(--muted);margin-bottom:8px}
+.credential{display:inline-block;background:#f1f5f9;padding:4px 10px;border-radius:6px;font-size:12px;font-weight:600;color:var(--ink);margin:2px}
+
+/* CTA */
+.cta-section{background:linear-gradient(135deg,var(--ink) 0%,#16213e 100%);color:#fff;padding:64px 24px;text-align:center;margin-top:64px}
+.cta-section h2{font-size:clamp(24px,3.5vw,36px);font-weight:800;margin-bottom:12px}
+.cta-section p{color:#94a3b8;margin-bottom:32px;font-size:17px}
+.cta-section .hero-cta{font-size:18px;padding:16px 40px}
+
+/* Footer */
+.footer{background:var(--ink);color:#94a3b8;padding:24px;text-align:center;font-size:13px}
+.footer a{color:#94a3b8}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+<div class="nav-inner">
+<div class="nav-logo">Tech<span>Concepts</span></div>
+<a href="mailto:eg@techconcepts.org?subject=AI%20Ops%20Sprint%20Inquiry" class="nav-cta">Book a Call</a>
+</div>
+</nav>
+
+<section class="hero">
+<h1>Your team's workflows are<br>costing you <em>30+ hours/week</em></h1>
+<p class="subtitle">The AI Ops Sprint: I audit your team's daily workflows and implement the 3 highest-ROI automations in 5 business days. Fixed price. No fluff.</p>
+<a href="mailto:eg@techconcepts.org?subject=AI%20Ops%20Sprint%20—%20Let's%20Talk&body=Hi%20Evgeny%2C%0A%0AI'm%20interested%20in%20the%20AI%20Ops%20Sprint%20for%20my%20team.%0A%0ACompany%3A%20%0ATeam%20size%3A%20%0AMain%20tools%20we%20use%3A%20%0ABiggest%20pain%20point%3A%20%0A%0AThanks!" class="hero-cta">Get Started</a>
+<p class="hero-proof">Taking 3 new clients this quarter &middot; Based in Madrid, serving DACH &amp; Europe</p>
+</section>
+
+<div class="stats">
+<div class="stats-inner">
+<div><div class="stat-num">72%</div><div class="stat-label">Avg. cost reduction</div></div>
+<div><div class="stat-num">5</div><div class="stat-label">Business days</div></div>
+<div><div class="stat-num">€100K+</div><div class="stat-label">Annual savings delivered</div></div>
+<div><div class="stat-num">92%</div><div class="stat-label">AI classification accuracy</div></div>
+</div>
+</div>
+
+<section class="section">
+<p class="section-label">How It Works</p>
+<h2>Three steps. Five days. Measurable results.</h2>
+<p class="lead">No lengthy discovery phases. No 50-slide decks. Just a focused sprint that delivers working automations your team uses on day one.</p>
+<div class="steps">
+<div class="step">
+<div class="step-num">1</div>
+<h3>Workflow Audit (Day 1–2)</h3>
+<p>I map your team's daily processes across Slack, Jira, email, and internal tools. I interview 3–5 key people, identify bottlenecks, and rank automation opportunities by ROI.</p>
+</div>
+<div class="step">
+<div class="step-num">2</div>
+<h3>Build & Implement (Day 3–4)</h3>
+<p>I implement the top 3 automations: AI-powered ticket routing, smart notifications, workflow bots, document processing — whatever has the highest impact for your team.</p>
+</div>
+<div class="step">
+<div class="step-num">3</div>
+<h3>Handoff & Training (Day 5)</h3>
+<p>You get working automations, full documentation, and a team walkthrough. Everything runs on your infrastructure — no vendor lock-in, no recurring fees to me.</p>
+</div>
+</div>
+</section>
+
+<section class="section" style="background:var(--card);border-top:1px solid var(--border);border-bottom:1px solid var(--border);max-width:100%;padding-left:0;padding-right:0">
+<div style="max-width:960px;margin:0 auto;padding:0 24px">
+<p class="section-label">Pricing</p>
+<h2>Fixed price. No surprises.</h2>
+<p class="lead">Choose the scope that fits your team. All tiers include the workflow audit.</p>
+<div class="pricing-grid">
+<div class="price-card">
+<p class="price-name">Sprint Lite</p>
+<p class="price-desc">Audit & roadmap only</p>
+<p class="price-amount">€1,500 <span>one-time</span></p>
+<ul class="price-list">
+<li>Full workflow audit (Slack, Jira, email, tools)</li>
+<li>10-page report with ROI estimates per opportunity</li>
+<li>Prioritized automation roadmap</li>
+<li>30-minute debrief call</li>
+</ul>
+<a href="mailto:eg@techconcepts.org?subject=Sprint%20Lite%20Inquiry" class="price-btn price-btn-outline">Get Started</a>
+</div>
+<div class="price-card featured">
+<div class="price-badge">Most Popular</div>
+<p class="price-name">Sprint Standard</p>
+<p class="price-desc">Audit + implement top 3</p>
+<p class="price-amount">€3,500 <span>one-time</span></p>
+<ul class="price-list">
+<li>Everything in Lite</li>
+<li>3 working automations implemented</li>
+<li>Full documentation & source code</li>
+<li>Team walkthrough session</li>
+<li>1 week of async support post-delivery</li>
+</ul>
+<a href="mailto:eg@techconcepts.org?subject=Sprint%20Standard%20Inquiry" class="price-btn price-btn-primary">Get Started</a>
+</div>
+<div class="price-card">
+<p class="price-name">Sprint Plus</p>
+<p class="price-desc">Standard + ongoing support</p>
+<p class="price-amount">€5,000 <span>one-time</span></p>
+<ul class="price-list">
+<li>Everything in Standard</li>
+<li>30-day async Slack/Teams support</li>
+<li>Team training workshop (90 min)</li>
+<li>Monthly check-in for 3 months</li>
+<li>Priority booking for follow-up sprints</li>
+</ul>
+<a href="mailto:eg@techconcepts.org?subject=Sprint%20Plus%20Inquiry" class="price-btn price-btn-outline">Get Started</a>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section">
+<p class="section-label">Results</p>
+<h2>What teams get after the sprint</h2>
+<p class="lead">Real numbers from recent engagements.</p>
+<div class="results-grid">
+<div class="result-card">
+<div class="metric">8h → 45min</div>
+<h3>Weekly Processing Time</h3>
+<p>Document workflows that took a full workday now run in under an hour with AI-powered classification and routing.</p>
+</div>
+<div class="result-card">
+<div class="metric">93% overlap eliminated</div>
+<h3>Slack Workspace Cleanup</h3>
+<p>A 50-person team had 49 channels with 7 duplicate pairs. Merged, renamed, and automated — saving 30+ min/day across the team.</p>
+</div>
+<div class="result-card">
+<div class="metric">92% accuracy</div>
+<h3>AI Ticket Classification</h3>
+<p>Jira tickets auto-classified and routed to the right team. Manual triage eliminated. Response time dropped from hours to minutes.</p>
+</div>
+</div>
+</section>
+
+<section class="section">
+<p class="section-label">What I Automate</p>
+<h2>Common sprint deliverables</h2>
+<p class="lead">Every sprint is custom, but these are the patterns I see most often in mid-sized teams.</p>
+<div class="steps" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
+<div class="step">
+<h3>Slack Automation</h3>
+<p>Channel cleanup, smart notifications, daily digest bots, cross-channel summarization, onboarding workflows.</p>
+</div>
+<div class="step">
+<h3>Jira & Ticketing</h3>
+<p>AI-powered ticket classification, auto-routing, SLA monitoring, sprint analytics, duplicate detection.</p>
+</div>
+<div class="step">
+<h3>Email & Documents</h3>
+<p>Inbox triage automation, document extraction, compliance monitoring, approval workflows.</p>
+</div>
+<div class="step">
+<h3>Internal Tools</h3>
+<p>API integrations between your existing tools, custom dashboards, report generation, data sync.</p>
+</div>
+</div>
+</section>
+
+<section class="section">
+<p class="section-label">Who's Behind This</p>
+<h2>Your sprint lead</h2>
+<div class="about-grid">
+<div class="about-card">
+<h3>Evgeny Goncharov</h3>
+<p class="role">Founder, TechConcepts</p>
+<p>I've spent 10+ years building and automating workflows at scale — from Yandex (search infrastructure) to EY (enterprise consulting) to running my own practice.</p>
+<p>I work directly with your team. No junior consultants, no handoffs, no "discovery phases" that last months.</p>
+<div style="margin-top:12px">
+<span class="credential">Ex-Yandex</span>
+<span class="credential">Ex-EY</span>
+<span class="credential">MBA, Darden</span>
+<span class="credential">6 iOS apps shipped</span>
+<span class="credential">Madrid, Spain</span>
+</div>
+</div>
+<div>
+<p class="section-label">Ideal For</p>
+<ul style="list-style:none;margin-top:12px">
+<li style="padding:8px 0;font-size:15px;display:flex;align-items:start;gap:8px"><span style="color:var(--green);font-weight:700;flex-shrink:0">→</span> Engineering teams (20–200 people) drowning in Slack/Jira noise</li>
+<li style="padding:8px 0;font-size:15px;display:flex;align-items:start;gap:8px"><span style="color:var(--green);font-weight:700;flex-shrink:0">→</span> Mittelstand companies exploring AI but lacking internal expertise</li>
+<li style="padding:8px 0;font-size:15px;display:flex;align-items:start;gap:8px"><span style="color:var(--green);font-weight:700;flex-shrink:0">→</span> CTOs who need results this quarter, not a 6-month roadmap</li>
+<li style="padding:8px 0;font-size:15px;display:flex;align-items:start;gap:8px"><span style="color:var(--green);font-weight:700;flex-shrink:0">→</span> Teams that tried AI tools but couldn't make them stick</li>
+</ul>
+<p class="section-label" style="margin-top:24px">Not For</p>
+<ul style="list-style:none;margin-top:12px">
+<li style="padding:6px 0;font-size:14px;color:var(--muted)">✗ Companies needing ML model training or data science</li>
+<li style="padding:6px 0;font-size:14px;color:var(--muted)">✗ Teams under 10 people (usually not enough process to optimize)</li>
+<li style="padding:6px 0;font-size:14px;color:var(--muted)">✗ Anyone looking for slide decks instead of working software</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section class="cta-section">
+<h2>Ready to get 30+ hours back every week?</h2>
+<p>Book a free 20-minute call. I'll tell you if a sprint makes sense for your team — no pitch, no pressure.</p>
+<a href="mailto:eg@techconcepts.org?subject=AI%20Ops%20Sprint%20—%20Free%20Call&body=Hi%20Evgeny%2C%0A%0AI'd%20like%20to%20book%20a%20free%20call%20about%20the%20AI%20Ops%20Sprint.%0A%0ACompany%3A%20%0ATeam%20size%3A%20%0AMain%20tools%3A%20%0ABiggest%20pain%20point%3A%20%0A%0AThanks!" class="hero-cta">Book a Free Call</a>
+<p style="margin-top:16px;font-size:14px;color:#64748b">eg@techconcepts.org &middot; techconcepts.org</p>
+</section>
+
+<footer class="footer">
+<p>&copy; 2026 TechConcepts &middot; Madrid, Spain &middot; <a href="https://techconcepts.org">techconcepts.org</a></p>
+</footer>
+
+</body>
+</html>
