@@ -21,6 +21,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;c
 .hero h1{font-size:clamp(26px,4vw,38px);font-weight:800;line-height:1.2;margin-bottom:12px;letter-spacing:-0.5px}
 .hero p{font-size:17px;color:var(--muted);max-width:520px;margin:0 auto}
 .badge{display:inline-block;background:#eff6ff;color:var(--accent);font-size:12px;font-weight:700;padding:4px 14px;border-radius:20px;margin-bottom:16px;text-transform:uppercase;letter-spacing:1px}
+.lang-bar{display:flex;justify-content:center;gap:8px;margin-bottom:32px}
+.lang-btn{padding:8px 20px;border-radius:8px;border:2px solid var(--border);background:var(--card);cursor:pointer;font-size:14px;font-weight:600;transition:all .2s}
+.lang-btn:hover{border-color:var(--accent)}
+.lang-btn.active{border-color:var(--accent);background:#eff6ff;color:var(--accent)}
 .progress-bar{background:var(--border);height:6px;border-radius:3px;margin-bottom:32px;overflow:hidden}
 .progress-fill{background:var(--accent);height:100%;border-radius:3px;transition:width .4s ease}
 .progress-text{font-size:13px;color:var(--muted);margin-bottom:8px;text-align:right}
@@ -66,15 +70,16 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;c
 </style>
 </head>
 <body>
-<nav class="nav"><div class="nav-inner"><div class="nav-logo">Tech<span>Concepts</span></div><a href="/sprint/" class="nav-link">AI Ops Sprint &rarr;</a></div></nav>
+<nav class="nav"><div class="nav-inner"><div class="nav-logo">Tech<span>Concepts</span></div><a href="/sprint/" class="nav-link" id="nav-sprint">AI Ops Sprint &rarr;</a></div></nav>
 <div class="container">
-<div class="hero" id="hero">
-<span class="badge">Free Assessment &middot; 2 Minutes</span>
-<h1>How much time is your team losing to manual workflows?</h1>
-<p>Answer 8 quick questions. Get your Workflow Efficiency Score and personalized recommendations.</p>
+<div id="hero" class="hero">
+<span class="badge" id="badge-text">Free Assessment &middot; 2 Minutes</span>
+<h1 id="hero-title">How much time is your team losing to manual workflows?</h1>
+<p id="hero-sub">Answer 8 quick questions. Get your Workflow Efficiency Score and personalized recommendations.</p>
+<div class="lang-bar" id="lang-bar"></div>
 </div>
 <div id="quiz">
-<div class="progress-text"><span id="progress-label">Question 1 of 8</span></div>
+<div class="progress-text"><span id="progress-label"></span></div>
 <div class="progress-bar"><div class="progress-fill" id="progress" style="width:12.5%"></div></div>
 </div>
 <div id="results"></div>
@@ -82,37 +87,388 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;c
 <footer class="footer"><p>&copy; 2026 TechConcepts &middot; eg@techconcepts.org &middot; <a href="https://techconcepts.org" style="color:inherit">techconcepts.org</a></p></footer>
 
 <script>
-const questions = [
-  { q: "How does your team handle incoming support/service requests?", context: "Think about how tickets, bugs, or internal requests get to the right person.", options: [{ text: "Fully automated — AI classifies and routes automatically", score: 3 }, { text: "Partially automated — some rules, but manual triage for most", score: 2 }, { text: "Mostly manual — someone reads and assigns each request", score: 1 }, { text: "Chaotic — requests come via Slack, email, DMs, and things get lost", score: 0 }], category: "routing" },
-  { q: "How many Slack/Teams channels does your team actively use?", context: "Include channels people check at least weekly.", options: [{ text: "Under 15 — well-organized with clear purposes", score: 3 }, { text: "15–30 — mostly organized, some overlap", score: 2 }, { text: "30–60 — growing organically, hard to navigate", score: 1 }, { text: "60+ — nobody knows what's where anymore", score: 0 }], category: "channels" },
-  { q: "How do team leads stay informed about what's happening across teams?", context: "Daily standups, reports, dashboards, reading every channel...", options: [{ text: "Automated digests/dashboards — key info surfaces automatically", score: 3 }, { text: "Structured meetings — but takes significant time to prepare", score: 2 }, { text: "Manually checking channels and asking around", score: 1 }, { text: "They don't — information silos are a real problem", score: 0 }], category: "visibility" },
-  { q: "How long does it take to onboard a new team member into your tools?", context: "From day 1 to 'I know which channels to join, which boards to check, who to ask.'", options: [{ text: "Under 1 hour — automated setup with guides", score: 3 }, { text: "1 day — someone walks them through manually", score: 2 }, { text: "2–5 days — they figure it out gradually", score: 1 }, { text: "Weeks — people are still discovering channels months later", score: 0 }], category: "onboarding" },
-  { q: "How much time per week does your team spend on status updates and reporting?", context: "Writing standups, updating Jira, compiling reports for leadership.", options: [{ text: "Under 30 min/person — mostly automated", score: 3 }, { text: "30–60 min/person — some manual work", score: 2 }, { text: "1–3 hours/person — significant manual effort", score: 1 }, { text: "3+ hours/person — it's a major time sink", score: 0 }], category: "reporting" },
-  { q: "How many tools does your team switch between daily?", context: "Slack, Jira, email, Google Docs, Notion, CRM, monitoring, etc.", options: [{ text: "2–3 tools — well-integrated", score: 3 }, { text: "4–5 tools — some integrations, some manual copy-paste", score: 2 }, { text: "6–8 tools — lots of context switching", score: 1 }, { text: "8+ tools — copy-pasting between systems all day", score: 0 }], category: "tools" },
-  { q: "When something goes wrong (outage, bug, escalation), how does your team coordinate?", context: "Think about the last time something urgent happened.", options: [{ text: "Automated incident workflow — alerts, channel, roles, timeline", score: 3 }, { text: "Semi-structured — we have a process but it's mostly manual", score: 2 }, { text: "Ad-hoc Slack messages and calls", score: 1 }, { text: "Fire drill — everyone scrambles, no clear process", score: 0 }], category: "incidents" },
-  { q: "What's your team size?", context: "This helps us calibrate the time savings estimate.", options: [{ text: "10–30 people", score: 0, team: 20 }, { text: "30–80 people", score: 0, team: 55 }, { text: "80–200 people", score: 0, team: 140 }, { text: "200+ people", score: 0, team: 300 }], category: "size" }
-];
+var LANGS = {
+  en: {
+    badge: 'Free Assessment \u00b7 2 Minutes',
+    heroTitle: 'How much time is your team losing to manual workflows?',
+    heroSub: 'Answer 8 quick questions. Get your Workflow Efficiency Score and personalized recommendations.',
+    navSprint: 'AI Ops Sprint \u2192',
+    qOf: 'Question {n} of {t}',
+    next: 'Next',
+    back: 'Back',
+    seeResults: 'See My Results',
+    resultsTitle: 'Your Workflow Efficiency Score',
+    hoursWeek: '~{h} hours/week',
+    hoursDesc: 'Estimated time your team of {s} is losing to manual workflows',
+    findings: 'Key Findings',
+    ctaTitle: 'Want to fix this in 5 days?',
+    ctaSub: 'The AI Ops Sprint: I audit your workflows and implement the top 3 automations. Fixed price, working software \u2014 not a slide deck.',
+    ctaBtn: 'Book a Free Call',
+    shareLinkedIn: 'Share on LinkedIn',
+    shareEmail: 'Share via Email',
+    learnMore: 'Learn more about the AI Ops Sprint \u2192',
+    verdictHigh: 'Strong',
+    verdictMid: 'Room to Improve',
+    verdictLow: 'Needs Attention',
+    detailHigh: "Your workflows are in good shape. There may be targeted optimizations worth exploring, but you're ahead of most teams.",
+    detailMid: 'Your team has some structure, but significant time is being lost to manual processes. A focused sprint could recover 15\u201325 hours/week.',
+    detailLow: 'Your team is losing substantial time to workflow inefficiency. The good news: this is exactly where automation has the highest ROI.',
+    mailSubject: 'Scorecard Result: {p}% \u2014 Let\'s Talk',
+    mailBody: 'Hi Evgeny,\n\nI just took the Workflow Efficiency Scorecard and scored {p}%.\n\nMy team size: {s}\nEstimated hours lost/week: {h}\n\nI\'d like to discuss the AI Ops Sprint.\n\nThanks!'
+  },
+  de: {
+    badge: 'Kostenlose Analyse \u00b7 2 Minuten',
+    heroTitle: 'Wie viel Zeit verliert Ihr Team durch manuelle Prozesse?',
+    heroSub: 'Beantworten Sie 8 kurze Fragen. Erhalten Sie Ihren Workflow-Effizienz-Score und individuelle Empfehlungen.',
+    navSprint: 'AI Ops Sprint \u2192',
+    qOf: 'Frage {n} von {t}',
+    next: 'Weiter',
+    back: 'Zur\u00fcck',
+    seeResults: 'Ergebnisse anzeigen',
+    resultsTitle: 'Ihr Workflow-Effizienz-Score',
+    hoursWeek: '~{h} Stunden/Woche',
+    hoursDesc: 'Gesch\u00e4tzte Zeit, die Ihr Team von {s} Personen durch manuelle Workflows verliert',
+    findings: 'Wichtigste Erkenntnisse',
+    ctaTitle: 'M\u00f6chten Sie das in 5 Tagen beheben?',
+    ctaSub: 'Der AI Ops Sprint: Ich analysiere Ihre Workflows und implementiere die Top-3-Automatisierungen. Festpreis, funktionierende Software \u2014 keine Pr\u00e4sentation.',
+    ctaBtn: 'Kostenloses Gespr\u00e4ch buchen',
+    shareLinkedIn: 'Auf LinkedIn teilen',
+    shareEmail: 'Per E-Mail teilen',
+    learnMore: 'Mehr \u00fcber den AI Ops Sprint erfahren \u2192',
+    verdictHigh: 'Stark',
+    verdictMid: 'Verbesserungspotenzial',
+    verdictLow: 'Handlungsbedarf',
+    detailHigh: 'Ihre Workflows sind in gutem Zustand. Es gibt m\u00f6glicherweise gezielte Optimierungen, aber Sie sind den meisten Teams voraus.',
+    detailMid: 'Ihr Team hat eine gewisse Struktur, aber es geht erheblich Zeit durch manuelle Prozesse verloren. Ein fokussierter Sprint k\u00f6nnte 15\u201325 Stunden/Woche einsparen.',
+    detailLow: 'Ihr Team verliert erheblich Zeit durch Workflow-Ineffizienz. Die gute Nachricht: Genau hier hat Automatisierung den h\u00f6chsten ROI.',
+    mailSubject: 'Scorecard-Ergebnis: {p}% \u2014 Gespr\u00e4ch vereinbaren',
+    mailBody: 'Hallo Evgeny,\n\nich habe gerade die Workflow-Effizienz-Scorecard ausgef\u00fcllt und {p}% erreicht.\n\nTeamgr\u00f6\u00dfe: {s}\nGesch\u00e4tzte verlorene Stunden/Woche: {h}\n\nIch m\u00f6chte gerne den AI Ops Sprint besprechen.\n\nVielen Dank!'
+  },
+  fr: {
+    badge: '\u00c9valuation gratuite \u00b7 2 minutes',
+    heroTitle: 'Combien de temps votre \u00e9quipe perd-elle avec des processus manuels ?',
+    heroSub: 'R\u00e9pondez \u00e0 8 questions rapides. Obtenez votre Score d\u2019Efficacit\u00e9 et des recommandations personnalis\u00e9es.',
+    navSprint: 'AI Ops Sprint \u2192',
+    qOf: 'Question {n} sur {t}',
+    next: 'Suivant',
+    back: 'Retour',
+    seeResults: 'Voir mes r\u00e9sultats',
+    resultsTitle: 'Votre Score d\u2019Efficacit\u00e9 Workflow',
+    hoursWeek: '~{h} heures/semaine',
+    hoursDesc: 'Temps estim\u00e9 perdu par votre \u00e9quipe de {s} personnes en processus manuels',
+    findings: 'Conclusions cl\u00e9s',
+    ctaTitle: 'Envie de r\u00e9soudre \u00e7a en 5 jours ?',
+    ctaSub: 'L\u2019AI Ops Sprint : j\u2019audite vos workflows et impl\u00e9mente les 3 automatisations \u00e0 plus fort ROI. Prix fixe, logiciel fonctionnel \u2014 pas un PowerPoint.',
+    ctaBtn: 'R\u00e9server un appel gratuit',
+    shareLinkedIn: 'Partager sur LinkedIn',
+    shareEmail: 'Partager par e-mail',
+    learnMore: 'En savoir plus sur l\u2019AI Ops Sprint \u2192',
+    verdictHigh: 'Solide',
+    verdictMid: '\u00c0 am\u00e9liorer',
+    verdictLow: 'Attention requise',
+    detailHigh: 'Vos workflows sont en bon \u00e9tat. Il existe peut-\u00eatre des optimisations cibl\u00e9es, mais vous \u00eates en avance sur la plupart des \u00e9quipes.',
+    detailMid: 'Votre \u00e9quipe a une certaine structure, mais un temps consid\u00e9rable est perdu en processus manuels. Un sprint cibl\u00e9 pourrait r\u00e9cup\u00e9rer 15\u201325 heures/semaine.',
+    detailLow: 'Votre \u00e9quipe perd un temps consid\u00e9rable en inefficacit\u00e9s. La bonne nouvelle : c\u2019est exactement l\u00e0 que l\u2019automatisation a le meilleur ROI.',
+    mailSubject: 'R\u00e9sultat Scorecard : {p}% \u2014 Discutons',
+    mailBody: 'Bonjour Evgeny,\n\nJe viens de remplir la Scorecard d\u2019Efficacit\u00e9 et j\u2019ai obtenu {p}%.\n\nTaille de l\u2019\u00e9quipe : {s}\nHeures perdues estim\u00e9es/semaine : {h}\n\nJ\u2019aimerais discuter de l\u2019AI Ops Sprint.\n\nMerci !'
+  },
+  es: {
+    badge: 'Evaluaci\u00f3n gratuita \u00b7 2 minutos',
+    heroTitle: '\u00bfCu\u00e1nto tiempo pierde tu equipo con procesos manuales?',
+    heroSub: 'Responde 8 preguntas r\u00e1pidas. Obt\u00e9n tu Puntuaci\u00f3n de Eficiencia y recomendaciones personalizadas.',
+    navSprint: 'AI Ops Sprint \u2192',
+    qOf: 'Pregunta {n} de {t}',
+    next: 'Siguiente',
+    back: 'Atr\u00e1s',
+    seeResults: 'Ver mis resultados',
+    resultsTitle: 'Tu Puntuaci\u00f3n de Eficiencia de Workflows',
+    hoursWeek: '~{h} horas/semana',
+    hoursDesc: 'Tiempo estimado que tu equipo de {s} personas pierde en workflows manuales',
+    findings: 'Hallazgos clave',
+    ctaTitle: '\u00bfQuieres solucionarlo en 5 d\u00edas?',
+    ctaSub: 'El AI Ops Sprint: audito tus workflows e implemento las 3 automatizaciones de mayor ROI. Precio fijo, software funcional \u2014 no un PowerPoint.',
+    ctaBtn: 'Reservar llamada gratuita',
+    shareLinkedIn: 'Compartir en LinkedIn',
+    shareEmail: 'Compartir por email',
+    learnMore: 'M\u00e1s informaci\u00f3n sobre el AI Ops Sprint \u2192',
+    verdictHigh: 'S\u00f3lido',
+    verdictMid: 'Margen de mejora',
+    verdictLow: 'Necesita atenci\u00f3n',
+    detailHigh: 'Tus workflows est\u00e1n en buen estado. Puede haber optimizaciones puntuales, pero est\u00e1s por delante de la mayor\u00eda de los equipos.',
+    detailMid: 'Tu equipo tiene cierta estructura, pero se pierde mucho tiempo en procesos manuales. Un sprint enfocado podr\u00eda recuperar 15\u201325 horas/semana.',
+    detailLow: 'Tu equipo pierde mucho tiempo por ineficiencia en workflows. La buena noticia: es exactamente donde la automatizaci\u00f3n tiene el mayor ROI.',
+    mailSubject: 'Resultado Scorecard: {p}% \u2014 Hablemos',
+    mailBody: 'Hola Evgeny,\n\nAcabo de completar la Scorecard de Eficiencia y obtuve {p}%.\n\nTama\u00f1o del equipo: {s}\nHoras perdidas estimadas/semana: {h}\n\nMe gustar\u00eda hablar sobre el AI Ops Sprint.\n\n\u00a1Gracias!'
+  }
+};
 
-let current = 0;
-const answers = [];
+// Questions: shared base + SMB/startup variants
+var Q_BASE = {
+  en: {
+    size: { q: 'What best describes your company?', context: 'This determines which questions are most relevant for you.', options: [
+      { text: 'Small business (5\u201330 employees)', score: 0, team: 15, type: 'smb' },
+      { text: 'Mid-sized company (30\u2013100 employees)', score: 0, team: 65, type: 'smb' },
+      { text: 'Scaling tech company (100\u2013300 employees)', score: 0, team: 200, type: 'startup' },
+      { text: 'Large organization (300+ employees)', score: 0, team: 400, type: 'startup' }
+    ]},
+    comms: { q: 'What is your team\u2019s primary communication tool?', context: 'Where do most work conversations happen?', options: [
+      { text: 'Slack \u2014 organized channels, integrations set up', score: 3 },
+      { text: 'Microsoft Teams \u2014 mostly chat and video calls', score: 2 },
+      { text: 'Email \u2014 most discussions happen in inboxes', score: 1 },
+      { text: 'WhatsApp/phone \u2014 no centralized work messaging', score: 0 }
+    ]},
+    teamSize: { q: 'Exact team size?', context: 'Helps calibrate savings estimate.', options: [
+      { text: '5\u201315 people', score: 0, team: 10 },
+      { text: '15\u201350 people', score: 0, team: 30 },
+      { text: '50\u2013150 people', score: 0, team: 100 },
+      { text: '150+ people', score: 0, team: 250 }
+    ]}
+  },
+  de: {
+    size: { q: 'Was beschreibt Ihr Unternehmen am besten?', context: 'Dies bestimmt, welche Fragen f\u00fcr Sie am relevantesten sind.', options: [
+      { text: 'Kleinunternehmen (5\u201330 Mitarbeiter)', score: 0, team: 15, type: 'smb' },
+      { text: 'Mittelstand (30\u2013100 Mitarbeiter)', score: 0, team: 65, type: 'smb' },
+      { text: 'Wachsendes Tech-Unternehmen (100\u2013300 Mitarbeiter)', score: 0, team: 200, type: 'startup' },
+      { text: 'Gro\u00dfes Unternehmen (300+ Mitarbeiter)', score: 0, team: 400, type: 'startup' }
+    ]},
+    comms: { q: 'Was ist das prim\u00e4re Kommunikationstool Ihres Teams?', context: 'Wo finden die meisten Arbeitsgespr\u00e4che statt?', options: [
+      { text: 'Slack \u2014 organisierte Channels, Integrationen eingerichtet', score: 3 },
+      { text: 'Microsoft Teams \u2014 haupts\u00e4chlich Chat und Videoanrufe', score: 2 },
+      { text: 'E-Mail \u2014 die meisten Diskussionen im Posteingang', score: 1 },
+      { text: 'WhatsApp/Telefon \u2014 kein zentrales Arbeitsmessaging', score: 0 }
+    ]},
+    teamSize: { q: 'Genaue Teamgr\u00f6\u00dfe?', context: 'Hilft bei der Kalibrierung der Einsparungssch\u00e4tzung.', options: [
+      { text: '5\u201315 Personen', score: 0, team: 10 },
+      { text: '15\u201350 Personen', score: 0, team: 30 },
+      { text: '50\u2013150 Personen', score: 0, team: 100 },
+      { text: '150+ Personen', score: 0, team: 250 }
+    ]}
+  },
+  fr: {
+    size: { q: 'Comment d\u00e9cririez-vous votre entreprise ?', context: 'Cela d\u00e9termine les questions les plus pertinentes pour vous.', options: [
+      { text: 'Petite entreprise (5\u201330 employ\u00e9s)', score: 0, team: 15, type: 'smb' },
+      { text: 'Entreprise moyenne (30\u2013100 employ\u00e9s)', score: 0, team: 65, type: 'smb' },
+      { text: 'Scale-up tech (100\u2013300 employ\u00e9s)', score: 0, team: 200, type: 'startup' },
+      { text: 'Grande organisation (300+ employ\u00e9s)', score: 0, team: 400, type: 'startup' }
+    ]},
+    comms: { q: 'Quel est l\u2019outil de communication principal de votre \u00e9quipe ?', context: 'O\u00f9 se d\u00e9roulent la plupart des conversations de travail ?', options: [
+      { text: 'Slack \u2014 channels organis\u00e9s, int\u00e9grations en place', score: 3 },
+      { text: 'Microsoft Teams \u2014 surtout chat et vid\u00e9o', score: 2 },
+      { text: 'E-mail \u2014 la plupart des discussions dans les bo\u00eetes mail', score: 1 },
+      { text: 'WhatsApp/t\u00e9l\u00e9phone \u2014 pas de messagerie centralis\u00e9e', score: 0 }
+    ]},
+    teamSize: { q: 'Taille exacte de l\u2019\u00e9quipe ?', context: 'Aide \u00e0 calibrer l\u2019estimation des \u00e9conomies.', options: [
+      { text: '5\u201315 personnes', score: 0, team: 10 },
+      { text: '15\u201350 personnes', score: 0, team: 30 },
+      { text: '50\u2013150 personnes', score: 0, team: 100 },
+      { text: '150+ personnes', score: 0, team: 250 }
+    ]}
+  },
+  es: {
+    size: { q: '\u00bfQu\u00e9 describe mejor a tu empresa?', context: 'Esto determina qu\u00e9 preguntas son m\u00e1s relevantes para ti.', options: [
+      { text: 'Peque\u00f1a empresa (5\u201330 empleados)', score: 0, team: 15, type: 'smb' },
+      { text: 'Empresa mediana (30\u2013100 empleados)', score: 0, team: 65, type: 'smb' },
+      { text: 'Tech en crecimiento (100\u2013300 empleados)', score: 0, team: 200, type: 'startup' },
+      { text: 'Gran organizaci\u00f3n (300+ empleados)', score: 0, team: 400, type: 'startup' }
+    ]},
+    comms: { q: '\u00bfCu\u00e1l es la herramienta de comunicaci\u00f3n principal de tu equipo?', context: '\u00bfD\u00f3nde ocurren la mayor\u00eda de las conversaciones de trabajo?', options: [
+      { text: 'Slack \u2014 canales organizados, integraciones configuradas', score: 3 },
+      { text: 'Microsoft Teams \u2014 principalmente chat y videollamadas', score: 2 },
+      { text: 'Email \u2014 la mayor\u00eda de las discusiones en el correo', score: 1 },
+      { text: 'WhatsApp/tel\u00e9fono \u2014 sin mensajer\u00eda centralizada', score: 0 }
+    ]},
+    teamSize: { q: 'Tama\u00f1o exacto del equipo?', context: 'Ayuda a calibrar la estimaci\u00f3n de ahorro.', options: [
+      { text: '5\u201315 personas', score: 0, team: 10 },
+      { text: '15\u201350 personas', score: 0, team: 30 },
+      { text: '50\u2013150 personas', score: 0, team: 100 },
+      { text: '150+ personas', score: 0, team: 250 }
+    ]}
+  }
+};
+
+// Startup-specific questions
+var Q_STARTUP = {
+  en: [
+    { q: 'How does your team handle incoming requests?', context: 'Tickets, bugs, or internal requests.', options: [{ text: 'Fully automated \u2014 AI classifies and routes', score: 3 },{ text: 'Partial rules, but manual triage for most', score: 2 },{ text: 'Mostly manual \u2014 someone assigns each request', score: 1 },{ text: 'Chaotic \u2014 requests via Slack, email, DMs, things get lost', score: 0 }], category: 'routing' },
+    { q: 'How do team leads stay informed across teams?', context: 'Standups, dashboards, reading every channel...', options: [{ text: 'Automated digests/dashboards', score: 3 },{ text: 'Structured meetings, time-consuming to prepare', score: 2 },{ text: 'Manually checking channels and asking around', score: 1 },{ text: 'They don\u2019t \u2014 information silos', score: 0 }], category: 'visibility' },
+    { q: 'How much time per week on status updates and reporting?', context: 'Writing standups, updating Jira, compiling reports.', options: [{ text: 'Under 30 min/person \u2014 mostly automated', score: 3 },{ text: '30\u201360 min/person', score: 2 },{ text: '1\u20133 hours/person', score: 1 },{ text: '3+ hours/person', score: 0 }], category: 'reporting' },
+    { q: 'How many tools does your team switch between daily?', context: 'Slack, Jira, email, Notion, CRM, monitoring...', options: [{ text: '2\u20133 tools \u2014 well-integrated', score: 3 },{ text: '4\u20135 tools, some integrations', score: 2 },{ text: '6\u20138 tools, lots of context switching', score: 1 },{ text: '8+ tools, copy-pasting all day', score: 0 }], category: 'tools' },
+    { q: 'When something goes wrong, how does your team coordinate?', context: 'Outages, bugs, escalations.', options: [{ text: 'Automated incident workflow', score: 3 },{ text: 'Semi-structured, mostly manual', score: 2 },{ text: 'Ad-hoc Slack messages and calls', score: 1 },{ text: 'Fire drill \u2014 everyone scrambles', score: 0 }], category: 'incidents' }
+  ],
+  de: [
+    { q: 'Wie werden eingehende Anfragen bearbeitet?', context: 'Tickets, Bugs, interne Anfragen.', options: [{ text: 'Voll automatisiert \u2014 KI klassifiziert und leitet weiter', score: 3 },{ text: 'Teilweise Regeln, aber meist manuelle Triage', score: 2 },{ text: '\u00dcberwiegend manuell \u2014 jemand weist jede Anfrage zu', score: 1 },{ text: 'Chaotisch \u2014 Anfragen \u00fcber Slack, E-Mail, DMs, Dinge gehen verloren', score: 0 }], category: 'routing' },
+    { q: 'Wie bleiben Teamleiter \u00fcber Teams informiert?', context: 'Standups, Dashboards, jeden Channel lesen...', options: [{ text: 'Automatische Zusammenfassungen/Dashboards', score: 3 },{ text: 'Strukturierte Meetings, zeitaufw\u00e4ndig vorzubereiten', score: 2 },{ text: 'Manuelles Pr\u00fcfen von Channels und Nachfragen', score: 1 },{ text: 'Gar nicht \u2014 Informationssilos', score: 0 }], category: 'visibility' },
+    { q: 'Wie viel Zeit pro Woche f\u00fcr Status-Updates und Reporting?', context: 'Standups schreiben, Jira updaten, Reports erstellen.', options: [{ text: 'Unter 30 Min/Person \u2014 gr\u00f6\u00dftenteils automatisiert', score: 3 },{ text: '30\u201360 Min/Person', score: 2 },{ text: '1\u20133 Stunden/Person', score: 1 },{ text: '3+ Stunden/Person', score: 0 }], category: 'reporting' },
+    { q: 'Zwischen wie vielen Tools wechselt Ihr Team t\u00e4glich?', context: 'Slack, Jira, E-Mail, Notion, CRM, Monitoring...', options: [{ text: '2\u20133 Tools \u2014 gut integriert', score: 3 },{ text: '4\u20135 Tools, teilweise integriert', score: 2 },{ text: '6\u20138 Tools, viel Kontextwechsel', score: 1 },{ text: '8+ Tools, den ganzen Tag Copy-Paste', score: 0 }], category: 'tools' },
+    { q: 'Wie koordiniert Ihr Team bei Problemen?', context: 'Ausf\u00e4lle, Bugs, Eskalationen.', options: [{ text: 'Automatisierter Incident-Workflow', score: 3 },{ text: 'Halbstrukturiert, meist manuell', score: 2 },{ text: 'Ad-hoc Slack-Nachrichten und Anrufe', score: 1 },{ text: 'Feuerwehr \u2014 alle rennen los', score: 0 }], category: 'incidents' }
+  ],
+  fr: [
+    { q: 'Comment sont trait\u00e9es les demandes entrantes ?', context: 'Tickets, bugs, demandes internes.', options: [{ text: 'Enti\u00e8rement automatis\u00e9 \u2014 IA classifie et route', score: 3 },{ text: 'R\u00e8gles partielles, mais triage manuel pour la plupart', score: 2 },{ text: 'Principalement manuel \u2014 quelqu\u2019un assigne chaque demande', score: 1 },{ text: 'Chaotique \u2014 demandes via Slack, email, DMs', score: 0 }], category: 'routing' },
+    { q: 'Comment les managers restent-ils inform\u00e9s ?', context: 'Standups, dashboards, lire chaque channel...', options: [{ text: 'Digests/dashboards automatis\u00e9s', score: 3 },{ text: 'R\u00e9unions structur\u00e9es, longues \u00e0 pr\u00e9parer', score: 2 },{ text: 'V\u00e9rification manuelle des channels', score: 1 },{ text: 'Ils ne le font pas \u2014 silos d\u2019information', score: 0 }], category: 'visibility' },
+    { q: 'Temps hebdomadaire pour les mises \u00e0 jour de statut ?', context: '\u00c9crire les standups, mettre \u00e0 jour Jira, compiler les rapports.', options: [{ text: 'Moins de 30 min/personne \u2014 automatis\u00e9', score: 3 },{ text: '30\u201360 min/personne', score: 2 },{ text: '1\u20133 heures/personne', score: 1 },{ text: '3+ heures/personne', score: 0 }], category: 'reporting' },
+    { q: 'Entre combien d\u2019outils votre \u00e9quipe bascule-t-elle ?', context: 'Slack, Jira, email, Notion, CRM...', options: [{ text: '2\u20133 outils \u2014 bien int\u00e9gr\u00e9s', score: 3 },{ text: '4\u20135 outils, quelques int\u00e9grations', score: 2 },{ text: '6\u20138 outils, beaucoup de changements de contexte', score: 1 },{ text: '8+ outils, copier-coller toute la journ\u00e9e', score: 0 }], category: 'tools' },
+    { q: 'Comment votre \u00e9quipe se coordonne en cas de probl\u00e8me ?', context: 'Pannes, bugs, escalades.', options: [{ text: 'Workflow incident automatis\u00e9', score: 3 },{ text: 'Semi-structur\u00e9, surtout manuel', score: 2 },{ text: 'Messages Slack ad-hoc et appels', score: 1 },{ text: 'Panique g\u00e9n\u00e9rale', score: 0 }], category: 'incidents' }
+  ],
+  es: [
+    { q: '\u00bfC\u00f3mo maneja tu equipo las solicitudes entrantes?', context: 'Tickets, bugs, solicitudes internas.', options: [{ text: 'Totalmente automatizado \u2014 IA clasifica y asigna', score: 3 },{ text: 'Reglas parciales, pero triage manual en su mayor\u00eda', score: 2 },{ text: 'Principalmente manual \u2014 alguien asigna cada solicitud', score: 1 },{ text: 'Ca\u00f3tico \u2014 solicitudes por Slack, email, DMs', score: 0 }], category: 'routing' },
+    { q: '\u00bfC\u00f3mo se mantienen informados los l\u00edderes?', context: 'Standups, dashboards, leer cada canal...', options: [{ text: 'Res\u00famenes/dashboards autom\u00e1ticos', score: 3 },{ text: 'Reuniones estructuradas, lleva tiempo prepararlas', score: 2 },{ text: 'Revisar canales manualmente y preguntar', score: 1 },{ text: 'No lo hacen \u2014 silos de informaci\u00f3n', score: 0 }], category: 'visibility' },
+    { q: '\u00bfTiempo semanal en actualizaciones de estado?', context: 'Escribir standups, actualizar Jira, compilar informes.', options: [{ text: 'Menos de 30 min/persona \u2014 automatizado', score: 3 },{ text: '30\u201360 min/persona', score: 2 },{ text: '1\u20133 horas/persona', score: 1 },{ text: '3+ horas/persona', score: 0 }], category: 'reporting' },
+    { q: '\u00bfEntre cu\u00e1ntas herramientas alterna tu equipo diariamente?', context: 'Slack, Jira, email, Notion, CRM...', options: [{ text: '2\u20133 herramientas \u2014 bien integradas', score: 3 },{ text: '4\u20135 herramientas, algunas integraciones', score: 2 },{ text: '6\u20138 herramientas, mucho cambio de contexto', score: 1 },{ text: '8+ herramientas, copiar-pegar todo el d\u00eda', score: 0 }], category: 'tools' },
+    { q: 'Cuando algo sale mal, \u00bfc\u00f3mo se coordina tu equipo?', context: 'Ca\u00eddas, bugs, escalaciones.', options: [{ text: 'Workflow de incidentes automatizado', score: 3 },{ text: 'Semi-estructurado, mayormente manual', score: 2 },{ text: 'Mensajes ad-hoc en Slack y llamadas', score: 1 },{ text: 'Todos corren sin proceso claro', score: 0 }], category: 'incidents' }
+  ]
+};
+
+// SMB-specific questions
+var Q_SMB = {
+  en: [
+    { q: 'How does your team handle customer inquiries?', context: 'Emails, phone calls, form submissions from customers.', options: [{ text: 'Automated system routes to the right person', score: 3 },{ text: 'Shared inbox with some rules', score: 2 },{ text: 'One person reads and forwards everything', score: 1 },{ text: 'Multiple inboxes, things fall through the cracks', score: 0 }], category: 'routing' },
+    { q: 'How does your team handle invoices and documents?', context: 'Processing incoming invoices, contracts, forms.', options: [{ text: 'Automated extraction and filing', score: 3 },{ text: 'Some templates, but manual data entry', score: 2 },{ text: 'Everything typed into spreadsheets by hand', score: 1 },{ text: 'Paper-based or scattered across inboxes', score: 0 }], category: 'documents' },
+    { q: 'How do you track what your team is working on?', context: 'Task management, project visibility.', options: [{ text: 'Project management tool everyone uses', score: 3 },{ text: 'Shared spreadsheet or simple tool', score: 2 },{ text: 'Email threads and verbal updates', score: 1 },{ text: 'No system \u2014 people just know their tasks', score: 0 }], category: 'visibility' },
+    { q: 'How do you generate reports for management?', context: 'Weekly/monthly reports, KPIs, financials.', options: [{ text: 'Auto-generated dashboards', score: 3 },{ text: 'Templates filled in manually each time', score: 2 },{ text: 'Someone compiles data from multiple sources', score: 1 },{ text: 'Reports are rarely done or ad-hoc', score: 0 }], category: 'reporting' },
+    { q: 'How long does it take to onboard a new employee?', context: 'From day 1 to fully productive.', options: [{ text: 'Under 1 day \u2014 checklists and guides ready', score: 3 },{ text: '2\u20133 days \u2014 someone walks them through', score: 2 },{ text: '1\u20132 weeks \u2014 learning by asking around', score: 1 },{ text: 'Weeks to months \u2014 no formal process', score: 0 }], category: 'onboarding' }
+  ],
+  de: [
+    { q: 'Wie bearbeitet Ihr Team Kundenanfragen?', context: 'E-Mails, Anrufe, Formulareinreichungen.', options: [{ text: 'Automatisches System leitet an die richtige Person weiter', score: 3 },{ text: 'Gemeinsames Postfach mit einigen Regeln', score: 2 },{ text: 'Eine Person liest und leitet alles weiter', score: 1 },{ text: 'Mehrere Postf\u00e4cher, Dinge gehen unter', score: 0 }], category: 'routing' },
+    { q: 'Wie werden Rechnungen und Dokumente verarbeitet?', context: 'Eingehende Rechnungen, Vertr\u00e4ge, Formulare.', options: [{ text: 'Automatische Extraktion und Ablage', score: 3 },{ text: 'Einige Vorlagen, aber manuelle Dateneingabe', score: 2 },{ text: 'Alles wird von Hand in Tabellen eingetragen', score: 1 },{ text: 'Papierbasiert oder \u00fcber Postf\u00e4cher verstreut', score: 0 }], category: 'documents' },
+    { q: 'Wie verfolgen Sie, woran Ihr Team arbeitet?', context: 'Aufgabenverwaltung, Projekttransparenz.', options: [{ text: 'Projektmanagement-Tool, das alle nutzen', score: 3 },{ text: 'Gemeinsame Tabelle oder einfaches Tool', score: 2 },{ text: 'E-Mail-Ketten und m\u00fcndliche Updates', score: 1 },{ text: 'Kein System \u2014 jeder kennt seine Aufgaben', score: 0 }], category: 'visibility' },
+    { q: 'Wie erstellen Sie Berichte f\u00fcr die Gesch\u00e4ftsleitung?', context: 'Wochen-/Monatsberichte, KPIs, Finanzen.', options: [{ text: 'Automatisch generierte Dashboards', score: 3 },{ text: 'Vorlagen, die jedes Mal manuell ausgef\u00fcllt werden', score: 2 },{ text: 'Jemand sammelt Daten aus verschiedenen Quellen', score: 1 },{ text: 'Berichte werden selten oder ad-hoc erstellt', score: 0 }], category: 'reporting' },
+    { q: 'Wie lange dauert das Onboarding eines neuen Mitarbeiters?', context: 'Von Tag 1 bis voll produktiv.', options: [{ text: 'Unter 1 Tag \u2014 Checklisten und Anleitungen bereit', score: 3 },{ text: '2\u20133 Tage \u2014 jemand f\u00fchrt durch', score: 2 },{ text: '1\u20132 Wochen \u2014 lernen durch Nachfragen', score: 1 },{ text: 'Wochen bis Monate \u2014 kein formaler Prozess', score: 0 }], category: 'onboarding' }
+  ],
+  fr: [
+    { q: 'Comment votre \u00e9quipe g\u00e8re les demandes clients ?', context: 'E-mails, appels, soumissions de formulaires.', options: [{ text: 'Syst\u00e8me automatis\u00e9 route vers la bonne personne', score: 3 },{ text: 'Bo\u00eete mail partag\u00e9e avec quelques r\u00e8gles', score: 2 },{ text: 'Une personne lit et transf\u00e8re tout', score: 1 },{ text: 'Plusieurs bo\u00eetes mail, des choses passent entre les mailles', score: 0 }], category: 'routing' },
+    { q: 'Comment traitez-vous factures et documents ?', context: 'Factures entrantes, contrats, formulaires.', options: [{ text: 'Extraction et classement automatis\u00e9s', score: 3 },{ text: 'Quelques mod\u00e8les, mais saisie manuelle', score: 2 },{ text: 'Tout saisi \u00e0 la main dans des tableurs', score: 1 },{ text: 'Papier ou \u00e9parpill\u00e9 dans les bo\u00eetes mail', score: 0 }], category: 'documents' },
+    { q: 'Comment suivez-vous le travail de l\u2019\u00e9quipe ?', context: 'Gestion de t\u00e2ches, visibilit\u00e9 projet.', options: [{ text: 'Outil de gestion de projet utilis\u00e9 par tous', score: 3 },{ text: 'Tableur partag\u00e9 ou outil simple', score: 2 },{ text: 'Fils d\u2019e-mails et mises \u00e0 jour verbales', score: 1 },{ text: 'Pas de syst\u00e8me \u2014 chacun conna\u00eet ses t\u00e2ches', score: 0 }], category: 'visibility' },
+    { q: 'Comment g\u00e9n\u00e9rez-vous les rapports pour la direction ?', context: 'Rapports hebdo/mensuels, KPIs, finances.', options: [{ text: 'Tableaux de bord auto-g\u00e9n\u00e9r\u00e9s', score: 3 },{ text: 'Mod\u00e8les remplis manuellement \u00e0 chaque fois', score: 2 },{ text: 'Quelqu\u2019un compile les donn\u00e9es de multiples sources', score: 1 },{ text: 'Rapports rarement faits ou ad-hoc', score: 0 }], category: 'reporting' },
+    { q: 'Combien de temps pour int\u00e9grer un nouvel employ\u00e9 ?', context: 'Du jour 1 \u00e0 pleinement productif.', options: [{ text: 'Moins d\u20191 jour \u2014 checklists et guides pr\u00eats', score: 3 },{ text: '2\u20133 jours \u2014 quelqu\u2019un l\u2019accompagne', score: 2 },{ text: '1\u20132 semaines \u2014 apprend en demandant', score: 1 },{ text: 'Semaines \u00e0 mois \u2014 pas de processus formel', score: 0 }], category: 'onboarding' }
+  ],
+  es: [
+    { q: '\u00bfC\u00f3mo maneja tu equipo las consultas de clientes?', context: 'Emails, llamadas, formularios.', options: [{ text: 'Sistema automatizado asigna a la persona correcta', score: 3 },{ text: 'Bandeja compartida con algunas reglas', score: 2 },{ text: 'Una persona lee y reenv\u00eda todo', score: 1 },{ text: 'M\u00faltiples bandejas, se pierden cosas', score: 0 }], category: 'routing' },
+    { q: '\u00bfC\u00f3mo procesan facturas y documentos?', context: 'Facturas entrantes, contratos, formularios.', options: [{ text: 'Extracci\u00f3n y archivo automatizados', score: 3 },{ text: 'Algunas plantillas, pero entrada manual', score: 2 },{ text: 'Todo se escribe a mano en hojas de c\u00e1lculo', score: 1 },{ text: 'En papel o disperso en bandejas de correo', score: 0 }], category: 'documents' },
+    { q: '\u00bfC\u00f3mo rastrean en qu\u00e9 trabaja el equipo?', context: 'Gesti\u00f3n de tareas, visibilidad del proyecto.', options: [{ text: 'Herramienta de gesti\u00f3n que todos usan', score: 3 },{ text: 'Hoja de c\u00e1lculo compartida o herramienta simple', score: 2 },{ text: 'Hilos de email y actualizaciones verbales', score: 1 },{ text: 'Sin sistema \u2014 cada uno sabe sus tareas', score: 0 }], category: 'visibility' },
+    { q: '\u00bfC\u00f3mo generan informes para la direcci\u00f3n?', context: 'Informes semanales/mensuales, KPIs, finanzas.', options: [{ text: 'Dashboards generados autom\u00e1ticamente', score: 3 },{ text: 'Plantillas que se llenan manualmente cada vez', score: 2 },{ text: 'Alguien compila datos de m\u00faltiples fuentes', score: 1 },{ text: 'Informes rara vez o ad-hoc', score: 0 }], category: 'reporting' },
+    { q: '\u00bfCu\u00e1nto tarda integrar a un nuevo empleado?', context: 'Del d\u00eda 1 a totalmente productivo.', options: [{ text: 'Menos de 1 d\u00eda \u2014 checklists y gu\u00edas listas', score: 3 },{ text: '2\u20133 d\u00edas \u2014 alguien los acompa\u00f1a', score: 2 },{ text: '1\u20132 semanas \u2014 aprenden preguntando', score: 1 },{ text: 'Semanas a meses \u2014 sin proceso formal', score: 0 }], category: 'onboarding' }
+  ]
+};
+
+// Findings data
+var FINDINGS = {
+  en: {
+    routing:    { critical: { t: 'Request handling is a bottleneck', d: 'Manual triage means slower response and misrouted requests. AI can handle 90%+ automatically.' }, good: { t: 'Request handling is well-automated', d: 'Your routing is ahead of most teams.' } },
+    channels:   { critical: { t: 'Communication channels are chaotic', d: 'Unstructured channels = fragmented information. Teams lose 30+ min/day just finding things.' }, good: { t: 'Communication is well-organized', d: 'Clean channels = less noise, faster information flow.' } },
+    visibility: { critical: { t: 'Leadership visibility gap', d: 'When leaders manually check for updates, they miss things or spend hours on it. Automated summaries solve this.' }, good: null },
+    onboarding: { critical: { t: 'Slow onboarding multiplies costs', d: 'Every new hire losing days to confusion costs real money. Automated flows pay for themselves in 1\u20132 hires.' }, good: null },
+    reporting:  { critical: { t: 'Too much time on reporting', d: 'If reporting takes 1+ hour/person/week, that is productive time burned on overhead. Most of this can be automated.' }, good: null },
+    tools:      { critical: { t: 'Tool sprawl is fragmenting your team', d: 'Context-switching between many tools kills deep work. Integrations and dashboards can cut this significantly.' }, good: null },
+    incidents:  { critical: { t: 'Incident response is unstructured', d: 'Ad-hoc handling means longer outages and more stress. Automated workflows reduce resolution time by 40\u201360%.' }, good: null },
+    documents:  { critical: { t: 'Document processing is eating hours', d: 'Manual data entry from invoices and forms is error-prone and slow. AI extraction can automate 80%+ of this.' }, good: null },
+    comms:      { critical: { t: 'Communication tool needs structure', d: 'Without organized channels or rules, conversations scatter. Basic structure saves 20+ min/day per person.' }, good: null }
+  },
+  de: {
+    routing:    { critical: { t: 'Anfragebearbeitung ist ein Engpass', d: 'Manuelle Triage bedeutet langsamere Reaktion und fehlgeleitete Anfragen. KI kann 90%+ automatisch bearbeiten.' }, good: { t: 'Anfragebearbeitung gut automatisiert', d: 'Ihr Routing ist den meisten Teams voraus.' } },
+    channels:   { critical: { t: 'Kommunikationskan\u00e4le sind chaotisch', d: 'Unstrukturierte Channels = fragmentierte Information. Teams verlieren 30+ Min/Tag nur beim Suchen.' }, good: { t: 'Kommunikation gut organisiert', d: 'Saubere Channels = weniger L\u00e4rm, schnellerer Informationsfluss.' } },
+    visibility: { critical: { t: 'L\u00fccke in der F\u00fchrungstransparenz', d: 'Wenn F\u00fchrungskr\u00e4fte manuell Updates pr\u00fcfen, verpassen sie Dinge oder verbringen Stunden damit.' }, good: null },
+    onboarding: { critical: { t: 'Langsames Onboarding vervielfacht Kosten', d: 'Jeder neue Mitarbeiter, der Tage durch Verwirrung verliert, kostet echtes Geld.' }, good: null },
+    reporting:  { critical: { t: 'Zu viel Zeit f\u00fcr Reporting', d: 'Wenn Reporting 1+ Stunde/Person/Woche dauert, verbrennt das produktive Zeit.' }, good: null },
+    tools:      { critical: { t: 'Tool-Wildwuchs fragmentiert Ihr Team', d: 'Kontextwechsel zwischen vielen Tools t\u00f6tet konzentriertes Arbeiten.' }, good: null },
+    incidents:  { critical: { t: 'Incident Response unstrukturiert', d: 'Ad-hoc-Behandlung bedeutet l\u00e4ngere Ausf\u00e4lle. Automatisierte Workflows reduzieren die L\u00f6sungszeit um 40\u201360%.' }, good: null },
+    documents:  { critical: { t: 'Dokumentenverarbeitung frisst Stunden', d: 'Manuelle Dateneingabe aus Rechnungen ist fehleranf\u00e4llig. KI-Extraktion kann 80%+ automatisieren.' }, good: null },
+    comms:      { critical: { t: 'Kommunikationstool braucht Struktur', d: 'Ohne organisierte Channels verstreuen sich Gespr\u00e4che. Grundstruktur spart 20+ Min/Tag pro Person.' }, good: null }
+  },
+  fr: {
+    routing:    { critical: { t: 'Le traitement des demandes est un goulet', d: 'Le triage manuel ralentit les r\u00e9ponses. L\u2019IA peut g\u00e9rer 90%+ automatiquement.' }, good: { t: 'Traitement des demandes bien automatis\u00e9', d: 'Votre routage est en avance sur la plupart des \u00e9quipes.' } },
+    channels:   { critical: { t: 'Canaux de communication chaotiques', d: 'Canaux non structur\u00e9s = information fragment\u00e9e. Les \u00e9quipes perdent 30+ min/jour.' }, good: { t: 'Communication bien organis\u00e9e', d: 'Canaux propres = moins de bruit.' } },
+    visibility: { critical: { t: 'Manque de visibilit\u00e9 pour les managers', d: 'Quand les managers v\u00e9rifient manuellement, ils ratent des choses ou y passent des heures.' }, good: null },
+    onboarding: { critical: { t: 'Int\u00e9gration lente = co\u00fbts multipli\u00e9s', d: 'Chaque nouvelle recrue perdue pendant des jours co\u00fbte de l\u2019argent r\u00e9el.' }, good: null },
+    reporting:  { critical: { t: 'Trop de temps en reporting', d: 'Si le reporting prend 1+ heure/personne/semaine, c\u2019est du temps productif gaspill\u00e9.' }, good: null },
+    tools:      { critical: { t: 'Prolif\u00e9ration d\u2019outils fragmente l\u2019\u00e9quipe', d: 'Le changement de contexte entre de nombreux outils tue le travail en profondeur.' }, good: null },
+    incidents:  { critical: { t: 'R\u00e9ponse aux incidents non structur\u00e9e', d: 'La gestion ad-hoc prolonge les pannes. Les workflows automatis\u00e9s r\u00e9duisent le temps de r\u00e9solution de 40\u201360%.' }, good: null },
+    documents:  { critical: { t: 'Le traitement des documents prend des heures', d: 'La saisie manuelle des factures est lente et sujette aux erreurs. L\u2019extraction IA automatise 80%+.' }, good: null },
+    comms:      { critical: { t: 'L\u2019outil de communication manque de structure', d: 'Sans canaux organis\u00e9s, les conversations s\u2019\u00e9parpillent.' }, good: null }
+  },
+  es: {
+    routing:    { critical: { t: 'El manejo de solicitudes es un cuello de botella', d: 'El triage manual significa respuestas m\u00e1s lentas. La IA puede manejar 90%+ autom\u00e1ticamente.' }, good: { t: 'Manejo de solicitudes bien automatizado', d: 'Tu sistema est\u00e1 por delante de la mayor\u00eda.' } },
+    channels:   { critical: { t: 'Canales de comunicaci\u00f3n ca\u00f3ticos', d: 'Canales sin estructura = informaci\u00f3n fragmentada. Los equipos pierden 30+ min/d\u00eda.' }, good: { t: 'Comunicaci\u00f3n bien organizada', d: 'Canales limpios = menos ruido.' } },
+    visibility: { critical: { t: 'Brecha de visibilidad del liderazgo', d: 'Cuando los l\u00edderes revisan manualmente, pierden cosas o pasan horas en ello.' }, good: null },
+    onboarding: { critical: { t: 'Onboarding lento multiplica costos', d: 'Cada nuevo empleado perdiendo d\u00edas en confusi\u00f3n cuesta dinero real.' }, good: null },
+    reporting:  { critical: { t: 'Demasiado tiempo en reportes', d: 'Si el reporting toma 1+ hora/persona/semana, es tiempo productivo quemado.' }, good: null },
+    tools:      { critical: { t: 'Proliferaci\u00f3n de herramientas fragmenta al equipo', d: 'Cambiar de contexto entre muchas herramientas mata el trabajo profundo.' }, good: null },
+    incidents:  { critical: { t: 'Respuesta a incidentes sin estructura', d: 'El manejo ad-hoc significa ca\u00eddas m\u00e1s largas. Los workflows automatizados reducen el tiempo 40\u201360%.' }, good: null },
+    documents:  { critical: { t: 'El procesamiento de documentos consume horas', d: 'La entrada manual de facturas es lenta y propensa a errores. La extracci\u00f3n con IA automatiza 80%+.' }, good: null },
+    comms:      { critical: { t: 'La herramienta de comunicaci\u00f3n necesita estructura', d: 'Sin canales organizados, las conversaciones se dispersan.' }, good: null }
+  }
+};
+
+// State
+var lang = 'en';
+var current = 0;
+var answers = [];
+var companyType = null;
+var activeQuestions = [];
+
+function detectLang() {
+  var params = new URLSearchParams(window.location.search);
+  var p = params.get('lang');
+  if (p && LANGS[p]) return p;
+  var nav = (navigator.language || '').slice(0, 2).toLowerCase();
+  if (LANGS[nav]) return nav;
+  return 'en';
+}
+
+function setLang(l) {
+  lang = l;
+  current = 0;
+  answers = [];
+  companyType = null;
+  activeQuestions = [];
+  var t = LANGS[lang];
+  document.getElementById('badge-text').textContent = t.badge;
+  document.getElementById('hero-title').textContent = t.heroTitle;
+  document.getElementById('hero-sub').textContent = t.heroSub;
+  document.getElementById('nav-sprint').textContent = t.navSprint;
+  document.documentElement.lang = lang;
+  document.querySelectorAll('.lang-btn').forEach(function(b) { b.classList.toggle('active', b.dataset.lang === lang); });
+  document.getElementById('results').style.display = 'none';
+  document.getElementById('results').textContent = '';
+  document.getElementById('hero').style.display = '';
+  document.getElementById('quiz').style.display = '';
+  buildQuestions();
+  render();
+}
+
+function buildQuestions() {
+  var base = Q_BASE[lang] || Q_BASE.en;
+  activeQuestions = [base.size, base.comms];
+  if (companyType === 'startup') {
+    var sq = Q_STARTUP[lang] || Q_STARTUP.en;
+    sq.forEach(function(q) { activeQuestions.push(q); });
+  } else if (companyType === 'smb') {
+    var mq = Q_SMB[lang] || Q_SMB.en;
+    mq.forEach(function(q) { activeQuestions.push(q); });
+  } else {
+    // placeholder until type is selected
+    var dq = Q_STARTUP[lang] || Q_STARTUP.en;
+    dq.forEach(function(q) { activeQuestions.push(q); });
+  }
+  activeQuestions.push(base.teamSize);
+}
 
 function createEl(tag, attrs, children) {
-  const el = document.createElement(tag);
-  if (attrs) Object.entries(attrs).forEach(function(kv) {
-    if (kv[0] === 'className') el.className = kv[1];
-    else if (kv[0] === 'textContent') el.textContent = kv[1];
-    else if (kv[0].startsWith('on')) el.addEventListener(kv[0].slice(2).toLowerCase(), kv[1]);
-    else el.setAttribute(kv[0], kv[1]);
+  var el = document.createElement(tag);
+  if (attrs) Object.keys(attrs).forEach(function(k) {
+    if (k === 'className') el.className = attrs[k];
+    else if (k === 'textContent') el.textContent = attrs[k];
+    else if (k.indexOf('on') === 0) el.addEventListener(k.slice(2).toLowerCase(), attrs[k]);
+    else el.setAttribute(k, attrs[k]);
   });
   if (children) children.forEach(function(c) { if (c) el.appendChild(typeof c === 'string' ? document.createTextNode(c) : c); });
   return el;
 }
 
 function render() {
-  var q = questions[current];
-  document.getElementById('progress-label').textContent = 'Question ' + (current + 1) + ' of ' + questions.length;
-  document.getElementById('progress').style.width = ((current + 1) / questions.length * 100) + '%';
-
+  var t = LANGS[lang];
+  var q = activeQuestions[current];
+  document.getElementById('progress-label').textContent = t.qOf.replace('{n}', current + 1).replace('{t}', activeQuestions.length);
+  document.getElementById('progress').style.width = ((current + 1) / activeQuestions.length * 100) + '%';
   var old = document.querySelector('.question-card');
   if (old) old.remove();
 
@@ -120,37 +476,41 @@ function render() {
   q.options.forEach(function(opt, i) {
     var dot = createEl('div', { className: 'option-dot' });
     if (answers[current] === i) {
-      var inner = createEl('div');
-      inner.style.cssText = 'width:8px;height:8px;background:#fff;border-radius:50%';
-      dot.appendChild(inner);
+      dot.appendChild(createEl('div', { style: 'width:8px;height:8px;background:#fff;border-radius:50%' }));
     }
-    var span = createEl('span', { textContent: opt.text });
-    var optEl = createEl('div', { className: 'option' + (answers[current] === i ? ' selected' : ''), onClick: function() { selectOption(i); } }, [dot, span]);
+    var optEl = createEl('div', { className: 'option' + (answers[current] === i ? ' selected' : ''), onClick: function() { selectOption(i); } }, [
+      dot, createEl('span', { textContent: opt.text })
+    ]);
     optionsDiv.appendChild(optEl);
   });
 
   var btnRow = createEl('div', { className: 'btn-row' });
-  if (current > 0) {
-    btnRow.appendChild(createEl('button', { className: 'btn btn-back', textContent: 'Back', onClick: goBack }));
-  } else {
-    btnRow.appendChild(createEl('div'));
-  }
-  var nextBtn = createEl('button', { className: 'btn btn-next', textContent: current === questions.length - 1 ? 'See My Results' : 'Next', onClick: goNext, id: 'nextBtn' });
+  if (current > 0) btnRow.appendChild(createEl('button', { className: 'btn btn-back', textContent: t.back, onClick: goBack }));
+  else btnRow.appendChild(createEl('div'));
+  var nextBtn = createEl('button', { className: 'btn btn-next', textContent: current === activeQuestions.length - 1 ? t.seeResults : t.next, onClick: goNext, id: 'nextBtn' });
   if (answers[current] === undefined) nextBtn.disabled = true;
   btnRow.appendChild(nextBtn);
 
   var card = createEl('div', { className: 'question-card active' }, [
     createEl('h2', { textContent: q.q }),
     createEl('p', { className: 'context', textContent: q.context }),
-    optionsDiv,
-    btnRow
+    optionsDiv, btnRow
   ]);
-
   document.getElementById('quiz').appendChild(card);
 }
 
 function selectOption(index) {
   answers[current] = index;
+  // If first question (company type), rebuild questions
+  if (current === 0) {
+    var opt = activeQuestions[0].options[index];
+    if (opt.type && opt.type !== companyType) {
+      companyType = opt.type;
+      var savedAnswers = answers.slice();
+      buildQuestions();
+      answers = savedAnswers;
+    }
+  }
   render();
 }
 
@@ -158,103 +518,105 @@ function goBack() { if (current > 0) { current--; render(); } }
 
 function goNext() {
   if (answers[current] === undefined) return;
-  if (current < questions.length - 1) { current++; render(); }
+  if (current < activeQuestions.length - 1) { current++; render(); }
   else showResults();
 }
 
 function showResults() {
   document.getElementById('quiz').style.display = 'none';
   document.getElementById('hero').style.display = 'none';
+  var t = LANGS[lang];
+  var fd = FINDINGS[lang] || FINDINGS.en;
 
   var totalScore = 0, teamSize = 55, categoryScores = {};
   answers.forEach(function(ansIdx, qIdx) {
-    var q = questions[qIdx], opt = q.options[ansIdx];
-    if (q.category !== 'size') { totalScore += opt.score; categoryScores[q.category] = opt.score; }
+    var q = activeQuestions[qIdx];
+    var opt = q.options[ansIdx];
+    if (q.category) { totalScore += opt.score; categoryScores[q.category] = opt.score; }
     if (opt.team) teamSize = opt.team;
   });
 
-  var maxScore = 21, pct = Math.round(totalScore / maxScore * 100);
-  var inefficiency = (maxScore - totalScore) / maxScore;
+  var scoredCount = Object.keys(categoryScores).length;
+  var maxScore = scoredCount * 3;
+  var pct = maxScore > 0 ? Math.round(totalScore / maxScore * 100) : 50;
+  var inefficiency = maxScore > 0 ? (maxScore - totalScore) / maxScore : 0.5;
   var hoursLost = Math.round(teamSize * inefficiency * 2.5);
 
   var scoreClass, verdict, detail;
-  if (pct >= 70) { scoreClass = 'score-high'; verdict = 'Strong'; detail = "Your workflows are in good shape. There may be targeted optimizations worth exploring, but you're ahead of most teams."; }
-  else if (pct >= 40) { scoreClass = 'score-mid'; verdict = 'Room to Improve'; detail = "Your team has some structure, but significant time is being lost to manual processes and tool sprawl. A focused sprint could recover 15\u201325 hours/week."; }
-  else { scoreClass = 'score-low'; verdict = 'Needs Attention'; detail = "Your team is losing substantial time to workflow inefficiency. The good news: this is exactly where automation has the highest ROI."; }
+  if (pct >= 70) { scoreClass = 'score-high'; verdict = t.verdictHigh; detail = t.detailHigh; }
+  else if (pct >= 40) { scoreClass = 'score-mid'; verdict = t.verdictMid; detail = t.detailMid; }
+  else { scoreClass = 'score-low'; verdict = t.verdictLow; detail = t.detailLow; }
 
   var findings = [];
-  var findingData = [
-    { cat: 'routing', threshold: 1, sev: 'critical', title: 'Ticket routing is a bottleneck', desc: 'Manual triage means slower response times and misrouted requests. AI classification can handle 90%+ of routing automatically.' },
-    { cat: 'channels', threshold: 1, sev: 'critical', title: 'Channel sprawl is costing focus time', desc: 'Too many channels without clear purpose = information fragmentation. Teams lose 30+ min/day just figuring out where to look.' },
-    { cat: 'visibility', threshold: 1, sev: 'warning', title: 'Leadership visibility gap', desc: 'When leads have to manually check channels, they either miss things or spend hours on it. Automated digests solve this.' },
-    { cat: 'onboarding', threshold: 1, sev: 'warning', title: 'Slow onboarding multiplies costs', desc: 'Every new hire losing days to tool confusion costs real money. Automated onboarding flows pay for themselves in 1\u20132 hires.' },
-    { cat: 'reporting', threshold: 1, sev: 'warning', title: 'Too much time on status updates', desc: 'If reporting takes 1+ hours/person/week, that is engineering time being burned on overhead. Most of this can be automated.' },
-    { cat: 'tools', threshold: 1, sev: 'critical', title: 'Tool sprawl is fragmenting your team', desc: 'Context-switching between 6+ tools kills deep work. Integrations and consolidated dashboards can cut this significantly.' },
-    { cat: 'incidents', threshold: 1, sev: 'critical', title: 'Incident response is unstructured', desc: 'Ad-hoc incident handling means longer outages and more stress. An automated incident workflow reduces MTTR by 40\u201360%.' }
-  ];
-  findingData.forEach(function(f) { if (categoryScores[f.cat] <= f.threshold) findings.push(f); });
-  if (categoryScores.routing >= 3) findings.push({ sev: 'good', title: 'Ticket routing is well-automated', desc: 'Your request handling is ahead of most teams. Nice work.' });
-  if (categoryScores.channels >= 3) findings.push({ sev: 'good', title: 'Channel organization is solid', desc: 'Clean, well-structured channels = less noise and faster information flow.' });
-  if (findings.length === 0) findings.push({ sev: 'good', title: 'Your workflows look solid', desc: 'No major red flags detected. Consider fine-tuning specific areas for marginal gains.' });
+  Object.keys(categoryScores).forEach(function(cat) {
+    if (!fd[cat]) return;
+    if (categoryScores[cat] <= 1 && fd[cat].critical) findings.push({ sev: categoryScores[cat] === 0 ? 'critical' : 'warning', title: fd[cat].critical.t, desc: fd[cat].critical.d });
+    else if (categoryScores[cat] >= 3 && fd[cat].good) findings.push({ sev: 'good', title: fd[cat].good.t, desc: fd[cat].good.d });
+  });
+  if (findings.length === 0) findings.push({ sev: 'good', title: 'Solid workflows', desc: 'No major issues detected.' });
 
-  var resultsEl = document.getElementById('results');
-  resultsEl.style.display = 'block';
+  var r = document.getElementById('results');
+  r.style.display = 'block';
+  r.textContent = '';
 
-  // Build results with safe DOM methods
-  var header = createEl('div', { style: 'text-align:center;margin-bottom:32px' }, [
-    createEl('h1', { style: 'font-size:32px;margin-bottom:16px', textContent: 'Your Workflow Efficiency Score' }),
-    (function() {
-      var circle = createEl('div', { className: 'score-circle ' + scoreClass }, [
-        createEl('div', { className: 'score-num', textContent: String(pct) }),
-        createEl('div', { className: 'score-label', textContent: verdict })
-      ]);
-      return circle;
-    })(),
+  r.appendChild(createEl('div', { style: 'text-align:center;margin-bottom:32px' }, [
+    createEl('h1', { style: 'font-size:32px;margin-bottom:16px', textContent: t.resultsTitle }),
+    createEl('div', { className: 'score-circle ' + scoreClass }, [
+      createEl('div', { className: 'score-num', textContent: String(pct) }),
+      createEl('div', { className: 'score-label', textContent: verdict })
+    ]),
     createEl('p', { style: 'color:var(--muted);font-size:16px;max-width:500px;margin:0 auto', textContent: detail })
-  ]);
-  resultsEl.appendChild(header);
+  ]));
 
-  var timeSaved = createEl('div', { className: 'time-saved' }, [
-    createEl('div', { className: 'big', textContent: '~' + hoursLost + ' hours/week' }),
-    createEl('p', { textContent: 'Estimated time your team of ' + teamSize + ' is losing to manual workflows' })
-  ]);
-  resultsEl.appendChild(timeSaved);
+  r.appendChild(createEl('div', { className: 'time-saved' }, [
+    createEl('div', { className: 'big', textContent: t.hoursWeek.replace('{h}', hoursLost) }),
+    createEl('p', { textContent: t.hoursDesc.replace('{s}', teamSize) })
+  ]));
 
-  var findingsSection = createEl('div', { style: 'margin:32px 0' }, [
-    createEl('h3', { style: 'font-size:18px;font-weight:700;margin-bottom:16px', textContent: 'Key Findings' })
+  var fSection = createEl('div', { style: 'margin:32px 0' }, [
+    createEl('h3', { style: 'font-size:18px;font-weight:700;margin-bottom:16px', textContent: t.findings })
   ]);
   findings.forEach(function(f) {
-    findingsSection.appendChild(createEl('div', { className: 'finding ' + f.sev }, [
-      createEl('h4', { textContent: f.title }),
-      createEl('p', { textContent: f.desc })
+    fSection.appendChild(createEl('div', { className: 'finding ' + f.sev }, [
+      createEl('h4', { textContent: f.title }), createEl('p', { textContent: f.desc })
     ]));
   });
-  resultsEl.appendChild(findingsSection);
+  r.appendChild(fSection);
 
-  var mailSubject = encodeURIComponent('Scorecard Result: ' + pct + '% \u2014 Let\'s Talk');
-  var mailBody = encodeURIComponent('Hi Evgeny,\n\nI just took the Workflow Efficiency Scorecard and scored ' + pct + '%.\n\nMy team size: ' + teamSize + '\nEstimated hours lost/week: ' + hoursLost + '\n\nI\'d like to discuss the AI Ops Sprint.\n\nThanks!');
-  var ctaBox = createEl('div', { className: 'cta-box' }, [
-    createEl('h3', { textContent: 'Want to fix this in 5 days?' }),
-    createEl('p', { textContent: 'The AI Ops Sprint: I audit your workflows and implement the top 3 automations. Fixed price, working software \u2014 not a slide deck.' }),
-    createEl('a', { href: 'mailto:eg@techconcepts.org?subject=' + mailSubject + '&body=' + mailBody, textContent: 'Book a Free Call' })
-  ]);
-  resultsEl.appendChild(ctaBox);
+  var ms = encodeURIComponent(t.mailSubject.replace('{p}', pct));
+  var mb = encodeURIComponent(t.mailBody.replace('{p}', pct).replace('{s}', teamSize).replace('{h}', hoursLost));
+  r.appendChild(createEl('div', { className: 'cta-box' }, [
+    createEl('h3', { textContent: t.ctaTitle }),
+    createEl('p', { textContent: t.ctaSub }),
+    createEl('a', { href: 'mailto:eg@techconcepts.org?subject=' + ms + '&body=' + mb, textContent: t.ctaBtn })
+  ]));
 
-  var shareUrl = encodeURIComponent('https://techconcepts.org/sprint/scorecard.html');
-  var shareRow = createEl('div', { className: 'share-row' }, [
-    createEl('a', { href: 'https://www.linkedin.com/sharing/share-offsite/?url=' + shareUrl, target: '_blank', textContent: 'Share on LinkedIn' }),
-    createEl('a', { href: 'mailto:?subject=Workflow%20Efficiency%20Scorecard&body=How%20efficient%20are%20your%20team%27s%20workflows%3F%20Take%20this%202-min%20assessment%3A%20https%3A%2F%2Ftechconcepts.org%2Fsprint%2Fscorecard.html', target: '_blank', textContent: 'Share via Email' })
-  ]);
-  resultsEl.appendChild(shareRow);
-
-  var learnMore = createEl('div', { style: 'text-align:center;margin-top:32px' }, [
-    createEl('a', { href: '/sprint/', style: 'color:var(--accent);font-weight:600;font-size:15px', textContent: 'Learn more about the AI Ops Sprint \u2192' })
-  ]);
-  resultsEl.appendChild(learnMore);
+  var su = encodeURIComponent('https://techconcepts.org/sprint/scorecard.html?lang=' + lang);
+  r.appendChild(createEl('div', { className: 'share-row' }, [
+    createEl('a', { href: 'https://www.linkedin.com/sharing/share-offsite/?url=' + su, target: '_blank', textContent: t.shareLinkedIn }),
+    createEl('a', { href: 'mailto:?subject=Workflow%20Scorecard&body=' + su, target: '_blank', textContent: t.shareEmail })
+  ]));
+  r.appendChild(createEl('div', { style: 'text-align:center;margin-top:32px' }, [
+    createEl('a', { href: '/sprint/', style: 'color:var(--accent);font-weight:600;font-size:15px', textContent: t.learnMore })
+  ]));
 
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+// Init
+lang = detectLang();
+var langBar = document.getElementById('lang-bar');
+[['en', 'English'], ['de', 'Deutsch'], ['fr', 'Fran\u00e7ais'], ['es', 'Espa\u00f1ol']].forEach(function(item) {
+  var btn = createEl('button', { className: 'lang-btn' + (item[0] === lang ? ' active' : ''), textContent: item[1], 'data-lang': item[0], onClick: function() { setLang(item[0]); } });
+  langBar.appendChild(btn);
+});
+var initT = LANGS[lang];
+document.getElementById('badge-text').textContent = initT.badge;
+document.getElementById('hero-title').textContent = initT.heroTitle;
+document.getElementById('hero-sub').textContent = initT.heroSub;
+document.getElementById('nav-sprint').textContent = initT.navSprint;
+document.documentElement.lang = lang;
+buildQuestions();
 render();
 </script>
 </body>
