@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- SEO Meta Tags -->
-    <title>Claude Code Power Pack — 126 Skills & Hooks | TechConcepts</title>
-    <meta name="description" content="126 ready-to-use skills, lifecycle hooks, and coding rules for Claude Code. Session automation, deploy workflows, content pipelines. Install in 2 minutes.">
-    <meta name="keywords" content="Claude Code, skills, hooks, CLI productivity, developer tools, automation, coding rules, Claude Code plugins">
+    <title>Claude Code Power Pack — 151 Skills, Hooks & Rules | TechConcepts</title>
+    <meta name="description" content="151 battle-tested skills, 3 lifecycle hooks, and 4 coding rule sets for Claude Code. Open source, free to use. Install in 30 seconds.">
+    <meta name="keywords" content="Claude Code, skills, hooks, CLI productivity, developer tools, automation, coding rules, session management, open source">
     <meta name="author" content="Evgeny Goncharov">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://techconcepts.org/power-pack/">
@@ -15,25 +15,25 @@
     <!-- Resource Hints -->
     <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
-    <link rel="preconnect" href="https://formspree.io" crossorigin>
-    <link rel="dns-prefetch" href="https://formspree.io">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://techconcepts.org/power-pack/">
-    <meta property="og:title" content="Claude Code Power Pack — 126 Skills & Hooks">
-    <meta property="og:description" content="126 ready-to-use skills, lifecycle hooks, and coding rules. Install in 2 minutes, 10x your CLI productivity.">
+    <meta property="og:title" content="Claude Code Power Pack — 151 Skills for Claude Code">
+    <meta property="og:description" content="151 battle-tested skills, lifecycle hooks, and coding rules. Open source. Install in 30 seconds.">
     <meta property="og:image" content="https://techconcepts.org/techconcepts-og.png">
     <meta property="og:site_name" content="TechConcepts">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Claude Code Power Pack — 126 Skills & Hooks">
-    <meta name="twitter:description" content="126 skills, hooks, and rules for Claude Code. Install in 2 minutes.">
+    <meta name="twitter:title" content="Claude Code Power Pack — 151 Skills for Claude Code">
+    <meta name="twitter:description" content="151 skills, hooks, and rules for Claude Code. Open source, free.">
     <meta name="twitter:image" content="https://techconcepts.org/techconcepts-og.png">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💡</text></svg>">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x1F4E6;</text></svg>">
 
     <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-815E8YDZW8"></script>
@@ -44,20 +44,21 @@
         gtag('config', 'G-815E8YDZW8');
     </script>
 
-    <!-- Styles -->
+    <!-- Site CSS -->
     <link rel="stylesheet" href="/styles/main.css">
 
-    <!-- Schema.org - SoftwareApplication -->
+    <!-- Schema.org -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
         "name": "Claude Code Power Pack",
-        "description": "126 ready-to-use skills, 3 lifecycle hooks, and coding rules for Claude Code. Session automation, deploy workflows, content pipelines.",
+        "description": "151 battle-tested skills, 3 lifecycle hooks, and 4 coding rule sets for Claude Code.",
         "url": "https://techconcepts.org/power-pack/",
         "operatingSystem": "macOS, Linux",
         "applicationCategory": "DeveloperApplication",
-        "offers": { "@type": "Offer", "price": "9", "priceCurrency": "USD" },
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "license": "https://opensource.org/licenses/MIT",
         "author": {
             "@type": "Person",
             "name": "Evgeny Goncharov",
@@ -65,38 +66,191 @@
         }
     }
     </script>
-
-    <!-- Schema.org - BreadcrumbList -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
         "itemListElement": [
-            {
-                "@type": "ListItem",
-                "position": 1,
-                "name": "TechConcepts",
-                "item": "https://techconcepts.org/"
-            },
-            {
-                "@type": "ListItem",
-                "position": 2,
-                "name": "Products",
-                "item": "https://techconcepts.org/products/"
-            },
-            {
-                "@type": "ListItem",
-                "position": 3,
-                "name": "Claude Code Power Pack",
-                "item": "https://techconcepts.org/power-pack/"
-            }
+            { "@type": "ListItem", "position": 1, "name": "TechConcepts", "item": "https://techconcepts.org/" },
+            { "@type": "ListItem", "position": 2, "name": "Products", "item": "https://techconcepts.org/products/" },
+            { "@type": "ListItem", "position": 3, "name": "Claude Code Power Pack", "item": "https://techconcepts.org/power-pack/" }
         ]
     }
     </script>
+
+    <!-- Page-specific styles (dark theme override) -->
+    <style>
+        /* Override site light theme for this page */
+        body { background: #0a0d14; color: #fff; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; }
+
+        /* Dark nav override */
+        nav { background: rgba(10, 13, 20, 0.92) !important; backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.08); }
+        nav .logo { color: #fff !important; }
+        nav .nav-links a { color: rgba(255,255,255,0.7) !important; }
+        nav .nav-links a:hover, nav .nav-links a.active { color: #fff !important; }
+        nav .btn-primary { background: #d97706 !important; color: #000 !important; border-color: #d97706 !important; }
+        nav .btn-primary:hover { background: #f59e0b !important; }
+        .mobile-menu-btn { color: #fff !important; }
+
+        /* Dark footer override */
+        footer { background: #0a0d14 !important; color: rgba(255,255,255,0.5) !important; border-top: 1px solid rgba(255,255,255,0.08); }
+        footer a { color: rgba(255,255,255,0.6) !important; }
+        footer a:hover { color: #fff !important; }
+        .footer-info { color: rgba(255,255,255,0.4) !important; }
+
+        /* Page variables */
+        :root {
+            --pp-bg: #0a0d14;
+            --pp-elevated: #0f131c;
+            --pp-surface: #161b28;
+            --pp-hover: #1e2536;
+            --pp-accent: #d97706;
+            --pp-accent-soft: rgba(217, 119, 6, 0.15);
+            --pp-accent-glow: rgba(217, 119, 6, 0.3);
+            --pp-border: rgba(255, 255, 255, 0.08);
+            --pp-border-hover: rgba(255, 255, 255, 0.15);
+            --pp-text: #ffffff;
+            --pp-text-2: rgba(255, 255, 255, 0.7);
+            --pp-text-3: rgba(255, 255, 255, 0.45);
+            --pp-success: #10b981;
+            --pp-success-soft: rgba(16, 185, 129, 0.15);
+            --pp-blue: #3b82f6;
+            --pp-blue-soft: rgba(59, 130, 246, 0.15);
+        }
+
+        /* === HERO === */
+        .pp-hero {
+            padding: 140px 0 90px; text-align: center;
+            background: radial-gradient(ellipse at top, rgba(217, 119, 6, 0.06) 0%, transparent 60%);
+        }
+        .pp-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: var(--pp-accent-soft); border: 1px solid rgba(217, 119, 6, 0.25);
+            color: var(--pp-accent); padding: 6px 16px; border-radius: 100px;
+            font-size: 0.85rem; font-weight: 600; margin-bottom: 28px;
+        }
+        .pp-hero h1 { font-size: 3.2rem; font-weight: 800; line-height: 1.15; margin-bottom: 20px; letter-spacing: -0.02em; }
+        .pp-hero h1 .hl { color: var(--pp-accent); }
+        .pp-hero .sub { font-size: 1.15rem; color: var(--pp-text-2); max-width: 600px; margin: 0 auto 40px; line-height: 1.7; }
+        .pp-stats { display: flex; justify-content: center; gap: 48px; margin-bottom: 44px; flex-wrap: wrap; }
+        .pp-stat-n { font-size: 2.2rem; font-weight: 800; color: var(--pp-accent); display: block; }
+        .pp-stat-l { font-size: 0.8rem; color: var(--pp-text-3); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+        .pp-install-cmd {
+            background: var(--pp-surface); border: 1px solid var(--pp-border);
+            border-radius: 12px; padding: 18px 24px;
+            display: inline-flex; align-items: center; gap: 14px;
+            font-family: 'JetBrains Mono', monospace; font-size: 0.9rem;
+            cursor: pointer; transition: all 0.2s; position: relative;
+        }
+        .pp-install-cmd:hover { border-color: var(--pp-accent); background: var(--pp-hover); }
+        .pp-install-cmd .pr { color: var(--pp-accent); }
+        .pp-install-cmd .ch { font-family: 'Inter', sans-serif; font-size: 0.7rem; color: var(--pp-text-3); position: absolute; right: 12px; top: -8px; background: var(--pp-surface); padding: 0 6px; }
+        .pp-install-cmd.copied .ch { color: var(--pp-success); }
+
+        /* === SECTIONS === */
+        .pp-section { padding: 90px 0; }
+        .pp-section-dark { background: var(--pp-elevated); }
+        .pp-label { font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--pp-accent); margin-bottom: 10px; }
+        .pp-title { font-size: 1.9rem; font-weight: 700; margin-bottom: 14px; letter-spacing: -0.01em; }
+        .pp-sub { font-size: 1rem; color: var(--pp-text-2); max-width: 540px; margin-bottom: 44px; }
+        .pp-sub code { color: var(--pp-accent); font-family: 'JetBrains Mono', monospace; font-size: 0.88em; }
+
+        /* === TABS === */
+        .pp-tabs { display: flex; gap: 4px; margin-bottom: 28px; background: var(--pp-bg); border-radius: 12px; padding: 4px; overflow-x: auto; flex-wrap: wrap; }
+        .pp-tab { padding: 9px 18px; border-radius: 8px; font-size: 0.83rem; font-weight: 600; cursor: pointer; color: var(--pp-text-3); background: transparent; border: none; transition: all 0.2s; white-space: nowrap; }
+        .pp-tab:hover { color: var(--pp-text-2); background: var(--pp-surface); }
+        .pp-tab.active { color: var(--pp-text); background: var(--pp-surface); box-shadow: 0 1px 3px rgba(0,0,0,0.3); }
+
+        /* === SKILL CARDS === */
+        .pp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(255px, 1fr)); gap: 12px; }
+        .pp-card { background: var(--pp-surface); border: 1px solid var(--pp-border); border-radius: 8px; padding: 15px 17px; transition: all 0.2s; }
+        .pp-card:hover { border-color: var(--pp-border-hover); transform: translateY(-1px); }
+        .pp-card-name { font-family: 'JetBrains Mono', monospace; font-size: 0.84rem; font-weight: 500; margin-bottom: 5px; }
+        .pp-card-name .sl { color: var(--pp-accent); }
+        .pp-card-desc { font-size: 0.8rem; color: var(--pp-text-3); line-height: 1.5; }
+        .pp-panel { display: none; }
+        .pp-panel.active { display: block; }
+        .pp-count { text-align: center; margin-top: 28px; padding: 14px; color: var(--pp-text-3); font-size: 0.88rem; }
+        .pp-count strong { color: var(--pp-text-2); }
+
+        /* === FLOW === */
+        .pp-flow { display: flex; align-items: center; justify-content: center; gap: 0; margin: 44px 0; flex-wrap: wrap; }
+        .pp-node { background: var(--pp-surface); border: 1px solid var(--pp-border); border-radius: 12px; padding: 22px 26px; text-align: center; min-width: 170px; transition: all 0.3s; }
+        .pp-node:hover { border-color: var(--pp-accent); transform: translateY(-2px); }
+        .pp-node-icon { font-size: 1.6rem; margin-bottom: 8px; }
+        .pp-node-label { font-weight: 600; font-size: 0.92rem; margin-bottom: 3px; }
+        .pp-node-detail { font-size: 0.78rem; color: var(--pp-text-3); }
+        .pp-arrow { color: var(--pp-accent); font-size: 1.3rem; padding: 0 10px; animation: ppPulse 2s ease-in-out infinite; }
+        @keyframes ppPulse { 0%,100% { opacity: 0.4; transform: translateX(0); } 50% { opacity: 1; transform: translateX(4px); } }
+
+        /* === HOOKS === */
+        .pp-hooks { display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 18px; }
+        .pp-hook { background: var(--pp-surface); border: 1px solid var(--pp-border); border-radius: 12px; padding: 26px; transition: all 0.2s; }
+        .pp-hook:hover { border-color: var(--pp-border-hover); }
+        .pp-hook-ev { display: inline-block; font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; padding: 3px 9px; border-radius: 4px; margin-bottom: 12px; }
+        .pp-hook-ev.start { background: var(--pp-success-soft); color: var(--pp-success); }
+        .pp-hook-ev.guard { background: var(--pp-accent-soft); color: var(--pp-accent); }
+        .pp-hook-ev.end { background: var(--pp-blue-soft); color: var(--pp-blue); }
+        .pp-hook-name { font-weight: 700; font-size: 1.02rem; margin-bottom: 7px; }
+        .pp-hook-desc { font-size: 0.88rem; color: var(--pp-text-2); line-height: 1.6; }
+
+        /* === RULES === */
+        .pp-rules { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; }
+        .pp-rule { background: var(--pp-surface); border: 1px solid var(--pp-border); border-radius: 12px; padding: 22px; text-align: center; transition: all 0.2s; }
+        .pp-rule:hover { border-color: var(--pp-border-hover); }
+        .pp-rule-icon { font-size: 1.8rem; margin-bottom: 10px; }
+        .pp-rule-lang { font-weight: 700; font-size: 1rem; margin-bottom: 5px; }
+        .pp-rule-topics { font-size: 0.8rem; color: var(--pp-text-3); line-height: 1.6; }
+
+        /* === INSTALL TERMINAL === */
+        .pp-term { background: var(--pp-bg); border: 1px solid var(--pp-border); border-radius: 12px; overflow: hidden; max-width: 680px; }
+        .pp-term-bar { display: flex; align-items: center; gap: 7px; padding: 11px 16px; border-bottom: 1px solid var(--pp-border); }
+        .pp-dot { width: 11px; height: 11px; border-radius: 50%; }
+        .pp-dot.r { background: #ff5f57; } .pp-dot.y { background: #febc2e; } .pp-dot.g { background: #28c840; }
+        .pp-term-title { font-size: 0.75rem; color: var(--pp-text-3); margin-left: 7px; font-family: 'JetBrains Mono', monospace; }
+        .pp-term-body { padding: 22px; font-family: 'JetBrains Mono', monospace; font-size: 0.88rem; line-height: 2; }
+        .pp-term-body .c { color: var(--pp-text-3); }
+        .pp-term-body .p { color: var(--pp-success); }
+
+        .pp-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 18px; margin-top: 44px; }
+        .pp-step { display: flex; gap: 14px; align-items: flex-start; }
+        .pp-step-n { width: 30px; height: 30px; border-radius: 50%; background: var(--pp-accent-soft); color: var(--pp-accent); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.83rem; flex-shrink: 0; }
+        .pp-step-t { font-size: 0.88rem; color: var(--pp-text-2); }
+        .pp-step-t strong { color: var(--pp-text); display: block; margin-bottom: 2px; }
+
+        /* === CTA === */
+        .pp-cta { text-align: center; padding: 110px 0; position: relative; }
+        .pp-cta::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at bottom, rgba(217, 119, 6, 0.06) 0%, transparent 60%); }
+        .pp-btn {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: var(--pp-accent); color: #000; padding: 15px 34px;
+            border-radius: 8px; text-decoration: none;
+            font-size: 1.02rem; font-weight: 700; transition: all 0.2s;
+            position: relative; z-index: 1;
+        }
+        .pp-btn:hover { filter: brightness(1.1); transform: translateY(-1px); box-shadow: 0 8px 24px var(--pp-accent-glow); }
+        .pp-btn svg { width: 20px; height: 20px; fill: currentColor; }
+        .pp-cta-note { color: var(--pp-text-3); font-size: 0.83rem; margin-top: 14px; position: relative; z-index: 1; }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 768px) {
+            .pp-hero h1 { font-size: 2rem; }
+            .pp-stats { gap: 24px; }
+            .pp-stat-n { font-size: 1.5rem; }
+            .pp-flow { flex-direction: column; }
+            .pp-arrow { transform: rotate(90deg); padding: 8px 0; }
+            .pp-tabs { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+        }
+        @media (max-width: 480px) {
+            .pp-hero h1 { font-size: 1.7rem; }
+            .pp-install-cmd { padding: 12px 16px; font-size: 0.78rem; flex-wrap: wrap; }
+            .pp-section { padding: 60px 0; }
+        }
+    </style>
 </head>
 <body data-page-type="product">
 
-    <!-- Navigation -->
+    <!-- Navigation (site standard) -->
     <nav>
         <div class="container">
             <a href="/" class="logo">TechConcepts</a>
@@ -118,71 +272,230 @@
     </nav>
 
     <!-- Hero -->
-    <section class="hero">
+    <section class="pp-hero">
         <div class="container">
-            <span class="tag" style="margin-bottom: 16px; display: inline-block;">Developer Tool</span>
-            <div style="font-size: 64px; margin-bottom: 16px;">&#x1F680;</div>
-            <h1>Claude Code Power Pack</h1>
-            <p>126 skills, lifecycle hooks, and coding rules for Claude Code</p>
+            <div class="pp-badge">Open Source &mdash; MIT License</div>
+            <h1>151 Skills for<br><span class="hl">Claude Code</span></h1>
+            <p class="sub">Battle-tested workflows, lifecycle hooks, coding rules, and session automation. Built across 24 real projects. Install in 30 seconds.</p>
+            <div class="pp-stats">
+                <div><span class="pp-stat-n">151</span><span class="pp-stat-l">Skills</span></div>
+                <div><span class="pp-stat-n">3</span><span class="pp-stat-l">Hooks</span></div>
+                <div><span class="pp-stat-n">4</span><span class="pp-stat-l">Rule Sets</span></div>
+                <div><span class="pp-stat-n">0</span><span class="pp-stat-l">Dependencies</span></div>
+            </div>
+            <div class="pp-install-cmd" onclick="copyCmd(this)">
+                <span class="ch">click to copy</span>
+                <span class="pr">$</span>
+                <span>git clone https://github.com/Strategyherogo/claude-code-power-pack.git</span>
+            </div>
         </div>
     </section>
 
-    <!-- Product Details -->
-    <section style="padding: 60px 0 80px;">
-        <div class="container" style="max-width: 640px; text-align: center;">
-            <div style="padding: 48px 32px; background: var(--bg-alt, #f8f9fa); border-radius: 16px; border: 1px solid var(--border);">
-                <h2 style="margin: 0 0 16px; font-size: 28px;">Coming Soon</h2>
-                <p style="margin: 0 0 24px; color: var(--text-secondary); font-size: 17px; line-height: 1.6;">Session automation, deploy workflows, content pipelines, sales tools, and more. Install in 2 minutes, 10x your Claude Code productivity.</p>
+    <!-- Skills -->
+    <section class="pp-section pp-section-dark" id="skills">
+        <div class="container">
+            <div class="pp-label">Skills</div>
+            <div class="pp-title">Every workflow you need</div>
+            <div class="pp-sub">Type <code>/commands:skill-name</code> and Claude follows a structured workflow. No setup required.</div>
 
-                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 32px;">
-                    <div style="padding: 16px; border-radius: 8px; background: var(--bg, #fff); border: 1px solid var(--border);">
-                        <div style="font-size: 24px; font-weight: 700; color: var(--text);">126</div>
-                        <div style="font-size: 13px; color: var(--gray);">Ready-to-Use Skills</div>
-                    </div>
-                    <div style="padding: 16px; border-radius: 8px; background: var(--bg, #fff); border: 1px solid var(--border);">
-                        <div style="font-size: 24px; font-weight: 700; color: var(--text);">10</div>
-                        <div style="font-size: 13px; color: var(--gray);">Lifecycle Hooks</div>
-                    </div>
-                    <div style="padding: 16px; border-radius: 8px; background: var(--bg, #fff); border: 1px solid var(--border);">
-                        <div style="font-size: 24px; font-weight: 700; color: var(--text);">$9</div>
-                        <div style="font-size: 13px; color: var(--gray);">One-Time Purchase</div>
-                    </div>
-                </div>
-
-                <h3 style="margin: 0 0 16px; font-size: 18px; text-align: left;">What's Included</h3>
-                <ul style="text-align: left; color: var(--text-secondary); font-size: 15px; line-height: 1.8; margin: 0 0 32px; padding-left: 20px;">
-                    <li>Session management (auto-start, retro, context saves)</li>
-                    <li>Deploy workflows (Cloudflare, Docker, Vercel)</li>
-                    <li>Content pipelines (blog, LinkedIn, newsletter)</li>
-                    <li>Code quality (TDD, review, debug, test suites)</li>
-                    <li>Sales tools (outreach, call prep, forecasting)</li>
-                    <li>Project management (Jira, Monday.com, roadmaps)</li>
-                </ul>
-
-                <p style="margin: 0 0 24px; font-size: 14px; color: var(--gray);">Get notified when it launches:</p>
-                <form action="https://formspree.io/f/xpwzgvqr" method="POST" style="display: flex; gap: 8px; max-width: 400px; margin: 0 auto;">
-                    <input type="email" name="email" placeholder="your@email.com" required style="flex: 1; padding: 12px 16px; border: 1px solid var(--border); border-radius: 8px; font-size: 15px;">
-                    <input type="hidden" name="_subject" value="Waitlist: Claude Code Power Pack">
-                    <button type="submit" class="btn btn-primary">Notify Me</button>
-                </form>
+            <div class="pp-tabs">
+                <button class="pp-tab active" data-tab="dev">Development</button>
+                <button class="pp-tab" data-tab="git">Git & Deploy</button>
+                <button class="pp-tab" data-tab="session">Session</button>
+                <button class="pp-tab" data-tab="content">Content</button>
+                <button class="pp-tab" data-tab="sales">Sales</button>
+                <button class="pp-tab" data-tab="pm">PM & Ops</button>
+                <button class="pp-tab" data-tab="agents">Agents</button>
+                <button class="pp-tab" data-tab="domain">Domain</button>
             </div>
 
-            <div style="margin-top: 32px;">
-                <a href="/products/" style="color: var(--accent); font-weight: 600;">&larr; All products</a>
+            <div class="pp-panel active" id="p-dev">
+                <div class="pp-grid">
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>systematic-debug</div><div class="pp-card-desc">Multi-step debugging with hypothesis generation and root cause isolation</div></div>
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>tdd</div><div class="pp-card-desc">Test-driven development &mdash; write tests first, then implementation</div></div>
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>build-test</div><div class="pp-card-desc">Verify build process and artifacts compile correctly</div></div>
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>edge-test</div><div class="pp-card-desc">Test boundary conditions, null cases, and edge scenarios</div></div>
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>root-trace</div><div class="pp-card-desc">Trace an error to its root cause through the call stack</div></div>
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>scaffold</div><div class="pp-card-desc">Generate project boilerplate &mdash; files, folders, config</div></div>
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>api-test</div><div class="pp-card-desc">Hit endpoints, inspect responses, validate schemas</div></div>
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>docker</div><div class="pp-card-desc">Dockerfile generation and container management</div></div>
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>migration</div><div class="pp-card-desc">Database migration helper &mdash; schema changes, rollbacks</div></div>
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>api-docs</div><div class="pp-card-desc">Generate API documentation from code</div></div>
+                </div>
+            </div>
+            <div class="pp-panel" id="p-git">
+                <div class="pp-grid">
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>git-flow</div><div class="pp-card-desc">Feature, release, and hotfix branch management</div></div>
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>deploy-verify</div><div class="pp-card-desc">Comprehensive pre-deployment verification checklist</div></div>
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>quick-deploy</div><div class="pp-card-desc">Rapid deployment with minimal verification gates</div></div>
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>commit-msg</div><div class="pp-card-desc">Conventional commit message generation</div></div>
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>changelog</div><div class="pp-card-desc">Maintain and update CHANGELOG from git history</div></div>
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>release-notes</div><div class="pp-card-desc">Auto-generate release notes from commits</div></div>
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>secret-scan</div><div class="pp-card-desc">Find leaked secrets in code and git history</div></div>
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>dependency-audit</div><div class="pp-card-desc">Check for outdated and vulnerable packages</div></div>
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>env-sync</div><div class="pp-card-desc">Synchronize environment variables across environments</div></div>
+                </div>
+            </div>
+            <div class="pp-panel" id="p-session">
+                <div class="pp-grid">
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>cs</div><div class="pp-card-desc">Session start &mdash; briefing with git state, pending tasks, context</div></div>
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>save</div><div class="pp-card-desc">Save current context for seamless session handoff</div></div>
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>restore</div><div class="pp-card-desc">Resume from the last context save</div></div>
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>handoff</div><div class="pp-card-desc">Structured handoff document for next session</div></div>
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>wrap</div><div class="pp-card-desc">End-of-session wrap-up with summary and next steps</div></div>
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>focus</div><div class="pp-card-desc">Enter deep work mode with clear objectives</div></div>
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>session-retro</div><div class="pp-card-desc">Analyze session patterns, extract lessons, suggest improvements</div></div>
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>morning-check</div><div class="pp-card-desc">Quick health check &mdash; git, auth, dirty projects, unsaved work</div></div>
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>standup</div><div class="pp-card-desc">Generate daily standup summary from recent activity</div></div>
+                </div>
+            </div>
+            <div class="pp-panel" id="p-content">
+                <div class="pp-grid">
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>c2c:blog</div><div class="pp-card-desc">Full blog post creation workflow</div></div>
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>c2c:quick-blog</div><div class="pp-card-desc">Rapid blog post in under 15 minutes</div></div>
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>linkedin-post</div><div class="pp-card-desc">Create LinkedIn posts with hooks and CTAs</div></div>
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>linkedin-carousel</div><div class="pp-card-desc">HTML slides to PDF carousel</div></div>
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>c2c:newsletter</div><div class="pp-card-desc">Create engaging newsletter content</div></div>
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>c2c:readme</div><div class="pp-card-desc">Create effective README files</div></div>
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>c2c:tutorial</div><div class="pp-card-desc">Create step-by-step technical tutorials</div></div>
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>podcast-prep</div><div class="pp-card-desc">Podcast episode prep and show notes</div></div>
+                </div>
+            </div>
+            <div class="pp-panel" id="p-sales">
+                <div class="pp-grid">
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>sales:account-research</div><div class="pp-card-desc">Research a company &mdash; get actionable sales intel</div></div>
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>sales:call-prep</div><div class="pp-card-desc">Prepare for calls with context, attendees, and agenda</div></div>
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>sales:forecast</div><div class="pp-card-desc">Weighted forecast with best/likely/worst scenarios</div></div>
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>sales:pipeline-review</div><div class="pp-card-desc">Analyze pipeline health &mdash; prioritize and flag risks</div></div>
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>sales:competitive-intel</div><div class="pp-card-desc">Research competitors and build battlecards</div></div>
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>sales:draft-outreach</div><div class="pp-card-desc">Research prospect, draft personalized outreach</div></div>
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>sales:create-asset</div><div class="pp-card-desc">Generate landing pages, decks, one-pagers from deal context</div></div>
+                </div>
+            </div>
+            <div class="pp-panel" id="p-pm">
+                <div class="pp-grid">
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>pm:feature-prioritize</div><div class="pp-card-desc">RICE scoring and feature prioritization</div></div>
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>pm:roadmap-build</div><div class="pp-card-desc">Create strategic product roadmaps</div></div>
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>brainstorm</div><div class="pp-card-desc">Structured idea generation and exploration</div></div>
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>write-plan</div><div class="pp-card-desc">Detailed implementation plan with milestones</div></div>
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>decision-log</div><div class="pp-card-desc">Architecture Decision Records (ADR)</div></div>
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>infra-health</div><div class="pp-card-desc">Infrastructure status and monitoring</div></div>
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>log-errors</div><div class="pp-card-desc">Analyze and categorize error logs</div></div>
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>organize</div><div class="pp-card-desc">Organize files and project structure</div></div>
+                </div>
+            </div>
+            <div class="pp-panel" id="p-agents">
+                <div class="pp-grid">
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>agent:code-review</div><div class="pp-card-desc">Multi-agent automated code review with quality scoring</div></div>
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>agent:deploy-pipeline</div><div class="pp-card-desc">End-to-end deployment with parallel validation</div></div>
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>agent:project-analyzer</div><div class="pp-card-desc">Comprehensive project structure and state analysis</div></div>
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>parallel-agents</div><div class="pp-card-desc">Coordinate multiple Claude agents for complex tasks</div></div>
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>orchestrate</div><div class="pp-card-desc">Auto-detect task type and run the right skill</div></div>
+                </div>
+            </div>
+            <div class="pp-panel" id="p-domain">
+                <div class="pp-grid">
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>swift:async-troubleshoot</div><div class="pp-card-desc">Diagnose Swift async/await and MainActor issues</div></div>
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>swift:debug-memory</div><div class="pp-card-desc">Detect and fix memory leaks in Swift/iOS</div></div>
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>mcp:build</div><div class="pp-card-desc">Create new MCP (Model Context Protocol) servers</div></div>
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>chrome:extension-debug</div><div class="pp-card-desc">Debug Chrome extensions</div></div>
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>bot:slack-debug</div><div class="pp-card-desc">Troubleshoot Slack bot integrations</div></div>
+                    <div class="pp-card"><div class="pp-card-name"><span class="sl">/</span>make-skill</div><div class="pp-card-desc">Create new custom skills from scratch</div></div>
+                </div>
+            </div>
+
+            <div class="pp-count">Showing highlights. <strong>151 skills total</strong> across all categories.</div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="pp-section" id="how">
+        <div class="container">
+            <div class="pp-label">How It Works</div>
+            <div class="pp-title">Just markdown files</div>
+            <div class="pp-sub">Skills are structured prompts in <code>.claude/commands/</code>. Claude reads them as workflow instructions. No build step, no runtime, no dependencies.</div>
+            <div class="pp-flow">
+                <div class="pp-node"><div class="pp-node-icon">&#9000;</div><div class="pp-node-label">You type a keyword</div><div class="pp-node-detail">"debug this error"</div></div>
+                <div class="pp-arrow">&#8594;</div>
+                <div class="pp-node"><div class="pp-node-icon">&#9881;</div><div class="pp-node-label">MASTER.md maps it</div><div class="pp-node-detail">debug &rarr; /systematic-debug</div></div>
+                <div class="pp-arrow">&#8594;</div>
+                <div class="pp-node"><div class="pp-node-icon">&#9889;</div><div class="pp-node-label">Claude runs the skill</div><div class="pp-node-detail">Structured workflow executes</div></div>
+            </div>
+            <p style="text-align:center; color:var(--pp-text-3); font-size:0.88rem; max-width:480px; margin:0 auto;">Edit any skill to match your workflow. Create new ones with <code style="color:var(--pp-accent);font-family:'JetBrains Mono',monospace;font-size:0.88em">/make-skill</code> or drop a markdown file in <code style="color:var(--pp-accent);font-family:'JetBrains Mono',monospace;font-size:0.88em">.claude/commands/</code>.</p>
+        </div>
+    </section>
+
+    <!-- Hooks -->
+    <section class="pp-section pp-section-dark" id="hooks">
+        <div class="container">
+            <div class="pp-label">Lifecycle Hooks</div>
+            <div class="pp-title">Automatic behaviors</div>
+            <div class="pp-sub">Shell scripts that fire on Claude Code events. Catch issues before they cost you time.</div>
+            <div class="pp-hooks">
+                <div class="pp-hook"><div class="pp-hook-ev start">Session Start</div><div class="pp-hook-name">startup-parallel.sh</div><div class="pp-hook-desc">Checks GitHub auth, git state, and uncommitted files. Only speaks up if something is wrong.</div></div>
+                <div class="pp-hook"><div class="pp-hook-ev guard">Pre-Deploy Guard</div><div class="pp-hook-name">pre-deploy-check.sh</div><div class="pp-hook-desc">Intercepts deploy, publish, and push commands. Verifies credentials before execution. Covers npm, Cloudflare, App Store, Chrome Web Store, DigitalOcean, Atlassian.</div></div>
+                <div class="pp-hook"><div class="pp-hook-ev end">Session End</div><div class="pp-hook-name">session-end-save.sh</div><div class="pp-hook-desc">Auto-saves context &mdash; branch, recent commits, modified files &mdash; so the next session picks up seamlessly.</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rules -->
+    <section class="pp-section" id="rules">
+        <div class="container">
+            <div class="pp-label">Coding Rules</div>
+            <div class="pp-title">Standards Claude follows automatically</div>
+            <div class="pp-sub">Drop a rule file in <code>.claude/rules/</code> and Claude follows it when writing code.</div>
+            <div class="pp-rules">
+                <div class="pp-rule"><div class="pp-rule-icon">&#128736;</div><div class="pp-rule-lang">Common</div><div class="pp-rule-topics">Git workflow, code quality, testing, security, performance</div></div>
+                <div class="pp-rule"><div class="pp-rule-icon">&#128013;</div><div class="pp-rule-lang">Python</div><div class="pp-rule-topics">PEP 8, type hints, pytest, async patterns, dataclasses</div></div>
+                <div class="pp-rule"><div class="pp-rule-icon">&#128312;</div><div class="pp-rule-lang">TypeScript</div><div class="pp-rule-topics">Strict mode, no any, discriminated unions, error handling</div></div>
+                <div class="pp-rule"><div class="pp-rule-icon">&#128038;</div><div class="pp-rule-lang">Swift</div><div class="pp-rule-topics">@MainActor, actors, Sendable, SwiftUI, localization</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Install -->
+    <section class="pp-section pp-section-dark" id="install">
+        <div class="container">
+            <div class="pp-label">Get Started</div>
+            <div class="pp-title">Install in 30 seconds</div>
+            <div class="pp-sub">Clone, run the installer, start using skills.</div>
+            <div class="pp-term">
+                <div class="pp-term-bar"><div class="pp-dot r"></div><div class="pp-dot y"></div><div class="pp-dot g"></div><span class="pp-term-title">terminal</span></div>
+                <div class="pp-term-body">
+                    <span class="c"># Clone the power pack</span><br>
+                    <span class="p">$</span> git clone https://github.com/Strategyherogo/claude-code-power-pack.git<br><br>
+                    <span class="c"># Go to your project</span><br>
+                    <span class="p">$</span> cd your-project<br><br>
+                    <span class="c"># Install skills, rules, hooks, and config</span><br>
+                    <span class="p">$</span> bash ~/claude-code-power-pack/src/pro/install.sh<br><br>
+                    <span class="c"># Start Claude Code and try it</span><br>
+                    <span class="p">$</span> claude<br>
+                    <span class="p">></span> /commands:cs
+                </div>
+            </div>
+            <div class="pp-steps">
+                <div class="pp-step"><div class="pp-step-n">1</div><div class="pp-step-t"><strong>Skills copied</strong>151 markdown files to .claude/commands/</div></div>
+                <div class="pp-step"><div class="pp-step-n">2</div><div class="pp-step-t"><strong>Rules applied</strong>4 coding rule sets for Python, TS, Swift</div></div>
+                <div class="pp-step"><div class="pp-step-n">3</div><div class="pp-step-t"><strong>Hooks ready</strong>3 lifecycle scripts &mdash; wire in settings.json</div></div>
             </div>
         </div>
     </section>
 
     <!-- CTA -->
-    <section class="final-cta">
+    <section class="pp-cta">
         <div class="container">
-            <h2>Need custom developer tooling?</h2>
-            <p>15 minutes. No pitch. Just honest advice on whether I can help.</p>
-            <a href="https://calendar.app.google/md6WqwnhfireNTqx5" class="btn btn-primary">Book a Call</a>
+            <div class="pp-title" style="font-size:2rem; margin-bottom:22px;">Stop re-explaining.<br>Start shipping.</div>
+            <p style="color:var(--pp-text-2); max-width:460px; margin:0 auto 32px; font-size:1rem; position:relative; z-index:1;">Every skill was built during real work &mdash; not hypothetical templates. The system grows itself through session retros.</p>
+            <a href="https://github.com/Strategyherogo/claude-code-power-pack" target="_blank" class="pp-btn">
+                <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                View on GitHub
+            </a>
+            <p class="pp-cta-note">MIT License &mdash; Free and open source</p>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Footer (site standard) -->
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -191,20 +504,42 @@
                     <a href="/products/">Products</a>
                     <a href="/blog/">Blog</a>
                     <a href="/tools/">Tools</a>
-                    <a href="/podcast/">Podcast</a>
                     <a href="/about.html">About</a>
                     <a href="/privacy">Privacy</a>
                     <a href="/terms">Terms</a>
                 </div>
-                <div class="footer-info">
-                    Madrid, Spain &middot; Mo-Fr 09:00-18:00 CET
-                </div>
+                <div class="footer-info">Madrid, Spain &middot; Mo-Fr 09:00-18:00 CET</div>
             </div>
         </div>
     </footer>
 
+    <!-- Site scripts -->
     <script src="/scripts/nav.js"></script>
     <script src="/scripts/i18n.js"></script>
     <script src="/scripts/analytics.js"></script>
+
+    <!-- Page scripts -->
+    <script>
+        document.querySelectorAll('.pp-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.pp-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.pp-panel').forEach(p => p.classList.remove('active'));
+                tab.classList.add('active');
+                document.getElementById('p-' + tab.dataset.tab).classList.add('active');
+            });
+        });
+        function copyCmd(el) {
+            navigator.clipboard.writeText('git clone https://github.com/Strategyherogo/claude-code-power-pack.git');
+            el.classList.add('copied');
+            el.querySelector('.ch').textContent = 'copied!';
+            setTimeout(() => { el.classList.remove('copied'); el.querySelector('.ch').textContent = 'click to copy'; }, 2000);
+        }
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; } });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.pp-section, .pp-cta').forEach(s => {
+            s.style.opacity='0'; s.style.transform='translateY(20px)'; s.style.transition='opacity 0.6s ease, transform 0.6s ease'; obs.observe(s);
+        });
+    </script>
 </body>
 </html>
