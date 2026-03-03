@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Workflow Efficiency Scorecard — TechConcepts</title>
+<meta name="description" content="Free 2-minute assessment: How much time is your team losing to manual workflows? Get your score and personalized recommendations.">
+<meta property="og:title" content="How Efficient Are Your Team's Workflows?">
+<meta property="og:description" content="Free 2-minute scorecard. Find out how much time your team is losing to manual processes.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--ink:#1a1a2e;--accent:#2563eb;--accent-dark:#1d4ed8;--bg:#fafafa;--card:#fff;--muted:#64748b;--border:#e2e8f0;--green:#059669;--red:#dc2626;--amber:#d97706;--radius:12px}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
+.nav{background:var(--ink);padding:16px 0}
+.nav-inner{max-width:720px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{color:#fff;font-weight:700;font-size:18px;letter-spacing:-0.5px}
+.nav-logo span{color:var(--accent)}
+.nav-link{color:#94a3b8;font-size:14px;text-decoration:none}
+.container{max-width:720px;margin:0 auto;padding:40px 24px}
+.hero{text-align:center;margin-bottom:48px}
+.hero h1{font-size:clamp(26px,4vw,38px);font-weight:800;line-height:1.2;margin-bottom:12px;letter-spacing:-0.5px}
+.hero p{font-size:17px;color:var(--muted);max-width:520px;margin:0 auto}
+.badge{display:inline-block;background:#eff6ff;color:var(--accent);font-size:12px;font-weight:700;padding:4px 14px;border-radius:20px;margin-bottom:16px;text-transform:uppercase;letter-spacing:1px}
+.progress-bar{background:var(--border);height:6px;border-radius:3px;margin-bottom:32px;overflow:hidden}
+.progress-fill{background:var(--accent);height:100%;border-radius:3px;transition:width .4s ease}
+.progress-text{font-size:13px;color:var(--muted);margin-bottom:8px;text-align:right}
+.question-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:32px;margin-bottom:24px;display:none}
+.question-card.active{display:block;animation:fadeIn .3s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.question-card h2{font-size:20px;font-weight:700;margin-bottom:6px}
+.context{font-size:14px;color:var(--muted);margin-bottom:20px}
+.options{display:flex;flex-direction:column;gap:10px}
+.option{background:var(--bg);border:2px solid var(--border);border-radius:10px;padding:14px 18px;cursor:pointer;transition:all .2s;font-size:15px;display:flex;align-items:center;gap:12px}
+.option:hover{border-color:var(--accent);background:#f8fafc}
+.option.selected{border-color:var(--accent);background:#eff6ff}
+.option-dot{width:20px;height:20px;border-radius:50%;border:2px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.option.selected .option-dot{border-color:var(--accent);background:var(--accent)}
+.btn-row{display:flex;justify-content:space-between;margin-top:24px}
+.btn{padding:12px 28px;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer;border:none;transition:all .2s}
+.btn-next{background:var(--accent);color:#fff}.btn-next:hover{background:var(--accent-dark)}
+.btn-next:disabled{background:var(--border);color:var(--muted);cursor:not-allowed}
+.btn-back{background:transparent;color:var(--muted);border:1px solid var(--border)}
+.btn-back:hover{border-color:var(--accent);color:var(--accent)}
+.score-circle{width:160px;height:160px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 24px;border:6px solid}
+.score-num{font-size:48px;font-weight:800;line-height:1}
+.score-label{font-size:13px;font-weight:600;margin-top:2px}
+.score-low{border-color:var(--red);color:var(--red);background:#fef2f2}
+.score-mid{border-color:var(--amber);color:var(--amber);background:#fffbeb}
+.score-high{border-color:var(--green);color:var(--green);background:#f0fdf4}
+.finding{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:12px}
+.finding.critical{border-left:4px solid var(--red)}
+.finding.warning{border-left:4px solid var(--amber)}
+.finding.good{border-left:4px solid var(--green)}
+.finding h4{font-size:15px;font-weight:700;margin-bottom:4px}
+.finding p{font-size:14px;color:var(--muted)}
+.time-saved{background:linear-gradient(135deg,#f0fdf4 0%,#ecfdf5 100%);border:1px solid #bbf7d0;border-radius:var(--radius);padding:24px;text-align:center;margin:24px 0}
+.time-saved .big{font-size:36px;font-weight:800;color:var(--green)}
+.time-saved p{font-size:14px;color:var(--muted);margin-top:4px}
+.cta-box{background:linear-gradient(135deg,var(--ink) 0%,#16213e 100%);color:#fff;border-radius:var(--radius);padding:32px;text-align:center;margin:32px 0}
+.cta-box h3{font-size:22px;font-weight:800;margin-bottom:8px}
+.cta-box p{color:#94a3b8;margin-bottom:20px;font-size:15px}
+.cta-box a{display:inline-block;background:var(--accent);color:#fff;padding:14px 36px;border-radius:10px;font-weight:700;text-decoration:none;font-size:16px}
+.share-row{text-align:center;margin:24px 0}
+.share-row a{display:inline-block;margin:0 8px;padding:8px 16px;border:1px solid var(--border);border-radius:8px;color:var(--ink);text-decoration:none;font-size:13px;font-weight:600}
+.footer{text-align:center;font-size:13px;color:var(--muted);padding:24px 0;border-top:1px solid var(--border);margin-top:48px}
+</style>
+</head>
+<body>
+<nav class="nav"><div class="nav-inner"><div class="nav-logo">Tech<span>Concepts</span></div><a href="/sprint/" class="nav-link">AI Ops Sprint &rarr;</a></div></nav>
+<div class="container">
+<div class="hero" id="hero">
+<span class="badge">Free Assessment &middot; 2 Minutes</span>
+<h1>How much time is your team losing to manual workflows?</h1>
+<p>Answer 8 quick questions. Get your Workflow Efficiency Score and personalized recommendations.</p>
+</div>
+<div id="quiz">
+<div class="progress-text"><span id="progress-label">Question 1 of 8</span></div>
+<div class="progress-bar"><div class="progress-fill" id="progress" style="width:12.5%"></div></div>
+</div>
+<div id="results"></div>
+</div>
+<footer class="footer"><p>&copy; 2026 TechConcepts &middot; eg@techconcepts.org &middot; <a href="https://techconcepts.org" style="color:inherit">techconcepts.org</a></p></footer>
+
+<script>
+const questions = [
+  { q: "How does your team handle incoming support/service requests?", context: "Think about how tickets, bugs, or internal requests get to the right person.", options: [{ text: "Fully automated — AI classifies and routes automatically", score: 3 }, { text: "Partially automated — some rules, but manual triage for most", score: 2 }, { text: "Mostly manual — someone reads and assigns each request", score: 1 }, { text: "Chaotic — requests come via Slack, email, DMs, and things get lost", score: 0 }], category: "routing" },
+  { q: "How many Slack/Teams channels does your team actively use?", context: "Include channels people check at least weekly.", options: [{ text: "Under 15 — well-organized with clear purposes", score: 3 }, { text: "15–30 — mostly organized, some overlap", score: 2 }, { text: "30–60 — growing organically, hard to navigate", score: 1 }, { text: "60+ — nobody knows what's where anymore", score: 0 }], category: "channels" },
+  { q: "How do team leads stay informed about what's happening across teams?", context: "Daily standups, reports, dashboards, reading every channel...", options: [{ text: "Automated digests/dashboards — key info surfaces automatically", score: 3 }, { text: "Structured meetings — but takes significant time to prepare", score: 2 }, { text: "Manually checking channels and asking around", score: 1 }, { text: "They don't — information silos are a real problem", score: 0 }], category: "visibility" },
+  { q: "How long does it take to onboard a new team member into your tools?", context: "From day 1 to 'I know which channels to join, which boards to check, who to ask.'", options: [{ text: "Under 1 hour — automated setup with guides", score: 3 }, { text: "1 day — someone walks them through manually", score: 2 }, { text: "2–5 days — they figure it out gradually", score: 1 }, { text: "Weeks — people are still discovering channels months later", score: 0 }], category: "onboarding" },
+  { q: "How much time per week does your team spend on status updates and reporting?", context: "Writing standups, updating Jira, compiling reports for leadership.", options: [{ text: "Under 30 min/person — mostly automated", score: 3 }, { text: "30–60 min/person — some manual work", score: 2 }, { text: "1–3 hours/person — significant manual effort", score: 1 }, { text: "3+ hours/person — it's a major time sink", score: 0 }], category: "reporting" },
+  { q: "How many tools does your team switch between daily?", context: "Slack, Jira, email, Google Docs, Notion, CRM, monitoring, etc.", options: [{ text: "2–3 tools — well-integrated", score: 3 }, { text: "4–5 tools — some integrations, some manual copy-paste", score: 2 }, { text: "6–8 tools — lots of context switching", score: 1 }, { text: "8+ tools — copy-pasting between systems all day", score: 0 }], category: "tools" },
+  { q: "When something goes wrong (outage, bug, escalation), how does your team coordinate?", context: "Think about the last time something urgent happened.", options: [{ text: "Automated incident workflow — alerts, channel, roles, timeline", score: 3 }, { text: "Semi-structured — we have a process but it's mostly manual", score: 2 }, { text: "Ad-hoc Slack messages and calls", score: 1 }, { text: "Fire drill — everyone scrambles, no clear process", score: 0 }], category: "incidents" },
+  { q: "What's your team size?", context: "This helps us calibrate the time savings estimate.", options: [{ text: "10–30 people", score: 0, team: 20 }, { text: "30–80 people", score: 0, team: 55 }, { text: "80–200 people", score: 0, team: 140 }, { text: "200+ people", score: 0, team: 300 }], category: "size" }
+];
+
+let current = 0;
+const answers = [];
+
+function createEl(tag, attrs, children) {
+  const el = document.createElement(tag);
+  if (attrs) Object.entries(attrs).forEach(function(kv) {
+    if (kv[0] === 'className') el.className = kv[1];
+    else if (kv[0] === 'textContent') el.textContent = kv[1];
+    else if (kv[0].startsWith('on')) el.addEventListener(kv[0].slice(2).toLowerCase(), kv[1]);
+    else el.setAttribute(kv[0], kv[1]);
+  });
+  if (children) children.forEach(function(c) { if (c) el.appendChild(typeof c === 'string' ? document.createTextNode(c) : c); });
+  return el;
+}
+
+function render() {
+  var q = questions[current];
+  document.getElementById('progress-label').textContent = 'Question ' + (current + 1) + ' of ' + questions.length;
+  document.getElementById('progress').style.width = ((current + 1) / questions.length * 100) + '%';
+
+  var old = document.querySelector('.question-card');
+  if (old) old.remove();
+
+  var optionsDiv = createEl('div', { className: 'options' });
+  q.options.forEach(function(opt, i) {
+    var dot = createEl('div', { className: 'option-dot' });
+    if (answers[current] === i) {
+      var inner = createEl('div');
+      inner.style.cssText = 'width:8px;height:8px;background:#fff;border-radius:50%';
+      dot.appendChild(inner);
+    }
+    var span = createEl('span', { textContent: opt.text });
+    var optEl = createEl('div', { className: 'option' + (answers[current] === i ? ' selected' : ''), onClick: function() { selectOption(i); } }, [dot, span]);
+    optionsDiv.appendChild(optEl);
+  });
+
+  var btnRow = createEl('div', { className: 'btn-row' });
+  if (current > 0) {
+    btnRow.appendChild(createEl('button', { className: 'btn btn-back', textContent: 'Back', onClick: goBack }));
+  } else {
+    btnRow.appendChild(createEl('div'));
+  }
+  var nextBtn = createEl('button', { className: 'btn btn-next', textContent: current === questions.length - 1 ? 'See My Results' : 'Next', onClick: goNext, id: 'nextBtn' });
+  if (answers[current] === undefined) nextBtn.disabled = true;
+  btnRow.appendChild(nextBtn);
+
+  var card = createEl('div', { className: 'question-card active' }, [
+    createEl('h2', { textContent: q.q }),
+    createEl('p', { className: 'context', textContent: q.context }),
+    optionsDiv,
+    btnRow
+  ]);
+
+  document.getElementById('quiz').appendChild(card);
+}
+
+function selectOption(index) {
+  answers[current] = index;
+  render();
+}
+
+function goBack() { if (current > 0) { current--; render(); } }
+
+function goNext() {
+  if (answers[current] === undefined) return;
+  if (current < questions.length - 1) { current++; render(); }
+  else showResults();
+}
+
+function showResults() {
+  document.getElementById('quiz').style.display = 'none';
+  document.getElementById('hero').style.display = 'none';
+
+  var totalScore = 0, teamSize = 55, categoryScores = {};
+  answers.forEach(function(ansIdx, qIdx) {
+    var q = questions[qIdx], opt = q.options[ansIdx];
+    if (q.category !== 'size') { totalScore += opt.score; categoryScores[q.category] = opt.score; }
+    if (opt.team) teamSize = opt.team;
+  });
+
+  var maxScore = 21, pct = Math.round(totalScore / maxScore * 100);
+  var inefficiency = (maxScore - totalScore) / maxScore;
+  var hoursLost = Math.round(teamSize * inefficiency * 2.5);
+
+  var scoreClass, verdict, detail;
+  if (pct >= 70) { scoreClass = 'score-high'; verdict = 'Strong'; detail = "Your workflows are in good shape. There may be targeted optimizations worth exploring, but you're ahead of most teams."; }
+  else if (pct >= 40) { scoreClass = 'score-mid'; verdict = 'Room to Improve'; detail = "Your team has some structure, but significant time is being lost to manual processes and tool sprawl. A focused sprint could recover 15\u201325 hours/week."; }
+  else { scoreClass = 'score-low'; verdict = 'Needs Attention'; detail = "Your team is losing substantial time to workflow inefficiency. The good news: this is exactly where automation has the highest ROI."; }
+
+  var findings = [];
+  var findingData = [
+    { cat: 'routing', threshold: 1, sev: 'critical', title: 'Ticket routing is a bottleneck', desc: 'Manual triage means slower response times and misrouted requests. AI classification can handle 90%+ of routing automatically.' },
+    { cat: 'channels', threshold: 1, sev: 'critical', title: 'Channel sprawl is costing focus time', desc: 'Too many channels without clear purpose = information fragmentation. Teams lose 30+ min/day just figuring out where to look.' },
+    { cat: 'visibility', threshold: 1, sev: 'warning', title: 'Leadership visibility gap', desc: 'When leads have to manually check channels, they either miss things or spend hours on it. Automated digests solve this.' },
+    { cat: 'onboarding', threshold: 1, sev: 'warning', title: 'Slow onboarding multiplies costs', desc: 'Every new hire losing days to tool confusion costs real money. Automated onboarding flows pay for themselves in 1\u20132 hires.' },
+    { cat: 'reporting', threshold: 1, sev: 'warning', title: 'Too much time on status updates', desc: 'If reporting takes 1+ hours/person/week, that is engineering time being burned on overhead. Most of this can be automated.' },
+    { cat: 'tools', threshold: 1, sev: 'critical', title: 'Tool sprawl is fragmenting your team', desc: 'Context-switching between 6+ tools kills deep work. Integrations and consolidated dashboards can cut this significantly.' },
+    { cat: 'incidents', threshold: 1, sev: 'critical', title: 'Incident response is unstructured', desc: 'Ad-hoc incident handling means longer outages and more stress. An automated incident workflow reduces MTTR by 40\u201360%.' }
+  ];
+  findingData.forEach(function(f) { if (categoryScores[f.cat] <= f.threshold) findings.push(f); });
+  if (categoryScores.routing >= 3) findings.push({ sev: 'good', title: 'Ticket routing is well-automated', desc: 'Your request handling is ahead of most teams. Nice work.' });
+  if (categoryScores.channels >= 3) findings.push({ sev: 'good', title: 'Channel organization is solid', desc: 'Clean, well-structured channels = less noise and faster information flow.' });
+  if (findings.length === 0) findings.push({ sev: 'good', title: 'Your workflows look solid', desc: 'No major red flags detected. Consider fine-tuning specific areas for marginal gains.' });
+
+  var resultsEl = document.getElementById('results');
+  resultsEl.style.display = 'block';
+
+  // Build results with safe DOM methods
+  var header = createEl('div', { style: 'text-align:center;margin-bottom:32px' }, [
+    createEl('h1', { style: 'font-size:32px;margin-bottom:16px', textContent: 'Your Workflow Efficiency Score' }),
+    (function() {
+      var circle = createEl('div', { className: 'score-circle ' + scoreClass }, [
+        createEl('div', { className: 'score-num', textContent: String(pct) }),
+        createEl('div', { className: 'score-label', textContent: verdict })
+      ]);
+      return circle;
+    })(),
+    createEl('p', { style: 'color:var(--muted);font-size:16px;max-width:500px;margin:0 auto', textContent: detail })
+  ]);
+  resultsEl.appendChild(header);
+
+  var timeSaved = createEl('div', { className: 'time-saved' }, [
+    createEl('div', { className: 'big', textContent: '~' + hoursLost + ' hours/week' }),
+    createEl('p', { textContent: 'Estimated time your team of ' + teamSize + ' is losing to manual workflows' })
+  ]);
+  resultsEl.appendChild(timeSaved);
+
+  var findingsSection = createEl('div', { style: 'margin:32px 0' }, [
+    createEl('h3', { style: 'font-size:18px;font-weight:700;margin-bottom:16px', textContent: 'Key Findings' })
+  ]);
+  findings.forEach(function(f) {
+    findingsSection.appendChild(createEl('div', { className: 'finding ' + f.sev }, [
+      createEl('h4', { textContent: f.title }),
+      createEl('p', { textContent: f.desc })
+    ]));
+  });
+  resultsEl.appendChild(findingsSection);
+
+  var mailSubject = encodeURIComponent('Scorecard Result: ' + pct + '% \u2014 Let\'s Talk');
+  var mailBody = encodeURIComponent('Hi Evgeny,\n\nI just took the Workflow Efficiency Scorecard and scored ' + pct + '%.\n\nMy team size: ' + teamSize + '\nEstimated hours lost/week: ' + hoursLost + '\n\nI\'d like to discuss the AI Ops Sprint.\n\nThanks!');
+  var ctaBox = createEl('div', { className: 'cta-box' }, [
+    createEl('h3', { textContent: 'Want to fix this in 5 days?' }),
+    createEl('p', { textContent: 'The AI Ops Sprint: I audit your workflows and implement the top 3 automations. Fixed price, working software \u2014 not a slide deck.' }),
+    createEl('a', { href: 'mailto:eg@techconcepts.org?subject=' + mailSubject + '&body=' + mailBody, textContent: 'Book a Free Call' })
+  ]);
+  resultsEl.appendChild(ctaBox);
+
+  var shareUrl = encodeURIComponent('https://techconcepts.org/sprint/scorecard.html');
+  var shareRow = createEl('div', { className: 'share-row' }, [
+    createEl('a', { href: 'https://www.linkedin.com/sharing/share-offsite/?url=' + shareUrl, target: '_blank', textContent: 'Share on LinkedIn' }),
+    createEl('a', { href: 'mailto:?subject=Workflow%20Efficiency%20Scorecard&body=How%20efficient%20are%20your%20team%27s%20workflows%3F%20Take%20this%202-min%20assessment%3A%20https%3A%2F%2Ftechconcepts.org%2Fsprint%2Fscorecard.html', target: '_blank', textContent: 'Share via Email' })
+  ]);
+  resultsEl.appendChild(shareRow);
+
+  var learnMore = createEl('div', { style: 'text-align:center;margin-top:32px' }, [
+    createEl('a', { href: '/sprint/', style: 'color:var(--accent);font-weight:600;font-size:15px', textContent: 'Learn more about the AI Ops Sprint \u2192' })
+  ]);
+  resultsEl.appendChild(learnMore);
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+render();
+</script>
+</body>
+</html>
