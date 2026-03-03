@@ -225,17 +225,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize analytics
     tcAnalytics.init();
 
-    // Track CTA clicks (buttons, Calendly popups, and legacy calendar links)
-    document.querySelectorAll('a.btn, a[href*="calendar.app.google"], a[onclick*="openCalendly"]').forEach(btn => {
+    // Track CTA clicks (buttons and legacy calendar links)
+    document.querySelectorAll('a.btn, a[href*="calendar.app.google"]').forEach(btn => {
         btn.addEventListener('click', () => {
-            const isCalendly = btn.getAttribute('onclick')?.includes('openCalendly');
             const isGumroad = btn.href?.includes('gumroad.com');
             tcAnalytics.track('cta_click', {
                 text: btn.textContent.trim(),
-                href: btn.href || 'calendly_popup',
+                href: btn.href || 'unknown',
                 section: btn.closest('section')?.className || 'unknown',
-                category: (isCalendly || isGumroad) ? 'conversion' : 'engagement',
-                label: isCalendly ? 'calendly_booking' : (isGumroad ? 'gumroad_browse' : btn.textContent.trim())
+                category: isGumroad ? 'conversion' : 'engagement',
+                label: isGumroad ? 'gumroad_browse' : btn.textContent.trim()
             });
         });
     });
