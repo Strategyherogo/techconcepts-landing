@@ -17,6 +17,12 @@
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
     <link rel="preconnect" href="https://formspree.io" crossorigin>
     <link rel="dns-prefetch" href="https://formspree.io">
+    <link rel="preconnect" href="https://assets.calendly.com" crossorigin>
+    <link rel="dns-prefetch" href="https://assets.calendly.com">
+
+    <!-- Calendly Widget -->
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
@@ -256,7 +262,7 @@
                     <button class="lang-btn" onclick="toggleLangMenu()"><span id="currentLang">EN</span> &#9662;</button>
                     <div class="lang-dropdown" id="langDropdown"></div>
                 </div>
-                <a href="https://calendar.app.google/md6WqwnhfireNTqx5" class="btn btn-primary">Book a Call</a>
+                <a href="#" onclick="openCalendly('nav_cta'); return false;" class="btn btn-primary">Book a Free 15-Min Call</a>
             </div>
         </div>
     </nav>
@@ -415,7 +421,7 @@
                 </div>
                 <div class="faq-item">
                     <h3>Can you build a custom product for my business?</h3>
-                    <p>Yes. Native iOS/macOS apps from &euro;3K, Chrome extensions, Jira Cloud apps, and web tools. Fixed pricing, full code ownership. <a href="https://calendar.app.google/md6WqwnhfireNTqx5">Book a 15-minute call</a> to discuss.</p>
+                    <p>Yes. Native iOS/macOS apps from &euro;3K, Chrome extensions, Jira Cloud apps, and web tools. Fixed pricing, full code ownership. <a href="#" onclick="openCalendly('faq_cta'); return false;">Book a free 15-minute call</a> to discuss.</p>
                 </div>
                 <div class="faq-item">
                     <h3>What platforms do you develop for?</h3>
@@ -430,7 +436,10 @@
         <div class="container">
             <h2>Need a custom product built?</h2>
             <p>I build products for founders and teams. Fixed pricing, full code ownership, 2-8 week delivery.</p>
-            <a href="https://calendar.app.google/md6WqwnhfireNTqx5" class="btn btn-primary">Book a Call</a>
+            <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+                <a href="#" onclick="openCalendly('products_final_cta'); return false;" class="btn btn-primary">Book a Free 15-Min Call</a>
+                <a href="https://techconcepts.gumroad.com" target="_blank" rel="noopener" class="btn btn-secondary" onclick="trackGumroad('products_final_cta');" style="background: rgba(255,255,255,0.15); color: #fff; border: 1px solid rgba(255,255,255,0.3);">Browse Products on Gumroad</a>
+            </div>
         </div>
     </section>
 
@@ -478,5 +487,34 @@
     <script src="/scripts/nav.js"></script>
     <script src="/scripts/i18n.js"></script>
     <script src="/scripts/analytics.js"></script>
+
+    <!-- Calendly & Gumroad CTA Helpers -->
+    <script>
+      // PLACEHOLDER: Replace 'https://calendly.com/techconcepts' with your real Calendly URL
+      function openCalendly(source) {
+        if (typeof gtag === 'function') {
+          gtag('event', 'cta_click', {
+            'event_category': 'conversion',
+            'event_label': 'calendly_booking',
+            'cta_source': source
+          });
+        }
+        if (typeof Calendly !== 'undefined') {
+          Calendly.initPopupWidget({url: 'https://calendly.com/techconcepts'});
+        } else {
+          window.open('https://calendly.com/techconcepts', '_blank');
+        }
+      }
+
+      function trackGumroad(source) {
+        if (typeof gtag === 'function') {
+          gtag('event', 'cta_click', {
+            'event_category': 'conversion',
+            'event_label': 'gumroad_browse',
+            'cta_source': source
+          });
+        }
+      }
+    </script>
 </body>
 </html>

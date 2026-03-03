@@ -225,13 +225,30 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize analytics
     tcAnalytics.init();
 
-    // Track CTA clicks
-    document.querySelectorAll('a.btn, a[href*="calendar.app.google"]').forEach(btn => {
+    // Track CTA clicks (buttons, Calendly popups, and legacy calendar links)
+    document.querySelectorAll('a.btn, a[href*="calendar.app.google"], a[onclick*="openCalendly"]').forEach(btn => {
         btn.addEventListener('click', () => {
+            const isCalendly = btn.getAttribute('onclick')?.includes('openCalendly');
+            const isGumroad = btn.href?.includes('gumroad.com');
             tcAnalytics.track('cta_click', {
                 text: btn.textContent.trim(),
-                href: btn.href,
-                section: btn.closest('section')?.className || 'unknown'
+                href: btn.href || 'calendly_popup',
+                section: btn.closest('section')?.className || 'unknown',
+                category: (isCalendly || isGumroad) ? 'conversion' : 'engagement',
+                label: isCalendly ? 'calendly_booking' : (isGumroad ? 'gumroad_browse' : btn.textContent.trim())
+            });
+        });
+    });
+
+    // Track Gumroad link clicks specifically
+    document.querySelectorAll('a[href*="gumroad.com"]').forEach(link => {
+        link.addEventListener('click', () => {
+            tcAnalytics.track('cta_click', {
+                category: 'conversion',
+                label: 'gumroad_browse',
+                text: link.textContent.trim(),
+                href: link.href,
+                section: link.closest('section')?.className || 'unknown'
             });
         });
     });
