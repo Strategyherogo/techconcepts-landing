@@ -1,0 +1,31 @@
+# Browser caching headers for Cloudflare Pages
+# HTML pages: no cache (always revalidate for fresh content)
+# Static assets: 1 day cache
+
+# CSS files
+/styles/*
+  Cache-Control: public, max-age=86400
+
+# JavaScript files
+/scripts/*
+  Cache-Control: public, max-age=86400
+
+# Images
+/*.png
+  Cache-Control: public, max-age=86400
+/*.jpg
+  Cache-Control: public, max-age=86400
+/*.jpeg
+  Cache-Control: public, max-age=86400
+/*.svg
+  Cache-Control: public, max-age=86400
+/*.ico
+  Cache-Control: public, max-age=86400
+/*.webp
+  Cache-Control: public, max-age=86400
+
+# Fonts
+/*.woff2
+  Cache-Control: public, max-age=86400
+/*.woff
+  Cache-Control: public, max-age=86400
