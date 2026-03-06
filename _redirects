@@ -7,6 +7,10 @@
 /blog/* /blog/:splat 200
 /products/* /products/:splat 200
 /tools/* /tools/:splat 200
+/about/* /about/:splat 200
+
+# Legacy redirect: old about.html URL → new about/ path
+/about.html /about/ 301
 
 # Legacy hash-based routes from the monolith → new pages
 # (These won't actually work as _redirects since # is client-side,
