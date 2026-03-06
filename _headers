@@ -10,7 +10,11 @@
 /scripts/*
   Cache-Control: public, max-age=86400
 
-# Images
+# Images — explicit root-level files + wildcard
+/techconcepts-og.png
+  Cache-Control: public, max-age=86400
+/evgeny.jpg
+  Cache-Control: public, max-age=86400
 /*.png
   Cache-Control: public, max-age=86400
 /*.jpg
